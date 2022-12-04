@@ -4,7 +4,7 @@
 //
 //  Created by Илья Дубенский on 04.12.2022.
 //
-
+// xx
 import SwiftUI
 import CoreData
 
