@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8A2E5CA293D42E600B7E4A4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A2E5C9293D42E600B7E4A4 /* LoginView.swift */; };
+		B8A2E5CE293D43B900B7E4A4 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A2E5CD293D43B900B7E4A4 /* LaunchView.swift */; };
 		B8EEF021293D085E00D15F28 /* HomeBarSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EEF020293D085E00D15F28 /* HomeBarSwiftUIApp.swift */; };
 		B8EEF023293D085E00D15F28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EEF022293D085E00D15F28 /* ContentView.swift */; };
 		B8EEF025293D085F00D15F28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8EEF024293D085F00D15F28 /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B8A2E5C9293D42E600B7E4A4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B8A2E5CD293D43B900B7E4A4 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		B8EEF01D293D085E00D15F28 /* HomeBarSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeBarSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8EEF020293D085E00D15F28 /* HomeBarSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBarSwiftUIApp.swift; sourceTree = "<group>"; };
 		B8EEF022293D085E00D15F28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 				B8EEF029293D085F00D15F28 /* Persistence.swift */,
 				B8EEF02B293D085F00D15F28 /* HomeBarSwiftUI.xcdatamodeld */,
 				B8EEF026293D085F00D15F28 /* Preview Content */,
+				B8A2E5CD293D43B900B7E4A4 /* LaunchView.swift */,
+				B8A2E5C9293D42E600B7E4A4 /* LoginView.swift */,
 			);
 			path = HomeBarSwiftUI;
 			sourceTree = "<group>";
@@ -264,7 +270,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8EEF02D293D085F00D15F28 /* HomeBarSwiftUI.xcdatamodeld in Sources */,
+				B8A2E5CE293D43B900B7E4A4 /* LaunchView.swift in Sources */,
 				B8EEF02A293D085F00D15F28 /* Persistence.swift in Sources */,
+				B8A2E5CA293D42E600B7E4A4 /* LoginView.swift in Sources */,
 				B8EEF023293D085E00D15F28 /* ContentView.swift in Sources */,
 				B8EEF021293D085E00D15F28 /* HomeBarSwiftUIApp.swift in Sources */,
 			);
