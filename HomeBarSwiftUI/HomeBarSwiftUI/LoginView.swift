@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
 
-    @State private var username = ""
+    @State private var email = ""
     @State private var password = ""
 
     let homeBarLogoImage = "HomeBarLogo"
@@ -27,7 +27,10 @@ struct LoginView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             Spacer()
-            TextField("Username", text: $username)
+            Text("User with \(email) not exist!")
+                .foregroundColor(Color(neonOrange))
+                .hidden()
+            TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .foregroundColor(.black)
                 .frame(width: 300.0)
@@ -40,7 +43,7 @@ struct LoginView: View {
             Button(logInButton) {
                 print("hi")
             }
-            .frame(width: 200, height: 40.0)
+            .frame(width: 250, height: 40.0)
             .background(Color(neonOrange))
             .foregroundColor(Color.black)
             .cornerRadius(10)
