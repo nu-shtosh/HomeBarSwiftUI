@@ -62,7 +62,6 @@ struct ContentView: View {
             .frame(width: 412) // пока захардкодил надо сравять фрейм стаквью с фрейм вью
         }
         .background(Color.black)
-
     }
 }
 
