@@ -33,7 +33,7 @@ struct ContentView: View {
                     .foregroundColor(Color(.systemRed))
                     .lineLimit(1)
                     .frame(width: 300)
-//                    .hidden()
+                    .hidden()
                 TextField("Email", text: $email)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .foregroundColor(.black)
