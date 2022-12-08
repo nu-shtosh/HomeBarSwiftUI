@@ -18,15 +18,16 @@ struct LogInView: View {
             VStack() {
                 LogoView()
                 Spacer()
-                LogInTextFieldView(email: email ,password: password)
+                VStack(spacing: 15) {
+                    TextFieldWithImageView(title: "Email", imageSystemName: "envelope", text: $email)
+                    SecureFieldWithImageView(title: "Password", imageSystemName: "key", text: $password)
+                }.padding()
                 Spacer()
-                LogInButtonView(action: logInDidTapped(), title: "Log In")
-                SignUpButtonView(action: signUpDidTapped(), title: "Sign Up")
+                OrangeButtonView(action: logInDidTapped(), title: "Log In")
+                BlueButtonView(action: signUpDidTapped(), title: "Sign Up")
                     .padding(.top, 10)
                 Spacer(minLength: 150)
             }
-
-
         }
     }
 
@@ -34,7 +35,6 @@ struct LogInView: View {
     }
 
     func signUpDidTapped() {
-        
     }
 }
 

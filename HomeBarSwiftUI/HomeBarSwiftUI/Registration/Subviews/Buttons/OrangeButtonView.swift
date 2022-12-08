@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LogInButtonView: View {
+struct OrangeButtonView: View {
     let action: ()
     let title: String
 
@@ -28,6 +28,6 @@ struct LogInButtonView: View {
 
 struct LogInButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        LogInButtonView(action: print("Log In"), title: "Log In")
+        OrangeButtonView(action: print("Log In"), title: "Log In")
     }
 }

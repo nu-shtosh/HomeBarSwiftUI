@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SignUpButtonView: View {
+struct BlueButtonView: View {
     let action: ()
     let title: String
 
@@ -19,12 +19,11 @@ struct SignUpButtonView: View {
                 }
                 .foregroundColor(Color("neonBlue"))
             }
-
         }
 }
 
 struct RegisterButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpButtonView(action: print("Sign Up"), title: "Sign Up")
+        BlueButtonView(action: print("Sign Up"), title: "Sign Up")
     }
 }
