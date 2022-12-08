@@ -15,7 +15,7 @@ struct LaunchView: View {
         VStack() {
             Image(homeBarLogoImage)
                 .resizable()
-                .frame(width: 200, height: 200)
+                .frame(width: 210, height: 200)
             Spacer()
         }
         .frame(minWidth: 380)

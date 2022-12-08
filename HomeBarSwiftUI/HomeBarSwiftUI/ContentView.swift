@@ -27,10 +27,12 @@ struct ContentView: View {
             VStack() {
                 Image(homeBarLogoImage)
                     .resizable()
-                    .frame(width: 230, height: 230)
+                    .frame(width: 210, height: 200)
                     .aspectRatio(contentMode: .fit)
                 Text("User with \(email) not exist!")
-                    .foregroundColor(Color(neonOrange))
+                    .foregroundColor(Color(.systemRed))
+                    .lineLimit(1)
+                    .frame(width: 300)
 //                    .hidden()
                 TextField("Email", text: $email)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -54,10 +56,7 @@ struct ContentView: View {
                 }
                 .frame(width: 150.0, height: 40.0)
                 .foregroundColor(Color(neonBlue))
-                Spacer(minLength:10)
-                Image(cocktailsLogoImage)
-                    .resizable()
-                    .frame(width: 280, height: 90)
+                Spacer()
             }
             .frame(width: 412) // пока захардкодил надо сравять фрейм стаквью с фрейм вью
         }
