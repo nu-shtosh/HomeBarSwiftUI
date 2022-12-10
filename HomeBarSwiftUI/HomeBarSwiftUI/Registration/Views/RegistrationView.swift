@@ -47,8 +47,6 @@ struct RegistrationView: View {
     }
 
     func userRegistration() {
-
-
     }
 
     func returnOnLogIn() {

@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8588DE8294538540082132D /* TextFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8588DE7294538540082132D /* TextFieldWithImageView.swift */; };
 		B8A2E5D0293E3B7200B7E4A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */; };
 		B8A2E5D3293E408600B7E4A4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B8A2E5D2293E408600B7E4A4 /* FirebaseAuth */; };
 		B8A2E5D5293E408600B7E4A4 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B8A2E5D4293E408600B7E4A4 /* FirebaseDatabase */; };
 		B8B37AFB2942254600611844 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37AFA2942254600611844 /* LogoView.swift */; };
-		B8B37AFD2942260400611844 /* TextFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37AFC2942260400611844 /* TextFieldWithImageView.swift */; };
 		B8B37B00294227D600611844 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37AFF294227D600611844 /* LaunchView.swift */; };
 		B8B37B022942287100611844 /* WallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B012942287100611844 /* WallpaperView.swift */; };
 		B8B37B0429422A7E00611844 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B0329422A7E00611844 /* LogInView.swift */; };
@@ -50,9 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B8588DE7294538540082132D /* TextFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextFieldWithImageView.swift; path = ../../../../../../../../Documents/TextFieldWithImageView.swift; sourceTree = "<group>"; };
 		B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8B37AFA2942254600611844 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
-		B8B37AFC2942260400611844 /* TextFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImageView.swift; sourceTree = "<group>"; };
 		B8B37AFF294227D600611844 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		B8B37B012942287100611844 /* WallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperView.swift; sourceTree = "<group>"; };
 		B8B37B0329422A7E00611844 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
@@ -138,8 +138,8 @@
 			children = (
 				B8B37B152942955D00611844 /* Extansion + TextField.swift */,
 				B8B37B13294294C800611844 /* DefaultTextFieldView.swift */,
-				B8B37AFC2942260400611844 /* TextFieldWithImageView.swift */,
 				B8B37B1729429A4200611844 /* SecureFieldWithImageView.swift */,
+				B8588DE7294538540082132D /* TextFieldWithImageView.swift */,
 			);
 			path = TextFields;
 			sourceTree = "<group>";
@@ -377,9 +377,9 @@
 				B8B37B0A294263FA00611844 /* BlueButtonView.swift in Sources */,
 				B8B37B00294227D600611844 /* LaunchView.swift in Sources */,
 				B8B37B1829429A4200611844 /* SecureFieldWithImageView.swift in Sources */,
+				B8588DE8294538540082132D /* TextFieldWithImageView.swift in Sources */,
 				B8EEF023293D085E00D15F28 /* ContentView.swift in Sources */,
 				B8B37B0429422A7E00611844 /* LogInView.swift in Sources */,
-				B8B37AFD2942260400611844 /* TextFieldWithImageView.swift in Sources */,
 				B8B37B14294294C800611844 /* DefaultTextFieldView.swift in Sources */,
 				B8EEF021293D085E00D15F28 /* HomeBarSwiftUIApp.swift in Sources */,
 			);
