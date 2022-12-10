@@ -10,6 +10,8 @@ import SwiftUI
 struct WallpaperView: View {
     var body: some View {
         Image("HomeBarWallpaper")
+            .resizable()
+            .aspectRatio(UIImage(named: "HomeBarWallpaper")?.size ?? CGSize(width: 100, height: 100), contentMode: .fill)
             .background(Color.black)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .edgesIgnoringSafeArea(.all)

@@ -12,7 +12,8 @@ struct DefaultTextFieldView: View {
     @Binding var text: String
 
     var body: some View {
-        TextField(title, text: $text).textFieldStyle(GradientTextFieldBackground())
+        TextField(title, text: $text)
+            .textFieldStyle(GradientTextFieldBackground())
     }
 }
 

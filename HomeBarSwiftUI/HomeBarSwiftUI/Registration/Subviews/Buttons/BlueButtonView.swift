@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct BlueButtonView: View {
-    let action: ()
+    let action: () -> Void
     let title: String
 
     var body: some View {
             VStack {
-                Button(action: {action}) {
+                Button(action: action) {
                     Text(title)
                         .font(.system(size: 22))
                 }
@@ -24,6 +24,6 @@ struct BlueButtonView: View {
 
 struct RegisterButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        BlueButtonView(action: print("Sign Up"), title: "Sign Up")
+        BlueButtonView(action: {}, title: "Sign Up")
     }
 }
