@@ -10,6 +10,7 @@
 		1F5F877F29461E2F00335B57 /* SecureFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */; };
 		1F5F878129461EB500335B57 /* TextFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */; };
 		1F5F878629461FE700335B57 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878529461FE700335B57 /* AuthService.swift */; };
+		B8588DEF29462ADA0082132D /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8588DEE29462ADA0082132D /* MainTabView.swift */; };
 		B8A2E5D0293E3B7200B7E4A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */; };
 		B8A2E5D3293E408600B7E4A4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B8A2E5D2293E408600B7E4A4 /* FirebaseAuth */; };
 		B8A2E5D5293E408600B7E4A4 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B8A2E5D4293E408600B7E4A4 /* FirebaseDatabase */; };
@@ -19,13 +20,14 @@
 		B8B37B0429422A7E00611844 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B0329422A7E00611844 /* SignInView.swift */; };
 		B8B37B0829423DBB00611844 /* OrangeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B0729423DBB00611844 /* OrangeButtonView.swift */; };
 		B8B37B0A294263FA00611844 /* BlueButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B09294263FA00611844 /* BlueButtonView.swift */; };
-		B8B37B0C2942810B00611844 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B0B2942810B00611844 /* SignUpView.swift */; };
 		B8B37B14294294C800611844 /* DefaultTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B13294294C800611844 /* DefaultTextFieldView.swift */; };
 		B8B37B162942955D00611844 /* Extansion + TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B152942955D00611844 /* Extansion + TextField.swift */; };
 		B8EEF021293D085E00D15F28 /* HomeBarSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EEF020293D085E00D15F28 /* HomeBarSwiftUIApp.swift */; };
-		B8EEF023293D085E00D15F28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EEF022293D085E00D15F28 /* ContentView.swift */; };
 		B8EEF025293D085F00D15F28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8EEF024293D085F00D15F28 /* Assets.xcassets */; };
 		B8EEF028293D085F00D15F28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8EEF027293D085F00D15F28 /* Preview Assets.xcassets */; };
+		B8F5469D29462FAF00ADB0A1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F5469C29462FAF00ADB0A1 /* ProfileView.swift */; };
+		B8F5469F29462FC200ADB0A1 /* AlcoholTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F5469E29462FC200ADB0A1 /* AlcoholTestView.swift */; };
+		B8F546A12946305500ADB0A1 /* IngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F546A02946305500ADB0A1 /* IngredientsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,7 @@
 		1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFieldWithImageView.swift; sourceTree = "<group>"; };
 		1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImageView.swift; sourceTree = "<group>"; };
 		1F5F878529461FE700335B57 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		B8588DEE29462ADA0082132D /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8B37AFA2942254600611844 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		B8B37AFF294227D600611844 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
@@ -56,16 +59,17 @@
 		B8B37B0329422A7E00611844 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		B8B37B0729423DBB00611844 /* OrangeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeButtonView.swift; sourceTree = "<group>"; };
 		B8B37B09294263FA00611844 /* BlueButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButtonView.swift; sourceTree = "<group>"; };
-		B8B37B0B2942810B00611844 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B8B37B13294294C800611844 /* DefaultTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextFieldView.swift; sourceTree = "<group>"; };
 		B8B37B152942955D00611844 /* Extansion + TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extansion + TextField.swift"; sourceTree = "<group>"; };
 		B8EEF01D293D085E00D15F28 /* HomeBarSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeBarSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8EEF020293D085E00D15F28 /* HomeBarSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBarSwiftUIApp.swift; sourceTree = "<group>"; };
-		B8EEF022293D085E00D15F28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B8EEF024293D085F00D15F28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8EEF027293D085F00D15F28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B8EEF032293D085F00D15F28 /* HomeBarSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeBarSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8EEF03C293D085F00D15F28 /* HomeBarSwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeBarSwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8F5469C29462FAF00ADB0A1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		B8F5469E29462FC200ADB0A1 /* AlcoholTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholTestView.swift; sourceTree = "<group>"; };
+		B8F546A02946305500ADB0A1 /* IngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,16 +107,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		B8B37AF82942251700611844 /* Registration */ = {
-			isa = PBXGroup;
-			children = (
-				1F5F87882946205F00335B57 /* Services */,
-				B8B37AFE2942264200611844 /* Views */,
-				B8B37AF92942252B00611844 /* Subviews */,
-			);
-			path = Registration;
-			sourceTree = "<group>";
-		};
 		B8B37AF92942252B00611844 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,7 +123,10 @@
 			children = (
 				B8B37AFF294227D600611844 /* LaunchView.swift */,
 				B8B37B0329422A7E00611844 /* SignInView.swift */,
-				B8B37B0B2942810B00611844 /* SignUpView.swift */,
+				B8588DEE29462ADA0082132D /* MainTabView.swift */,
+				B8F546A02946305500ADB0A1 /* IngredientsView.swift */,
+				B8F5469E29462FC200ADB0A1 /* AlcoholTestView.swift */,
+				B8F5469C29462FAF00ADB0A1 /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,12 +188,13 @@
 		B8EEF01F293D085E00D15F28 /* HomeBarSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				B8B37AF82942251700611844 /* Registration */,
-				B8EEF020293D085E00D15F28 /* HomeBarSwiftUIApp.swift */,
-				B8EEF022293D085E00D15F28 /* ContentView.swift */,
+				B8B37AF92942252B00611844 /* Subviews */,
+				B8B37AFE2942264200611844 /* Views */,
+				1F5F87882946205F00335B57 /* Services */,
+				B8F546A2294632FD00ADB0A1 /* App */,
+				B8EEF026293D085F00D15F28 /* Preview Content */,
 				B8EEF024293D085F00D15F28 /* Assets.xcassets */,
 				B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */,
-				B8EEF026293D085F00D15F28 /* Preview Content */,
 			);
 			path = HomeBarSwiftUI;
 			sourceTree = "<group>";
@@ -207,6 +205,14 @@
 				B8EEF027293D085F00D15F28 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B8F546A2294632FD00ADB0A1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B8EEF020293D085E00D15F28 /* HomeBarSwiftUIApp.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,14 +355,16 @@
 			files = (
 				B8B37B022942287100611844 /* WallpaperView.swift in Sources */,
 				B8B37B0829423DBB00611844 /* OrangeButtonView.swift in Sources */,
-				B8B37B0C2942810B00611844 /* SignUpView.swift in Sources */,
 				B8B37B162942955D00611844 /* Extansion + TextField.swift in Sources */,
 				B8B37AFB2942254600611844 /* LogoView.swift in Sources */,
+				B8F546A12946305500ADB0A1 /* IngredientsView.swift in Sources */,
 				B8B37B0A294263FA00611844 /* BlueButtonView.swift in Sources */,
 				B8B37B00294227D600611844 /* LaunchView.swift in Sources */,
 				1F5F877F29461E2F00335B57 /* SecureFieldWithImageView.swift in Sources */,
+				B8F5469F29462FC200ADB0A1 /* AlcoholTestView.swift in Sources */,
+				B8F5469D29462FAF00ADB0A1 /* ProfileView.swift in Sources */,
 				1F5F878129461EB500335B57 /* TextFieldWithImageView.swift in Sources */,
-				B8EEF023293D085E00D15F28 /* ContentView.swift in Sources */,
+				B8588DEF29462ADA0082132D /* MainTabView.swift in Sources */,
 				B8B37B0429422A7E00611844 /* SignInView.swift in Sources */,
 				B8B37B14294294C800611844 /* DefaultTextFieldView.swift in Sources */,
 				B8EEF021293D085E00D15F28 /* HomeBarSwiftUIApp.swift in Sources */,
