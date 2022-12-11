@@ -11,12 +11,13 @@ import FirebaseCore
 
 struct SignInView: View {
 
-
     @State var isAuth = true
 
     @State var email = ""
     @State var password = ""
     @State var checkPassword = ""
+
+    @State var isTabViewShow = false
 
     @State var message = ""
     @State var alert = false
@@ -43,7 +44,7 @@ struct SignInView: View {
                         TextFieldWithImageView(title: "Email", imageSystemName: "envelope", text: $email)
                         SecureFieldWithImageView(title: "Password", imageSystemName: "key", text: $password)
                             if !isAuth {
-                                SecureFieldWithImageView(title: "Repeat Password", imageSystemName: "key.fill", text: $password)
+                                SecureFieldWithImageView(title: "Repeat Password", imageSystemName: "key.fill", text: $checkPassword)
                             }
                         }.padding(.bottom, 30)
                         VStack(spacing: 4) {
@@ -63,17 +64,25 @@ struct SignInView: View {
                     .cornerRadius(isAuth ? 16 : 32)
                     Spacer()
                 }
-                .animation(Animation.easeInOut(duration: 0.4), value: isAuth)
                 .padding(8)
+                .animation(Animation.easeInOut(duration: 0.4), value: isAuth)
+            }
+            .fullScreenCover(isPresented: $isTabViewShow) {
+                MainTabView()
             }
         }
 
     func SignInDidTapped() {
-        print("Authorization")
+        print("User Authorization with Firebase")
+        isTabViewShow.toggle()
     }
 
     func SignUpDidTapped() {
-        print("Registration")
+        print("User Registration  with Firebase")
+        self.email = ""
+        self.password = ""
+        self.checkPassword = ""
+        isAuth.toggle()
     }
 
     func showSingUp() {
