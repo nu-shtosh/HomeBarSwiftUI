@@ -18,7 +18,7 @@ struct ContentView: View {
             if status {
                 LaunchView()
             } else {
-                LogInView()
+                SignInView()
             }
         }
 //        .animation(.spring())

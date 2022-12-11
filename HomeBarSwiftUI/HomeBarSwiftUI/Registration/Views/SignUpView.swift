@@ -1,5 +1,5 @@
 //
-//  RegistrationView.swift
+//  SignUpView.swift
 //  HomeBarSwiftUI
 //
 //  Created by Илья Дубенский on 08.12.2022.
@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseCore
 import FirebaseAuth
 
-struct RegistrationView: View {
+struct SignUpView: View {
 
     @State var name = ""
     @State var surname = ""
@@ -47,6 +47,7 @@ struct RegistrationView: View {
     }
 
     func userRegistration() {
+
     }
 
     func returnOnLogIn() {
@@ -65,8 +66,8 @@ func signUpWithEmail(email: String, password: String, completion: @escaping (Boo
     }
 }
 
-struct RegistrationView_Previews: PreviewProvider {
+struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView()
+        SignUpView()
     }
 }

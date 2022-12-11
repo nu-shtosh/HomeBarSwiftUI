@@ -8,16 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		B8588DE8294538540082132D /* TextFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8588DE7294538540082132D /* TextFieldWithImageView.swift */; };
+		B8588DEB29453D640082132D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8588DEA29453D640082132D /* AuthService.swift */; };
 		B8A2E5D0293E3B7200B7E4A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */; };
 		B8A2E5D3293E408600B7E4A4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B8A2E5D2293E408600B7E4A4 /* FirebaseAuth */; };
 		B8A2E5D5293E408600B7E4A4 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B8A2E5D4293E408600B7E4A4 /* FirebaseDatabase */; };
 		B8B37AFB2942254600611844 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37AFA2942254600611844 /* LogoView.swift */; };
 		B8B37B00294227D600611844 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37AFF294227D600611844 /* LaunchView.swift */; };
 		B8B37B022942287100611844 /* WallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B012942287100611844 /* WallpaperView.swift */; };
-		B8B37B0429422A7E00611844 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B0329422A7E00611844 /* LogInView.swift */; };
+		B8B37B0429422A7E00611844 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B0329422A7E00611844 /* SignInView.swift */; };
 		B8B37B0829423DBB00611844 /* OrangeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B0729423DBB00611844 /* OrangeButtonView.swift */; };
 		B8B37B0A294263FA00611844 /* BlueButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B09294263FA00611844 /* BlueButtonView.swift */; };
-		B8B37B0C2942810B00611844 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B0B2942810B00611844 /* RegistrationView.swift */; };
+		B8B37B0C2942810B00611844 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B0B2942810B00611844 /* SignUpView.swift */; };
 		B8B37B14294294C800611844 /* DefaultTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B13294294C800611844 /* DefaultTextFieldView.swift */; };
 		B8B37B162942955D00611844 /* Extansion + TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B152942955D00611844 /* Extansion + TextField.swift */; };
 		B8B37B1829429A4200611844 /* SecureFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B1729429A4200611844 /* SecureFieldWithImageView.swift */; };
@@ -51,14 +52,15 @@
 
 /* Begin PBXFileReference section */
 		B8588DE7294538540082132D /* TextFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextFieldWithImageView.swift; path = ../../../../../../../../Documents/TextFieldWithImageView.swift; sourceTree = "<group>"; };
+		B8588DEA29453D640082132D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = ../../../../../../../Documents/AuthService.swift; sourceTree = "<group>"; };
 		B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8B37AFA2942254600611844 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		B8B37AFF294227D600611844 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		B8B37B012942287100611844 /* WallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperView.swift; sourceTree = "<group>"; };
-		B8B37B0329422A7E00611844 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		B8B37B0329422A7E00611844 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		B8B37B0729423DBB00611844 /* OrangeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeButtonView.swift; sourceTree = "<group>"; };
 		B8B37B09294263FA00611844 /* BlueButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButtonView.swift; sourceTree = "<group>"; };
-		B8B37B0B2942810B00611844 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		B8B37B0B2942810B00611844 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B8B37B13294294C800611844 /* DefaultTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextFieldView.swift; sourceTree = "<group>"; };
 		B8B37B152942955D00611844 /* Extansion + TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extansion + TextField.swift"; sourceTree = "<group>"; };
 		B8B37B1729429A4200611844 /* SecureFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFieldWithImageView.swift; sourceTree = "<group>"; };
@@ -103,9 +105,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B8588DE929453D4E0082132D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B8588DEA29453D640082132D /* AuthService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		B8B37AF82942251700611844 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				B8588DE929453D4E0082132D /* Services */,
 				B8B37AFE2942264200611844 /* Views */,
 				B8B37AF92942252B00611844 /* Subviews */,
 			);
@@ -127,8 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				B8B37AFF294227D600611844 /* LaunchView.swift */,
-				B8B37B0329422A7E00611844 /* LogInView.swift */,
-				B8B37B0B2942810B00611844 /* RegistrationView.swift */,
+				B8B37B0329422A7E00611844 /* SignInView.swift */,
+				B8B37B0B2942810B00611844 /* SignUpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -370,7 +381,7 @@
 				B8EEF02D293D085F00D15F28 /* HomeBarSwiftUI.xcdatamodeld in Sources */,
 				B8B37B022942287100611844 /* WallpaperView.swift in Sources */,
 				B8B37B0829423DBB00611844 /* OrangeButtonView.swift in Sources */,
-				B8B37B0C2942810B00611844 /* RegistrationView.swift in Sources */,
+				B8B37B0C2942810B00611844 /* SignUpView.swift in Sources */,
 				B8B37B162942955D00611844 /* Extansion + TextField.swift in Sources */,
 				B8B37AFB2942254600611844 /* LogoView.swift in Sources */,
 				B8EEF02A293D085F00D15F28 /* Persistence.swift in Sources */,
@@ -379,9 +390,10 @@
 				B8B37B1829429A4200611844 /* SecureFieldWithImageView.swift in Sources */,
 				B8588DE8294538540082132D /* TextFieldWithImageView.swift in Sources */,
 				B8EEF023293D085E00D15F28 /* ContentView.swift in Sources */,
-				B8B37B0429422A7E00611844 /* LogInView.swift in Sources */,
+				B8B37B0429422A7E00611844 /* SignInView.swift in Sources */,
 				B8B37B14294294C800611844 /* DefaultTextFieldView.swift in Sources */,
 				B8EEF021293D085E00D15F28 /* HomeBarSwiftUIApp.swift in Sources */,
+				B8588DEB29453D640082132D /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
