@@ -80,11 +80,13 @@ struct SignInView: View {
 
     private func SignInDidTapped() {
         print("User Authorization with Firebase")
+        print("\(email) \(password)")
         isTabViewShow.toggle()
     }
 
     private func SignUpDidTapped() {
         print("User Registration  with Firebase")
+        print("\(email) \(password)")
 
         guard password == checkPassword else {
             self.alertMessage = "Passwords don't match!"
@@ -96,7 +98,8 @@ struct SignInView: View {
                                    password: self.password) { result in
             switch result {
             case .success(let user):
-                alertMessage = "You have signed up with email \(String(describing: user.email))!"
+                guard let email = user.email else { return }
+                alertMessage = "You have signed up with email \(email)!"
                 self.isShowAlert.toggle()
                 self.email = ""
                 self.password = ""
@@ -107,11 +110,6 @@ struct SignInView: View {
                 self.isShowAlert.toggle()
             }
         }
-
-        self.email = ""
-        self.password = ""
-        self.checkPassword = ""
-        isAuth.toggle()
     }
 
     private func showSingUp() {
