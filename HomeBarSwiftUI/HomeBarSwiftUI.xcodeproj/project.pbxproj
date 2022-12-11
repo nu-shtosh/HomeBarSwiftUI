@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B8588DE8294538540082132D /* TextFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8588DE7294538540082132D /* TextFieldWithImageView.swift */; };
-		B8588DEB29453D640082132D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8588DEA29453D640082132D /* AuthService.swift */; };
+		1F5F877F29461E2F00335B57 /* SecureFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */; };
+		1F5F878129461EB500335B57 /* TextFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */; };
+		1F5F878629461FE700335B57 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878529461FE700335B57 /* AuthService.swift */; };
 		B8A2E5D0293E3B7200B7E4A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */; };
 		B8A2E5D3293E408600B7E4A4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B8A2E5D2293E408600B7E4A4 /* FirebaseAuth */; };
 		B8A2E5D5293E408600B7E4A4 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B8A2E5D4293E408600B7E4A4 /* FirebaseDatabase */; };
@@ -21,16 +22,10 @@
 		B8B37B0C2942810B00611844 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B0B2942810B00611844 /* SignUpView.swift */; };
 		B8B37B14294294C800611844 /* DefaultTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B13294294C800611844 /* DefaultTextFieldView.swift */; };
 		B8B37B162942955D00611844 /* Extansion + TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B152942955D00611844 /* Extansion + TextField.swift */; };
-		B8B37B1829429A4200611844 /* SecureFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B37B1729429A4200611844 /* SecureFieldWithImageView.swift */; };
 		B8EEF021293D085E00D15F28 /* HomeBarSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EEF020293D085E00D15F28 /* HomeBarSwiftUIApp.swift */; };
 		B8EEF023293D085E00D15F28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EEF022293D085E00D15F28 /* ContentView.swift */; };
 		B8EEF025293D085F00D15F28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8EEF024293D085F00D15F28 /* Assets.xcassets */; };
 		B8EEF028293D085F00D15F28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8EEF027293D085F00D15F28 /* Preview Assets.xcassets */; };
-		B8EEF02A293D085F00D15F28 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EEF029293D085F00D15F28 /* Persistence.swift */; };
-		B8EEF02D293D085F00D15F28 /* HomeBarSwiftUI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B8EEF02B293D085F00D15F28 /* HomeBarSwiftUI.xcdatamodeld */; };
-		B8EEF037293D085F00D15F28 /* HomeBarSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EEF036293D085F00D15F28 /* HomeBarSwiftUITests.swift */; };
-		B8EEF041293D085F00D15F28 /* HomeBarSwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EEF040293D085F00D15F28 /* HomeBarSwiftUIUITests.swift */; };
-		B8EEF043293D085F00D15F28 /* HomeBarSwiftUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EEF042293D085F00D15F28 /* HomeBarSwiftUIUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,8 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B8588DE7294538540082132D /* TextFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextFieldWithImageView.swift; path = ../../../../../../../../Documents/TextFieldWithImageView.swift; sourceTree = "<group>"; };
-		B8588DEA29453D640082132D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = ../../../../../../../Documents/AuthService.swift; sourceTree = "<group>"; };
+		1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFieldWithImageView.swift; sourceTree = "<group>"; };
+		1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImageView.swift; sourceTree = "<group>"; };
+		1F5F878529461FE700335B57 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8B37AFA2942254600611844 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		B8B37AFF294227D600611844 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
@@ -63,19 +59,13 @@
 		B8B37B0B2942810B00611844 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B8B37B13294294C800611844 /* DefaultTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextFieldView.swift; sourceTree = "<group>"; };
 		B8B37B152942955D00611844 /* Extansion + TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extansion + TextField.swift"; sourceTree = "<group>"; };
-		B8B37B1729429A4200611844 /* SecureFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFieldWithImageView.swift; sourceTree = "<group>"; };
 		B8EEF01D293D085E00D15F28 /* HomeBarSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeBarSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8EEF020293D085E00D15F28 /* HomeBarSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBarSwiftUIApp.swift; sourceTree = "<group>"; };
 		B8EEF022293D085E00D15F28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B8EEF024293D085F00D15F28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8EEF027293D085F00D15F28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B8EEF029293D085F00D15F28 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		B8EEF02C293D085F00D15F28 /* HomeBarSwiftUI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HomeBarSwiftUI.xcdatamodel; sourceTree = "<group>"; };
 		B8EEF032293D085F00D15F28 /* HomeBarSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeBarSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8EEF036293D085F00D15F28 /* HomeBarSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBarSwiftUITests.swift; sourceTree = "<group>"; };
 		B8EEF03C293D085F00D15F28 /* HomeBarSwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeBarSwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8EEF040293D085F00D15F28 /* HomeBarSwiftUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBarSwiftUIUITests.swift; sourceTree = "<group>"; };
-		B8EEF042293D085F00D15F28 /* HomeBarSwiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBarSwiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +95,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B8588DE929453D4E0082132D /* Services */ = {
+		1F5F87882946205F00335B57 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B8588DEA29453D640082132D /* AuthService.swift */,
+				1F5F878529461FE700335B57 /* AuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -116,7 +106,7 @@
 		B8B37AF82942251700611844 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				B8588DE929453D4E0082132D /* Services */,
+				1F5F87882946205F00335B57 /* Services */,
 				B8B37AFE2942264200611844 /* Views */,
 				B8B37AF92942252B00611844 /* Subviews */,
 			);
@@ -149,8 +139,8 @@
 			children = (
 				B8B37B152942955D00611844 /* Extansion + TextField.swift */,
 				B8B37B13294294C800611844 /* DefaultTextFieldView.swift */,
-				B8B37B1729429A4200611844 /* SecureFieldWithImageView.swift */,
-				B8588DE7294538540082132D /* TextFieldWithImageView.swift */,
+				1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */,
+				1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */,
 			);
 			path = TextFields;
 			sourceTree = "<group>";
@@ -184,8 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				B8EEF01F293D085E00D15F28 /* HomeBarSwiftUI */,
-				B8EEF035293D085F00D15F28 /* HomeBarSwiftUITests */,
-				B8EEF03F293D085F00D15F28 /* HomeBarSwiftUIUITests */,
 				B8EEF01E293D085E00D15F28 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -205,10 +193,8 @@
 			children = (
 				B8B37AF82942251700611844 /* Registration */,
 				B8EEF020293D085E00D15F28 /* HomeBarSwiftUIApp.swift */,
-				B8EEF029293D085F00D15F28 /* Persistence.swift */,
 				B8EEF022293D085E00D15F28 /* ContentView.swift */,
 				B8EEF024293D085F00D15F28 /* Assets.xcassets */,
-				B8EEF02B293D085F00D15F28 /* HomeBarSwiftUI.xcdatamodeld */,
 				B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */,
 				B8EEF026293D085F00D15F28 /* Preview Content */,
 			);
@@ -221,23 +207,6 @@
 				B8EEF027293D085F00D15F28 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		B8EEF035293D085F00D15F28 /* HomeBarSwiftUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B8EEF036293D085F00D15F28 /* HomeBarSwiftUITests.swift */,
-			);
-			path = HomeBarSwiftUITests;
-			sourceTree = "<group>";
-		};
-		B8EEF03F293D085F00D15F28 /* HomeBarSwiftUIUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B8EEF040293D085F00D15F28 /* HomeBarSwiftUIUITests.swift */,
-				B8EEF042293D085F00D15F28 /* HomeBarSwiftUIUITestsLaunchTests.swift */,
-			);
-			path = HomeBarSwiftUIUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,22 +347,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8EEF02D293D085F00D15F28 /* HomeBarSwiftUI.xcdatamodeld in Sources */,
 				B8B37B022942287100611844 /* WallpaperView.swift in Sources */,
 				B8B37B0829423DBB00611844 /* OrangeButtonView.swift in Sources */,
 				B8B37B0C2942810B00611844 /* SignUpView.swift in Sources */,
 				B8B37B162942955D00611844 /* Extansion + TextField.swift in Sources */,
 				B8B37AFB2942254600611844 /* LogoView.swift in Sources */,
-				B8EEF02A293D085F00D15F28 /* Persistence.swift in Sources */,
 				B8B37B0A294263FA00611844 /* BlueButtonView.swift in Sources */,
 				B8B37B00294227D600611844 /* LaunchView.swift in Sources */,
-				B8B37B1829429A4200611844 /* SecureFieldWithImageView.swift in Sources */,
-				B8588DE8294538540082132D /* TextFieldWithImageView.swift in Sources */,
+				1F5F877F29461E2F00335B57 /* SecureFieldWithImageView.swift in Sources */,
+				1F5F878129461EB500335B57 /* TextFieldWithImageView.swift in Sources */,
 				B8EEF023293D085E00D15F28 /* ContentView.swift in Sources */,
 				B8B37B0429422A7E00611844 /* SignInView.swift in Sources */,
 				B8B37B14294294C800611844 /* DefaultTextFieldView.swift in Sources */,
 				B8EEF021293D085E00D15F28 /* HomeBarSwiftUIApp.swift in Sources */,
-				B8588DEB29453D640082132D /* AuthService.swift in Sources */,
+				1F5F878629461FE700335B57 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,7 +368,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8EEF037293D085F00D15F28 /* HomeBarSwiftUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,8 +375,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8EEF041293D085F00D15F28 /* HomeBarSwiftUIUITests.swift in Sources */,
-				B8EEF043293D085F00D15F28 /* HomeBarSwiftUIUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,19 +720,6 @@
 			productName = FirebaseDatabase;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		B8EEF02B293D085F00D15F28 /* HomeBarSwiftUI.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				B8EEF02C293D085F00D15F28 /* HomeBarSwiftUI.xcdatamodel */,
-			);
-			currentVersion = B8EEF02C293D085F00D15F28 /* HomeBarSwiftUI.xcdatamodel */;
-			path = HomeBarSwiftUI.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = B8EEF015293D085E00D15F28 /* Project object */;
 }
