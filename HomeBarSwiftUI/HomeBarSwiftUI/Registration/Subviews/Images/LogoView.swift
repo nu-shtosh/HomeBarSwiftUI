@@ -11,7 +11,7 @@ struct LogoView: View {
     var body: some View {
         Image("HomeBarLogo")
             .resizable()
-            .scaledToFit()
+            .aspectRatio(contentMode: .fill)
             .frame(width: 300, height: 300)
     }
 }

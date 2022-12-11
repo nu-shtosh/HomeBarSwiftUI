@@ -17,6 +17,7 @@ struct LaunchView: View {
                 Spacer()
             }
         }
+        .preferredColorScheme(.dark)
     }
 }
 

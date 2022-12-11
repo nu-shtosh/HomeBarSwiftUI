@@ -13,7 +13,8 @@ struct SecureFieldWithImageView: View {
     @Binding var text: String
 
     var body: some View {
-        SecureField(title, text: $text).textFieldStyle(GradientTextFieldBackgroundWithImage(systemImageString: imageSystemName))
+        SecureField(title, text: $text)
+            .textFieldStyle(GradientTextFieldBackgroundWithImage(systemImageString: imageSystemName))
     }
 }
 
