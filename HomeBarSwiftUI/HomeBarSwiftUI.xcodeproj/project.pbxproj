@@ -28,6 +28,8 @@
 		B8F5469D29462FAF00ADB0A1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F5469C29462FAF00ADB0A1 /* ProfileView.swift */; };
 		B8F5469F29462FC200ADB0A1 /* AlcoholTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F5469E29462FC200ADB0A1 /* AlcoholTestView.swift */; };
 		B8F546A12946305500ADB0A1 /* IngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F546A02946305500ADB0A1 /* IngredientsView.swift */; };
+		B8F546A529463B5E00ADB0A1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B8F546A429463B5E00ADB0A1 /* FirebaseFirestore */; };
+		B8F546A729463B7200ADB0A1 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B8F546A629463B7200ADB0A1 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +80,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8A2E5D5293E408600B7E4A4 /* FirebaseDatabase in Frameworks */,
+				B8F546A729463B7200ADB0A1 /* FirebaseStorage in Frameworks */,
 				B8A2E5D3293E408600B7E4A4 /* FirebaseAuth in Frameworks */,
+				B8F546A529463B5E00ADB0A1 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +176,7 @@
 			children = (
 				B8EEF01F293D085E00D15F28 /* HomeBarSwiftUI */,
 				B8EEF01E293D085E00D15F28 /* Products */,
+				B8F546A329463B5E00ADB0A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,6 +220,13 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		B8F546A329463B5E00ADB0A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -234,6 +246,8 @@
 			packageProductDependencies = (
 				B8A2E5D2293E408600B7E4A4 /* FirebaseAuth */,
 				B8A2E5D4293E408600B7E4A4 /* FirebaseDatabase */,
+				B8F546A429463B5E00ADB0A1 /* FirebaseFirestore */,
+				B8F546A629463B7200ADB0A1 /* FirebaseStorage */,
 			);
 			productName = HomeBarSwiftUI;
 			productReference = B8EEF01D293D085E00D15F28 /* HomeBarSwiftUI.app */;
@@ -726,6 +740,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B8A2E5D1293E408600B7E4A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
+		};
+		B8F546A429463B5E00ADB0A1 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8A2E5D1293E408600B7E4A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		B8F546A629463B7200ADB0A1 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8A2E5D1293E408600B7E4A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
