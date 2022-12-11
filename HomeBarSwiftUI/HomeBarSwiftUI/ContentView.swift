@@ -21,12 +21,6 @@ struct ContentView: View {
                 SignInView()
             }
         }
-//        .animation(.spring())
-//            .onAppear {
-//                NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"), object: nil, queue: .main) { (_) in
-//                    <#code#>
-//                }
-//            }
     }
 }
 
