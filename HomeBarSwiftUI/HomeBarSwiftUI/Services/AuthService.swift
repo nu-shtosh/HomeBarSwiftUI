@@ -17,14 +17,26 @@ class AuthServices {
 
     private let auth = Auth.auth()
 
-    private var currentUser: FirebaseUser? {
+    var currentUser: FirebaseUser? {
         return auth.currentUser
     }
 
-    func SignUp(email: String,
+    func signUp(email: String,
                 password: String,
                 completion: @escaping(Result<FirebaseUser, Error>) -> ()) {
         auth.createUser(withEmail: email, password: password) { result, error in
+            if let result {
+                completion(.success(result.user))
+            } else if let error {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func signIn(email: String,
+                password: String,
+                completion: @escaping(Result<FirebaseUser, Error>) -> ()) {
+        auth.signIn(withEmail: email, password: password) { result, error in
             if let result {
                 completion(.success(result.user))
             } else if let error {

@@ -74,14 +74,25 @@ struct SignInView: View {
             }
         }
         .fullScreenCover(isPresented: $isTabViewShow) {
-            MainTabView()
+            let mainTabBarViewModel = MainTabBarViewModel(user: AuthServices.shared.currentUser!) // если мы авторизованы то юзер там уже есть
+            MainTabView(viewModel: mainTabBarViewModel)
         }
     }
 
     private func SignInDidTapped() {
         print("User Authorization with Firebase")
         print("\(email) \(password)")
-        isTabViewShow.toggle()
+        AuthServices.shared.signIn(email: self.email,
+                                   password: self.password) { result in
+            switch result {
+            case .success(_):
+                isTabViewShow.toggle()
+            case .failure(let error):
+                alertMessage = "Sign Up Error - \(error.localizedDescription)"
+                self.isShowAlert.toggle()
+            }
+        }
+
     }
 
     private func SignUpDidTapped() {
@@ -90,23 +101,23 @@ struct SignInView: View {
 
         guard password == checkPassword else {
             self.alertMessage = "Passwords don't match!"
-            isShowAlert.toggle()
+            self.isShowAlert.toggle()
             return
         }
 
-        AuthServices.shared.SignUp(email: self.email,
+        AuthServices.shared.signUp(email: self.email,
                                    password: self.password) { result in
             switch result {
             case .success(let user):
                 guard let email = user.email else { return }
-                alertMessage = "You have signed up with email \(email)!"
+                self.alertMessage = "You have signed up with email \(email)!"
                 self.isShowAlert.toggle()
                 self.email = ""
                 self.password = ""
                 self.checkPassword = ""
-                isAuth.toggle()
+                self.isAuth.toggle()
             case .failure(let error):
-                alertMessage = "Sign Up Error - \(error.localizedDescription)"
+                self.alertMessage = "Sign Up Error - \(error.localizedDescription)"
                 self.isShowAlert.toggle()
             }
         }
