@@ -11,6 +11,7 @@ import FirebaseAuth
 typealias FirebaseUser = FirebaseAuth.User
 
 class AuthServices {
+    
     static let shared = AuthServices()
 
     private init() { }
@@ -26,7 +27,18 @@ class AuthServices {
                 completion: @escaping(Result<FirebaseUser, Error>) -> ()) {
         auth.createUser(withEmail: email, password: password) { result, error in
             if let result {
-                completion(.success(result.user))
+                let userModel = UserModel(id: result.user.uid,
+                                          name: "",
+                                          surname: "",
+                                          age: 0)
+                DataBaseService.shared.setupUser(user: userModel) { resultDataBase in
+                    switch resultDataBase {
+                    case .success(_):
+                        completion(.success(result.user))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
             } else if let error {
                 completion(.failure(error))
             }
