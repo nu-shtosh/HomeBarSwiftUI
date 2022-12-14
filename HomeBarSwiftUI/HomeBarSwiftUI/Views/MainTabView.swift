@@ -13,7 +13,9 @@ struct MainTabView: View {
 
     var body: some View {
         TabView {
+            
             IngredientsView()
+               
                 .tabItem {
                     VStack {
                         Text("Ingredients")
@@ -35,5 +37,9 @@ struct MainTabView: View {
                     }
                 }
         }
+        .toolbarBackground(.black, for: .tabBar)
+        .accentColor(Color("neonOrange"))
+        
     }
 }
+
