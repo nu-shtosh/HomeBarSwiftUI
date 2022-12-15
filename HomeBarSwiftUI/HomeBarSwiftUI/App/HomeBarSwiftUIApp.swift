@@ -11,12 +11,13 @@ import FirebaseAuth
 
 @main
 struct HomeBarSwiftUIApp: App {
+    
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
     var body: some Scene {
         WindowGroup {
-            SignInView()
+            ProfileView()
         }
     }
 

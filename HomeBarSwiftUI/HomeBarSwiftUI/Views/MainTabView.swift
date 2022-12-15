@@ -37,7 +37,6 @@ struct MainTabView: View {
                     }
                 }
         }
-        .toolbarBackground(.black, for: .tabBar)
         .accentColor(Color("neonOrange"))
         
     }
