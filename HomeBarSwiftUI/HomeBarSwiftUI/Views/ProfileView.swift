@@ -14,6 +14,7 @@ struct ProfileView: View {
             WallpaperView()
             Text("Hello")
                 .foregroundColor(.white)
+           
             
         }
         .toolbar {
