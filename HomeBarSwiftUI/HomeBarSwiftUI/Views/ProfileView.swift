@@ -10,7 +10,6 @@ import SwiftUI
 struct ProfileView: View {
     
     var body: some View {
-        
         ZStack {
             WallpaperView()
             Text("Hello")
@@ -24,9 +23,7 @@ struct ProfileView: View {
             }
         }
     }
-    
 }
-
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
