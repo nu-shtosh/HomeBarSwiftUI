@@ -37,7 +37,7 @@ struct MainTabView: View {
                 NavigationView() {
                     ProfileView()
                         .navigationBarTitleDisplayMode(.large)
-                        .navigationTitle(Text("Profile"))
+//                        .navigationTitle(Text("Profile"))
                 }
                 .tabItem {
                     VStack {

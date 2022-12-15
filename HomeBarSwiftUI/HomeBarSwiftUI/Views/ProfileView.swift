@@ -13,14 +13,44 @@ struct ProfileView: View {
     var body: some View {
         ZStack {
             WallpaperView()
-            VStack() {
-                UserImageView()
-                Text("Alex")
-                    .font(.title)
-                    .foregroundColor(Color("neonOrange"))
-                Text("18 age")
-                    .font(.title3)
-                    .foregroundColor(Color("neonOrange"))
+            VStack {
+                VStack {
+//                    Text("User Name")
+//                        .font(.title)
+//                        .foregroundColor(Color("neonBlue"))
+                    HStack {
+                        
+                            UserImageView()
+                        
+                        VStack(alignment: .leading, spacing: 10) {
+                            VStack(alignment: .leading, spacing: 10) {
+                                
+                                Text("18 age")
+                                    .font(.title3)
+                                    .foregroundColor(Color("neonOrange"))
+                            }
+                            .padding(.leading, 16)
+                            Text("Favorites: 16")
+                                .font(.system(size: 18))
+                                .foregroundColor(Color("neonOrange"))
+                            Text("Your like: 19")
+                                .font(.system(size: 18))
+                                .foregroundColor(Color("neonOrange"))
+                            Text("More info...")
+                                .font(.system(size: 18))
+                                .foregroundColor(Color("neonOrange"))
+                            
+                        }
+                        .offset(x: 50)
+                        
+                        Spacer()
+                    }
+                    
+                    
+                }
+                .padding(5)
+                .background(Color(.gray).opacity(0.2))
+                .cornerRadius(20)
                 HStack {
                     Text("Your cocktails:")
                         .font(.callout)
@@ -28,6 +58,7 @@ struct ProfileView: View {
                         .foregroundColor(.gray)
                     Spacer()
                 }
+                .padding(.top, 5)
                 
                 UserButtonsView()
                 Spacer()
@@ -44,7 +75,7 @@ struct ProfileView: View {
             }
             .padding(EdgeInsets(top: 20, leading: 16, bottom: 0, trailing: 16))
         }
-        
+        .navigationTitle(Text("User name"))
         .toolbar {
             Button(action: {}) {
                 Image(systemName: "gearshape.fill")
@@ -69,11 +100,11 @@ struct UserButtonView: View {
     var body: some View {
         Button(action: action) {
             Text(text)
-                .foregroundColor(Color("neonOrange"))
+                .foregroundColor(Color.white)
                 .font(.title3)
         }
-        .frame(width: 180, height: 60)
-        .background(Color(red: 70 / 255, green: 70 / 255, blue: 70 / 255))
+        .frame(width: 180, height: 50)
+        .background(Color("neonOrange"))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
@@ -108,8 +139,9 @@ struct LastCocktailView: View {
                         CocktailCellView(cocktail: item)
                     }
                 }.foregroundColor(Color("neonBlue"))
-                Spacer()
+                    .padding(.leading, -16)
             }
+            
         }
     }
 }

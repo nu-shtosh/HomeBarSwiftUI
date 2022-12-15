@@ -11,9 +11,9 @@ struct UserImageView: View {
     var body: some View {
         Image("photo")
             .resizable()
-            .frame(width: 150, height: 150)
-            .clipShape(Circle())
-            .overlay(Circle().stroke(LinearGradient(
+            .frame(width: 180, height: 180)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .overlay(RoundedRectangle(cornerRadius: 20).stroke(LinearGradient(
                 colors: [
                     Color("neonOrange"),
                     Color("neonBlue")
