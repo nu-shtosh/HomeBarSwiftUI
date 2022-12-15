@@ -14,39 +14,29 @@ struct ProfileView: View {
         ZStack {
             WallpaperView()
             VStack {
-                VStack {
-//                    Text("User Name")
-//                        .font(.title)
-//                        .foregroundColor(Color("neonBlue"))
-                    HStack {
-                        
-                            UserImageView()
-                        
+                HStack {
+                    UserImageView()
+                        .padding(5)
+                    VStack(alignment: .leading, spacing: 10) {
                         VStack(alignment: .leading, spacing: 10) {
-                            VStack(alignment: .leading, spacing: 10) {
-                                
-                                Text("18 age")
-                                    .font(.title3)
-                                    .foregroundColor(Color("neonOrange"))
-                            }
-                            .padding(.leading, 16)
-                            Text("Favorites: 16")
-                                .font(.system(size: 18))
-                                .foregroundColor(Color("neonOrange"))
-                            Text("Your like: 19")
-                                .font(.system(size: 18))
-                                .foregroundColor(Color("neonOrange"))
-                            Text("More info...")
-                                .font(.system(size: 18))
-                                .foregroundColor(Color("neonOrange"))
                             
+                            Text("18 age")
+                                .font(.title3)
+                                .foregroundColor(Color("neonOrange"))
                         }
-                        .offset(x: 50)
-                        
-                        Spacer()
+                        .padding(.leading, 16)
+                        Text("Favorites: 16")
+                            .font(.system(size: 18))
+                            .foregroundColor(Color("neonOrange"))
+                        Text("Your like: 19")
+                            .font(.system(size: 18))
+                            .foregroundColor(Color("neonOrange"))
+                        Text("More info...")
+                            .font(.system(size: 18))
+                            .foregroundColor(Color("neonOrange"))
                     }
-                    
-                    
+                    .offset(x: 50)
+                    Spacer()
                 }
                 .padding(5)
                 .background(Color(.gray).opacity(0.2))
@@ -58,9 +48,14 @@ struct ProfileView: View {
                         .foregroundColor(.gray)
                     Spacer()
                 }
+                .padding(.leading, 5)
                 .padding(.top, 5)
-                
-                UserButtonsView()
+                HStack {
+                    UserButtonsView()
+                    
+                }
+                .background(Color(.gray).opacity(0.2))
+                .cornerRadius(20)
                 Spacer()
                 HStack {
                     Text("Last viewed cocktails:")
@@ -69,11 +64,11 @@ struct ProfileView: View {
                         .foregroundColor(.gray)
                     Spacer()
                 }
-               
+                .padding(.leading, 5)
                 LastCocktailView()
                 Spacer()
             }
-            .padding(EdgeInsets(top: 20, leading: 16, bottom: 0, trailing: 16))
+            .padding(EdgeInsets(top: 20, leading: 16, bottom: 16, trailing: 16))
         }
         .navigationTitle(Text("User name"))
         .toolbar {
@@ -118,11 +113,12 @@ struct UserButtonsView: View {
                     .padding(.trailing, 5)
                 UserButtonView(text: "Favorites cocktails", action: {})
             }
+            .padding(5)
             HStack {
                 UserButtonView(text: "Add cocktails", action: {})
                 Spacer()
             }
-            .padding(.top, 10)
+            .padding(5)
         }
     }
 }
