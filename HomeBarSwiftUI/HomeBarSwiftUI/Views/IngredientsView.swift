@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct IngredientsView: View {
+
+    @StateObject var viewModel = CocktailsViewModel()
+
     var body: some View {
-        Text("Ingredients!")
+        Button("Fetch") {
+            print("hi")
+        }.onAppear {
+            print("Get cocktails")
+            self.viewModel.getCocktails()
+        }
+        .foregroundColor(Color.white)
+        .frame(width: 200, height: 100)
+        .background(Color.black)
+        .cornerRadius(30)
     }
 }
 
