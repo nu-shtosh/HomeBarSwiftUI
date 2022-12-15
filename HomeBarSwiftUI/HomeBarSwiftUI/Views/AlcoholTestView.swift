@@ -13,6 +13,7 @@ struct AlcoholTestView: View {
     }
 }
 
+
 struct AlcoholTestView_Previews: PreviewProvider {
     static var previews: some View {
         AlcoholTestView()
