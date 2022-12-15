@@ -9,6 +9,8 @@ import SwiftUI
 import FirebaseCore
 import FirebaseAuth
 
+let screen = UIScreen.main.bounds
+
 @main
 struct HomeBarSwiftUIApp: App {
 
