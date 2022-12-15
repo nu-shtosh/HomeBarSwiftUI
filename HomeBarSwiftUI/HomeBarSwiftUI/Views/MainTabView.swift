@@ -8,41 +8,71 @@
 import SwiftUI
 
 struct MainTabView: View {
-
+    
     var viewModel: MainTabBarViewModel
-
+    
     var body: some View {
-        TabView {
+      
             
-            IngredientsView()
-               
+            TabView {
+                NavigationView() {
+                    AllCocktailsView()
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationTitle(Text("Cocktails"))
+                    //                    .accentColor(Color("neonOrange"))
+                }
                 .tabItem {
                     VStack {
-                        Text("Ingredients")
-                        Image(systemName: "testtube.2")
+                        Text("Cocktails")
+                        Image(systemName: "heart")
                     }
                 }
-            AlcoholTestView()
+                AlcoholTestView()
+                    .tabItem {
+                        VStack {
+                            Text("Alcotest")
+                            Image(systemName: "filemenu.and.selection")
+                        }
+                    }
+                NavigationView() {
+                    ProfileView()
+                        .navigationBarTitleDisplayMode(.large)
+                        .navigationTitle(Text("Profile"))
+                }
                 .tabItem {
                     VStack {
-                        Text("Alcotest")
-                        Image(systemName: "filemenu.and.selection")
+                        Text("Profile")
+                        Image(systemName: "person")
                     }
                 }
-            NavigationView() {
-                ProfileView()
-                    .navigationBarTitleDisplayMode(.large)
-                    .navigationTitle(Text("Profile"))
             }
-            .tabItem {
-                VStack {
-                    Text("Profile")
-                    Image(systemName: "person")
-                }
+            .accentColor(Color("neonOrange"))
+            .onAppear() {
+                UITabBar.appearance().backgroundColor = .black
+                UITabBar.appearance().barTintColor = .gray
+                NavTheme.navigationBarColors(background: .black,
+                                             titleColor: UIColor(Color("neonOrange")),
+                                             tintColor: UIColor(Color("neonOrange")))
             }
         }
-        .accentColor(Color("neonOrange"))
-        
     }
-}
-
+    
+    class NavTheme {
+        static func navigationBarColors(background : UIColor?,
+                                        titleColor : UIColor? = nil,
+                                        tintColor : UIColor? = nil ){
+            
+            let navigationAppearance = UINavigationBarAppearance()
+            navigationAppearance.configureWithOpaqueBackground()
+            navigationAppearance.backgroundColor = background ?? .clear
+            
+            navigationAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .black]
+            navigationAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .black]
+            
+            UINavigationBar.appearance().standardAppearance = navigationAppearance
+            UINavigationBar.appearance().compactAppearance = navigationAppearance
+            UINavigationBar.appearance().scrollEdgeAppearance = navigationAppearance
+            
+            UINavigationBar.appearance().tintColor = tintColor ?? titleColor ?? .black
+        }
+    }

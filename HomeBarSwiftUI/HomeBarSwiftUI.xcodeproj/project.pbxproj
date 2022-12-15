@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F01062B294B4C840018134A /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F01062A294B4C840018134A /* UserImageView.swift */; };
 		1F5F877F29461E2F00335B57 /* SecureFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */; };
 		1F5F878129461EB500335B57 /* TextFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */; };
 		1F5F878629461FE700335B57 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878529461FE700335B57 /* AuthService.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F01062A294B4C840018134A /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
 		1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFieldWithImageView.swift; sourceTree = "<group>"; };
 		1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImageView.swift; sourceTree = "<group>"; };
 		1F5F878529461FE700335B57 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				B8B37AFA2942254600611844 /* LogoView.swift */,
+				1F01062A294B4C840018134A /* UserImageView.swift */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				B8B37AFB2942254600611844 /* LogoView.swift in Sources */,
 				B8F546A12946305500ADB0A1 /* IngredientsView.swift in Sources */,
 				B8B37B0A294263FA00611844 /* BlueButtonView.swift in Sources */,
+				1F01062B294B4C840018134A /* UserImageView.swift in Sources */,
 				1F5F877F29461E2F00335B57 /* SecureFieldWithImageView.swift in Sources */,
 				B8F5469F29462FC200ADB0A1 /* AlcoholTestView.swift in Sources */,
 				B83D9948294749C6006AF62D /* CocktailDB.swift in Sources */,
