@@ -17,6 +17,7 @@ struct ProfileView: View {
            
             
         }
+        
         .toolbar {
             Button(action: {}) {
                 Image(systemName: "gearshape.fill")
