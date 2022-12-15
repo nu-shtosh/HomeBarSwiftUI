@@ -29,13 +29,17 @@ struct MainTabView: View {
                         Image(systemName: "filemenu.and.selection")
                     }
                 }
-            ProfileView()
-                .tabItem {
-                    VStack {
-                        Text("Profile")
-                        Image(systemName: "person")
-                    }
+            NavigationView() {
+                ProfileView()
+                    .navigationBarTitleDisplayMode(.large)
+                    .navigationTitle(Text("Profile"))
+            }
+            .tabItem {
+                VStack {
+                    Text("Profile")
+                    Image(systemName: "person")
                 }
+            }
         }
         .accentColor(Color("neonOrange"))
         

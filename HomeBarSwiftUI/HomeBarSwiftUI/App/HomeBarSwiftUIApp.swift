@@ -19,7 +19,7 @@ struct HomeBarSwiftUIApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ProfileView()
+            SignInView()
         }
     }
 
