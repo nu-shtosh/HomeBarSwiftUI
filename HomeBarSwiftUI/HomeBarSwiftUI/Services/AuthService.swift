@@ -27,7 +27,7 @@ class AuthServices {
                 completion: @escaping(Result<FirebaseUser, Error>) -> ()) {
         auth.createUser(withEmail: email, password: password) { result, error in
             if let result {
-                let userModel = UserModel(id: result.user.uid,
+                let userModel = UserDB(id: result.user.uid,
                                           name: "",
                                           surname: "",
                                           age: 0)

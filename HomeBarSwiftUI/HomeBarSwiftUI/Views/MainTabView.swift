@@ -13,13 +13,18 @@ struct MainTabView: View {
 
     var body: some View {
         TabView {
-            IngredientsView()
-                .tabItem {
-                    VStack {
-                        Text("Ingredients")
-                        Image(systemName: "testtube.2")
-                    }
+            NavigationView() {
+                AllCocktailsView()
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationTitle(Text("Cocktails"))
+//                    .accentColor(Color("neonOrange"))
+            }
+            .tabItem {
+                VStack {
+                    Text("Cocktails")
+                    Image(systemName: "heart")
                 }
+            }
             AlcoholTestView()
                 .tabItem {
                     VStack {
@@ -35,5 +40,35 @@ struct MainTabView: View {
                     }
                 }
         }
+        .accentColor(Color("neonOrange"))
+        .onAppear() {
+            UITabBar.appearance().backgroundColor = .black
+            UITabBar.appearance().barTintColor = .gray
+            NavTheme.navigationBarColors(background: .black,
+                                      titleColor: UIColor(Color("neonOrange")),
+                                      tintColor: UIColor(Color("neonOrange")))
+
+        }
+
+    }
+}
+
+class NavTheme {
+    static func navigationBarColors(background : UIColor?,
+                                    titleColor : UIColor? = nil,
+                                    tintColor : UIColor? = nil ){
+
+        let navigationAppearance = UINavigationBarAppearance()
+        navigationAppearance.configureWithOpaqueBackground()
+        navigationAppearance.backgroundColor = background ?? .clear
+
+        navigationAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .black]
+        navigationAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .black]
+
+        UINavigationBar.appearance().standardAppearance = navigationAppearance
+        UINavigationBar.appearance().compactAppearance = navigationAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationAppearance
+
+        UINavigationBar.appearance().tintColor = tintColor ?? titleColor ?? .black
     }
 }

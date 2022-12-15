@@ -11,8 +11,17 @@
 		1F5F878129461EB500335B57 /* TextFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */; };
 		1F5F878629461FE700335B57 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878529461FE700335B57 /* AuthService.swift */; };
 		B83D994129472734006AF62D /* MainTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D994029472734006AF62D /* MainTabBarViewModel.swift */; };
-		B83D994429473B01006AF62D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D994329473B01006AF62D /* UserModel.swift */; };
+		B83D994429473B01006AF62D /* UserDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D994329473B01006AF62D /* UserDB.swift */; };
 		B83D994629473CB6006AF62D /* DataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D994529473CB6006AF62D /* DataBaseService.swift */; };
+		B83D9948294749C6006AF62D /* CocktailDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9947294749C6006AF62D /* CocktailDB.swift */; };
+		B83D99732948F3A5006AF62D /* IngredientCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D99722948F3A5006AF62D /* IngredientCellView.swift */; };
+		B83D99752948F60F006AF62D /* DrinksFromAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D99742948F60F006AF62D /* DrinksFromAPI.swift */; };
+		B83D99782948F6DE006AF62D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B83D99772948F6DE006AF62D /* Alamofire */; };
+		B83D997A2948F716006AF62D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D99792948F716006AF62D /* NetworkManager.swift */; };
+		B83D997E294A05E7006AF62D /* CocktailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D997D294A05E7006AF62D /* CocktailViewModel.swift */; };
+		B83D9980294A0E6F006AF62D /* CocktailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D997F294A0E6F006AF62D /* CocktailCellView.swift */; };
+		B83D9983294A194C006AF62D /* AllCocktailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9982294A194C006AF62D /* AllCocktailsView.swift */; };
+		B83D9985294A81B5006AF62D /* CocktailDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9984294A81B5006AF62D /* CocktailDetailView.swift */; };
 		B8588DEF29462ADA0082132D /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8588DEE29462ADA0082132D /* MainTabView.swift */; };
 		B8A2E5D0293E3B7200B7E4A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */; };
 		B8A2E5D3293E408600B7E4A4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B8A2E5D2293E408600B7E4A4 /* FirebaseAuth */; };
@@ -56,8 +65,16 @@
 		1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImageView.swift; sourceTree = "<group>"; };
 		1F5F878529461FE700335B57 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B83D994029472734006AF62D /* MainTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewModel.swift; sourceTree = "<group>"; };
-		B83D994329473B01006AF62D /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		B83D994329473B01006AF62D /* UserDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDB.swift; sourceTree = "<group>"; };
 		B83D994529473CB6006AF62D /* DataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseService.swift; sourceTree = "<group>"; };
+		B83D9947294749C6006AF62D /* CocktailDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailDB.swift; sourceTree = "<group>"; };
+		B83D99722948F3A5006AF62D /* IngredientCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCellView.swift; sourceTree = "<group>"; };
+		B83D99742948F60F006AF62D /* DrinksFromAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksFromAPI.swift; sourceTree = "<group>"; };
+		B83D99792948F716006AF62D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B83D997D294A05E7006AF62D /* CocktailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailViewModel.swift; sourceTree = "<group>"; };
+		B83D997F294A0E6F006AF62D /* CocktailCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailCellView.swift; sourceTree = "<group>"; };
+		B83D9982294A194C006AF62D /* AllCocktailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCocktailsView.swift; sourceTree = "<group>"; };
+		B83D9984294A81B5006AF62D /* CocktailDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailDetailView.swift; sourceTree = "<group>"; };
 		B8588DEE29462ADA0082132D /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8B37AFA2942254600611844 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
@@ -83,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B83D99782948F6DE006AF62D /* Alamofire in Frameworks */,
 				B8A2E5D5293E408600B7E4A4 /* FirebaseDatabase in Frameworks */,
 				B8F546A729463B7200ADB0A1 /* FirebaseStorage in Frameworks */,
 				B8A2E5D3293E408600B7E4A4 /* FirebaseAuth in Frameworks */,
@@ -112,6 +130,7 @@
 			children = (
 				1F5F878529461FE700335B57 /* AuthService.swift */,
 				B83D994529473CB6006AF62D /* DataBaseService.swift */,
+				B83D99792948F716006AF62D /* NetworkManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -120,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				B83D994029472734006AF62D /* MainTabBarViewModel.swift */,
+				B83D997D294A05E7006AF62D /* CocktailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -127,14 +147,26 @@
 		B83D994229473AF4006AF62D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B83D994329473B01006AF62D /* UserModel.swift */,
+				B83D994329473B01006AF62D /* UserDB.swift */,
+				B83D9947294749C6006AF62D /* CocktailDB.swift */,
+				B83D99742948F60F006AF62D /* DrinksFromAPI.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B83D9981294A0EFC006AF62D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B83D997F294A0E6F006AF62D /* CocktailCellView.swift */,
+				B83D99722948F3A5006AF62D /* IngredientCellView.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		B8B37AF92942252B00611844 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B83D9981294A0EFC006AF62D /* Cells */,
 				B8B37B1229428B7500611844 /* Images */,
 				B8B37B1129428B5C00611844 /* Wallpapers */,
 				B8B37B1029428B3E00611844 /* Buttons */,
@@ -151,6 +183,8 @@
 				B8F546A02946305500ADB0A1 /* IngredientsView.swift */,
 				B8F5469E29462FC200ADB0A1 /* AlcoholTestView.swift */,
 				B8F5469C29462FAF00ADB0A1 /* ProfileView.swift */,
+				B83D9982294A194C006AF62D /* AllCocktailsView.swift */,
+				B83D9984294A81B5006AF62D /* CocktailDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -270,6 +304,7 @@
 				B8A2E5D4293E408600B7E4A4 /* FirebaseDatabase */,
 				B8F546A429463B5E00ADB0A1 /* FirebaseFirestore */,
 				B8F546A629463B7200ADB0A1 /* FirebaseStorage */,
+				B83D99772948F6DE006AF62D /* Alamofire */,
 			);
 			productName = HomeBarSwiftUI;
 			productReference = B8EEF01D293D085E00D15F28 /* HomeBarSwiftUI.app */;
@@ -345,6 +380,7 @@
 			mainGroup = B8EEF014293D085E00D15F28;
 			packageReferences = (
 				B8A2E5D1293E408600B7E4A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B83D99762948F6DE006AF62D /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = B8EEF01E293D085E00D15F28 /* Products */;
 			projectDirPath = "";
@@ -390,22 +426,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8B37B022942287100611844 /* WallpaperView.swift in Sources */,
+				B83D997E294A05E7006AF62D /* CocktailViewModel.swift in Sources */,
 				B8B37B0829423DBB00611844 /* OrangeButtonView.swift in Sources */,
 				B83D994629473CB6006AF62D /* DataBaseService.swift in Sources */,
 				B8B37B162942955D00611844 /* Extansion + TextField.swift in Sources */,
+				B83D997A2948F716006AF62D /* NetworkManager.swift in Sources */,
 				B8B37AFB2942254600611844 /* LogoView.swift in Sources */,
 				B8F546A12946305500ADB0A1 /* IngredientsView.swift in Sources */,
 				B8B37B0A294263FA00611844 /* BlueButtonView.swift in Sources */,
 				1F5F877F29461E2F00335B57 /* SecureFieldWithImageView.swift in Sources */,
 				B8F5469F29462FC200ADB0A1 /* AlcoholTestView.swift in Sources */,
+				B83D9948294749C6006AF62D /* CocktailDB.swift in Sources */,
+				B83D99752948F60F006AF62D /* DrinksFromAPI.swift in Sources */,
 				B8F5469D29462FAF00ADB0A1 /* ProfileView.swift in Sources */,
+				B83D99732948F3A5006AF62D /* IngredientCellView.swift in Sources */,
 				1F5F878129461EB500335B57 /* TextFieldWithImageView.swift in Sources */,
 				B8588DEF29462ADA0082132D /* MainTabView.swift in Sources */,
+				B83D9985294A81B5006AF62D /* CocktailDetailView.swift in Sources */,
 				B8B37B0429422A7E00611844 /* SignInView.swift in Sources */,
 				B8B37B14294294C800611844 /* DefaultTextFieldView.swift in Sources */,
-				B83D994429473B01006AF62D /* UserModel.swift in Sources */,
+				B83D994429473B01006AF62D /* UserDB.swift in Sources */,
 				B8EEF021293D085E00D15F28 /* HomeBarSwiftUIApp.swift in Sources */,
+				B83D9983294A194C006AF62D /* AllCocktailsView.swift in Sources */,
 				1F5F878629461FE700335B57 /* AuthService.swift in Sources */,
+				B83D9980294A0E6F006AF62D /* CocktailCellView.swift in Sources */,
 				B83D994129472734006AF62D /* MainTabBarViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -744,6 +788,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B83D99762948F6DE006AF62D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
 		B8A2E5D1293E408600B7E4A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -755,6 +807,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B83D99772948F6DE006AF62D /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B83D99762948F6DE006AF62D /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		B8A2E5D2293E408600B7E4A4 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B8A2E5D1293E408600B7E4A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
