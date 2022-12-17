@@ -40,7 +40,7 @@ class DataBaseService {
             guard let snapshot = docSnapshot else { return }
             guard let data = snapshot.data() else { return }
             guard let name = data["name"] as? String else { return }
-            guard let age = data["age"] as? Int else { return }
+            guard let age = data["age"] as? String else { return }
             guard let id = data["id"] as? String  else { return }
             guard let surname = data["surname"] as? String else { return }
             

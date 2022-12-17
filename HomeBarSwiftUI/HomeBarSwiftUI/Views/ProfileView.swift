@@ -56,18 +56,19 @@ struct ProfileView: View {
         }
         .navigationTitle(Text(profileViewModel.profile.fullname))
         .toolbar {
-            Button(action: {}) {
+            NavigationLink {
+                SettingUserView(profileViewModel: ProfileViewModel(profile: UserDB(id: profileViewModel.profile.id, name: profileViewModel.profile.name, surname: profileViewModel.profile.surname, age: profileViewModel.profile.age)))
+            } label: {
                 Image(systemName: "gearshape.fill")
                     .foregroundColor(Color("neonOrange"))
             }
-            
         }
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(id: "1", name: "", surname: "", age: 0)))
+        ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(id: "1", name: "", surname: "", age: "")))
     }
 }
 
@@ -125,7 +126,7 @@ struct LastCocktailView: View {
 }
 
 struct UserInfoView: View {
-    @Binding var age: Int
+    @Binding var age: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {

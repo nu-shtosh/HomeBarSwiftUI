@@ -30,7 +30,7 @@ class AuthServices {
                 let userModel = UserDB(id: result.user.uid,
                                           name: "",
                                           surname: "",
-                                          age: 0)
+                                          age: "")
                 DataBaseService.shared.setProfile(user: userModel) { resultDataBase in
                     switch resultDataBase {
                     case .success(_):
