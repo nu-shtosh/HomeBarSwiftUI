@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1F01062B294B4C840018134A /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F01062A294B4C840018134A /* UserImageView.swift */; };
+		1F1B1387294DFA3500C1C3BB /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B1386294DFA3500C1C3BB /* ProfileViewModel.swift */; };
+		1F1B1389294E0CD000C1C3BB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B1388294E0CD000C1C3BB /* ImagePicker.swift */; };
 		1F5F877F29461E2F00335B57 /* SecureFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */; };
 		1F5F878129461EB500335B57 /* TextFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */; };
 		1F5F878629461FE700335B57 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878529461FE700335B57 /* AuthService.swift */; };
@@ -64,6 +66,8 @@
 
 /* Begin PBXFileReference section */
 		1F01062A294B4C840018134A /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
+		1F1B1386294DFA3500C1C3BB /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		1F1B1388294E0CD000C1C3BB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFieldWithImageView.swift; sourceTree = "<group>"; };
 		1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImageView.swift; sourceTree = "<group>"; };
 		1F5F878529461FE700335B57 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 			children = (
 				B83D994029472734006AF62D /* MainTabBarViewModel.swift */,
 				B83D997D294A05E7006AF62D /* CocktailViewModel.swift */,
+				1F1B1386294DFA3500C1C3BB /* ProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 				B8B37B1129428B5C00611844 /* Wallpapers */,
 				B8B37B1029428B3E00611844 /* Buttons */,
 				B8B37B0F29428B1F00611844 /* TextFields */,
+				1F1B1388294E0CD000C1C3BB /* ImagePicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 			files = (
 				B8B37B022942287100611844 /* WallpaperView.swift in Sources */,
 				B83D997E294A05E7006AF62D /* CocktailViewModel.swift in Sources */,
+				1F1B1387294DFA3500C1C3BB /* ProfileViewModel.swift in Sources */,
 				B8B37B0829423DBB00611844 /* OrangeButtonView.swift in Sources */,
 				B83D994629473CB6006AF62D /* DataBaseService.swift in Sources */,
 				1FE5C4B8294BC82A004E7634 /* SettingUserView.swift in Sources */,
@@ -457,6 +464,7 @@
 				B8EEF021293D085E00D15F28 /* HomeBarSwiftUIApp.swift in Sources */,
 				B83D9983294A194C006AF62D /* AllCocktailsView.swift in Sources */,
 				1F5F878629461FE700335B57 /* AuthService.swift in Sources */,
+				1F1B1389294E0CD000C1C3BB /* ImagePicker.swift in Sources */,
 				B83D9980294A0E6F006AF62D /* CocktailCellView.swift in Sources */,
 				B83D994129472734006AF62D /* MainTabBarViewModel.swift in Sources */,
 			);
@@ -620,6 +628,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Permission to use the camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow to open the gallery to select a photo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -655,6 +665,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Permission to use the camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow to open the gallery to select a photo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

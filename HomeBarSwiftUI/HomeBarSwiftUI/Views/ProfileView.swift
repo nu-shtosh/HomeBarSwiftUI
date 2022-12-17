@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    let layout = [GridItem(.adaptive(minimum: screen.height))]
+    @StateObject var profileViewModel: ProfileViewModel
     
     var body: some View {
         ZStack {
@@ -17,25 +17,7 @@ struct ProfileView: View {
                 HStack {
                     UserImageView()
                         .padding(5)
-                    VStack(alignment: .leading, spacing: 10) {
-                        VStack(alignment: .leading, spacing: 10) {
-                            
-                            Text("18 age")
-                                .font(.title3)
-                                .foregroundColor(Color("neonOrange"))
-                        }
-                        .padding(.leading, 16)
-                        Text("Favorites: 16")
-                            .font(.system(size: 18))
-                            .foregroundColor(Color("neonOrange"))
-                        Text("Your like: 19")
-                            .font(.system(size: 18))
-                            .foregroundColor(Color("neonOrange"))
-                        Text("More info...")
-                            .font(.system(size: 18))
-                            .foregroundColor(Color("neonOrange"))
-                    }
-                    .offset(x: 50)
+                    UserInfoView(age: $profileViewModel.profile.age)
                     Spacer()
                 }
                 .padding(5)
@@ -48,12 +30,11 @@ struct ProfileView: View {
                         .foregroundColor(.gray)
                     Spacer()
                 }
-                .padding(.leading, 5)
-                .padding(.top, 5)
+                .padding(EdgeInsets(top: 5, leading: 11, bottom: -5, trailing: 0))
                 HStack {
-                    UserButtonsView()
-                    
+                    UserButtonStackView()
                 }
+                .padding(5)
                 .background(Color(.gray).opacity(0.2))
                 .cornerRadius(20)
                 Spacer()
@@ -64,13 +45,16 @@ struct ProfileView: View {
                         .foregroundColor(.gray)
                     Spacer()
                 }
-                .padding(.leading, 5)
+                .padding(EdgeInsets(top: 5, leading: 11, bottom: -5, trailing: 0))
                 LastCocktailView()
                 Spacer()
             }
             .padding(EdgeInsets(top: 20, leading: 16, bottom: 16, trailing: 16))
         }
-        .navigationTitle(Text("User name"))
+        .onAppear {
+            profileViewModel.getProfile()
+        }
+        .navigationTitle(Text(profileViewModel.profile.fullname))
         .toolbar {
             Button(action: {}) {
                 Image(systemName: "gearshape.fill")
@@ -81,11 +65,9 @@ struct ProfileView: View {
     }
 }
 
-
-
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(id: "1", name: "", surname: "", age: 0)))
     }
 }
 
@@ -104,7 +86,7 @@ struct UserButtonView: View {
     }
 }
 
-struct UserButtonsView: View {
+struct UserButtonStackView: View {
     var body: some View {
         VStack {
             HStack {
@@ -135,9 +117,31 @@ struct LastCocktailView: View {
                         CocktailCellView(cocktail: item)
                     }
                 }.foregroundColor(Color("neonBlue"))
-                    .padding(.leading, -16)
+                    .padding(.leading, -5)
             }
             
         }
+    }
+}
+
+struct UserInfoView: View {
+    @Binding var age: Int
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Age: \(age)")
+                .font(.title3)
+                .foregroundColor(Color("neonOrange"))
+            Text("Favorites: 16")
+                .font(.system(size: 18))
+                .foregroundColor(Color("neonOrange"))
+            Text("Your like: 19")
+                .font(.system(size: 18))
+                .foregroundColor(Color("neonOrange"))
+            Text("More info...")
+                .font(.system(size: 18))
+                .foregroundColor(Color("neonOrange"))
+        }
+        .offset(x: 50)
     }
 }

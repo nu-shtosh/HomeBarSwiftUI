@@ -21,7 +21,6 @@ class CocktailsViewModel: ObservableObject {
         CocktailDB(id: "5", name: "White Russian", tags: "Cocktail", alcoholic: "Alcoholic", instructions: "shake in glass", image: "whiteRussian", ingredients: ["vodka":"50", "crema": "50", "kaluha": "50"], rating: 5.0, numberOfRatings: 5, sumOfRating: 5.0, userRating: 5.0, likes: 13, comments: ["user": "ilia", "title": "good drink", "text": "my favorite"])
     ]
 
-
     func getCocktails() {
         DataBaseService.shared.getCocktails { result in
             switch result {

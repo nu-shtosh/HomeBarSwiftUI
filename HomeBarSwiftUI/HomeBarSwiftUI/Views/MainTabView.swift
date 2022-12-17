@@ -35,7 +35,7 @@ struct MainTabView: View {
                         }
                     }
                 NavigationView() {
-                    ProfileView()
+                    ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(id: "", name: "", surname: "", age: 0)))
                         .navigationBarTitleDisplayMode(.large)
 //                        .navigationTitle(Text("Profile"))
                 }

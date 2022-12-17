@@ -12,6 +12,10 @@ struct UserDB: Identifiable {
     var name: String
     var surname: String
     var age: Int
+    
+    var fullname: String {
+        "\(name) \(surname)"
+    }
 
     var representation: [String: Any] {
         var userRepresentation = [String: Any]()
