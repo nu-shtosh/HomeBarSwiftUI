@@ -33,11 +33,8 @@ struct SettingUserView: View {
                 Spacer()
                 OrangeButtonView(action: uploadData, title: "Save")
                 Spacer()
-                
-                
             }
             .padding()
-            
         }
         .onSubmit {
             profileViewModel.setProfile()
@@ -63,7 +60,6 @@ struct SettingUserView: View {
             }
         }
     }
-    
 }
 
 struct SettingUserView_Previews: PreviewProvider {
