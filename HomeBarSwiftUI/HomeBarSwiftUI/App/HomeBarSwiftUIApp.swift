@@ -13,6 +13,7 @@ let screen = UIScreen.main.bounds
 
 @main
 struct HomeBarSwiftUIApp: App {
+    
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 

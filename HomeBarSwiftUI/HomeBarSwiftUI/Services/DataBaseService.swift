@@ -13,25 +13,51 @@ class DataBaseService {
     static let shared = DataBaseService()
     private let database = Firestore.firestore() // ссылка на нашу бд на сервере
 
-    private var usersReference: CollectionReference {
-        database.collection("Users")
-    }
-
-
-    private var cocktailsReference: CollectionReference {
-        database.collection("Cocktails")
-    }
-
-
+    private var usersReference: CollectionReference { database.collection("Users") }
+    private var cocktailsReference: CollectionReference { database.collection("Cocktails") }
+    
     private init () { }
-
-    func setupUser(user: UserDB, completion: @escaping (Result<UserDB, Error>) -> ()) {
-        usersReference.document(user.id).setData(user.representation) { error in
-            if let error {
-                completion(.failure(error))
-            } else {
-                completion(.success(user))
+    
+    func setProfile(user: UserDB, image: Data?, completion: @escaping (Result<UserDB, Error>) -> ()) {
+        if let image = image {
+            StorageService.shared.uploadUserImage(id: user.id, image: image) { result in
+                switch result {
+                case .success(let sizeInfo):
+                    print(sizeInfo)
+                    self.usersReference.document(user.id).setData(user.representation) { error in
+                        if let error {
+                            completion(.failure(error))
+                        } else {
+                            completion(.success(user))
+                        }
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
+        } else {
+            self.usersReference.document(user.id).setData(user.representation) { error in
+                if let error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(user))
+                }
+            }
+        }
+    }
+    
+    func getProfile(completion: @escaping (Result<UserDB, Error>) -> Void) {
+        usersReference.document(AuthServices.shared.currentUser!.uid).getDocument { docSnapshot, error  in
+            guard let snapshot = docSnapshot else { return }
+            guard let data = snapshot.data() else { return }
+            guard let name = data["name"] as? String else { return }
+            guard let age = data["age"] as? String else { return }
+            guard let id = data["id"] as? String  else { return }
+            guard let surname = data["surname"] as? String else { return }
+            
+            let user = UserDB(id: id, name: name, surname: surname, age: age)
+            
+            completion(.success(user))
         }
     }
 
@@ -54,10 +80,6 @@ class DataBaseService {
         }
     }
 }
-
-
-
-
 
 class CocktailData : ObservableObject{
 

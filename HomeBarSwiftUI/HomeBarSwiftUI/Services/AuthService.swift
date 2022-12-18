@@ -30,8 +30,8 @@ class AuthServices {
                 let userModel = UserDB(id: result.user.uid,
                                           name: "",
                                           surname: "",
-                                          age: 0)
-                DataBaseService.shared.setupUser(user: userModel) { resultDataBase in
+                                          age: "")
+                DataBaseService.shared.setProfile(user: userModel, image: nil) { resultDataBase in
                     switch resultDataBase {
                     case .success(_):
                         completion(.success(result.user))

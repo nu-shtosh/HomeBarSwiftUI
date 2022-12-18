@@ -87,7 +87,7 @@ struct SignInView: View {
             switch result {
             case .success(_):
                 isTabViewShow.toggle()
-            case .failure(let error):
+            case .failure(_):
                 isTabViewShow.toggle()
 //                alertMessage = "Sign Up Error - \(error.localizedDescription)"
 //                self.isShowAlert.toggle()
