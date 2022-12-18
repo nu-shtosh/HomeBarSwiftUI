@@ -31,7 +31,7 @@ class AuthServices {
                                           name: "",
                                           surname: "",
                                           age: "")
-                DataBaseService.shared.setProfile(user: userModel) { resultDataBase in
+                DataBaseService.shared.setProfile(user: userModel, image: nil) { resultDataBase in
                     switch resultDataBase {
                     case .success(_):
                         completion(.success(result.user))

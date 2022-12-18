@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ProfileView: View {
     @StateObject var profileViewModel: ProfileViewModel
+    @State private var image = UIImage(named: "photo")!
     
     var body: some View {
         ZStack {
             WallpaperView()
             VStack {
                 HStack {
-                    UserImageView()
+                    UserImageView(image: $profileViewModel.image)
                         .padding(5)
                     UserInfoView(age: $profileViewModel.profile.age)
                     Spacer()
@@ -53,6 +54,9 @@ struct ProfileView: View {
         }
         .onAppear {
             profileViewModel.getProfile()
+//                profileViewModel.getImage()
+        
+          
         }
         .navigationTitle(Text(profileViewModel.profile.fullname))
         .toolbar {

@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct UserImageView: View {
+    @Binding var image: UIImage
+    
     var body: some View {
-        Image("photo")
+        Image(uiImage: image)
             .resizable()
             .frame(width: 180, height: 180)
             .clipShape(RoundedRectangle(cornerRadius: 20))
@@ -24,10 +26,11 @@ struct UserImageView: View {
             lineWidth: 3
             ))
     }
+        
 }
 
-struct UserImageView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserImageView()
-    }
-}
+//struct UserImageView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UserImageView(image: )
+//    }
+//}

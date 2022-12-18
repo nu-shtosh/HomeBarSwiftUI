@@ -13,24 +13,35 @@ class DataBaseService {
     static let shared = DataBaseService()
     private let database = Firestore.firestore() // ссылка на нашу бд на сервере
 
-    private var usersReference: CollectionReference {
-        database.collection("Users")
-    }
-
-
-    private var cocktailsReference: CollectionReference {
-        database.collection("Cocktails")
-    }
-
-
+    private var usersReference: CollectionReference { database.collection("Users") }
+    private var cocktailsReference: CollectionReference { database.collection("Cocktails") }
+    
     private init () { }
-
-    func setProfile(user: UserDB, completion: @escaping (Result<UserDB, Error>) -> ()) {
-        usersReference.document(user.id).setData(user.representation) { error in
-            if let error {
-                completion(.failure(error))
-            } else {
-                completion(.success(user))
+    
+    func setProfile(user: UserDB, image: Data?, completion: @escaping (Result<UserDB, Error>) -> ()) {
+        if let image = image {
+            StorageService.shared.uploadUserImage(id: user.id, image: image) { result in
+                switch result {
+                case .success(let sizeInfo):
+                    print(sizeInfo)
+                    self.usersReference.document(user.id).setData(user.representation) { error in
+                        if let error {
+                            completion(.failure(error))
+                        } else {
+                            completion(.success(user))
+                        }
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        } else {
+            self.usersReference.document(user.id).setData(user.representation) { error in
+                if let error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(user))
+                }
             }
         }
     }
@@ -69,10 +80,6 @@ class DataBaseService {
         }
     }
 }
-
-
-
-
 
 class CocktailData : ObservableObject{
 
