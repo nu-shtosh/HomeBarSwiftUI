@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
     @StateObject var profileViewModel: ProfileViewModel
-    @State private var image = UIImage(named: "photo")!
     
     var body: some View {
         ZStack {
@@ -54,14 +54,11 @@ struct ProfileView: View {
         }
         .onAppear {
             profileViewModel.getProfile()
-//                profileViewModel.getImage()
-        
-          
         }
         .navigationTitle(Text(profileViewModel.profile.fullname))
         .toolbar {
             NavigationLink {
-                SettingUserView(profileViewModel: ProfileViewModel(profile: UserDB(id: profileViewModel.profile.id, name: profileViewModel.profile.name, surname: profileViewModel.profile.surname, age: profileViewModel.profile.age)))
+                SettingUserView(profileViewModel: profileViewModel)
             } label: {
                 Image(systemName: "gearshape.fill")
                     .foregroundColor(Color("neonOrange"))
@@ -72,7 +69,12 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(id: "1", name: "", surname: "", age: "")))
+        ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(
+            id: "1",
+            name: "",
+            surname: "",
+            age: ""
+        )))
     }
 }
 
@@ -124,7 +126,6 @@ struct LastCocktailView: View {
                 }.foregroundColor(Color("neonBlue"))
                     .padding(.leading, -5)
             }
-            
         }
     }
 }

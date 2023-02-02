@@ -16,17 +16,11 @@ struct UserImageView: View {
             .frame(width: 180, height: 180)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .overlay(RoundedRectangle(cornerRadius: 20).stroke(LinearGradient(
-                colors: [
-                    Color("neonOrange"),
-                    Color("neonBlue")
-                ],
+                colors: [Color("neonOrange"), Color("neonBlue")],
                 startPoint: .top,
                 endPoint: .bottom
-            ),
-            lineWidth: 3
-            ))
+            ), lineWidth: 3))
     }
-        
 }
 
 //struct UserImageView_Previews: PreviewProvider {
