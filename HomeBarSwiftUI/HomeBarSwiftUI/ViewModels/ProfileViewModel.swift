@@ -45,7 +45,6 @@ class ProfileViewModel: ObservableObject {
             case .success(let data):
                 if let image = UIImage(data: data) {
                     self.image = image
-                    print("ok image")
                 }
             case .failure(let error):
                 print(error.localizedDescription)

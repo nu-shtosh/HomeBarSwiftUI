@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SettingUserView: View {
+    
     @StateObject var profileViewModel: ProfileViewModel
     @State private var showImagePicker = false
-    @State private var image = UIImage(named: "photo")!
     @Environment (\.dismiss) var dismiss
     
     var body: some View {
@@ -23,13 +23,28 @@ struct SettingUserView: View {
                             showImagePicker.toggle()
                         }
                         .sheet(isPresented: $showImagePicker) {
-                            ImagePicker(sourceType: .photoLibrary, selected: $profileViewModel.image)
+                            ImagePicker(
+                                sourceType: .photoLibrary,
+                                selected: $profileViewModel.image
+                            )
                         }
                 }
                 Spacer()
-                TextFieldWithImageView(title: "Name", imageSystemName: "", text: $profileViewModel.profile.name)
-                TextFieldWithImageView(title: "Surename", imageSystemName: "", text: $profileViewModel.profile.surname)
-                TextFieldWithImageView(title: "Age", imageSystemName: "", text: $profileViewModel.profile.age)
+                TextFieldWithImageView(
+                    title: "Name",
+                    imageSystemName: "person.fill",
+                    text: $profileViewModel.profile.name
+                )
+                TextFieldWithImageView(
+                    title: "Surename",
+                    imageSystemName: "person.circle",
+                    text: $profileViewModel.profile.surname
+                )
+                TextFieldWithImageView(
+                    title: "Age",
+                    imageSystemName: "person.crop.circle.badge.clock",
+                    text: $profileViewModel.profile.age
+                )
                 Spacer()
                 OrangeButtonView(action: uploadData, title: "Save")
                 Spacer()
@@ -39,18 +54,14 @@ struct SettingUserView: View {
         .onSubmit {
             profileViewModel.setProfile()
         }
-        .onAppear {
-            profileViewModel.getImage()
-        }
         .navigationTitle("Setting")
     }
+    
     private func uploadData() {
-        let user = UserDB(
-            id: profileViewModel.profile.id,
-            name: profileViewModel.profile.name,
-            surname: profileViewModel.profile.surname,
-            age: profileViewModel.profile.age)
-        guard let imageData = profileViewModel.image.jpegData(compressionQuality: 0.1) else {return}
+        let user = profileViewModel.profile
+        guard let imageData = profileViewModel.image.jpegData(compressionQuality: 0.1) else {
+            return
+        }
         DataBaseService.shared.setProfile(user: user, image: imageData) { result  in
             switch result {
             case .success(_):
@@ -64,6 +75,11 @@ struct SettingUserView: View {
 
 struct SettingUserView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingUserView(profileViewModel: ProfileViewModel(profile: UserDB(id: "", name: "", surname: "", age: "")))
+        SettingUserView(profileViewModel: ProfileViewModel(profile: UserDB(
+            id: "",
+            name: "",
+            surname: "",
+            age: ""
+        )))
     }
 }
