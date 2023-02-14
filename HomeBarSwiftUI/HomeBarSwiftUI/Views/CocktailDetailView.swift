@@ -16,7 +16,7 @@ struct CocktailDetailView: View {
             WallpaperView()
             VStack{
                 Text("\(cocktail.name)")
-                Text("\(cocktail.id)")
+                Text("\(cocktail.instructions)")
             }
         }
     }
@@ -26,7 +26,7 @@ struct CocktailDetailView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             WallpaperView()
-            CocktailDetailView(cocktail: CocktailDB(id: "1", name: "White Russian", tags: "Cocktail", alcoholic: "Alcoholic", instructions: "shake in glass", image: "whiteRussian", ingredients: ["vodka":"50", "crema": "50", "kaluha": "50"], rating: 5.0, numberOfRatings: 5, sumOfRating: 5.0, userRating: 5.0, likes: 13, comments: ["user": "ilia", "title": "good drink", "text": "my favorite"]))
+            CocktailDetailView(cocktail: CocktailDB(name: "White Russian", tags: "Cocktail", alcoholic: "Alcoholic", instructions: "shake in glass", image: "whiteRussian", ingredients: ["vodka":"50", "crema": "50", "kaluha": "50"], rating: 5.0, numberOfRatings: 5, sumOfRating: 5.0, userRating: 5.0, likes: 13, comments: ["user": "ilia", "title": "good drink", "text": "my favorite"]))
         }
     }
 }

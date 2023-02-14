@@ -61,8 +61,8 @@ class DataBaseService {
         }
     }
 
-    func getCocktails(completion: @escaping (Result<[CocktailDB], Error>) -> ()) {
-        self.cocktailsReference.getDocuments { querySnapshot, error in
+    func getCocktails(completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
+        cocktailsReference.getDocuments { querySnapshot, error in
             guard let querySnapshot else {
                 if let error {
                     completion(.failure(error))
@@ -71,8 +71,8 @@ class DataBaseService {
             }
             let documents = querySnapshot.documents
             var cocktails = [CocktailDB]()
-
             for document in documents {
+                
                 guard let cocktail = CocktailDB.init(document: document) else { return }
                 cocktails.append(cocktail)
             }
