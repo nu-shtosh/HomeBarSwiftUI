@@ -14,12 +14,13 @@ struct AllCocktailsView: View {
     let layout = [GridItem(.adaptive(minimum: screen.width / 2.2))]
     
     var body: some View {
-        ZStack(){
+        ZStack {
             WallpaperView()
             ScrollView(.vertical, showsIndicators: false) {
                 Section {
                     LazyVGrid(columns: layout, spacing: 12) {
                         ForEach(cocktailViewModel.cocktail, id: \.name) { item in
+                            
                             NavigationLink {
                                 CocktailDetailView(cocktail: item)
                                     .navigationTitle(item.name)
@@ -30,7 +31,6 @@ struct AllCocktailsView: View {
                     }
                 }
                 .foregroundColor(Color("neonBlue"))
-                
             }
         }
         .onAppear{
@@ -38,6 +38,7 @@ struct AllCocktailsView: View {
         }
     }
 }
+
 
 //struct AllCocktailsView_Previews: PreviewProvider {
 //    static var previews: some View {

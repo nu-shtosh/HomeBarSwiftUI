@@ -6,13 +6,16 @@
 //
 
 import Foundation
+import UIKit
 
 class CocktailsViewModel: ObservableObject {
 
     @Published var cocktail: [CocktailDB]
+    @Published var image: Data
     
-    init(cocktail: [CocktailDB]) {
+    init(cocktail: [CocktailDB], image: Data) {
         self.cocktail = cocktail
+        self.image = image
     }
     
     func getCocktail() {
@@ -23,6 +26,18 @@ class CocktailsViewModel: ObservableObject {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func getImage(imageURL: String) {
+            NetworkManager.shared.fetchImage(from: imageURL) { [unowned self] result in
+                switch result {
+                case .success(let images):
+                    image = images
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            
         }
     }
     

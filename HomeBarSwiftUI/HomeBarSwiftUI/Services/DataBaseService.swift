@@ -14,7 +14,7 @@ class DataBaseService {
     private let database = Firestore.firestore() // ссылка на нашу бд на сервере
 
     private var usersReference: CollectionReference { database.collection("Users") }
-    private var cocktailsReference: CollectionReference { database.collection("Cocktails") }
+//    private var cocktailsReference: CollectionReference { database.collection("Cocktails") }
     
     private init () { }
     
@@ -62,6 +62,13 @@ class DataBaseService {
     }
 
     func getCocktails(completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
+        let cocktailsReference = database.collection("Cocktails")
+            .order(by: "name")
+            .start(at: ["W"])
+            .end(at: ["Z"])
+        
+        
+        
         cocktailsReference.getDocuments { querySnapshot, error in
             guard let querySnapshot else {
                 if let error {
@@ -179,10 +186,7 @@ class CocktailData : ObservableObject{
                         }
                     }
                 }
-
                 self?.cocktails = schedule
-
-                print(schedule)
             case .failure(let error):
                 print(error.localizedDescription)
             }

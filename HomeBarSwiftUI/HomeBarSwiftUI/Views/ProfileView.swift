@@ -124,7 +124,7 @@ struct LastCocktailView: View {
                         CocktailDetailView(cocktail: item)
                             .navigationTitle(item.name)
                     } label: {
-                        CocktailCellView(cocktail: item)
+                        CocktailCellView(cocktail: item, image: cocktailViewModel.image)
                     }
                 }.foregroundColor(Color("neonBlue"))
                     .padding(.leading, -5)
