@@ -26,6 +26,7 @@ struct AllCocktailsView: View {
                                     .navigationTitle(item.name)
                             } label: {
                                 CocktailCellView(cocktail: item)
+                                
                             }
                         }
                     }

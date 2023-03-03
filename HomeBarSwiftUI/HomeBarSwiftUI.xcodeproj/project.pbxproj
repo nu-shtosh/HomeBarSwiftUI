@@ -14,6 +14,7 @@
 		1F5F877F29461E2F00335B57 /* SecureFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */; };
 		1F5F878129461EB500335B57 /* TextFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */; };
 		1F5F878629461FE700335B57 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878529461FE700335B57 /* AuthService.swift */; };
+		1FD7208929B1DA3D00019E31 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD7208829B1DA3D00019E31 /* Ingredient.swift */; };
 		1FE5C4B8294BC82A004E7634 /* SettingUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5C4B7294BC82A004E7634 /* SettingUserView.swift */; };
 		B83D994129472734006AF62D /* MainTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D994029472734006AF62D /* MainTabBarViewModel.swift */; };
 		B83D994429473B01006AF62D /* UserDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D994329473B01006AF62D /* UserDB.swift */; };
@@ -73,6 +74,7 @@
 		1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFieldWithImageView.swift; sourceTree = "<group>"; };
 		1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImageView.swift; sourceTree = "<group>"; };
 		1F5F878529461FE700335B57 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		1FD7208829B1DA3D00019E31 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		1FE5C4B7294BC82A004E7634 /* SettingUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUserView.swift; sourceTree = "<group>"; };
 		B83D994029472734006AF62D /* MainTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewModel.swift; sourceTree = "<group>"; };
 		B83D994329473B01006AF62D /* UserDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDB.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				B83D994329473B01006AF62D /* UserDB.swift */,
 				B83D9947294749C6006AF62D /* CocktailDB.swift */,
 				B83D99742948F60F006AF62D /* DrinksFromAPI.swift */,
+				1FD7208829B1DA3D00019E31 /* Ingredient.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				B8F5469D29462FAF00ADB0A1 /* ProfileView.swift in Sources */,
 				B83D99732948F3A5006AF62D /* IngredientCellView.swift in Sources */,
 				1F5F878129461EB500335B57 /* TextFieldWithImageView.swift in Sources */,
+				1FD7208929B1DA3D00019E31 /* Ingredient.swift in Sources */,
 				B8588DEF29462ADA0082132D /* MainTabView.swift in Sources */,
 				B83D9985294A81B5006AF62D /* CocktailDetailView.swift in Sources */,
 				B8B37B0429422A7E00611844 /* SignInView.swift in Sources */,

@@ -65,7 +65,7 @@ class DataBaseService {
         let cocktailsReference = database.collection("Cocktails")
             .order(by: "name")
             .start(at: ["W"])
-            .end(at: ["Z"])
+            .end(at: ["Y"])
         
         
         
