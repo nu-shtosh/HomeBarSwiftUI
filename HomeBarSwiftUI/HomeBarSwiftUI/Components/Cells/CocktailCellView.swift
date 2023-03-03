@@ -52,7 +52,6 @@ struct CocktailCellView: View {
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
-            
         }
     }
 }
@@ -79,11 +78,11 @@ struct CocktailCellView: View {
 //        return Image(uiImage: image)
 //    }
 //}
-//struct CocktailCellView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ZStack {
-//            WallpaperView()
-//            CocktailCellView(cocktail: CocktailDB(name: "White Russian", tags: "Cocktail", alcoholic: "Alcoholic", instructions: "shake in glass", image: "whiteRussian", ingredients: ["vodka":"50", "crema": "50", "kaluha": "50"], rating: 5.0, numberOfRatings: 5, sumOfRating: 5.0, userRating: 5.0, likes: 13, comments: ["user": "ilia", "title": "good drink", "text": "my favorite"]), image: UIImage(data: Data()))
-//        }
-//    }
-//}
+struct CocktailCellView_Previews: PreviewProvider {
+    static var previews: some View {
+        ZStack {
+            WallpaperView()
+            CocktailCellView(cocktail: CocktailDB(name: "White Russian", tags: "Cocktail", alcoholic: "Alcoholic", instructions: "shake in glass", image: "whiteRussian", ingredients: ["vodka":"50", "crema": "50", "kaluha": "50"], rating: 5.0, numberOfRatings: 5, sumOfRating: 5.0, userRating: 5.0, likes: 13, comments: ["user": "ilia", "title": "good drink", "text": "my favorite"]))
+        }
+    }
+}
