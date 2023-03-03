@@ -28,11 +28,11 @@ class ProfileViewModel: ObservableObject {
     }
     
     func getProfile() {
-        DataBaseService.shared.getProfile { result in
+        DataBaseService.shared.getProfile { [unowned self] result in
             switch result {
             case .success(let user):
-                self.profile = user
-                self.getImage()
+                profile = user
+                getImage()
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -40,7 +40,7 @@ class ProfileViewModel: ObservableObject {
     }
     
     func getImage() {
-        StorageService.shared.downloadUserImage(id: profile.id) { result in
+        StorageService.shared.downloadUserImage(id: profile.id) { [unowned self] result in
             switch result {
             case .success(let data):
                 if let image = UIImage(data: data) {

@@ -10,6 +10,8 @@ import SwiftUI
 struct ProfileView: View {
     
     @StateObject var profileViewModel: ProfileViewModel
+    @StateObject var cocktailViewModel: CocktailsViewModel
+    
     
     var body: some View {
         ZStack {
@@ -47,7 +49,7 @@ struct ProfileView: View {
                     Spacer()
                 }
                 .padding(EdgeInsets(top: 5, leading: 11, bottom: -5, trailing: 0))
-                LastCocktailView()
+                LastCocktailView(cocktailViewModel: cocktailViewModel)
                 Spacer()
             }
             .padding(EdgeInsets(top: 20, leading: 16, bottom: 16, trailing: 16))
@@ -67,16 +69,16 @@ struct ProfileView: View {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(
-            id: "1",
-            name: "",
-            surname: "",
-            age: ""
-        )))
-    }
-}
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(
+//            id: "1",
+//            name: "",
+//            surname: "",
+//            age: ""
+//        )))
+//    }
+//}
 
 struct UserButtonView: View {
     let text: String
@@ -113,15 +115,16 @@ struct UserButtonStackView: View {
 }
 
 struct LastCocktailView: View {
+    @StateObject var cocktailViewModel: CocktailsViewModel
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
-                ForEach(CocktailsViewModel.shared.drinks, id: \.id) { item in
+                ForEach(cocktailViewModel.cocktail, id: \.name) { item in
                     NavigationLink {
                         CocktailDetailView(cocktail: item)
                             .navigationTitle(item.name)
                     } label: {
-                        CocktailCellView(cocktail: item)
+                        CocktailCellView(cocktail: item, image: cocktailViewModel.image)
                     }
                 }.foregroundColor(Color("neonBlue"))
                     .padding(.leading, -5)

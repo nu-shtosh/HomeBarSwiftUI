@@ -9,14 +9,14 @@ import SwiftUI
 
 struct IngredientsView: View {
 
-    @StateObject var viewModel = CocktailsViewModel()
+//    @StateObject var viewModel = CocktailsViewModel()
 
     var body: some View {
         Button("Fetch") {
             print("hi")
         }.onAppear {
             print("Get cocktails")
-            self.viewModel.getCocktails()
+//            self.viewModel.getCocktails()
         }
         .foregroundColor(Color.white)
         .frame(width: 200, height: 100)

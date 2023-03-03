@@ -59,4 +59,10 @@ class NetworkManager {
             }
         }
     }
+    
+    func fetchImageData(from url: String) throws -> Data {
+        guard let imageURL = URL(string: url) else { throw NetworkError.invalidURL }
+        guard let imageData = try? Data(contentsOf: imageURL) else { throw NetworkError.noData }
+        return imageData
+    }
 }
