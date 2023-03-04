@@ -48,7 +48,7 @@ struct ProfileView: View {
                         .foregroundColor(.gray)
                     Spacer()
                 }
-                .padding(EdgeInsets(top: 5, leading: 11, bottom: -5, trailing: 0))
+                .padding(EdgeInsets(top: 5, leading: 11, bottom: 0, trailing: 0))
                 LastCocktailView(cocktailViewModel: cocktailViewModel)
                 Spacer()
             }
@@ -56,6 +56,7 @@ struct ProfileView: View {
         }
         .onAppear {
             profileViewModel.getProfile()
+            cocktailViewModel.getCocktail()
         }
         .navigationTitle(Text(profileViewModel.profile.fullname))
         .toolbar {
@@ -89,7 +90,7 @@ struct UserButtonView: View {
                 .foregroundColor(Color.white)
                 .font(.title3)
         }
-        .frame(width: 180, height: 50)
+        .frame(width: screen.width / 2.2, height: screen.height / 18)
         .background(Color("neonOrange"))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
