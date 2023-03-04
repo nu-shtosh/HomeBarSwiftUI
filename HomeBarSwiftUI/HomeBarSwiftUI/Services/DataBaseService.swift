@@ -96,6 +96,7 @@ class DataBaseService {
 class CocktailData : ObservableObject{
 
     var cocktails: DrinksFromAPI?
+    
 
     func fetchEpisodeSchedule() {
         NetworkManager.shared.fetch(DrinksFromAPI.self, from: Link.scheduleURL.rawValue) { [weak self] result in
@@ -196,5 +197,20 @@ class CocktailData : ObservableObject{
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func fetchIngredietnts() {
+        
+        let ingredients = IngredientDataStorage().ingredients
+       
+        let db = Firestore.firestore()
+        let ref = db.collection("AllIngredients").document("ingredients")
+        ref.setData(["ingredients": ingredients])
+//
+//        for value in ingredients {
+//
+//            id += 1
+//            ref.setData(["name": value])
+//        }
     }
 }

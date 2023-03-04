@@ -13,7 +13,7 @@ struct UserImageView: View {
     var body: some View {
         Image(uiImage: image)
             .resizable()
-            .frame(width: 180, height: 180)
+            .frame(width: screen.width / 2.1, height: screen.width / 2.1)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .overlay(RoundedRectangle(cornerRadius: 20).stroke(LinearGradient(
                 colors: [Color("neonOrange"), Color("neonBlue")],
@@ -25,6 +25,6 @@ struct UserImageView: View {
 
 //struct UserImageView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        UserImageView(image: )
+//        UserImageView(image: UIImage(systemName: "person"))
 //    }
 //}
