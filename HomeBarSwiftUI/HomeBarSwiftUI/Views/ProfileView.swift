@@ -12,7 +12,6 @@ struct ProfileView: View {
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var cocktailViewModel: CocktailsViewModel
     
-    
     var body: some View {
         ZStack {
             WallpaperView()
