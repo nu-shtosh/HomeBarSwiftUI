@@ -26,13 +26,18 @@ struct MainTabView: View {
                         Image(systemName: "heart")
                     }
                 }
-                AlcoholTestView()
-                    .tabItem {
-                        VStack {
-                            Text("Alcotest")
-                            Image(systemName: "filemenu.and.selection")
+                NavigationView() {
+                    AlcoholTestView()
+                        .navigationBarTitleDisplayMode(.large)
+                        .navigationTitle(Text("Alcotest"))
+                }
+                        .tabItem {
+                            VStack {
+                                Text("Alcotest")
+                                Image(systemName: "filemenu.and.selection")
+                            }
                         }
-                    }
+                
                 NavigationView() {
                     ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(id: "", name: "", surname: "", age: "")), cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(name: "", tags: "", alcoholic: "", instructions: "", image: "", ingredients: ["" : ""], rating: 0, numberOfRatings: 0, sumOfRating: 0, userRating: 0, likes: 0, comments: ["" : ""])], image: Data()))
                         .navigationBarTitleDisplayMode(.large)
