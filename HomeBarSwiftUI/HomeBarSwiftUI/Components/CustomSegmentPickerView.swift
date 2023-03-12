@@ -21,7 +21,7 @@ struct CustomSegmentedPickerView: View {
                         Button(action: { selection = index }) {
                             Text(titles[index])
                                 .foregroundColor(selection == 0 ? Color("neonOrange") : Color("neonBlue"))
-                                .font(.title)
+                                .font(.title3)
                         }.padding(EdgeInsets(top: 16, leading: 20, bottom: 16, trailing: 20)).background(
                             GeometryReader { geo in
                                 Color.clear.onAppear { setFrame(index: index, frame: geo.frame(in: .global)) }

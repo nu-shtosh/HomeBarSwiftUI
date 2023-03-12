@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct AlcoholTestView: View {
-    @State private var text = ""
+    @State private var textWeight = "80"
     @State private var isEat = false
+    @State var value = 100.0
+    @State var valueWeight = 80.0
     @FocusState private var isInputActive: Bool
+    
     var body: some View {
         ZStack {
             WallpaperView()
@@ -18,54 +21,54 @@ struct AlcoholTestView: View {
                 CustomSegmentedPickerView()
                     .padding(.bottom, 60)
                 HStack {
-                    Text("Your weight:")
-                        .foregroundColor(Color("neonOrange"))
-                        .font(.title)
-                        .padding(.leading, 50)
+                   LabelView(text: "Your weight:")
+                        .padding(.leading, 40)
                     Spacer()
-                    DefaultTextFieldView(
-                        title: "Kg",
-                        text: $text,
+                    Text(valueWeight.formatted())
+                    NumberTextFieldView(
+                        text: $textWeight,
+                        value: $valueWeight,
+                        label: "kg",
                         sizeWidth: 100,
-                        sizeHeight: 70
+                        sizeHeight: 50,
+                        maxValue: 250
                     )
                     .focused($isInputActive)
-                    .toolbar {
-                        ToolbarItemGroup(placement: .keyboard) {
-                            Spacer()
-                            Button("Done") {
-                                isInputActive = false
-                            }
+                }
+                .padding(.bottom, 16)
+                HStack {
+                    LabelView(text: "You ate:")
+                        .padding(.leading, 40)
+                    Spacer()
+                    CustomSwitch(isEat: $isEat)
+                }
+                .padding(.bottom, 16)
+                HStack {
+                    LabelView(text: "Choose a drink")
+                        .padding(.leading, 40)
+                    Spacer()
+                    Menu("Drinks") {
+                        Button("Vodka") {
+                            print("vodka")
                         }
                     }
-                    
-                       
                 }
-                .padding(.bottom, 60)
-                HStack {
-                    Text("Your eat:")
-                        .foregroundColor(Color("neonOrange"))
-                        .font(.title)
-                        .padding(.leading, 50)
-                    Spacer()
-                    Toggle(isEat ? "Yes" : "No", isOn: $isEat)
-                        .toggleStyle(.button)
-                        .tint(isEat ? Color("neonOrange") : Color("neonBlue"))
-                        .font(.title)
-                        .background(isEat ? Color("neonBlue").opacity(0.7) : Color("neonOrange").opacity(0.7))
-                        .cornerRadius(12)
-                }
-                .padding(.bottom, 60)
+                .padding(.bottom, 16)
+                SliderAlcoholTestView(value: $value)
+                    .focused($isInputActive)
+                    .padding(.bottom, 30)
                 OrangeButtonView(action: {}, title: "Next")
                 Spacer()
-                Spacer()
-                Spacer()
-               
             }
             .padding()
         }
-        .onTapGesture {
-            isInputActive = false
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("Done") {
+                    isInputActive = false
+                }
+            }
         }
     }
 }
@@ -74,5 +77,30 @@ struct AlcoholTestView: View {
 struct AlcoholTestView_Previews: PreviewProvider {
     static var previews: some View {
         AlcoholTestView()
+    }
+}
+
+
+struct LabelView: View {
+    let text: String
+    
+    var body: some View {
+        Text(text)
+            .foregroundColor(Color("neonOrange"))
+            .font(.title2)
+    }
+}
+
+struct CustomSwitch: View {
+    
+    @Binding var isEat: Bool
+    
+    var body: some View {
+        Toggle(isEat ? "Yes" : "No", isOn: $isEat)
+            .toggleStyle(.button)
+            .tint(isEat ? Color("neonOrange") : Color("neonBlue"))
+            .font(.title2)
+            .background(isEat ? Color("neonBlue").opacity(0.7) : Color("neonOrange").opacity(0.7))
+            .cornerRadius(12)
     }
 }
