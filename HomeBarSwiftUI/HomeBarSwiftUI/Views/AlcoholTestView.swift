@@ -9,7 +9,14 @@ import SwiftUI
 
 struct AlcoholTestView: View {
     var body: some View {
-        Text("AlcoholTest!")
+        ZStack {
+            WallpaperView()
+            VStack {
+                CustomSegmentedPickerView()
+                Spacer()
+            }
+            .padding()
+        }
     }
 }
 
