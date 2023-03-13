@@ -17,18 +17,14 @@ struct NumberTextFieldView: View {
     let maxValue: Int
     
     var body: some View {
-        TextField(label, text: $text) { _ in
-            if let value = Int(text) {
-                if value < maxValue {
-                    self.value = Double(value)
-                    return
+        TextField(label, text: $text)
+            .onChange(of: text, perform: { newValue in
+                if newValue.count > 3  {
+                    text = String(newValue.prefix(3))
+                } else if Int(newValue) ?? 0 > maxValue {
+                    text = String(250)
                 }
-            }
-            showAlert.toggle()
-            self.value = 0
-            text = "0"
-            
-        }
+            })
             .textFieldStyle(GradientTextFieldBackground())
             .frame(width: sizeWidth, height: sizeHeight)
             .keyboardType(.numberPad)

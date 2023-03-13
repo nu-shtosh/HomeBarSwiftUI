@@ -9,8 +9,9 @@ import SwiftUI
 
 struct CustomSegmentedPickerView: View {
     @State private var selection = 0
-    private var titles = ["Man", "Woman"]
-    private var colors = [Color("neonBlue"), Color("neonOrange")]
+    let titles: [String]
+    let colors : [Color]
+    let font: Font
     @State private var frames = Array<CGRect>(repeating: .zero, count: 4)
     
     var body: some View {
@@ -21,21 +22,20 @@ struct CustomSegmentedPickerView: View {
                         Button(action: { selection = index }) {
                             Text(titles[index])
                                 .foregroundColor(selection == 0 ? Color("neonOrange") : Color("neonBlue"))
-                                .font(.title3)
-                        }.padding(EdgeInsets(top: 16, leading: 20, bottom: 16, trailing: 20)).background(
-                            GeometryReader { geo in
-                                Color.clear.onAppear { setFrame(index: index, frame: geo.frame(in: .global)) }
+                                .font(font)
+                        }
+                        .padding(EdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20))
+                        .background(GeometryReader { geo in
+                            Color.clear.onAppear {
+                                setFrame(index: index, frame: geo.frame(in: .global))
                             }
-                        )
+                        })
                     }
                 }
-                .background(
-                    Capsule().fill(
-                        colors[selection].opacity(0.7))
-                        .frame(width: frames[selection].width,
-                               height: frames[selection].height, alignment: .topLeading)
-                        .offset(x: frames[selection].minX - frames[0].minX)
-                    , alignment: .leading
+                .background(Capsule()
+                    .fill(colors[selection].opacity(0.7))
+                    .frame(width: frames[selection].width, height: frames[selection].height, alignment: .topLeading)
+                    .offset(x: frames[selection].minX - frames[0].minX), alignment: .leading
                 )
             }
             .animation(.default, value: selection)

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SliderAlcoholTestView: View {
     @Binding var value: Double
-    @State private var text = ""
     
     var body: some View {
         VStack {
@@ -27,22 +26,7 @@ struct SliderAlcoholTestView: View {
                 }
                 .animation(.easeInOut, value: value)
                 .tint(Color("neonOrange"))
-                .onChange(of: value) { newValue in
-                    text = newValue.formatted()
-                    print(value)
-                }
-                NumberTextFieldView(
-                    text: $text,
-                    value: $value,
-                    label: "ml",
-                    sizeWidth: 100,
-                    sizeHeight: 50,
-                    maxValue: 3000
-                )
             }
-        }
-        .onAppear {
-            text = value.formatted()
         }
     }
 }

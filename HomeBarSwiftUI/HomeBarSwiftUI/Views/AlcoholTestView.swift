@@ -18,19 +18,21 @@ struct AlcoholTestView: View {
         ZStack {
             WallpaperView()
             VStack {
-                CustomSegmentedPickerView()
-                    .padding(.bottom, 60)
+                CustomSegmentedPickerView(
+                    titles: ["Man", "Woman"],
+                    colors: [Color("neonBlue"), Color("neonOrange")],
+                    font: Font.title3
+                )
+                .padding(.bottom, 40)
                 HStack {
-                   LabelView(text: "Your weight:")
-                        .padding(.leading, 40)
+                    LabelView(text: "Your weight:")
                     Spacer()
-                    Text(valueWeight.formatted())
                     NumberTextFieldView(
                         text: $textWeight,
                         value: $valueWeight,
                         label: "kg",
-                        sizeWidth: 100,
-                        sizeHeight: 50,
+                        sizeWidth: 71,
+                        sizeHeight: 40,
                         maxValue: 250
                     )
                     .focused($isInputActive)
@@ -38,24 +40,27 @@ struct AlcoholTestView: View {
                 .padding(.bottom, 16)
                 HStack {
                     LabelView(text: "You ate:")
-                        .padding(.leading, 40)
                     Spacer()
                     CustomSwitch(isEat: $isEat)
                 }
                 .padding(.bottom, 16)
                 HStack {
-                    LabelView(text: "Choose a drink")
-                        .padding(.leading, 40)
+                    LabelView(text: "Choose a drink:")
                     Spacer()
-                    Menu("Drinks") {
-                        Button("Vodka") {
-                            print("vodka")
-                        }
+                    Button(action: {}) {
+                        Text("Drink")
+                            .font(.title2)
+                            .foregroundColor(Color("neonBlue"))
                     }
+                    .frame(width: 71, height: 40)
+                    .background(Color("neonOrange")).opacity(0.7)
+                    
+                    .cornerRadius(8)
+              
+                    
                 }
                 .padding(.bottom, 16)
                 SliderAlcoholTestView(value: $value)
-                    .focused($isInputActive)
                     .padding(.bottom, 30)
                 OrangeButtonView(action: {}, title: "Next")
                 Spacer()
@@ -69,6 +74,9 @@ struct AlcoholTestView: View {
                     isInputActive = false
                 }
             }
+        }
+        .onTapGesture {
+            isInputActive = false
         }
     }
 }
@@ -96,11 +104,11 @@ struct CustomSwitch: View {
     @Binding var isEat: Bool
     
     var body: some View {
-        Toggle(isEat ? "Yes" : "No", isOn: $isEat)
+        Toggle(isEat ? " Yes  " : " No   ", isOn: $isEat)
             .toggleStyle(.button)
             .tint(isEat ? Color("neonOrange") : Color("neonBlue"))
             .font(.title2)
             .background(isEat ? Color("neonBlue").opacity(0.7) : Color("neonOrange").opacity(0.7))
-            .cornerRadius(12)
+            .cornerRadius(8)
     }
 }
