@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CustomSegmentedPickerView: View {
     @State private var selection = 0
+    @Binding var isGender: Bool
     let titles: [String]
     let colors : [Color]
     let font: Font
@@ -19,7 +20,12 @@ struct CustomSegmentedPickerView: View {
             ZStack {
                 HStack(spacing: 10) {
                     ForEach(titles.indices, id: \.self) { index in
-                        Button(action: { selection = index }) {
+                        Button(action: {
+                            selection = index
+                            isGender.toggle()
+                            print(isGender)
+                        }) {
+                           
                             Text(titles[index])
                                 .foregroundColor(selection == 0 ? Color("neonOrange") : Color("neonBlue"))
                                 .font(font)
@@ -45,9 +51,10 @@ struct CustomSegmentedPickerView: View {
                 endPoint: .trailing
             ), lineWidth: 3))
         }
+        
     }
     
-    func setFrame(index: Int, frame: CGRect) {
+   private func setFrame(index: Int, frame: CGRect) {
         self.frames[index] = frame
     }
 }

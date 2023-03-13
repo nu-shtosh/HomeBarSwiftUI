@@ -10,7 +10,6 @@ import SwiftUI
 struct NumberTextFieldView: View {
     @State private var showAlert = false
     @Binding var text: String
-    @Binding var value: Double
     var label: String
     let sizeWidth: CGFloat?
     let sizeHeight: CGFloat?
@@ -39,7 +38,6 @@ struct NumberTextFieldView_Previews: PreviewProvider {
     static var previews: some View {
         NumberTextFieldView(
             text: .constant(""),
-            value: .constant(100.0),
             label: "Kg",
             sizeWidth: nil,
             sizeHeight: nil,

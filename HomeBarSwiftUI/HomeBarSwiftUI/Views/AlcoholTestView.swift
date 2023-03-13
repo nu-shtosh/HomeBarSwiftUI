@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct AlcoholTestView: View {
+    @StateObject var alcoTestViewModel: AlcoTestViewModel
     @State private var textWeight = "80"
-    @State private var isEat = false
-    @State var value = 100.0
-    @State var valueWeight = 80.0
     @FocusState private var isInputActive: Bool
+    @State private var isPresented = false
     
     var body: some View {
         ZStack {
             WallpaperView()
             VStack {
                 CustomSegmentedPickerView(
+                    isGender: $alcoTestViewModel.chooseGenderFrom,
                     titles: ["Man", "Woman"],
                     colors: [Color("neonBlue"), Color("neonOrange")],
                     font: Font.title3
@@ -28,8 +28,7 @@ struct AlcoholTestView: View {
                     LabelView(text: "Your weight:")
                     Spacer()
                     NumberTextFieldView(
-                        text: $textWeight,
-                        value: $valueWeight,
+                        text: $alcoTestViewModel.weightValue,
                         label: "kg",
                         sizeWidth: 71,
                         sizeHeight: 40,
@@ -41,32 +40,38 @@ struct AlcoholTestView: View {
                 HStack {
                     LabelView(text: "You ate:")
                     Spacer()
-                    CustomSwitch(isEat: $isEat)
+                    CustomSwitch(isEat: $alcoTestViewModel.hungrySwitch)
                 }
                 .padding(.bottom, 16)
                 HStack {
                     LabelView(text: "Choose a drink:")
                     Spacer()
-                    Button(action: {}) {
-                        Text("Drink")
+                    Button(action: { isPresented.toggle() }) {
+                        Text(alcoTestViewModel.nameAlcohol)
+                            .padding(EdgeInsets(top: 8, leading: 10, bottom: 8, trailing: 10))
                             .font(.title2)
                             .foregroundColor(Color("neonBlue"))
                     }
-                    .frame(width: 71, height: 40)
-                    .background(Color("neonOrange")).opacity(0.7)
-                    
+                    .background(Color("neonOrange")).opacity(0.8)
                     .cornerRadius(8)
-              
-                    
                 }
                 .padding(.bottom, 16)
-                SliderAlcoholTestView(value: $value)
+                SliderAlcoholTestView(value: $alcoTestViewModel.sliderValue)
                     .padding(.bottom, 30)
-                OrangeButtonView(action: {}, title: "Next")
+                OrangeButtonView(
+                    action: alcoTestViewModel.calculateTestResults,
+                    title: "Calculate"
+                )
+                .sheet(isPresented: $isPresented, content: {
+                    DrinksView(alcoTestViewModel: alcoTestViewModel)
+                })
+                .alert("Fill in all the fields", isPresented: $alcoTestViewModel.showAlert, actions: {})
                 Spacer()
             }
+            
             .padding()
         }
+        
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
@@ -75,6 +80,7 @@ struct AlcoholTestView: View {
                 }
             }
         }
+        
         .onTapGesture {
             isInputActive = false
         }
@@ -84,7 +90,7 @@ struct AlcoholTestView: View {
 
 struct AlcoholTestView_Previews: PreviewProvider {
     static var previews: some View {
-        AlcoholTestView()
+        AlcoholTestView(alcoTestViewModel: AlcoTestViewModel())
     }
 }
 
@@ -108,7 +114,7 @@ struct CustomSwitch: View {
             .toggleStyle(.button)
             .tint(isEat ? Color("neonOrange") : Color("neonBlue"))
             .font(.title2)
-            .background(isEat ? Color("neonBlue").opacity(0.7) : Color("neonOrange").opacity(0.7))
+            .background(isEat ? Color("neonBlue").opacity(0.8) : Color("neonOrange").opacity(0.7))
             .cornerRadius(8)
     }
 }
