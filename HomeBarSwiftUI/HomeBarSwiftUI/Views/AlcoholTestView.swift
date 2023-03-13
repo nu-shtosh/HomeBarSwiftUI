@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AlcoholTestView: View {
     @StateObject var alcoTestViewModel: AlcoTestViewModel
-    @State private var textWeight = "80"
     @FocusState private var isInputActive: Bool
     @State private var isPresented = false
     
@@ -67,16 +66,11 @@ struct AlcoholTestView: View {
                     action: alcoTestViewModel.calculateTestResults,
                     title: "Calculate"
                 )
-                .sheet(isPresented: $isPresented, content: {
-                    DrinksView(alcoTestViewModel: alcoTestViewModel)
-                })
                 .alert("Fill in all the fields", isPresented: $alcoTestViewModel.showAlert, actions: {})
                 Spacer()
             }
-            
             .padding()
         }
-        
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
@@ -85,7 +79,9 @@ struct AlcoholTestView: View {
                 }
             }
         }
-        
+        .sheet(isPresented: $isPresented, content: {
+            DrinksView(alcoTestViewModel: alcoTestViewModel)
+        })
         .onTapGesture {
             isInputActive = false
         }
@@ -111,7 +107,6 @@ struct LabelView: View {
 }
 
 struct CustomSwitch: View {
-    
     @Binding var isEat: Bool
     
     var body: some View {

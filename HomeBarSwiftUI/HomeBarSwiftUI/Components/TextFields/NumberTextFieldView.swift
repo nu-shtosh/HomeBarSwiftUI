@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct NumberTextFieldView: View {
-    @State private var showAlert = false
     @Binding var text: String
     var label: String
     let sizeWidth: CGFloat?
@@ -28,9 +27,6 @@ struct NumberTextFieldView: View {
             .frame(width: sizeWidth, height: sizeHeight)
             .keyboardType(.numberPad)
             .foregroundColor(.black)
-            .alert("Wrong Format", isPresented: $showAlert, actions: {}) {
-                Text("Please enter value from 0 to \(maxValue)")
-            }
     }
 }
 
