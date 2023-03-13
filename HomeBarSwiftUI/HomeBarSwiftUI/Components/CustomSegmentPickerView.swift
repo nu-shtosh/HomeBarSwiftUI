@@ -27,21 +27,37 @@ struct CustomSegmentedPickerView: View {
                         }) {
                            
                             Text(titles[index])
-                                .foregroundColor(selection == 0 ? Color("neonOrange") : Color("neonBlue"))
+                                .foregroundColor(selection == 0
+                                                 ? Color("neonOrange")
+                                                 : Color("neonBlue"))
                                 .font(font)
                         }
-                        .padding(EdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20))
+                        .padding(EdgeInsets(
+                            top: 12,
+                            leading: 20,
+                            bottom: 12,
+                            trailing: 20
+                        ))
                         .background(GeometryReader { geo in
                             Color.clear.onAppear {
-                                setFrame(index: index, frame: geo.frame(in: .global))
+                                setFrame(
+                                    index: index,
+                                    frame: geo.frame(in: .global)
+                                )
                             }
                         })
                     }
                 }
                 .background(Capsule()
                     .fill(colors[selection].opacity(0.7))
-                    .frame(width: frames[selection].width, height: frames[selection].height, alignment: .topLeading)
-                    .offset(x: frames[selection].minX - frames[0].minX), alignment: .leading
+                    .frame(
+                        width: frames[selection].width,
+                        height: frames[selection].height,
+                        alignment: .topLeading
+                    )
+                        .offset(
+                            x: frames[selection].minX - frames[0].minX),
+                            alignment: .leading
                 )
             }
             .animation(.default, value: selection)
