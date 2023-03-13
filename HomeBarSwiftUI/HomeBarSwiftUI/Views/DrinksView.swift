@@ -32,7 +32,6 @@ struct DrinksView: View {
                         Text(drink.name)
                             .foregroundColor(Color("neonOrange"))
                     }
-                    
                 }
                 .listRowBackground(Color.gray.opacity(0.2))
             }
