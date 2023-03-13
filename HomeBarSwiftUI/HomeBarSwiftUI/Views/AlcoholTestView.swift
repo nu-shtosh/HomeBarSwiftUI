@@ -48,7 +48,12 @@ struct AlcoholTestView: View {
                     Spacer()
                     Button(action: { isPresented.toggle() }) {
                         Text(alcoTestViewModel.nameAlcohol)
-                            .padding(EdgeInsets(top: 8, leading: 10, bottom: 8, trailing: 10))
+                            .padding(EdgeInsets(
+                                top: 8,
+                                leading: 10,
+                                bottom: 8,
+                                trailing: 10
+                            ))
                             .font(.title2)
                             .foregroundColor(Color("neonBlue"))
                     }
