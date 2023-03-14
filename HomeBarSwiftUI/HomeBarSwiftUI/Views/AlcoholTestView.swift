@@ -13,16 +13,6 @@ struct AlcoholTestView: View {
     @State private var isPresented = false
     @State private var isPresentedResult = false
     
-//    private var isShowingNextBinding: Binding<Bool> {
-//        Binding(
-//            get: {
-//                !alcoTestViewModel.showAlert && isPresentedResult
-//            }, set: {
-//                isPresentedResult = $0
-//            }
-//        )
-//    }
-    
     var body: some View {
         ZStack {
             WallpaperView()
