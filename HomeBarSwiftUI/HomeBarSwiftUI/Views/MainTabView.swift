@@ -28,7 +28,7 @@ struct MainTabView: View {
                 }
                 NavigationView() {
                     AlcoholTestView(alcoTestViewModel: AlcoTestViewModel())
-                        .navigationBarTitleDisplayMode(.large)
+                        .navigationBarTitleDisplayMode(.inline)
                         .navigationTitle(Text("Alcotest"))
                 }
                         .tabItem {
@@ -40,7 +40,7 @@ struct MainTabView: View {
                 
                 NavigationView() {
                     ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(id: "", name: "", surname: "", age: "")), cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(name: "", tags: "", alcoholic: "", instructions: "", image: "", ingredients: ["" : ""], rating: 0, numberOfRatings: 0, sumOfRating: 0, userRating: 0, likes: 0, comments: ["" : ""])], image: Data()))
-                        .navigationBarTitleDisplayMode(.large)
+                        .navigationBarTitleDisplayMode(.inline)
                     // надо функцию написать, чтобы она возвращала экземпляр модели и не городить эту херню
                     //                        .navigationTitle(Text("Profile"))
                 }

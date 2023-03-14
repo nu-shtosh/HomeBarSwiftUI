@@ -11,6 +11,17 @@ struct AlcoholTestView: View {
     @StateObject var alcoTestViewModel: AlcoTestViewModel
     @FocusState private var isInputActive: Bool
     @State private var isPresented = false
+    @State private var isPresentedResult = false
+    
+//    private var isShowingNextBinding: Binding<Bool> {
+//        Binding(
+//            get: {
+//                !alcoTestViewModel.showAlert && isPresentedResult
+//            }, set: {
+//                isPresentedResult = $0
+//            }
+//        )
+//    }
     
     var body: some View {
         ZStack {
@@ -62,13 +73,29 @@ struct AlcoholTestView: View {
                 .padding(.bottom, 16)
                 SliderAlcoholTestView(value: $alcoTestViewModel.sliderValue)
                     .padding(.bottom, 30)
-                OrangeButtonView(
-                    action: alcoTestViewModel.calculateTestResults,
-                    title: "Calculate"
-                )
-                .alert("Fill in all the fields", isPresented: $alcoTestViewModel.showAlert, actions: {})
+                NavigationLink(
+                    destination: ResultAlcoTestView(alcoTestViewModel: alcoTestViewModel),
+                    label: {
+                    Text("Calculate")
+                        .font(.system(size: 22))
+                        .frame(width: 300, height: 50)
+                        .background(Color("neonOrange"))
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                })
+                .simultaneousGesture(TapGesture().onEnded {
+                    alcoTestViewModel.calculateTestResults()
+                })
+                .alert(isPresented: $alcoTestViewModel.showAlert) {
+                    Alert(
+                        title: Text("ascsa"),
+                        message: Text("ascsa"),
+                        dismissButton: .default(Text("Ok"))
+                    )
+                }
                 Spacer()
             }
+            
             .padding()
         }
         .toolbar {

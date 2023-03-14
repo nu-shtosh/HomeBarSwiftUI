@@ -18,7 +18,7 @@ struct DrinksView: View {
                 Spacer()
                 Button(action: dismiss.callAsFunction) {
                     Text("Done")
-                        .foregroundColor(Color("neonOrange"))
+                        .foregroundColor(Color("neonBlue"))
                 }
             }
             .padding()
@@ -31,6 +31,7 @@ struct DrinksView: View {
                     } label: {
                         Text(drink.name)
                             .foregroundColor(Color("neonOrange"))
+                            .font(.system(size: 18))
                     }
                 }
                 .listRowBackground(Color.gray.opacity(0.2))
