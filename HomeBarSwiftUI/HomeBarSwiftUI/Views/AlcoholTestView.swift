@@ -87,6 +87,7 @@ struct AlcoholTestView: View {
                         }
                     }
                     .simultaneousGesture(TapGesture().onEnded {
+                        isInputActive = false
                         alcoTestViewModel.calculateTestResults()
                     })
                     .alert(isPresented: $alcoTestViewModel.showAlert) {

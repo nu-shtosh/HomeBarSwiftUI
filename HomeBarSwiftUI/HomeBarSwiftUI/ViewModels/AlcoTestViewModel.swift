@@ -15,18 +15,16 @@ class AlcoTestViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var result = 0.0
     @Published var weightValue = ""
-    @Published var nameAlcohol = "Drink"
     @Published var showResult = false
-    
-    private var widmarkDistribution = 0.7
-//    private var weightDrink = 0.0
     @Published var alcoholValue = 0.0
     
+    @Published var nameAlcohol = "Drink"
     @Published var motivatingText = ""
     @Published var resultImage = ""
     @Published var promile = ""
     @Published var resultFormatted = ""
     
+    private var widmarkDistribution = 0.7
     func loadData() {
         resultFormatted = "\(round(result * 100)/100)"
         promile = "ppm."

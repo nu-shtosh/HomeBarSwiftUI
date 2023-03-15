@@ -41,6 +41,8 @@ struct SliderAlcoholTestView: View {
                         } else if Int(newValue) ?? 0 > maxValue {
                             text = String(3000)
                             value = Double(text) ?? 0.0
+                        } else {
+                            value = Double(text) ?? 0.0
                         }
                     })
                     .textFieldStyle(GradientTextFieldBackground())

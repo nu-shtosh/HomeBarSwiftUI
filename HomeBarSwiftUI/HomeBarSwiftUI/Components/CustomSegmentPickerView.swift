@@ -23,7 +23,6 @@ struct CustomSegmentedPickerView: View {
                         Button(action: {
                             selection = index
                             isGender.toggle()
-                            print(isGender)
                         }) {
                            
                             Text(titles[index])
