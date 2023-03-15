@@ -9,19 +9,17 @@ import SwiftUI
 
 struct DrinksView: View {
     @StateObject var alcoTestViewModel: AlcoTestViewModel
-    let drinks = Drink.getDrinks()
+    private let drinks = Drink.getDrinks()
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
+        
         VStack {
-            HStack {
-                Spacer()
-                Button(action: dismiss.callAsFunction) {
-                    Text("Done")
-                        .foregroundColor(Color("neonBlue"))
-                }
-            }
-            .padding()
+            Rectangle()
+                .foregroundColor(.gray.opacity(0.7))
+                .frame(width: 50, height: 5)
+                .cornerRadius(20)
+                .padding(EdgeInsets(top: 10, leading: 0, bottom: 5, trailing: 0))
             List {
                 ForEach(drinks, id: \.name) { drink in
                     Button {
@@ -31,16 +29,16 @@ struct DrinksView: View {
                     } label: {
                         Text(drink.name)
                             .foregroundColor(Color("neonOrange"))
-                            .font(.system(size: 18))
+                            .font(.system(size: 20))
                     }
                 }
                 .listRowBackground(Color.gray.opacity(0.2))
             }
             .scrollContentBackground(.hidden)
         }
+        .presentationDetents([.medium])
         .background(Color.black)
     }
-    
 }
 
 struct DrinksView_Previews: PreviewProvider {
