@@ -78,7 +78,9 @@ struct AlcoholTestView: View {
                     HStack {
                         if !alcoTestViewModel.showAlert {
                             NavigationLink(
-                                destination: ResultAlcoTestView(alcoTestViewModel: alcoTestViewModel),
+                                destination: ResultAlcoTestView(
+                                    alcoTestViewModel: alcoTestViewModel
+                                ),
                                 label: {
                                     CalculateLabel(text: "Calculate")
                                 })
@@ -92,8 +94,8 @@ struct AlcoholTestView: View {
                     })
                     .alert(isPresented: $alcoTestViewModel.showAlert) {
                         Alert(
-                            title: Text("ascsa"),
-                            message: Text("ascsa"),
+                            title: Text("Not all fields are filled!"),
+                            message: Text("Please complete all fields and try again.🍹"),
                             dismissButton: .default(Text("Ok"))
                         )
                     }
@@ -101,6 +103,7 @@ struct AlcoholTestView: View {
                 .padding()
                 .background(Color(.gray).opacity(0.2))
                 .cornerRadius(20)
+                .padding(EdgeInsets(top: 7, leading: 6, bottom: 0, trailing: 6))
                 Spacer()
                 Text("*Understand that the test only shows an estimate and cannot be proof. To accurately determine the level of alcohol in the blood, contact a specialist.")
                     .foregroundColor(.gray)
@@ -118,7 +121,10 @@ struct AlcoholTestView: View {
             }
         }
         .sheet(isPresented: $isPresented) {
-            DrinksView(alcoTestViewModel: alcoTestViewModel)   
+            DrinksView(alcoTestViewModel: alcoTestViewModel)
+                .background(
+                    BackgroundClearView()
+                )
         }
         .onTapGesture {
             isInputActive = false
@@ -131,6 +137,7 @@ struct AlcoholTestView_Previews: PreviewProvider {
         AlcoholTestView(alcoTestViewModel: AlcoTestViewModel())
     }
 }
+
 struct LabelView: View {
     let text: String
     
@@ -158,11 +165,34 @@ struct CustomSwitch: View {
     @Binding var isEat: Bool
     
     var body: some View {
-        Toggle(isEat ? " Yes  " : " No   ", isOn: $isEat)
-            .toggleStyle(.button)
-            .tint(isEat ? Color("neonOrange") : Color("neonBlue"))
-            .font(.title2)
-            .background(isEat ? Color("neonBlue").opacity(0.8) : Color("neonOrange").opacity(0.7))
-            .cornerRadius(8)
+        Button(action: {isEat.toggle()}) {
+            if isEat {
+                Text("Yes")
+                    .foregroundColor(Color("neonOrange"))
+                    .font(.title2)
+                    .frame(width: 71, height: 40)
+                    .background(Color("neonBlue").opacity(0.8))
+                    .cornerRadius(8)
+            } else {
+                Text("No")
+                    .foregroundColor(Color("neonBlue"))
+                    .font(.title2)
+                    .frame(width: 71, height: 40)
+                    .background(Color("neonOrange").opacity(0.8))
+                    .cornerRadius(8)
+            }
+        }
     }
+}
+
+struct BackgroundClearView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = .clear
+        }
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
 }

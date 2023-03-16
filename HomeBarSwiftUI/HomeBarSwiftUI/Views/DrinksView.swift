@@ -13,31 +13,32 @@ struct DrinksView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        
-        VStack {
+        ZStack {
             Rectangle()
-                .foregroundColor(.gray.opacity(0.7))
-                .frame(width: 50, height: 5)
-                .cornerRadius(20)
-                .padding(EdgeInsets(top: 10, leading: 0, bottom: 5, trailing: 0))
-            List {
-                ForEach(drinks, id: \.name) { drink in
-                    Button {
-                        alcoTestViewModel.alcoholValue = drink.alcohol
-                        alcoTestViewModel.nameAlcohol = drink.name
-                        dismiss.callAsFunction()
-                    } label: {
-                        Text(drink.name)
-                            .foregroundColor(Color("neonOrange"))
-                            .font(.system(size: 20))
+                .background(Color.black.opacity(0.5))
+                .background(Color.blue.opacity(0.01))
+                .background(.ultraThinMaterial.opacity(0.7))
+                .environment(\.colorScheme, .light)
+                .ignoresSafeArea()
+                List {
+                    ForEach(drinks, id: \.name) { drink in
+                        Button {
+                            alcoTestViewModel.alcoholValue = drink.alcohol
+                            alcoTestViewModel.nameAlcohol = drink.name
+                            dismiss.callAsFunction()
+                        } label: {
+                            Text(drink.name)
+                                .foregroundColor(Color("neonOrange"))
+                                .font(.system(size: 20))
+                        }
                     }
+                    .listRowBackground(Color(UIColor.darkGray).opacity(0.7))
+                    
                 }
-                .listRowBackground(Color.gray.opacity(0.2))
+                .scrollContentBackground(.hidden)
             }
-            .scrollContentBackground(.hidden)
-        }
-        .presentationDetents([.medium])
-        .background(Color.black)
+            .presentationDetents([.medium, .large])
+            .background(Color.clear)
     }
 }
 
