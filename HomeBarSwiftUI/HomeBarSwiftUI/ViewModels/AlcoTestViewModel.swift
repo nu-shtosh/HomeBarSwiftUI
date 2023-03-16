@@ -34,23 +34,23 @@ class AlcoTestViewModel: ObservableObject {
     func showMotivating() {
         switch result {
         case 0...0.5:
-            motivatingText = "Похоже, что вечеринка только началась. Вы еще можете сесть за руль, но мы Вам рекомендуем  оставить ключи от машины и развлекаться."
-            resultImage = "11"
+            motivatingText = "Looks like the party has just begun. You can still get behind the wheel, but we recommend that you leave the car keys and have fun."
+            resultImage = "5"
         case 0.5...1.5:
-            motivatingText = "У Вас легкое опьянение. Возможно, стоит остановиться и выпить крепкого кофе."
-            resultImage = "15"
+            motivatingText = "You are slightly drunk. Perhaps we should stop and forget the bitter coffee."
+            resultImage = "1"
         case 1.5...2.5:
-            motivatingText = "У Вас средняя степень опьянения."
-            resultImage = "12"
-        case 2.5...3:
-            motivatingText = "Вы уже изрядно пьяны. Вызывайте такси и ложитесь спать, за этот совет завтра Вы скажите \"Спасибо\"!"
-            resultImage = "14"
-        case 3...5:
-            motivatingText = "Вы очень сильно пьяны. Надеемся, Вы еще можете читать. Попросите помощи, чтобы добраться до дома."
-            resultImage = "18"
+            motivatingText = "You have an average degree of intoxication. You should stop. Drink more water."
+            resultImage = "6"
+        case 2.5...3.5:
+            motivatingText = "You are already quite drunk. Call a taxi and go to bed, for this advice tomorrow you will say \"Thank you\"!"
+            resultImage = "4"
+        case 3.5...5:
+            motivatingText = "You are very drunk. We hope you can still read. Ask for help getting home."
+            resultImage = "8"
         default:
-            motivatingText = "Надеемся, что Вы живы."
-            resultImage = "13"
+            motivatingText = "We hope you are alive. If you survived and can read this, you may be in the Guinness Book of Records, but it's better to find another, safer way to do it."
+            resultImage = "3"
         }
     }
     

@@ -29,15 +29,25 @@ struct ResultAlcoTestView: View {
                             .foregroundColor(.white)
                     }
                 }
-                Spacer()
+                .padding()
+                .background(Color(.gray).opacity(0.2))
+                .cornerRadius(20)
+                
                 Image(alcoTestViewModel.resultImage)
                     .resizable()
-                    .frame(width: 260, height: 300)
+                    .aspectRatio(contentMode: .fit)
                 Spacer()
                 Text(alcoTestViewModel.motivatingText)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
+                    .padding()
+                    .background(Color(.gray).opacity(0.2))
+                    .cornerRadius(20)
                 Spacer()
+                Text("Excessive alcohol consumption is harmful to your health!")
+                    .foregroundColor(.red)
+                    .multilineTextAlignment(.center)
+                    
             }
             .padding()
             .navigationBarTitleDisplayMode(.inline)

@@ -25,7 +25,7 @@ struct AlcoholTestView: View {
                         font: Font.title3
                     )
                     .padding(EdgeInsets(
-                        top: 10,
+                        top: 0,
                         leading: 0,
                         bottom: 40,
                         trailing: 0
@@ -54,12 +54,7 @@ struct AlcoholTestView: View {
                         Spacer()
                         Button(action: { isPresented.toggle() }) {
                             Text(alcoTestViewModel.nameAlcohol)
-                                .padding(EdgeInsets(
-                                    top: 8,
-                                    leading: 10,
-                                    bottom: 8,
-                                    trailing: 10
-                                ))
+                                .frame(width: 71, height: 40)
                                 .font(.title2)
                                 .foregroundColor(Color("neonBlue"))
                         }
@@ -103,13 +98,13 @@ struct AlcoholTestView: View {
                 .padding()
                 .background(Color(.gray).opacity(0.2))
                 .cornerRadius(20)
-                .padding(EdgeInsets(top: 7, leading: 6, bottom: 0, trailing: 6))
+                .padding(EdgeInsets(top: 7, leading: 6, bottom: 7, trailing: 6))
                 Spacer()
                 Text("*Understand that the test only shows an estimate and cannot be proof. To accurately determine the level of alcohol in the blood, contact a specialist.")
                     .foregroundColor(.gray)
                     .font(.system(size: 14))
                     .multilineTextAlignment(.center)
-                    .padding(5)
+                    .padding()
             }
         }
         .toolbar {
@@ -166,21 +161,18 @@ struct CustomSwitch: View {
     
     var body: some View {
         Button(action: {isEat.toggle()}) {
-            if isEat {
-                Text("Yes")
-                    .foregroundColor(Color("neonOrange"))
-                    .font(.title2)
-                    .frame(width: 71, height: 40)
-                    .background(Color("neonBlue").opacity(0.8))
-                    .cornerRadius(8)
-            } else {
-                Text("No")
-                    .foregroundColor(Color("neonBlue"))
-                    .font(.title2)
-                    .frame(width: 71, height: 40)
-                    .background(Color("neonOrange").opacity(0.8))
-                    .cornerRadius(8)
-            }
+            Text(isEat ? "Yes": "No")
+                .foregroundColor(isEat
+                                 ? Color("neonOrange")
+                                 : Color("neonBlue")
+                )
+                .font(.title2)
+                .frame(width: 71, height: 40)
+                .background(isEat
+                            ? Color("neonBlue").opacity(0.8)
+                            : Color("neonOrange").opacity(0.8)
+                )
+                .cornerRadius(8)
         }
     }
 }
@@ -193,6 +185,6 @@ struct BackgroundClearView: UIViewRepresentable {
         }
         return view
     }
-
+    
     func updateUIView(_ uiView: UIView, context: Context) {}
 }
