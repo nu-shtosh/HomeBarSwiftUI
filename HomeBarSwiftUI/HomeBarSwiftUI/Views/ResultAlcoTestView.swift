@@ -16,16 +16,15 @@ struct ResultAlcoTestView: View {
             VStack {
                 Spacer()
                 VStack() {
-                    Text("The blood alcohol level is")
+                    Text(alcoTestViewModel.alcoTest.resultOfText)
                         .foregroundColor(.white)
                     HStack {
-                        Text("approximately")
+                        Text(alcoTestViewModel.alcoTest.resultOfTextTwo)
                             .foregroundColor(.white)
-                        Text(alcoTestViewModel.resultFormatted)
+                        Text(alcoTestViewModel.alcoTest.resultFormatted)
                             .foregroundColor(Color("neonOrange"))
                             .font(.title3)
-                        
-                        Text(alcoTestViewModel.promile)
+                        Text(alcoTestViewModel.alcoTest.promile)
                             .foregroundColor(.white)
                     }
                 }
@@ -33,21 +32,20 @@ struct ResultAlcoTestView: View {
                 .background(Color(.gray).opacity(0.2))
                 .cornerRadius(20)
                 
-                Image(alcoTestViewModel.resultImage)
+                Image(alcoTestViewModel.alcoTest.resultImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                 Spacer()
-                Text(alcoTestViewModel.motivatingText)
+                Text(alcoTestViewModel.alcoTest.motivatingText)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding()
                     .background(Color(.gray).opacity(0.2))
                     .cornerRadius(20)
                 Spacer()
-                Text("Excessive alcohol consumption is harmful to your health!")
+                Text(alcoTestViewModel.alcoTest.warningText)
                     .foregroundColor(.red)
                     .multilineTextAlignment(.center)
-                    
             }
             .padding()
             .navigationBarTitleDisplayMode(.inline)
@@ -61,7 +59,10 @@ struct ResultAlcoTestView: View {
 
 struct ResultAlcoTestView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultAlcoTestView(alcoTestViewModel: AlcoTestViewModel())
+        ResultAlcoTestView(
+            alcoTestViewModel: AlcoTestViewModel(
+                alcoTest: AlcoTestManager.shared.getResultAlcoTest()
+            ))
     }
 }
 

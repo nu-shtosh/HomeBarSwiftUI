@@ -19,7 +19,7 @@ struct AlcoholTestView: View {
             VStack {
                 VStack {
                     CustomSegmentedPickerView(
-                        isGender: $alcoTestViewModel.chooseGenderFrom,
+                        isGender: $alcoTestViewModel.alcoTest.chooseGenderFrom,
                         titles: ["Man", "Woman"],
                         colors: [Color("neonBlue"), Color("neonOrange")],
                         font: Font.title3
@@ -34,7 +34,7 @@ struct AlcoholTestView: View {
                         LabelView(text: "Your weight:")
                         Spacer()
                         NumberTextFieldView(
-                            text: $alcoTestViewModel.weightValue,
+                            text: $alcoTestViewModel.alcoTest.weightValue,
                             label: "kg",
                             sizeWidth: 71,
                             sizeHeight: 40,
@@ -46,24 +46,22 @@ struct AlcoholTestView: View {
                     HStack {
                         LabelView(text: "You ate:")
                         Spacer()
-                        CustomSwitch(isEat: $alcoTestViewModel.hungrySwitch)
+                        CustomSwitch(isEat: $alcoTestViewModel.alcoTest.hungrySwitch)
                     }
                     .padding(.bottom, 16)
                     HStack {
                         LabelView(text: "Choose a drink:")
                         Spacer()
-                        Button(action: { isPresented.toggle() }) {
-                            Text(alcoTestViewModel.nameAlcohol)
-                                .frame(width: 71, height: 40)
-                                .font(.title2)
-                                .foregroundColor(Color("neonBlue"))
-                        }
+                        ButtonDrinkNameView(
+                            action: { isPresented.toggle() },
+                            text: alcoTestViewModel.alcoTest.nameAlcohol
+                        )
                         .background(Color("neonOrange")).opacity(0.8)
                         .cornerRadius(8)
                     }
                     .padding(.bottom, 16)
                     SliderAlcoholTestView(
-                        value: $alcoTestViewModel.sliderValue,
+                        value: $alcoTestViewModel.alcoTest.sliderValue,
                         maxValue: 3000,
                         sizeWidth: 71,
                         sizeHeight: 40
@@ -71,7 +69,7 @@ struct AlcoholTestView: View {
                     .focused($isInputActive)
                     .padding(.bottom, 30)
                     HStack {
-                        if !alcoTestViewModel.showAlert {
+                        if !alcoTestViewModel.alcoTest.showAlert {
                             NavigationLink(
                                 destination: ResultAlcoTestView(
                                     alcoTestViewModel: alcoTestViewModel
@@ -87,7 +85,7 @@ struct AlcoholTestView: View {
                         isInputActive = false
                         alcoTestViewModel.calculateTestResults()
                     })
-                    .alert(isPresented: $alcoTestViewModel.showAlert) {
+                    .alert(isPresented: $alcoTestViewModel.alcoTest.showAlert) {
                         Alert(
                             title: Text("Not all fields are filled!"),
                             message: Text("Please complete all fields and try again.🍹"),
@@ -129,7 +127,10 @@ struct AlcoholTestView: View {
 
 struct AlcoholTestView_Previews: PreviewProvider {
     static var previews: some View {
-        AlcoholTestView(alcoTestViewModel: AlcoTestViewModel())
+        AlcoholTestView(
+            alcoTestViewModel: AlcoTestViewModel(
+                alcoTest: AlcoTestManager.shared.getResultAlcoTest()
+            ))
     }
 }
 
@@ -177,6 +178,31 @@ struct CustomSwitch: View {
     }
 }
 
+struct ButtonDrinkNameView: View {
+    var action: () -> ()
+    var text: String
+    
+    var body: some View {
+        Button(action: action ) {
+            Text(text)
+                .frame(minWidth: 71, minHeight: 40)
+                .font(.title2)
+                .foregroundColor(Color("neonBlue"))
+                .padding(EdgeInsets(
+                    top: 0,
+                    leading:
+                        withAnimation {
+                            text.count > 5 ? 5 : 0
+                        },
+                    bottom: 0,
+                    trailing:
+                        withAnimation {
+                            text.count > 5 ? 5 : 0
+                        }))
+        }
+    }
+}
+
 struct BackgroundClearView: UIViewRepresentable {
     func makeUIView(context: Context) -> UIView {
         let view = UIView()
@@ -188,3 +214,5 @@ struct BackgroundClearView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIView, context: Context) {}
 }
+
+

@@ -27,7 +27,10 @@ struct MainTabView: View {
                     }
                 }
                 NavigationView() {
-                    AlcoholTestView(alcoTestViewModel: AlcoTestViewModel())
+                    AlcoholTestView(
+                        alcoTestViewModel: AlcoTestViewModel(
+                            alcoTest: AlcoTestManager.shared.getResultAlcoTest()
+                        ))
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationTitle(Text("Alcotest"))
                 }

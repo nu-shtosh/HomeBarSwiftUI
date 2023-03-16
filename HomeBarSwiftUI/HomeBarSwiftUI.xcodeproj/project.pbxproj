@@ -11,6 +11,7 @@
 		1F1B1387294DFA3500C1C3BB /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B1386294DFA3500C1C3BB /* ProfileViewModel.swift */; };
 		1F1B1389294E0CD000C1C3BB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B1388294E0CD000C1C3BB /* ImagePicker.swift */; };
 		1F1B138B294F3FA800C1C3BB /* StrorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B138A294F3FA800C1C3BB /* StrorageService.swift */; };
+		1F2375FA29C39FE0008CD4F8 /* AlcoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2375F929C39FE0008CD4F8 /* AlcoTest.swift */; };
 		1F3A72DD29BBA04800112CF6 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 1F3A72DC29BBA04800112CF6 /* Shimmer */; };
 		1F5F877F29461E2F00335B57 /* SecureFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */; };
 		1F5F878129461EB500335B57 /* TextFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */; };
@@ -80,6 +81,7 @@
 		1F1B1386294DFA3500C1C3BB /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		1F1B1388294E0CD000C1C3BB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		1F1B138A294F3FA800C1C3BB /* StrorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrorageService.swift; sourceTree = "<group>"; };
+		1F2375F929C39FE0008CD4F8 /* AlcoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoTest.swift; sourceTree = "<group>"; };
 		1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFieldWithImageView.swift; sourceTree = "<group>"; };
 		1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImageView.swift; sourceTree = "<group>"; };
 		1F5F878529461FE700335B57 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				B83D9947294749C6006AF62D /* CocktailDB.swift */,
 				B83D99742948F60F006AF62D /* DrinksFromAPI.swift */,
 				1FFEC7A229BFA024003B04EA /* DrinkDB.swift */,
+				1F2375F929C39FE0008CD4F8 /* AlcoTest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				B83D99732948F3A5006AF62D /* IngredientCellView.swift in Sources */,
 				1F5F878129461EB500335B57 /* TextFieldWithImageView.swift in Sources */,
 				B8588DEF29462ADA0082132D /* MainTabView.swift in Sources */,
+				1F2375FA29C39FE0008CD4F8 /* AlcoTest.swift in Sources */,
 				1FFEC7A329BFA024003B04EA /* DrinkDB.swift in Sources */,
 				B83D9985294A81B5006AF62D /* CocktailDetailView.swift in Sources */,
 				B8B37B0429422A7E00611844 /* SignInView.swift in Sources */,

@@ -23,8 +23,8 @@ struct DrinksView: View {
                 List {
                     ForEach(drinks, id: \.name) { drink in
                         Button {
-                            alcoTestViewModel.alcoholValue = drink.alcohol
-                            alcoTestViewModel.nameAlcohol = drink.name
+                            alcoTestViewModel.alcoTest.alcoholValue = drink.alcohol
+                            alcoTestViewModel.alcoTest.nameAlcohol = drink.name
                             dismiss.callAsFunction()
                         } label: {
                             Text(drink.name)
@@ -42,8 +42,8 @@ struct DrinksView: View {
     }
 }
 
-struct DrinksView_Previews: PreviewProvider {
-    static var previews: some View {
-        DrinksView(alcoTestViewModel: AlcoTestViewModel())
-    }
-}
+//struct DrinksView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DrinksView(alcoTestViewModel: AlcoTestViewModel())
+//    }
+//}
