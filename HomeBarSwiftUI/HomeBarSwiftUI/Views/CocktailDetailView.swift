@@ -10,14 +10,52 @@ import SwiftUI
 struct CocktailDetailView: View {
 
     var cocktail: CocktailDB
+    @State var image = Data()
+
 
     var body: some View {
-        ZStack {
-            WallpaperView()
-            VStack{
-                Text("\(cocktail.name)")
-                Text("\(cocktail.instructions)")
+            ZStack {
+                WallpaperView()
+                ScrollView {
+                    VStack {
+                        HStack {
+                            Image(uiImage: UIImage(data: image) ?? UIImage(named: "photo")!)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .cornerRadius(20)
+                        }
+                        .padding()
+                        .background(.white.opacity(0.1))
+                        .cornerRadius(20)
+                        .padding()
+
+                        HStack {
+                            Text("\(cocktail.instructions)")
+                                .foregroundColor(.white)
+                        }
+                        .padding()
+                        .background(.white.opacity(0.1))
+                        .cornerRadius(20)
+                        .padding()
+
+                        Spacer()
+
+                    }
+                }
             }
+            .onAppear {
+                getImage(imageURL: cocktail.image)
+            }
+    }
+
+    func getImage(imageURL: String) {
+            NetworkManager.shared.fetchImage(from: imageURL) { result in
+                switch result {
+                case .success(let images):
+                    image = images
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
         }
     }
 }

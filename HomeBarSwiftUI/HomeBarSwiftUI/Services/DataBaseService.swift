@@ -64,7 +64,7 @@ class DataBaseService {
     func getCocktails(completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
         let cocktailsReference = database.collection("Cocktails")
             .order(by: "name")
-            .start(at: ["W"])
+            .start(at: ["S"])
             .end(at: ["Y"])
             
         // играясь с этими параметрами, можно прикольную сортировку сделать
@@ -199,7 +199,7 @@ class CocktailData : ObservableObject{
         }
     }
     
-    func fetchIngredietnts() {
+    func fetchIngredients() {
         
         let ingredients = IngredientDataStorage().ingredients
        

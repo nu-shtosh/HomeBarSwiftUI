@@ -15,30 +15,35 @@ struct CocktailCellView: View {
             VStack(spacing: 5) {
                 Text(cocktail.name)
                     .foregroundColor(Color("neonBlue"))
+                    .frame(width: 140)
+                    .font(.system(size: 13))
+                    .lineLimit(2)
+                    .padding(.bottom, 10)
                 HStack(spacing: 5) {
                     Image(uiImage: UIImage(data: image) ?? UIImage(systemName: "person")!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: screen.width * 0.2)
+                        .frame(maxWidth: 80)
                         .cornerRadius(20)
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Favorite: \(cocktail.numberOfRatings)")
                             .foregroundColor(.white)
-                            .font(.system(size: 13))
+                            .font(.system(size: 12))
                         Text("Rating: \(lround(cocktail.rating))")
                             .foregroundColor(.white)
-                            .font(.system(size: 13))
-                        Text("Type: \(cocktail.alcoholic)")
+                            .font(.system(size: 12))
+                        Text("\(cocktail.alcoholic)")
                             .foregroundColor(.white)
-                            .font(.system(size: 13))
+                            .font(.system(size: 12))
                     }
                 }
             }
+            .frame(width: 170, height: 135)
         .padding(5)
         .background(Color(.gray).opacity(0.2))
         .cornerRadius(20)
 
-        .frame(width: screen.width * 0.55, height: screen.height * 0.15, alignment: .center)
+        .frame(width: screen.width * 0.55, height: screen.height * 0.2, alignment: .center)
         .onAppear {
             getImage(imageURL: cocktail.image)
         }
@@ -78,6 +83,7 @@ struct CocktailCellView: View {
 //        return Image(uiImage: image)
 //    }
 //}
+
 struct CocktailCellView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
