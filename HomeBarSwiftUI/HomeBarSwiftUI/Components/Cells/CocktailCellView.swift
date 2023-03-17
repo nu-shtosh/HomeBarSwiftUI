@@ -6,38 +6,42 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct CocktailCellView: View {
     var cocktail: CocktailDB
     @State var image = Data()
-
+    
     var body: some View {
-            VStack(spacing: 5) {
-                Text(cocktail.name)
-                    .foregroundColor(Color("neonBlue"))
-                HStack(spacing: 5) {
-                    Image(uiImage: UIImage(data: image) ?? UIImage(systemName: "person")!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: screen.width * 0.2)
-                        .cornerRadius(20)
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Favorite: \(cocktail.numberOfRatings)")
-                            .foregroundColor(.white)
-                            .font(.system(size: 13))
-                        Text("Rating: \(lround(cocktail.rating))")
-                            .foregroundColor(.white)
-                            .font(.system(size: 13))
-                        Text("Type: \(cocktail.alcoholic)")
-                            .foregroundColor(.white)
-                            .font(.system(size: 13))
-                    }
+        VStack(spacing: 5) {
+            Text(cocktail.name)
+                .foregroundColor(Color("neonBlue"))
+            HStack(spacing: 5) {
+                Image(uiImage: UIImage(data: image) ?? UIImage(systemName: "person")!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: screen.width * 0.2)
+                    .cornerRadius(20)
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Favorite: \(cocktail.numberOfRatings)")
+                        .foregroundColor(.white)
+                        .font(.system(size: 13))
+                    Text("Rating: \(lround(cocktail.rating))")
+                        .foregroundColor(.white)
+                        .font(.system(size: 13))
+                    Text("Type: \(cocktail.alcoholic)")
+                        .foregroundColor(.white)
+                        .font(.system(size: 13))
                 }
             }
+        }
+        .redacted(reason: image.isEmpty ? .placeholder : [])
+        .shimmering(active: image.isEmpty)
+        
         .padding(5)
         .background(Color(.gray).opacity(0.2))
         .cornerRadius(20)
-
+        
         .frame(width: screen.width * 0.55, height: screen.height * 0.15, alignment: .center)
         .onAppear {
             getImage(imageURL: cocktail.image)
@@ -45,13 +49,13 @@ struct CocktailCellView: View {
     }
     
     func getImage(imageURL: String) {
-            NetworkManager.shared.fetchImage(from: imageURL) { result in
-                switch result {
-                case .success(let images):
-                    image = images
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        NetworkManager.shared.fetchImage(from: imageURL) { result in
+            switch result {
+            case .success(let images):
+                image = images
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
 }
