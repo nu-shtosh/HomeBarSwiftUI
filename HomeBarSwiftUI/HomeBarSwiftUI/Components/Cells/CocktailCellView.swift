@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct CocktailCellView: View {
     var cocktail: CocktailDB
     @State var image = Data()
-
+    
     var body: some View {
             VStack(spacing: 5) {
                 Text(cocktail.name)
@@ -38,7 +39,10 @@ struct CocktailCellView: View {
                     }
                 }
             }
-            .frame(width: 170, height: 135)
+        }
+        .redacted(reason: image.isEmpty ? .placeholder : [])
+        .shimmering(active: image.isEmpty)
+        
         .padding(5)
         .background(Color(.gray).opacity(0.2))
         .cornerRadius(20)
@@ -50,13 +54,13 @@ struct CocktailCellView: View {
     }
     
     func getImage(imageURL: String) {
-            NetworkManager.shared.fetchImage(from: imageURL) { result in
-                switch result {
-                case .success(let images):
-                    image = images
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        NetworkManager.shared.fetchImage(from: imageURL) { result in
+            switch result {
+            case .success(let images):
+                image = images
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
 }

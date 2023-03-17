@@ -25,7 +25,10 @@ struct AllCocktailsView: View {
                                 CocktailDetailView(cocktail: item)
                                     .navigationTitle(item.name)
                             } label: {
-                                CocktailCellView(cocktail: item)
+                                withAnimation {
+                                    CocktailCellView(cocktail: item)
+                                }
+                                
                                 
                             }
                         }

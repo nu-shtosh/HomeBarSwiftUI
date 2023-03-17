@@ -12,28 +12,30 @@ struct ProfileView: View {
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var cocktailViewModel: CocktailsViewModel
     
-    
     var body: some View {
         ZStack {
             WallpaperView()
             VStack {
                 HStack {
                     UserImageView(image: $profileViewModel.image)
-                        .padding(5)
+
                     UserInfoView(age: $profileViewModel.profile.age)
                     Spacer()
                 }
-                .padding(5)
+                .padding()
                 .background(Color(.gray).opacity(0.2))
                 .cornerRadius(20)
+                
                 HStack {
                     Text("Your cocktails:")
                         .font(.callout)
                         .bold()
                         .foregroundColor(.gray)
+                        .padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 0))
                     Spacer()
+                        
                 }
-                .padding(EdgeInsets(top: 5, leading: 11, bottom: -5, trailing: 0))
+//                .padding(EdgeInsets(top: 5, leading: 11, bottom: -5, trailing: 0))
                 HStack {
                     UserButtonStackView()
                 }
@@ -46,13 +48,17 @@ struct ProfileView: View {
                         .font(.callout)
                         .bold()
                         .foregroundColor(.gray)
+                        .padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 0))
                     Spacer()
+                        
                 }
-                .padding(EdgeInsets(top: 5, leading: 11, bottom: 0, trailing: 0))
+                
                 LastCocktailView(cocktailViewModel: cocktailViewModel)
                 Spacer()
             }
-            .padding(EdgeInsets(top: 20, leading: 16, bottom: 16, trailing: 16))
+            .padding(EdgeInsets(top: 6, leading: 6, bottom: 7, trailing: 6))
+//            .padding()
+            
         }
         .onAppear {
             profileViewModel.getProfile()
@@ -70,16 +76,29 @@ struct ProfileView: View {
     }
 }
 
-//struct ProfileView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(
-//            id: "1",
-//            name: "",
-//            surname: "",
-//            age: ""
-//        )))
-//    }
-//}
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(
+            id: "1",
+            name: "",
+            surname: "",
+            age: ""
+        )), cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(
+            name: "",
+            tags: "",
+            alcoholic: "",
+            instructions: "",
+            image: "",
+            ingredients: ["" : ""],
+            rating: 0,
+            numberOfRatings: 0,
+            sumOfRating: 0,
+            userRating: 0,
+            likes: 0,
+            comments: ["" : ""]
+        )], image: Data()))
+    }
+}
 
 struct UserButtonView: View {
     let text: String
