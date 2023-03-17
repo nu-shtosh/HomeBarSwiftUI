@@ -19,7 +19,7 @@ struct CocktailDetailView: View {
                 ScrollView {
                     VStack {
                         HStack {
-                            Image(uiImage: UIImage(data: image) ?? UIImage(named: "photo")!)
+                            Image(uiImage: UIImage(data: image) ?? UIImage(named: "pinaColada")!)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .cornerRadius(20)
