@@ -31,7 +31,7 @@ struct AlcoholTestView: View {
                         trailing: 0
                     ))
                     HStack {
-                        LabelView(text: "Your weight:")
+                        LabelView(text: "Your weight")
                         Spacer()
                         NumberTextFieldView(
                             text: $alcoTestViewModel.alcoTest.weightValue,
@@ -44,13 +44,13 @@ struct AlcoholTestView: View {
                     }
                     .padding(.bottom, 16)
                     HStack {
-                        LabelView(text: "You ate:")
+                        LabelView(text: "Have you eaten?")
                         Spacer()
                         CustomSwitch(isEat: $alcoTestViewModel.alcoTest.hungrySwitch)
                     }
                     .padding(.bottom, 16)
                     HStack {
-                        LabelView(text: "Choose a drink:")
+                        LabelView(text: "What have you drunk?")
                         Spacer()
                         ButtonDrinkNameView(
                             action: { isPresented.toggle() },
@@ -105,7 +105,7 @@ struct AlcoholTestView: View {
                 ).opacity(0.5), lineWidth: 2))
                 .padding(EdgeInsets(top: 7, leading: 6, bottom: 7, trailing: 6))
                 Spacer()
-                Text("*Understand that the test only shows an estimate and cannot be proof. To accurately determine the level of alcohol in the blood, contact a specialist.")
+                Text("*Please note, that this test shows only an estimated result and can't be a proof of your actual condition. For more accurate results of the alcohol level in your blood, please contact a specialist.")
                     .foregroundColor(.gray)
                     .font(.system(size: 14))
                     .multilineTextAlignment(.center)
