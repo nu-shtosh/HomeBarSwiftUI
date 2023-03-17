@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MainTabView: View {
-    
+
+
     var viewModel: MainTabBarViewModel
     
     var body: some View {
@@ -18,7 +19,7 @@ struct MainTabView: View {
                     AllCocktailsView(cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(name: "", tags: "", alcoholic: "", instructions: "", image: "", ingredients: ["" : ""], rating: 0, numberOfRatings: 0, sumOfRating: 0, userRating: 0, likes: 0, comments: ["" : ""])], image: Data()))
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationTitle(Text("Cocktails"))
-                                        .accentColor(Color("neonOrange"))
+//                        .accentColor(Color("neonOrange"))
                 }
                 .tabItem {
                     VStack {
@@ -26,20 +27,18 @@ struct MainTabView: View {
                         Image(systemName: "heart")
                     }
                 }
+
                 NavigationView() {
-                    AlcoholTestView(
-                        alcoTestViewModel: AlcoTestViewModel(
-                            alcoTest: AlcoTestManager.shared.getResultAlcoTest()
-                        ))
-                        .navigationBarTitleDisplayMode(.inline)
-                        .navigationTitle(Text("Alcotest"))
+                    AlcoholTestView(alcoTestViewModel: AlcoTestViewModel(alcoTest: AlcoTestManager.shared.getResultAlcoTest()))
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationTitle(Text("Alcotest"))
                 }
-                        .tabItem {
-                            VStack {
-                                Text("Alcotest")
-                                Image(systemName: "filemenu.and.selection")
-                            }
-                        }
+                .tabItem {
+                    VStack {
+                        Text("Alcotest")
+                        Image(systemName: "filemenu.and.selection")
+                    }
+                }
                 
                 NavigationView() {
                     ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(id: "", name: "", surname: "", age: "")), cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(name: "", tags: "", alcoholic: "", instructions: "", image: "", ingredients: ["" : ""], rating: 0, numberOfRatings: 0, sumOfRating: 0, userRating: 0, likes: 0, comments: ["" : ""])], image: Data()))
@@ -53,20 +52,20 @@ struct MainTabView: View {
                         Image(systemName: "person")
                     }
                 }
-               
             }
+            .tint(Color("neonOrange"))
             .accentColor(Color("neonOrange"))
             .onAppear() {
-//                UITabBar.appearance().backgroundColor = .black
-//                UITabBar.appearance().barTintColor = .gray
                 NavTheme.navigationBarColors(background: .black,
                                              titleColor: UIColor(Color("neonOrange")),
                                              tintColor: UIColor(Color("neonOrange")))
             }
-            .toolbar(.visible, for: .tabBar)
-            .toolbarBackground(
-                Color.black, for: .navigationBar, .tabBar)
+            .toolbarBackground(.visible, for: .tabBar)
+            .toolbarBackground(Color.black, for: .tabBar)
+
         }
+        .accentColor(Color("neonOrange"))
+
     }
 }
 
