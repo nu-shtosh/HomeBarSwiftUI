@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileViewModel: ObservableObject {
     @Published var profile: UserDB
-    @Published var image = UIImage(named: "photo")!
+    @Published var image = UIImage(named: "pinaColada")!
     
     init(profile: UserDB) {
         self.profile = profile

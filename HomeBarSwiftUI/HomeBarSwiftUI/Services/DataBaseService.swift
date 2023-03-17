@@ -63,8 +63,11 @@ class DataBaseService {
 
     func getCocktails(completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
         let cocktailsReference = database.collection("Cocktails")
-        
+//            .order(by: "name")
+//            .start(at: ["S"])
+//            .end(at: ["Y"])
             .limit(to: 10)
+            
         // играясь с этими параметрами, можно прикольную сортировку сделать
         // с сервера будут грузиться меньше данных, (в этом примере грузятся только те коктейли, которые начинаются на "W", так же можно сделать порционную загрузку, разбив по 50, 100 и т.д.
         // есть еще .limit(to:) и .limit(to last:) который тупо ограничивает количество данных, то есть
@@ -197,7 +200,7 @@ class CocktailData : ObservableObject{
         }
     }
     
-    func fetchIngredietnts() {
+    func fetchIngredients() {
         
         let ingredients = IngredientDataStorage().ingredients
        

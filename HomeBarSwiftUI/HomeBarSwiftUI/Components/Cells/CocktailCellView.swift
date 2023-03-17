@@ -16,38 +16,56 @@ struct CocktailCellView: View {
         VStack(spacing: 5) {
             Text(cocktail.name)
                 .foregroundColor(Color("neonBlue"))
+                .frame(width: 140)
+                .font(.system(size: 13))
+                .lineLimit(2)
+                .padding(.bottom, 10)
             HStack(spacing: 5) {
-                Image(uiImage: UIImage(data: image) ?? UIImage(systemName: "person")!)
+                Image(uiImage: UIImage(data: image) ?? UIImage(named: "pinaColada")!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: screen.width * 0.2)
+                    .frame(width: 80, height: 80)
                     .cornerRadius(20)
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Favorite: \(cocktail.numberOfRatings)")
-                        .foregroundColor(.white)
-                        .font(.system(size: 13))
+                        .font(.system(size: 12))
+                        .foregroundColor(Color("neonOrange"))
                     Text("Rating: \(lround(cocktail.rating))")
-                        .foregroundColor(.white)
-                        .font(.system(size: 13))
-                    Text("Type: \(cocktail.alcoholic)")
-                        .foregroundColor(.white)
-                        .font(.system(size: 13))
+                        .font(.system(size: 12))
+                        .foregroundColor(Color("neonOrange"))
+                    Text("\(cocktail.alcoholic)")
+                        .frame(width: 60)
+                        .lineLimit(2)
+                        .font(.system(size: 12))
+                        .foregroundColor(Color("neonOrange"))
                 }
             }
         }
+
+
+        .frame(width: 170, height: 135)
+        .padding(5)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+            colors: [Color("neonOrange"), Color("neonBlue")],
+            startPoint: .top,
+            endPoint: .bottom
+        ).opacity(0.5), lineWidth: 2))
+
+        .background(Color(.gray).opacity(0.2))
+        .cornerRadius(16)
+
         .redacted(reason: image.isEmpty ? .placeholder : [])
         .shimmering(active: image.isEmpty)
+
+        .frame(width: screen.width * 0.5, height: screen.height * 0.2, alignment: .center)
         
-        .padding(5)
-        .background(Color(.gray).opacity(0.2))
-        .cornerRadius(20)
-        
-        .frame(width: screen.width * 0.55, height: screen.height * 0.15, alignment: .center)
         .onAppear {
             getImage(imageURL: cocktail.image)
         }
+
     }
-    
+
     func getImage(imageURL: String) {
         NetworkManager.shared.fetchImage(from: imageURL) { result in
             switch result {
@@ -82,6 +100,7 @@ struct CocktailCellView: View {
 //        return Image(uiImage: image)
 //    }
 //}
+
 struct CocktailCellView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {

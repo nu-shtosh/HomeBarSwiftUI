@@ -18,7 +18,7 @@ struct MainTabView: View {
                     AllCocktailsView(cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(name: "", tags: "", alcoholic: "", instructions: "", image: "", ingredients: ["" : ""], rating: 0, numberOfRatings: 0, sumOfRating: 0, userRating: 0, likes: 0, comments: ["" : ""])], image: Data()))
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationTitle(Text("Cocktails"))
-                    //                    .accentColor(Color("neonOrange"))
+                                        .accentColor(Color("neonOrange"))
                 }
                 .tabItem {
                     VStack {
@@ -64,9 +64,9 @@ struct MainTabView: View {
                                              tintColor: UIColor(Color("neonOrange")))
             }
             .toolbar(.visible, for: .tabBar)
-            .toolbarBackground(Color.black, for: .tabBar)
+            .toolbarBackground(
+                Color.black, for: .navigationBar, .tabBar)
         }
-       
     }
 }
 

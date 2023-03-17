@@ -31,6 +31,12 @@ struct ResultAlcoTestView: View {
                 .padding()
                 .background(Color(.gray).opacity(0.2))
                 .cornerRadius(20)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                    colors: [Color("neonOrange"), Color("neonBlue")],
+                    startPoint: .top,
+                    endPoint: .bottom
+                ).opacity(0.5), lineWidth: 2))
                 
                 Image(alcoTestViewModel.alcoTest.resultImage)
                     .resizable()
@@ -42,10 +48,17 @@ struct ResultAlcoTestView: View {
                     .padding()
                     .background(Color(.gray).opacity(0.2))
                     .cornerRadius(20)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                        colors: [Color("neonOrange"), Color("neonBlue")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.5), lineWidth: 2))
                 Spacer()
                 Text(alcoTestViewModel.alcoTest.warningText)
                     .foregroundColor(.red)
                     .multilineTextAlignment(.center)
+                
             }
             .padding()
             .navigationBarTitleDisplayMode(.inline)

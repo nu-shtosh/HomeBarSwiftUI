@@ -93,9 +93,16 @@ struct AlcoholTestView: View {
                         )
                     }
                 }
+
                 .padding()
                 .background(Color(.gray).opacity(0.2))
-                .cornerRadius(20)
+                .cornerRadius(16)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                    colors: [Color("neonOrange"), Color("neonBlue")],
+                    startPoint: .top,
+                    endPoint: .bottom
+                ).opacity(0.5), lineWidth: 2))
                 .padding(EdgeInsets(top: 7, leading: 6, bottom: 7, trailing: 6))
                 Spacer()
                 Text("*Understand that the test only shows an estimate and cannot be proof. To accurately determine the level of alcohol in the blood, contact a specialist.")

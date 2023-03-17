@@ -18,7 +18,7 @@ struct AllCocktailsView: View {
             WallpaperView()
             ScrollView(.vertical, showsIndicators: false) {
                 Section {
-                    LazyVGrid(columns: layout, spacing: 12) {
+                    LazyVGrid(columns: layout, spacing: 5) {
                         ForEach(cocktailViewModel.cocktail, id: \.name) { item in
                             
                             NavigationLink {
@@ -43,7 +43,7 @@ struct AllCocktailsView: View {
     }
 }
 
-
+//
 //struct AllCocktailsView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        AllCocktailsView(cocktailViewModel: <#CocktailsViewModel#>)

@@ -64,3 +64,4 @@ struct GradientTextFieldBackground: TextFieldStyle {
 
     }
 }
+

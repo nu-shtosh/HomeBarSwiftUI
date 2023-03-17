@@ -23,9 +23,7 @@ struct CocktailDB {
     let likes: Int
     let comments: [String: Any]
 
-    init(
-        
-         name: String,
+    init(name: String,
          tags: String,
          alcoholic: String,
          instructions: String,
@@ -53,18 +51,18 @@ struct CocktailDB {
 
     init?(document: QueryDocumentSnapshot) {
         let data = document.data()
-        guard let name = data["name"] as? String else { return nil}
-        guard let tags = data["tags"] as? String else { return nil}
-        guard let alcoholic = data["alcoholic"] as? String else { return nil}
-        guard let instructions = data["instructions"] as? String else { return nil}
-        guard let image = data["image"] as? String else { return nil}
-        guard let ingredients = data["ingredients"] as? [String: String] else { return nil}
-        guard let rating = data["rating"] as? Double else { return nil}
-        guard let numberOfRatings = data["numberOfRatings"] as? Int else { return nil}
-        guard let sumOfRating = data["sumOfRating"] as? Double else { return nil}
-        guard let userRating = data["user rating"] as? Double else { return nil}
-        guard let likes = data["like"] as? Int else { return nil}
-        guard let comments = data["comments"] as? [String: Any] else { return nil}
+        guard let name = data["name"] as? String else { return nil }
+        guard let tags = data["tags"] as? String else { return nil }
+        guard let alcoholic = data["alcoholic"] as? String else { return nil }
+        guard let instructions = data["instructions"] as? String else { return nil }
+        guard let image = data["image"] as? String else { return nil }
+        guard let ingredients = data["ingredients"] as? [String: String] else { return nil }
+        guard let rating = data["rating"] as? Double else { return nil }
+        guard let numberOfRatings = data["numberOfRatings"] as? Int else { return nil }
+        guard let sumOfRating = data["sumOfRating"] as? Double else { return nil }
+        guard let userRating = data["user rating"] as? Double else { return nil }
+        guard let likes = data["like"] as? Int else { return nil }
+        guard let comments = data["comments"] as? [String: Any] else { return nil }
         
         self.name = name
         self.tags = tags
