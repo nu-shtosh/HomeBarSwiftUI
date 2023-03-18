@@ -26,9 +26,7 @@ struct CustomSegmentedPickerView: View {
                         }) {
                            
                             Text(titles[index])
-                                .foregroundColor(selection == 0
-                                                 ? Color("neonOrange")
-                                                 : Color("neonBlue"))
+                                .foregroundColor(Color.white)
                                 .font(font)
                         }
                         .padding(EdgeInsets(

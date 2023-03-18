@@ -16,12 +16,12 @@ struct SliderAlcoholTestView: View {
     
     var body: some View {
         VStack {
-            Text("\(value.formatted()) ml.")
+            Text("\(value.formatted()) ml")
                 .lineLimit(1)
                 .foregroundColor(Color("neonOrange"))
                 .padding(.bottom, -5)
             HStack {
-                Slider(value: $value, in: 0...2000, step: 1) {
+                Slider(value: $value, in: 0...Double(maxValue), step: 1) {
                     Text("Measure")
                 } minimumValueLabel: {
                     Image("20")
@@ -39,7 +39,7 @@ struct SliderAlcoholTestView: View {
                             text = String(newValue.prefix(4))
                             value = Double(text) ?? 0.0
                         } else if Int(newValue) ?? 0 > maxValue {
-                            text = String(2000)
+                            text = String(maxValue)
                             value = Double(text) ?? 0.0
                         } else {
                             value = Double(text) ?? 0.0

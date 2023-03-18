@@ -8,29 +8,8 @@
 import Foundation
 
 class AlcoTestViewModel: ObservableObject {
-    @Published var alcoTest: AlcoTest
+    @Published var alcoTest = AlcoTestManager.shared.getResultAlcoTest()
     private var widmarkDistribution = 0.7
-    
-    init(alcoTest: AlcoTest) {
-        self.alcoTest = AlcoTest(
-            hungrySwitch: false,
-            chooseGenderFrom: false,
-            sliderValue: 0,
-            showAlert: false,
-            result: 0,
-            weightValue: "",
-            showResult: false,
-            alcoholValue: 0,
-            resultOfTextTwo: "approximately",
-            nameAlcohol: "Drink",
-            resultOfText: "The blood alcohol level is",
-            motivatingText: "",
-            resultImage: "",
-            promile: "ppm.",
-            resultFormatted: "",
-            warningText: "Excessive alcohol consumption is harmful to your health!"
-        )
-    }
 
     func loadData() {
         alcoTest.resultFormatted = "\(round(alcoTest.result * 100)/100)"
