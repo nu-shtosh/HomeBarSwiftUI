@@ -12,50 +12,145 @@ struct CocktailDetailView: View {
     var cocktail: CocktailDB
     @State var image = Data()
 
+    var ingredientsCount: Int {
+        cocktail.ingredients.count
+    }
 
     var body: some View {
-            ZStack {
-                WallpaperView()
-                ScrollView {
+        var counter = 0
+
+        ZStack {
+            WallpaperView()
+            ScrollView {
+                VStack(spacing: 10) {
+                    HStack {
+                        Image(uiImage: UIImage(data: image) ?? UIImage(named: "pinaColada")!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .cornerRadius(16)
+                    }
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                        colors: [Color("neonBlue"), Color("neonOrange")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.3), lineWidth: 2))
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
+                    .cornerRadius(16)
+
+                    HStack {
+                        Text("Social")
+                            .foregroundColor(.gray)
+                            .padding(.leading)
+                        Spacer()
+                    }
                     VStack {
                         HStack {
-                            Image(uiImage: UIImage(data: image) ?? UIImage(named: "pinaColada")!)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .cornerRadius(20)
+                            Text("Rating:")
+                                .foregroundColor(Color("neonOrange"))
+                            Spacer()
+                            Text("\(cocktail.rating.description)")
+                                .foregroundColor(Color("neonBlue"))
                         }
-                        .padding()
-                        .background(.white.opacity(0.1))
-                        .cornerRadius(20)
-                        .padding()
+
+                        Rectangle()
+                            .frame(height: 1)
+                            .foregroundColor(Color("neonBlue").opacity(0.3))
 
                         HStack {
-                            Text("\(cocktail.instructions)")
-                                .foregroundColor(.white)
+                            Text("Likes:")
+                                .foregroundColor(Color("neonOrange"))
+                            Spacer()
+                            Text("\(cocktail.likes.description)")
+                                .foregroundColor(Color("neonBlue"))
                         }
-                        .padding()
-                        .background(.white.opacity(0.1))
-                        .cornerRadius(20)
-                        .padding()
-
-                        Spacer()
 
                     }
+                    .padding()
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                        colors: [Color("neonBlue"), Color("neonOrange")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.3), lineWidth: 2))
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
+                    .cornerRadius(16)
+
+                    HStack {
+                        Text("Ingredients")
+                            .foregroundColor(.gray)
+                            .padding(.leading)
+                        Spacer()
+                    }
+                    VStack {
+                        ForEach(cocktail.ingredients.keys.enumerated().sorted(by: <), id: \.element) { index, value in
+                            HStack() {
+                                Text(value.description).foregroundColor(Color("neonOrange"))
+                                Spacer()
+                                Text(cocktail.ingredients.values.sorted(by: <)[index]).foregroundColor(Color("neonBlue"))
+                            }
+                            .onAppear {
+                                print(index)
+                            }
+
+                            if index < (cocktail.ingredients.count - 1) {
+                                Rectangle()
+                                    .frame(height: 1)
+                                    .foregroundColor(Color("neonBlue").opacity(0.3))
+                            }
+                        }
+                    }
+                    .padding()
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                        colors: [Color("neonBlue"), Color("neonOrange")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.3), lineWidth: 2))
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
+                    .cornerRadius(16)
+
+                    HStack {
+                        Text("Recipe")
+                            .foregroundColor(.gray)
+                            .padding(.leading)
+                        Spacer()
+                    }
+                    VStack {
+                        Text(cocktail.instructions).foregroundColor(Color("neonOrange"))
+                    }
+                    .padding()
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                        colors: [Color("neonBlue"), Color("neonOrange")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.3), lineWidth: 2))
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
+                    .cornerRadius(16)
+
                 }
             }
-            .onAppear {
-                getImage(imageURL: cocktail.image)
-            }
+            .padding()
+        }
+        .onAppear {
+            getImage(imageURL: cocktail.image)
+        }
+        .navigationBarTitleDisplayMode(.large)
     }
 
     func getImage(imageURL: String) {
-            NetworkManager.shared.fetchImage(from: imageURL) { result in
-                switch result {
-                case .success(let images):
-                    image = images
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        NetworkManager.shared.fetchImage(from: imageURL) { result in
+            switch result {
+            case .success(let images):
+                image = images
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
 }

@@ -26,19 +26,27 @@ struct CocktailCellView: View {
                     .frame(width: 80, height: 80)
                     .cornerRadius(20)
                 VStack(alignment: .leading, spacing: 10) {
+
                     Text("Favorite: \(cocktail.numberOfRatings)")
                         .font(.system(size: 12))
                         .foregroundColor(Color("neonOrange"))
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(Color("neonBlue").opacity(0.3))
                     Text("Rating: \(lround(cocktail.rating))")
                         .font(.system(size: 12))
                         .foregroundColor(Color("neonOrange"))
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(Color("neonBlue").opacity(0.3))
                     Text("\(cocktail.alcoholic)")
-                        .frame(width: 60)
                         .lineLimit(2)
                         .font(.system(size: 12))
                         .foregroundColor(Color("neonOrange"))
+                    
                 }
             }
+            .frame(width: 150)
         }
         .frame(width: 170, height: 135)
         .padding(2)
@@ -48,11 +56,9 @@ struct CocktailCellView: View {
             startPoint: .top,
             endPoint: .bottom
         ).opacity(0.3), lineWidth: 2))
-
         .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
                                    startPoint: .top,
                                    endPoint: .bottom).opacity(0.15))
-        //        Color(.orange).opacity(0.1).blur(radius: 4))
         .cornerRadius(16)
 
         .redacted(reason: image.isEmpty ? .placeholder : [])

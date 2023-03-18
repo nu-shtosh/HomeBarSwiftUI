@@ -17,6 +17,7 @@ struct AlcoholTestView: View {
         ZStack {
             WallpaperView()
             VStack {
+
                 VStack {
                     CustomSegmentedPickerView(
                         isGender: $alcoTestViewModel.alcoTest.chooseGenderFrom,
@@ -42,7 +43,16 @@ struct AlcoholTestView: View {
                         )
                         .focused($isInputActive)
                     }
-                    .padding(.bottom, 16)
+                    .padding()
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                        colors: [Color("neonBlue"), Color("neonOrange")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.3), lineWidth: 2))
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
                     HStack {
                         LabelView(text: "Have you eaten?")
                         Spacer()
@@ -50,7 +60,17 @@ struct AlcoholTestView: View {
                             isEat: $alcoTestViewModel.alcoTest.hungrySwitch
                         )
                     }
-                    .padding(.bottom, 16)
+                    .padding()
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                        colors: [Color("neonBlue"), Color("neonOrange")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.3), lineWidth: 2))
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
+
                     HStack {
                         LabelView(text: "What have you drunk?")
                         Spacer()
@@ -61,7 +81,16 @@ struct AlcoholTestView: View {
                         .background(Color("neonOrange")).opacity(0.8)
                         .cornerRadius(8)
                     }
-                    .padding(.bottom, 16)
+                    .padding()
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                        colors: [Color("neonBlue"), Color("neonOrange")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.3), lineWidth: 2))
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
                     SliderAlcoholTestView(
                         value: $alcoTestViewModel.alcoTest.sliderValue,
                         maxValue:
@@ -72,7 +101,17 @@ struct AlcoholTestView: View {
                         sizeHeight: 40
                     )
                     .focused($isInputActive)
-                    .padding(.bottom, 30)
+                    .padding()
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                        colors: [Color("neonBlue"), Color("neonOrange")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.3), lineWidth: 2))
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
+
                     HStack {
                         if !alcoTestViewModel.alcoTest.showAlert {
                             NavigationLink(
@@ -99,16 +138,7 @@ struct AlcoholTestView: View {
                     }
                 }
 
-                .padding()
-                .background(Color(.gray).opacity(0.2))
-                .cornerRadius(16)
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-                .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
-                    colors: [Color("neonOrange"), Color("neonBlue")],
-                    startPoint: .top,
-                    endPoint: .bottom
-                ).opacity(0.5), lineWidth: 2))
-                .padding(EdgeInsets(top: 7, leading: 6, bottom: 7, trailing: 6))
+
                 Spacer()
                 Text("*Please note, that this test shows only an estimated result and can't be a proof of your actual condition. For more accurate results of the alcohol level in your blood, please contact a specialist.")
                     .foregroundColor(.gray)
@@ -116,6 +146,8 @@ struct AlcoholTestView: View {
                     .multilineTextAlignment(.center)
                     .padding()
             }
+            .padding()
+
         }
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
