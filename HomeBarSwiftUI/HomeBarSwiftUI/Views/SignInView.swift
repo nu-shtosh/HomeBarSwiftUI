@@ -63,7 +63,9 @@ struct SignInView: View {
                 }
                 
                 .padding(isAuth ? 16 : 8)
-                .background(Color(.white).opacity(0.2))
+                .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                           startPoint: .top,
+                                           endPoint: .bottom).opacity(0.15))
                 .cornerRadius(isAuth ? 16 : 32)
                 .clipShape(RoundedRectangle(cornerRadius: isAuth ? 16 : 32))
                 .overlay(RoundedRectangle(cornerRadius: isAuth ? 16 : 32).stroke(LinearGradient(

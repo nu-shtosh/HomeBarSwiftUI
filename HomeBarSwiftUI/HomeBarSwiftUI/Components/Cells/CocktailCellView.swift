@@ -51,7 +51,7 @@ struct CocktailCellView: View {
 
         .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
                                    startPoint: .top,
-                                   endPoint: .bottom).opacity(0.15).blur(radius: 4))
+                                   endPoint: .bottom).opacity(0.15))
         //        Color(.orange).opacity(0.1).blur(radius: 4))
         .cornerRadius(16)
 
