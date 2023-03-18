@@ -73,9 +73,7 @@ struct ResultAlcoTestView: View {
 struct ResultAlcoTestView_Previews: PreviewProvider {
     static var previews: some View {
         ResultAlcoTestView(
-            alcoTestViewModel: AlcoTestViewModel(
-                alcoTest: AlcoTestManager.shared.getResultAlcoTest()
-            ))
+            alcoTestViewModel: AlcoTestViewModel())
     }
 }
 

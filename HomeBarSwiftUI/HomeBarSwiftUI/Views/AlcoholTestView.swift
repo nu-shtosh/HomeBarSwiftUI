@@ -46,7 +46,9 @@ struct AlcoholTestView: View {
                     HStack {
                         LabelView(text: "You ate:")
                         Spacer()
-                        CustomSwitch(isEat: $alcoTestViewModel.alcoTest.hungrySwitch)
+                        CustomSwitch(
+                            isEat: $alcoTestViewModel.alcoTest.hungrySwitch
+                        )
                     }
                     .padding(.bottom, 16)
                     HStack {
@@ -62,7 +64,10 @@ struct AlcoholTestView: View {
                     .padding(.bottom, 16)
                     SliderAlcoholTestView(
                         value: $alcoTestViewModel.alcoTest.sliderValue,
-                        maxValue: 3000,
+                        maxValue:
+                            alcoTestViewModel.alcoTest.nameAlcohol == "Beer"
+                        ? 5000
+                        : 2000,
                         sizeWidth: 71,
                         sizeHeight: 40
                     )
@@ -135,9 +140,7 @@ struct AlcoholTestView: View {
 struct AlcoholTestView_Previews: PreviewProvider {
     static var previews: some View {
         AlcoholTestView(
-            alcoTestViewModel: AlcoTestViewModel(
-                alcoTest: AlcoTestManager.shared.getResultAlcoTest()
-            ))
+            alcoTestViewModel: AlcoTestViewModel())
     }
 }
 
@@ -170,10 +173,7 @@ struct CustomSwitch: View {
     var body: some View {
         Button(action: {isEat.toggle()}) {
             Text(isEat ? "Yes": "No")
-                .foregroundColor(isEat
-                                 ? Color("neonOrange")
-                                 : Color("neonBlue")
-                )
+                .foregroundColor(Color.white)
                 .font(.title2)
                 .frame(width: 71, height: 40)
                 .background(isEat
@@ -194,7 +194,7 @@ struct ButtonDrinkNameView: View {
             Text(text)
                 .frame(minWidth: 71, minHeight: 40)
                 .font(.title2)
-                .foregroundColor(Color("neonBlue"))
+                .foregroundColor(Color.white)
                 .padding(EdgeInsets(
                     top: 0,
                     leading:
