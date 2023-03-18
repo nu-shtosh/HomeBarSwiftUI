@@ -26,32 +26,3 @@ struct AlcoTest {
     var resultFormatted: String
     var warningText: String
 }
-
-
-// вспомогательный класс, чтобы в не городить при инициализации
-class AlcoTestManager {
-    static var shared = AlcoTestManager()
-    
-    func getResultAlcoTest() -> AlcoTest {
-        let alcoTest = AlcoTest(
-            hungrySwitch: false,
-            chooseGenderFrom: false,
-            sliderValue: 0,
-            showAlert: false,
-            result: 0,
-            weightValue: "",
-            showResult: false,
-            alcoholValue: 0,
-            resultOfTextTwo: "approximately",
-            nameAlcohol: "Drink",
-            resultOfText: "The blood alcohol level is",
-            motivatingText: "The blood alcohol level is",
-            resultImage: "",
-            promile: "ppm.",
-            resultFormatted: "",
-            warningText: "Excessive alcohol consumption is harmful to your health!"
-        )
-        return alcoTest
-    }
-    private init() {}
-}
