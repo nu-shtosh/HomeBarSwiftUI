@@ -17,7 +17,8 @@ struct CocktailDetailView: View {
     }
 
     var body: some View {
-        var counter = 0
+        let ingredientsNames = cocktail.ingredients.keys.map { $0 }
+        let ingredientsMeasures = cocktail.ingredients.values.map { $0 }
 
         ZStack {
             WallpaperView()
@@ -85,14 +86,14 @@ struct CocktailDetailView: View {
                         Spacer()
                     }
                     VStack {
-                        ForEach(cocktail.ingredients.keys.enumerated().sorted(by: <), id: \.element) { index, value in
+                        ForEach(cocktail.ingredients.keys.enumerated().sorted(by: <), id: \.element) { index, _ in
                             HStack() {
-                                Text(value.description).foregroundColor(Color("neonOrange"))
+                                Text(ingredientsNames[index]).foregroundColor(Color("neonOrange"))
                                 Spacer()
-                                Text(cocktail.ingredients.values.sorted(by: <)[index]).foregroundColor(Color("neonBlue"))
+                                Text(ingredientsMeasures[index]).foregroundColor(Color("neonBlue"))
                             }
                             .onAppear {
-                                print(index)
+                                print(cocktail.ingredients)
                             }
 
                             if index < (cocktail.ingredients.count - 1) {
