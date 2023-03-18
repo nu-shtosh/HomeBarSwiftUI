@@ -13,14 +13,13 @@ struct CocktailCellView: View {
     @State var image = Data()
     
     var body: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 10) {
             Text(cocktail.name)
                 .foregroundColor(Color("neonBlue"))
                 .frame(width: 140)
                 .font(.system(size: 13))
                 .lineLimit(2)
-                .padding(.bottom, 10)
-            HStack(spacing: 5) {
+            HStack(spacing: 6) {
                 Image(uiImage: UIImage(data: image) ?? UIImage(named: "pinaColada")!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -41,24 +40,26 @@ struct CocktailCellView: View {
                 }
             }
         }
-
-
         .frame(width: 170, height: 135)
-        .padding(5)
+        .padding(2)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
-            colors: [Color("neonOrange"), Color("neonBlue")],
+            colors: [Color("neonBlue"), Color("neonOrange")],
             startPoint: .top,
             endPoint: .bottom
-        ).opacity(0.5), lineWidth: 2))
+        ).opacity(0.3), lineWidth: 2))
 
-        .background(Color(.gray).opacity(0.2))
+        .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                   startPoint: .top,
+                                   endPoint: .bottom).opacity(0.15).blur(radius: 4))
+        //        Color(.orange).opacity(0.1).blur(radius: 4))
         .cornerRadius(16)
 
         .redacted(reason: image.isEmpty ? .placeholder : [])
         .shimmering(active: image.isEmpty)
 
         .frame(width: screen.width * 0.5, height: screen.height * 0.2, alignment: .center)
+
         
         .onAppear {
             getImage(imageURL: cocktail.image)
