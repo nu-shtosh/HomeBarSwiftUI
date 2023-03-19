@@ -15,11 +15,10 @@ struct MainTabView: View {
     var body: some View {
         TabView {
             Group {
-                NavigationView() {
+                NavigationStack {
                     AllCocktailsView(cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(name: "", tags: "", alcoholic: "", instructions: "", image: "", ingredients: ["" : ""], rating: 0, numberOfRatings: 0, sumOfRating: 0, userRating: 0, likes: 0, comments: ["" : ""])], image: Data()))
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationTitle(Text("Cocktails"))
-//                        .accentColor(Color("neonOrange"))
                 }
                 .tabItem {
                     VStack {
