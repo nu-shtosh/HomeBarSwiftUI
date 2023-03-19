@@ -83,8 +83,10 @@ struct SignInView: View {
             }
         }
         .fullScreenCover(isPresented: $isTabViewShow) {
-            let mainTabBarViewModel = MainTabBarViewModel(user: AuthServices.shared.currentUser!) // если мы авторизованы то юзер там уже есть
-            MainTabView(viewModel: mainTabBarViewModel)
+            if let user = AuthServices.shared.currentUser {
+                let mainTabBarViewModel = MainTabBarViewModel(user: user) // если мы авторизованы то юзер там уже есть
+                MainTabView(viewModel: mainTabBarViewModel)
+            }
         }
     }
 
@@ -96,10 +98,10 @@ struct SignInView: View {
             switch result {
             case .success(_):
                 isTabViewShow.toggle()
-            case .failure(_):
+            case .failure(let error):
                 isTabViewShow.toggle()
-//                alertMessage = "Sign Up Error - \(error.localizedDescription)"
-//                self.isShowAlert.toggle()
+                alertMessage = "Sign Up Error - \(error.localizedDescription)"
+                self.isShowAlert.toggle()
             }
         }
 
