@@ -19,6 +19,7 @@ struct AlcoholTestView: View {
             VStack {
 
                 VStack {
+                    // MARK: - Sex Picker
                     CustomSegmentedPickerView(
                         isGender: $alcoTestViewModel.alcoTest.chooseGenderFrom,
                         titles: ["Man", "Woman"],
@@ -31,6 +32,8 @@ struct AlcoholTestView: View {
                         bottom: 40,
                         trailing: 0
                     ))
+
+                    // MARK: - Weight
                     HStack {
                         LabelView(text: "Your weight")
                         Spacer()
@@ -53,6 +56,8 @@ struct AlcoholTestView: View {
                     .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
                                                startPoint: .top,
                                                endPoint: .bottom).opacity(0.15))
+
+                    // MARK: - Eaten
                     HStack {
                         LabelView(text: "Have you eaten?")
                         Spacer()
@@ -71,6 +76,7 @@ struct AlcoholTestView: View {
                                                startPoint: .top,
                                                endPoint: .bottom).opacity(0.15))
 
+                    // MARK: - Drunk
                     HStack {
                         LabelView(text: "What have you drunk?")
                         Spacer()
@@ -91,6 +97,9 @@ struct AlcoholTestView: View {
                     .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
                                                startPoint: .top,
                                                endPoint: .bottom).opacity(0.15))
+
+
+                    // MARK: - Consumed Alcohol
                     SliderAlcoholTestView(
                         value: $alcoTestViewModel.alcoTest.sliderValue,
                         maxValue:
@@ -112,6 +121,8 @@ struct AlcoholTestView: View {
                                                startPoint: .top,
                                                endPoint: .bottom).opacity(0.15))
 
+
+                    // MARK: - Calculate Button
                     HStack {
                         if !alcoTestViewModel.alcoTest.showAlert {
                             NavigationLink(
@@ -140,6 +151,7 @@ struct AlcoholTestView: View {
 
 
                 Spacer()
+                // MARK: - Warning Text
                 Text("*Please note, that this test shows only an estimated result and can't be a proof of your actual condition. For more accurate results of the alcohol level in your blood, please contact a specialist.")
                     .foregroundColor(.gray)
                     .font(.system(size: 14))
@@ -182,7 +194,7 @@ struct LabelView: View {
     var body: some View {
         Text(text)
             .foregroundColor(Color("neonOrange"))
-            .font(.title2)
+            .font(.title3)
     }
 }
 
@@ -206,7 +218,7 @@ struct CustomSwitch: View {
         Button(action: {isEat.toggle()}) {
             Text(isEat ? "Yes": "No")
                 .foregroundColor(Color.white)
-                .font(.title2)
+                .font(.title3)
                 .frame(width: 71, height: 40)
                 .background(isEat
                             ? Color("neonBlue").opacity(0.8)
@@ -225,7 +237,7 @@ struct ButtonDrinkNameView: View {
         Button(action: action ) {
             Text(text)
                 .frame(minWidth: 71, minHeight: 40)
-                .font(.title2)
+                .font(.title3)
                 .foregroundColor(Color.white)
                 .padding(EdgeInsets(
                     top: 0,

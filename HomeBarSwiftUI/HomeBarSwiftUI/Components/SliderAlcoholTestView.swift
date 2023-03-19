@@ -16,10 +16,18 @@ struct SliderAlcoholTestView: View {
     
     var body: some View {
         VStack {
-            Text("\(value.formatted()) ml")
-                .lineLimit(1)
-                .foregroundColor(Color("neonOrange"))
-                .padding(.bottom, -5)
+            HStack {
+                Text("Consumed alcohol")
+                    .foregroundColor(Color("neonOrange"))
+                    .font(.title3)
+                Spacer()
+                Text(value.formatted())
+                    .foregroundColor(Color("neonBlue"))
+                    .font(.title3)
+                Text("ml")
+                    .foregroundColor(Color("neonOrange"))
+                    .font(.title3)
+            }
             HStack {
                 Slider(value: $value, in: 0...Double(maxValue), step: 1) {
                     Text("Measure")

@@ -30,7 +30,6 @@ struct HomeBarSwiftUIApp: App {
             didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
         ) -> Bool {
             FirebaseApp.configure()
-            print("App Delegate")
             return true
         }
     }

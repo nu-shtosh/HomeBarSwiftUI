@@ -25,7 +25,7 @@ struct CocktailCellView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 80, height: 80)
                     .cornerRadius(20)
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: 6) {
 
                     Text("Favorite: \(cocktail.numberOfRatings)")
                         .font(.system(size: 12))

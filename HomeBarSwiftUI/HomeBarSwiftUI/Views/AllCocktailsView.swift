@@ -20,7 +20,6 @@ struct AllCocktailsView: View {
                 Section {
                     LazyVGrid(columns: layout, spacing: 5) {
                         ForEach(cocktailViewModel.cocktail, id: \.name) { item in
-                            
                             NavigationLink {
                                 CocktailDetailView(cocktail: item)
                                     .navigationTitle(item.name)
