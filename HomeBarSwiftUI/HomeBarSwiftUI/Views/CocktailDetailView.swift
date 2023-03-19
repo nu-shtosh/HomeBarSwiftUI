@@ -148,6 +148,7 @@ struct CocktailDetailView: View {
                     }
                 }
             }
+            .padding(.top, 16)
             .padding(.horizontal)
             .navigationBarTitleDisplayMode(.large)
             .toolbar(.hidden, for: .tabBar)
@@ -170,11 +171,11 @@ struct CocktailDetailView: View {
     }
 }
 
-//struct CocktailDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ZStack {
-//            WallpaperView()
-//            CocktailDetailView(cocktail: CocktailDB(name: "White Russian", tags: "Cocktail", alcoholic: "Alcoholic", instructions: "shake in glass", image: "whiteRussian", ingredients: ["vodka":"50", "crema": "50", "kaluha": "50"], rating: 5.0, numberOfRatings: 5, sumOfRating: 5.0, userRating: 5.0, likes: 13, comments: ["user": "ilia", "title": "good drink", "text": "my favorite"]))
-//        }
-//    }
-//}
+struct CocktailDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        ZStack {
+            WallpaperView()
+            CocktailDetailView(cocktail: CocktailDB(name: "White Russian", tags: "Cocktail", alcoholic: "Alcoholic", instructions: "shake in glass", image: "whiteRussian", ingredients: ["vodka":"50", "crema": "50", "kaluha": "50"], rating: 5.0, numberOfRatings: 5, sumOfRating: 5.0, userRating: 5.0, likes: 13, comments: ["user": "ilia", "title": "good drink", "text": "my favorite"]))
+        }
+    }
+}
