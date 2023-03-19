@@ -20,7 +20,7 @@ struct CocktailDetailView: View {
         // Helpers For Ingredients List
         let ingredientsNames = cocktail.ingredients.keys.map { $0 }
         let ingredientsMeasures = cocktail.ingredients.values.map { $0 }
-        
+
         ZStack {
             WallpaperView()
             ScrollView {
@@ -40,7 +40,7 @@ struct CocktailDetailView: View {
                                                        endPoint: .bottom).opacity(0.15))
                             .cornerRadius(16)
                     }
-                    
+
                     // MARK: - Cocktail Social (Rating, Likes)
                     VStack {
                         HStack {
@@ -70,6 +70,17 @@ struct CocktailDetailView: View {
                                 Spacer()
                                 Text("\(cocktail.likes.description)")
                                     .foregroundColor(Color("neonBlue"))
+                            }
+
+                            Rectangle()
+                                .frame(height: 1)
+                                .foregroundColor(Color("neonBlue").opacity(0.3))
+
+                            HStack {
+                                Text("Your Rating:")
+                                    .foregroundColor(Color("neonOrange"))
+                                Spacer()
+                                StarsRatingView(rating: cocktail.userRating)
                             }
                             
                         }
@@ -131,25 +142,27 @@ struct CocktailDetailView: View {
                                 .bold()
                             Spacer()
                         }
-                        VStack {
+                        VStack() {
                             Text(cocktail.instructions)
                                 .foregroundColor(Color("neonOrange"))
-                                .padding()
-                                .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
-                                    colors: [Color("neonBlue"), Color("neonOrange")],
-                                    startPoint: .top,
-                                    endPoint: .bottom
-                                ).opacity(0.3), lineWidth: 2))
-                                .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
-                                                           startPoint: .top,
-                                                           endPoint: .bottom).opacity(0.15))
-                                .cornerRadius(16)
+                                .padding(.horizontal, 2)
+                                .padding(.vertical)
+
                         }
+                        .frame(width: screen.width * 0.9)
+                        .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                            colors: [Color("neonBlue"), Color("neonOrange")],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        ).opacity(0.3), lineWidth: 2))
+                        .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                                   startPoint: .top,
+                                                   endPoint: .bottom).opacity(0.15))
+                        .cornerRadius(16)
                     }
                 }
             }
-            .padding(.top, 16)
-            .padding(.horizontal)
+            .padding()
             .navigationBarTitleDisplayMode(.large)
             .toolbar(.hidden, for: .tabBar)
         }
@@ -158,7 +171,8 @@ struct CocktailDetailView: View {
         }
         
     }
-    
+
+    // MARK: - Get Image
     func getImage(imageURL: String) {
         NetworkManager.shared.fetchImage(from: imageURL) { result in
             switch result {
@@ -175,7 +189,7 @@ struct CocktailDetailView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             WallpaperView()
-            CocktailDetailView(cocktail: CocktailDB(name: "White Russian", tags: "Cocktail", alcoholic: "Alcoholic", instructions: "shake in glass", image: "whiteRussian", ingredients: ["vodka":"50", "crema": "50", "kaluha": "50"], rating: 5.0, numberOfRatings: 5, sumOfRating: 5.0, userRating: 5.0, likes: 13, comments: ["user": "ilia", "title": "good drink", "text": "my favorite"]))
+            CocktailDetailView(cocktail: CocktailDB(name: "White Russian", tags: "Cocktail", alcoholic: "Alcoholic", instructions: "shake in glass", image: "whiteRussian", ingredients: ["vodka":"50", "crema": "50", "kaluha": "50"], rating: 5.0, numberOfRatings: 5, sumOfRating: 5.0, userRating: 3.7, likes: 13, comments: ["user": "ilia", "title": "good drink", "text": "my favorite"]))
         }
     }
 }

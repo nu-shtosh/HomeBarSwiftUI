@@ -40,6 +40,7 @@
 		B83D9983294A194C006AF62D /* AllCocktailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9982294A194C006AF62D /* AllCocktailsView.swift */; };
 		B83D9985294A81B5006AF62D /* CocktailDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9984294A81B5006AF62D /* CocktailDetailView.swift */; };
 		B8588DEF29462ADA0082132D /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8588DEE29462ADA0082132D /* MainTabView.swift */; };
+		B8628E7F29C71E8900A8C21C /* StarsRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8628E7E29C71E8900A8C21C /* StarsRatingView.swift */; };
 		B8A2E5D0293E3B7200B7E4A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */; };
 		B8A2E5D3293E408600B7E4A4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B8A2E5D2293E408600B7E4A4 /* FirebaseAuth */; };
 		B8A2E5D5293E408600B7E4A4 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B8A2E5D4293E408600B7E4A4 /* FirebaseDatabase */; };
@@ -109,6 +110,7 @@
 		B83D9982294A194C006AF62D /* AllCocktailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCocktailsView.swift; sourceTree = "<group>"; };
 		B83D9984294A81B5006AF62D /* CocktailDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailDetailView.swift; sourceTree = "<group>"; };
 		B8588DEE29462ADA0082132D /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		B8628E7E29C71E8900A8C21C /* StarsRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsRatingView.swift; sourceTree = "<group>"; };
 		B8A2E5CF293E3B7100B7E4A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8B37AFA2942254600611844 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		B8B37B012942287100611844 /* WallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperView.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				1F1B1388294E0CD000C1C3BB /* ImagePicker.swift */,
 				1FD50C5A29BE1D8D00C4395A /* SliderAlcoholTestView.swift */,
 				1FD50C5429BDE71F00C4395A /* CustomSegmentPickerView.swift */,
+				B8628E7E29C71E8900A8C21C /* StarsRatingView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				B8B37B14294294C800611844 /* DefaultTextFieldView.swift in Sources */,
 				B83D994429473B01006AF62D /* UserDB.swift in Sources */,
 				1FFEC7A129BF9FCF003B04EA /* DrinksView.swift in Sources */,
+				B8628E7F29C71E8900A8C21C /* StarsRatingView.swift in Sources */,
 				B8EEF021293D085E00D15F28 /* HomeBarSwiftUIApp.swift in Sources */,
 				B83D9983294A194C006AF62D /* AllCocktailsView.swift in Sources */,
 				1F5F878629461FE700335B57 /* AuthService.swift in Sources */,
