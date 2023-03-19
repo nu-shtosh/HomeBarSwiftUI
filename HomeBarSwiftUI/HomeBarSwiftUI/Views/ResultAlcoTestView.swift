@@ -29,14 +29,16 @@ struct ResultAlcoTestView: View {
                     }
                 }
                 .padding()
-                .background(Color(.gray).opacity(0.2))
                 .cornerRadius(20)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
-                    colors: [Color("neonOrange"), Color("neonBlue")],
+                    colors: [Color("neonBlue"), Color("neonOrange")],
                     startPoint: .top,
                     endPoint: .bottom
-                ).opacity(0.5), lineWidth: 2))
+                ).opacity(0.3), lineWidth: 2))
+                .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                           startPoint: .top,
+                                           endPoint: .bottom).opacity(0.15))
                 
                 Image(alcoTestViewModel.alcoTest.resultImage)
                     .resizable()
@@ -46,14 +48,16 @@ struct ResultAlcoTestView: View {
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding()
-                    .background(Color(.gray).opacity(0.2))
                     .cornerRadius(20)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
-                        colors: [Color("neonOrange"), Color("neonBlue")],
+                        colors: [Color("neonBlue"), Color("neonOrange")],
                         startPoint: .top,
                         endPoint: .bottom
-                    ).opacity(0.5), lineWidth: 2))
+                    ).opacity(0.3), lineWidth: 2))
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
                 Spacer()
                 Text(alcoTestViewModel.alcoTest.warningText)
                     .foregroundColor(.red)
