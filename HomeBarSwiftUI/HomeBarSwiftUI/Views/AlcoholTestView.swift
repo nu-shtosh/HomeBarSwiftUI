@@ -159,7 +159,6 @@ struct AlcoholTestView: View {
                     .padding()
             }
             .padding()
-
         }
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
@@ -179,6 +178,7 @@ struct AlcoholTestView: View {
             isInputActive = false
         }
     }
+
 }
 
 struct AlcoholTestView_Previews: PreviewProvider {

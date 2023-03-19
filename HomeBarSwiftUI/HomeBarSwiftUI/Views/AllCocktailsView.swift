@@ -35,6 +35,7 @@ struct AllCocktailsView: View {
                 }
                 .foregroundColor(Color("neonBlue"))
             }
+            .toolbar(.visible, for: .tabBar)
         }
         .onAppear{
             cocktailViewModel.getCocktail()
