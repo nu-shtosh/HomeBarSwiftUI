@@ -14,42 +14,73 @@ struct CocktailCellView: View {
     
     var body: some View {
         VStack(spacing: 10) {
+
+            // MARK: - Cocktail Name
             Text(cocktail.name)
                 .foregroundColor(Color("neonBlue"))
                 .frame(width: 140)
                 .font(.system(size: 13))
+                .bold()
                 .lineLimit(2)
+
+
             HStack(spacing: 6) {
+                // MARK: - Cocktail Image
                 Image(uiImage: UIImage(data: image) ?? UIImage(named: "pinaColada")!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 80, height: 80)
                     .cornerRadius(20)
+
+
                 VStack(alignment: .leading, spacing: 6) {
 
-                    Text("Favorite: \(cocktail.numberOfRatings)")
-                        .font(.system(size: 12))
-                        .foregroundColor(Color("neonOrange"))
-                    Rectangle()
-                        .frame(height: 1)
-                        .foregroundColor(Color("neonBlue").opacity(0.3))
-                    Text("Rating: \(lround(cocktail.rating))")
-                        .font(.system(size: 12))
-                        .foregroundColor(Color("neonOrange"))
-                    Rectangle()
-                        .frame(height: 1)
-                        .foregroundColor(Color("neonBlue").opacity(0.3))
+
+//                    Text("Short Info")
+//                        .lineLimit(2)
+//                        .font(.system(size: 12))
+//                        .foregroundColor(Color("neonBlue"))
+//
+//                    Rectangle()
+//                        .frame(height: 1)
+//                        .foregroundColor(Color("neonBlue").opacity(0.3))
+
+                    // MARK: - Cocktail Type
                     Text("\(cocktail.alcoholic)")
                         .lineLimit(2)
                         .font(.system(size: 12))
                         .foregroundColor(Color("neonOrange"))
+
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(Color("neonBlue").opacity(0.3))
+
+                    // MARK: - Cocktail Ingredients Count
+                    Text("Ingredients: \(cocktail.ingredients.count)")
+                        .font(.system(size: 12))
+                        .lineLimit(1)
+                        .foregroundColor(Color("neonOrange"))
+                        .frame(width: 80)
+
+
+
+
+
+//                    Rectangle()
+//                        .frame(height: 1)
+//                        .foregroundColor(Color("neonBlue").opacity(0.3))
+//                    StarsRatingView(rating: cocktail.rating)
+//                        .font(.system(size: 10))
+                    //                    Text("Rating: \(lround(cocktail.rating))")
+                    //                        .font(.system(size: 12))
+                    //                        .foregroundColor(Color("neonOrange"))
                     
                 }
             }
-            .frame(width: 150)
+            .frame(width: 170)
         }
-        .frame(width: 170, height: 135)
-        .padding(2)
+        .frame(width: 180, height: 135)
+        .padding(4)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
             colors: [Color("neonBlue"), Color("neonOrange")],
@@ -64,7 +95,7 @@ struct CocktailCellView: View {
         .redacted(reason: image.isEmpty ? .placeholder : [])
         .shimmering(active: image.isEmpty)
 
-        .frame(width: screen.width * 0.5, height: screen.height * 0.2, alignment: .center)
+        .frame(width: screen.width * 0.6, height: screen.height * 0.2, alignment: .center)
 
         
         .onAppear {

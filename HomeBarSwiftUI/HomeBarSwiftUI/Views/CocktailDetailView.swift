@@ -40,6 +40,7 @@ struct CocktailDetailView: View {
                                                        endPoint: .bottom).opacity(0.15))
                             .cornerRadius(16)
                     }
+                    .padding(.top)
 
                     // MARK: - Cocktail Social (Rating, Likes)
                     VStack {
@@ -162,7 +163,7 @@ struct CocktailDetailView: View {
                     }
                 }
             }
-            .padding()
+            .padding(.horizontal)
             .navigationBarTitleDisplayMode(.large)
             .toolbar(.hidden, for: .tabBar)
         }
