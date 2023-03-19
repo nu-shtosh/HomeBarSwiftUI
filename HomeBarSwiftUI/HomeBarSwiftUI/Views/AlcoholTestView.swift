@@ -12,12 +12,11 @@ struct AlcoholTestView: View {
     @FocusState private var isInputActive: Bool
     @State private var isPresented = false
     @State private var isPresentedResult = false
-    
+    @State private var maxValue = 2000
     var body: some View {
         ZStack {
             WallpaperView()
             VStack {
-
                 VStack {
                     // MARK: - Sex Picker
                     CustomSegmentedPickerView(
@@ -51,7 +50,7 @@ struct AlcoholTestView: View {
                     .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
                                                startPoint: .top,
                                                endPoint: .bottom).opacity(0.15))
-
+                    
                     // MARK: - Eaten
                     HStack {
                         LabelView(text: "Have you eaten?")
@@ -70,14 +69,18 @@ struct AlcoholTestView: View {
                     .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
                                                startPoint: .top,
                                                endPoint: .bottom).opacity(0.15))
-
-                    // MARK: - Drunk
+                    
+                    // MARK: - Drink
                     HStack {
                         LabelView(text: "What have you drunk?")
+                            .scaledToFill()
+                            .minimumScaleFactor(0.5)
                         Spacer()
                         ButtonDrinkNameView(
                             action: { isPresented.toggle() },
-                            text: alcoTestViewModel.alcoTest.nameAlcohol
+                            text: alcoTestViewModel.alcoTest.nameAlcohol,
+                            value: $alcoTestViewModel.alcoTest.sliderValue,
+                            maxValue: $maxValue
                         )
                         .background(Color("neonOrange")).opacity(0.8)
                         .cornerRadius(8)
@@ -92,15 +95,11 @@ struct AlcoholTestView: View {
                     .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
                                                startPoint: .top,
                                                endPoint: .bottom).opacity(0.15))
-
-
+                    
                     // MARK: - Consumed Alcohol
                     SliderAlcoholTestView(
                         value: $alcoTestViewModel.alcoTest.sliderValue,
-                        maxValue:
-                            alcoTestViewModel.alcoTest.nameAlcohol == "Beer"
-                        ? 5000
-                        : 2000,
+                        maxValue: maxValue,
                         sizeWidth: 71,
                         sizeHeight: 40
                     )
@@ -144,9 +143,8 @@ struct AlcoholTestView: View {
                         )
                     }
                 }
-
-
                 Spacer()
+                
                 // MARK: - Warning Text
                 Text("*Please note, that this test shows only an estimated result and can't be a proof of your actual condition. For more accurate results of the alcohol level in your blood, please contact a specialist.")
                     .foregroundColor(.gray)
@@ -174,7 +172,6 @@ struct AlcoholTestView: View {
             isInputActive = false
         }
     }
-
 }
 
 struct AlcoholTestView_Previews: PreviewProvider {
@@ -228,12 +225,16 @@ struct CustomSwitch: View {
 struct ButtonDrinkNameView: View {
     var action: () -> ()
     var text: String
+    @Binding var value: Double
+    @Binding var maxValue: Int
     
     var body: some View {
         Button(action: action ) {
             Text(text)
                 .frame(minWidth: 71, minHeight: 40)
                 .font(.title3)
+                .scaledToFill()
+                .minimumScaleFactor(0.5)
                 .foregroundColor(Color.white)
                 .padding(EdgeInsets(
                     top: 0,
@@ -246,6 +247,16 @@ struct ButtonDrinkNameView: View {
                         withAnimation {
                             text.count > 5 ? 5 : 0
                         }))
+        }
+        .onChange(of: text) { newValue in
+            if newValue == "Beer" {
+                maxValue = 5000
+            } else if value > 2000 && newValue != "Beer" {
+                maxValue = 2000
+                value = Double(maxValue)
+            } else if newValue != "Beer" {
+                maxValue = 2000
+            }
         }
     }
 }
