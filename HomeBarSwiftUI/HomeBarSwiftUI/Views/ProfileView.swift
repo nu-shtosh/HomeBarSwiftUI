@@ -18,47 +18,74 @@ struct ProfileView: View {
             VStack {
                 HStack {
                     UserImageView(image: $profileViewModel.image)
-
+                        .padding()
                     UserInfoView(age: $profileViewModel.profile.age)
+                      
                     Spacer()
                 }
+                
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                    colors: [Color("neonBlue"), Color("neonOrange")],
+                    startPoint: .top,
+                    endPoint: .bottom
+                ).opacity(0.3), lineWidth: 2))
+                .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                           startPoint: .top,
+                                           endPoint: .bottom).opacity(0.15))
                 .padding()
-                .background(Color(.gray).opacity(0.2))
-                .cornerRadius(20)
                 
                 HStack {
                     Text("Your cocktails:")
                         .font(.callout)
                         .bold()
                         .foregroundColor(.gray)
-                        .padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 0))
+                        .padding(EdgeInsets(
+                            top: -8,
+                            leading: 16,
+                            bottom: -8,
+                            trailing: 0
+                        ))
                     Spacer()
-                        
-                }
-//                .padding(EdgeInsets(top: 5, leading: 11, bottom: -5, trailing: 0))
-                HStack {
-                    UserButtonStackView()
-                }
-                .padding(5)
-                .background(Color(.gray).opacity(0.2))
-                .cornerRadius(20)
-                Spacer()
-                HStack {
-                    Text("Last viewed cocktails:")
-                        .font(.callout)
-                        .bold()
-                        .foregroundColor(.gray)
-                        .padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 0))
-                    Spacer()
-                        
                 }
                 
-                LastCocktailView(cocktailViewModel: cocktailViewModel)
-                Spacer()
+                HStack {
+                    UserButtonStackView()
+                        .padding()
+                }
+                
+
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                    colors: [Color("neonBlue"), Color("neonOrange")],
+                    startPoint: .top,
+                    endPoint: .bottom
+                ).opacity(0.3), lineWidth: 2))
+                .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                           startPoint: .top,
+                                           endPoint: .bottom).opacity(0.15))
+                .padding()
+                VStack {
+                    HStack {
+                        Text("Last viewed cocktails:")
+                            .font(.callout)
+                            .bold()
+                            .foregroundColor(.gray)
+                            .padding(EdgeInsets(
+                                top: -8,
+                                leading: 16,
+                                bottom: -8,
+                                trailing: 0
+                            ))
+                        Spacer()
+                    }
+  
+                    LastCocktailView(cocktailViewModel: cocktailViewModel)
+                    
+                    Spacer()
+                    
+                }
             }
-            .padding(EdgeInsets(top: 6, leading: 6, bottom: 7, trailing: 6))
-//            .padding()
-            
         }
         .onAppear {
             profileViewModel.getProfile()
@@ -108,8 +135,8 @@ struct UserButtonView: View {
             Text(text)
                 .foregroundColor(Color.white)
                 .font(.title3)
+                .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
         }
-        .frame(width: screen.width / 2.2, height: screen.height / 18)
         .background(Color("neonOrange"))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
@@ -121,15 +148,15 @@ struct UserButtonStackView: View {
             HStack {
                 UserButtonView(text: "My cocktails", action: {})
                 Spacer()
-                    .padding(.trailing, 5)
-                UserButtonView(text: "Favorites cocktails", action: {})
+                  
+                UserButtonView(text: "My favorites", action: {})
             }
-            .padding(5)
+            .padding(.bottom)
             HStack {
-                UserButtonView(text: "Add cocktails", action: {})
+                UserButtonView(text: "Add cocktail", action: {})
                 Spacer()
             }
-            .padding(5)
+            
         }
     }
 }
@@ -137,7 +164,7 @@ struct UserButtonStackView: View {
 struct LastCocktailView: View {
     @StateObject var cocktailViewModel: CocktailsViewModel
     var body: some View {
-        ScrollView(.horizontal) {
+        ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 ForEach(cocktailViewModel.cocktail, id: \.name) { item in
                     NavigationLink {
@@ -171,6 +198,5 @@ struct UserInfoView: View {
                 .font(.system(size: 18))
                 .foregroundColor(Color("neonOrange"))
         }
-        .offset(x: 50)
     }
 }

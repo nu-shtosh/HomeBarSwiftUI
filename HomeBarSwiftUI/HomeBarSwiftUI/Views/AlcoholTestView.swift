@@ -26,9 +26,9 @@ struct AlcoholTestView: View {
                         font: Font.title3
                     )
                     .padding(EdgeInsets(
-                        top: 0,
+                        top: 10,
                         leading: 0,
-                        bottom: 40,
+                        bottom: 20,
                         trailing: 0
                     ))
                     
@@ -134,6 +134,7 @@ struct AlcoholTestView: View {
                             CalculateLabel(text: "Calculate")
                         }
                     }
+                    .padding(.top, 20)
                     .simultaneousGesture(TapGesture().onEnded {
                         isInputActive = false
                         alcoTestViewModel.calculateTestResults()
