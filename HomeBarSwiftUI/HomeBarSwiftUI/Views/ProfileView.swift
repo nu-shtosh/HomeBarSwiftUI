@@ -16,6 +16,7 @@ struct ProfileView: View {
         ZStack {
             WallpaperView()
             VStack {
+                // MARK: User info
                 HStack {
                     UserImageView(image: $profileViewModel.image)
                         .padding()
@@ -34,7 +35,7 @@ struct ProfileView: View {
                                            startPoint: .top,
                                            endPoint: .bottom).opacity(0.15))
                 .padding()
-                
+                // MARK: Buttons
                 HStack {
                     Text("Your cocktails:")
                         .font(.callout)
@@ -66,6 +67,7 @@ struct ProfileView: View {
                                            endPoint: .bottom).opacity(0.15))
                 .padding()
                 VStack {
+                    // MARK: Last coctails
                     HStack {
                         Text("Last viewed cocktails:")
                             .font(.callout)
