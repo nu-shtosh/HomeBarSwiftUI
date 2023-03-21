@@ -41,61 +41,6 @@ struct CocktailDetailView: View {
                             .cornerRadius(16)
                     }
                     .padding(.top)
-
-                    // MARK: - Cocktail Social (Rating, Likes)
-                    VStack {
-                        HStack {
-                            Text("Social")
-                                .foregroundColor(.gray)
-                                .font(.callout)
-                                .bold()
-                                .padding(.leading)
-                            Spacer()
-                        }
-                        VStack {
-                            HStack {
-                                Text("Rating:")
-                                    .foregroundColor(Color("neonOrange"))
-                                Spacer()
-                                Text("\(cocktail.rating.description)")
-                                    .foregroundColor(Color("neonBlue"))
-                            }
-                            
-                            Rectangle()
-                                .frame(height: 1)
-                                .foregroundColor(Color("neonBlue").opacity(0.3))
-                            
-                            HStack {
-                                Text("Likes:")
-                                    .foregroundColor(Color("neonOrange"))
-                                Spacer()
-                                Text("\(cocktail.likes.description)")
-                                    .foregroundColor(Color("neonBlue"))
-                            }
-
-                            Rectangle()
-                                .frame(height: 1)
-                                .foregroundColor(Color("neonBlue").opacity(0.3))
-
-                            HStack {
-                                Text("Your Rating:")
-                                    .foregroundColor(Color("neonOrange"))
-                                Spacer()
-                                StarsRatingView(rating: cocktail.userRating)
-                            }
-                            
-                        }
-                        .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
-                            colors: [Color("neonBlue"), Color("neonOrange")],
-                            startPoint: .top,
-                            endPoint: .bottom
-                        ).opacity(0.3), lineWidth: 2))
-                        .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
-                                                   startPoint: .top,
-                                                   endPoint: .bottom).opacity(0.15))
-                        .cornerRadius(16)
-                    }
                     
                     // MARK: - Cocktail Ingredients
                     VStack {
@@ -143,14 +88,13 @@ struct CocktailDetailView: View {
                                 .bold()
                             Spacer()
                         }
-                        VStack() {
+                        VStack {
                             Text(cocktail.instructions)
                                 .foregroundColor(Color("neonOrange"))
                                 .padding(.horizontal, 2)
                                 .padding(.vertical)
-
                         }
-                        .frame(width: screen.width * 0.9)
+                        .frame(maxWidth: .infinity)
                         .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
                             colors: [Color("neonBlue"), Color("neonOrange")],
                             startPoint: .top,
@@ -165,7 +109,6 @@ struct CocktailDetailView: View {
             }
             .padding(.horizontal)
             .navigationBarTitleDisplayMode(.large)
-            .toolbar(.hidden, for: .tabBar)
         }
         .onAppear {
             getImage(imageURL: cocktail.image)

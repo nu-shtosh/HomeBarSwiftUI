@@ -12,6 +12,8 @@ struct AllCocktailsView: View {
     @StateObject var cocktailViewModel: CocktailsViewModel
     
     let layout = [GridItem(.adaptive(minimum: screen.width / 2.2))]
+
+    @State var isHidden = false
     
     var body: some View {
         ZStack {
@@ -27,8 +29,6 @@ struct AllCocktailsView: View {
                                 withAnimation {
                                     CocktailCellView(cocktail: item)
                                 }
-                                
-                                
                             }
                         }
                     }
