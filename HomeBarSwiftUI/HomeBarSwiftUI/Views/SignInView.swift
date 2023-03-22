@@ -15,7 +15,9 @@ struct SignInView: View {
 
     @State private var email = ""
     @State private var password = ""
+    @State private var name = ""
     @State private var checkPassword = ""
+    @State private var age = ""
 
     @State private var isTabViewShow = false
     @State private var isShowAlert = false
@@ -39,7 +41,7 @@ struct SignInView: View {
                         .padding(.bottom, 30)
                     VStack(spacing: 10) {
                         TextFieldWithImageView(title: "Email",
-                                               imageSystemName: "envelope",
+                                               imageSystemName: "envelope.circle",
                                                text: $email)
                         SecureFieldWithImageView(title: "Password",
                                                  imageSystemName: "key",
@@ -48,13 +50,21 @@ struct SignInView: View {
                             SecureFieldWithImageView(title: "Repeat Password",
                                                      imageSystemName: "key.fill",
                                                      text: $checkPassword)
+                            TextFieldWithImageView(title: "Name",
+                                                   imageSystemName: "person.circle",
+                                                   text: $name)
+                            TextFieldWithImageView(title: "Your Age",
+                                                   imageSystemName: "21.circle",
+                                                   text: $age)
                         }
-                    }.padding(.bottom, 30)
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.bottom, 30)
                     VStack(spacing: 4) {
                         OrangeButtonView(action: isAuth ? SignInDidTapped : SignUpDidTapped,
                                          title: isAuth ? "Sign In" : "Sign Up")
                         HStack(spacing: 10) {
-                            Text(isAuth ? "Don't Have An Account?" : "Already Have An Account!")
+                            Text(isAuth ? "Don't Have An Account?" : "Already Have An Account")
                                 .foregroundColor(Color(.white).opacity(0.8))
                             BlueButtonView(action: showSingUp,
                                            title: isAuth ? "Sign Up" : "Back")
@@ -83,8 +93,10 @@ struct SignInView: View {
             }
         }
         .fullScreenCover(isPresented: $isTabViewShow) {
-            let mainTabBarViewModel = MainTabBarViewModel(user: AuthServices.shared.currentUser!) // если мы авторизованы то юзер там уже есть
-            MainTabView(viewModel: mainTabBarViewModel)
+            if let user = AuthServices.shared.currentUser {
+                let mainTabBarViewModel = MainTabBarViewModel(user: user) // если мы авторизованы то юзер там уже есть
+                MainTabView(viewModel: mainTabBarViewModel)
+            }
         }
     }
 
@@ -96,10 +108,10 @@ struct SignInView: View {
             switch result {
             case .success(_):
                 isTabViewShow.toggle()
-            case .failure(_):
+            case .failure(let error):
                 isTabViewShow.toggle()
-//                alertMessage = "Sign Up Error - \(error.localizedDescription)"
-//                self.isShowAlert.toggle()
+                alertMessage = "Sign Up Error - \(error.localizedDescription)"
+                self.isShowAlert.toggle()
             }
         }
 
@@ -115,8 +127,17 @@ struct SignInView: View {
             return
         }
 
+        guard Int(age) ?? 0 >= 21 else {
+            self.alertMessage = "For using this application your age should be more than 21"
+            self.isShowAlert.toggle()
+            return
+        }
+
+
         AuthServices.shared.signUp(email: self.email,
-                                   password: self.password) { result in
+                                   password: self.password,
+                                   name: self.name,
+                                   age: self.age) { result in
             switch result {
             case .success(let user):
                 guard let email = user.email else { return }
@@ -125,6 +146,7 @@ struct SignInView: View {
                 self.email = ""
                 self.password = ""
                 self.checkPassword = ""
+                self.age = ""
                 self.isAuth.toggle()
             case .failure(let error):
                 self.alertMessage = "Sign Up Error - \(error.localizedDescription)"

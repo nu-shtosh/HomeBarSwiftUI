@@ -24,13 +24,15 @@ class AuthServices {
 
     func signUp(email: String,
                 password: String,
+                name: String,
+                age: String,
                 completion: @escaping(Result<FirebaseUser, Error>) -> ()) {
         auth.createUser(withEmail: email, password: password) { result, error in
             if let result {
                 let userModel = UserDB(id: result.user.uid,
-                                          name: "",
+                                          name: name,
                                           surname: "",
-                                          age: "")
+                                          age: age)
                 DataBaseService.shared.setProfile(user: userModel, image: nil) { resultDataBase in
                     switch resultDataBase {
                     case .success(_):

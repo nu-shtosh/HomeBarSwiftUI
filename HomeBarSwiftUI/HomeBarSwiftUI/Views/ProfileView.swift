@@ -87,12 +87,15 @@ struct ProfileView: View {
                     Spacer()
                     
                 }
+                LastCocktailView(cocktailViewModel: cocktailViewModel)
             }
+            .padding(EdgeInsets(top: 6, leading: 6, bottom: 7, trailing: 6))
         }
         .onAppear {
             profileViewModel.getProfile()
             cocktailViewModel.getCocktail()
         }
+        .navigationBarTitleDisplayMode(.large)
         .navigationTitle(Text(profileViewModel.profile.fullname))
         .toolbar {
             NavigationLink {

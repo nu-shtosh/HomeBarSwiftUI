@@ -119,7 +119,9 @@ struct AlcoholTestView: View {
                     .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
                                                startPoint: .top,
                                                endPoint: .bottom).opacity(0.15))
-                    
+                    .padding(.bottom)
+
+
                     // MARK: - Calculate Button
                     HStack {
                         if !alcoTestViewModel.alcoTest.showAlert {
@@ -158,6 +160,8 @@ struct AlcoholTestView: View {
             }
             .padding()
         }
+        .navigationBarTitleDisplayMode(.large)
+
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
