@@ -54,6 +54,7 @@ struct MainTabView: View {
             }
             .tint(Color("neonOrange"))
             .accentColor(Color("neonOrange"))
+            .navigationBarTitleDisplayMode(.large)
             .onAppear() {
                 NavTheme.navigationBarColors(background: .black,
                                              titleColor: UIColor(Color("neonOrange")),

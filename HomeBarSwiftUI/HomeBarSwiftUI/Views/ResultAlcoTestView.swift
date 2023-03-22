@@ -65,7 +65,7 @@ struct ResultAlcoTestView: View {
                 
             }
             .padding()
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.large)
             .navigationTitle("Result")
         }
         .onAppear {

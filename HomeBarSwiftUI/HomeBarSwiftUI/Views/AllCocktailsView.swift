@@ -35,6 +35,7 @@ struct AllCocktailsView: View {
                 }
                 .foregroundColor(Color("neonBlue"))
             }
+            .navigationBarTitleDisplayMode(.large)
             .toolbar(.visible, for: .tabBar)
         }
         .onAppear{

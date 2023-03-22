@@ -154,6 +154,8 @@ struct AlcoholTestView: View {
             }
             .padding()
         }
+        .navigationBarTitleDisplayMode(.large)
+
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()

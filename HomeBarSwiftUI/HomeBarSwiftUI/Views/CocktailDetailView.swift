@@ -91,7 +91,7 @@ struct CocktailDetailView: View {
                         VStack {
                             Text(cocktail.instructions)
                                 .foregroundColor(Color("neonOrange"))
-                                .padding(.horizontal, 2)
+                                .padding(.horizontal, 4)
                                 .padding(.vertical)
                         }
                         .frame(maxWidth: .infinity)
