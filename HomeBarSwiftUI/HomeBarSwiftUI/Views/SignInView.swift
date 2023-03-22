@@ -16,6 +16,7 @@ struct SignInView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var checkPassword = ""
+    @State private var age = ""
 
     @State private var isTabViewShow = false
     @State private var isShowAlert = false
@@ -49,7 +50,14 @@ struct SignInView: View {
                                                      imageSystemName: "key.fill",
                                                      text: $checkPassword)
                         }
-                    }.padding(.bottom, 30)
+                        if !isAuth {
+                            TextFieldWithImageView(title: "Your Age",
+                                                   imageSystemName: "21.circle",
+                                                   text: $age)
+                        }
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.bottom, 30)
                     VStack(spacing: 4) {
                         OrangeButtonView(action: isAuth ? SignInDidTapped : SignUpDidTapped,
                                          title: isAuth ? "Sign In" : "Sign Up")
@@ -117,8 +125,16 @@ struct SignInView: View {
             return
         }
 
+        guard Int(age) ?? 0 >= 21 else {
+            self.alertMessage = "For using our application your age should be more than 21"
+            self.isShowAlert.toggle()
+            return
+        }
+
+
         AuthServices.shared.signUp(email: self.email,
-                                   password: self.password) { result in
+                                   password: self.password,
+                                   age: self.age) { result in
             switch result {
             case .success(let user):
                 guard let email = user.email else { return }
@@ -127,6 +143,7 @@ struct SignInView: View {
                 self.email = ""
                 self.password = ""
                 self.checkPassword = ""
+                self.age = ""
                 self.isAuth.toggle()
             case .failure(let error):
                 self.alertMessage = "Sign Up Error - \(error.localizedDescription)"
