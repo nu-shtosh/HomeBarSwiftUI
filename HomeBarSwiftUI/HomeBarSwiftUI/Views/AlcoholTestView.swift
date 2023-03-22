@@ -25,8 +25,13 @@ struct AlcoholTestView: View {
                         colors: [Color("neonBlue"), Color("neonOrange")],
                         font: Font.title3
                     )
-                    .padding(.bottom)
-
+                    .padding(EdgeInsets(
+                        top: 10,
+                        leading: 0,
+                        bottom: 20,
+                        trailing: 0
+                    ))
+                    
                     // MARK: - Weight
                     HStack {
                         LabelView(text: "Your weight")
@@ -131,6 +136,7 @@ struct AlcoholTestView: View {
                             CalculateLabel(text: "Calculate")
                         }
                     }
+                    .padding(.top, 20)
                     .simultaneousGesture(TapGesture().onEnded {
                         isInputActive = false
                         alcoTestViewModel.calculateTestResults()
