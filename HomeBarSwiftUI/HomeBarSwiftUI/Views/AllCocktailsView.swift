@@ -43,10 +43,3 @@ struct AllCocktailsView: View {
         }
     }
 }
-
-//
-//struct AllCocktailsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AllCocktailsView(cocktailViewModel: <#CocktailsViewModel#>)
-//    }
-//}
