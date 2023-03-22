@@ -32,6 +32,6 @@ struct AllIngredientsView: View {
 
 struct AllIngredientsView_Previews: PreviewProvider {
     static var previews: some View {
-        AllIngredientsView()
+        AllIngredientsView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]))
     }
 }
