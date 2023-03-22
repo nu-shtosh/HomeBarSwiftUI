@@ -49,8 +49,6 @@ struct SignInView: View {
                             SecureFieldWithImageView(title: "Repeat Password",
                                                      imageSystemName: "key.fill",
                                                      text: $checkPassword)
-                        }
-                        if !isAuth {
                             TextFieldWithImageView(title: "Your Age",
                                                    imageSystemName: "21.circle",
                                                    text: $age)
@@ -62,7 +60,7 @@ struct SignInView: View {
                         OrangeButtonView(action: isAuth ? SignInDidTapped : SignUpDidTapped,
                                          title: isAuth ? "Sign In" : "Sign Up")
                         HStack(spacing: 10) {
-                            Text(isAuth ? "Don't Have An Account?" : "Already Have An Account!")
+                            Text(isAuth ? "Don't Have An Account?" : "Already Have An Account")
                                 .foregroundColor(Color(.white).opacity(0.8))
                             BlueButtonView(action: showSingUp,
                                            title: isAuth ? "Sign Up" : "Back")
@@ -126,7 +124,7 @@ struct SignInView: View {
         }
 
         guard Int(age) ?? 0 >= 21 else {
-            self.alertMessage = "For using our application your age should be more than 21"
+            self.alertMessage = "For using this application your age should be more than 21"
             self.isShowAlert.toggle()
             return
         }
