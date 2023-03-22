@@ -23,7 +23,7 @@ struct CocktailDetailView: View {
 
         ZStack {
             WallpaperView()
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(spacing: 10) {
                     // MARK: - Cocktail Image
                     VStack {

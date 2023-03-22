@@ -15,6 +15,7 @@ struct SignInView: View {
 
     @State private var email = ""
     @State private var password = ""
+    @State private var name = ""
     @State private var checkPassword = ""
     @State private var age = ""
 
@@ -40,7 +41,7 @@ struct SignInView: View {
                         .padding(.bottom, 30)
                     VStack(spacing: 10) {
                         TextFieldWithImageView(title: "Email",
-                                               imageSystemName: "envelope",
+                                               imageSystemName: "envelope.circle",
                                                text: $email)
                         SecureFieldWithImageView(title: "Password",
                                                  imageSystemName: "key",
@@ -49,6 +50,9 @@ struct SignInView: View {
                             SecureFieldWithImageView(title: "Repeat Password",
                                                      imageSystemName: "key.fill",
                                                      text: $checkPassword)
+                            TextFieldWithImageView(title: "Name",
+                                                   imageSystemName: "person.circle",
+                                                   text: $name)
                             TextFieldWithImageView(title: "Your Age",
                                                    imageSystemName: "21.circle",
                                                    text: $age)
@@ -132,6 +136,7 @@ struct SignInView: View {
 
         AuthServices.shared.signUp(email: self.email,
                                    password: self.password,
+                                   name: self.name,
                                    age: self.age) { result in
             switch result {
             case .success(let user):

@@ -9,15 +9,24 @@ import SwiftUI
 
 struct MainTabView: View {
 
-
     var viewModel: MainTabBarViewModel
     
     var body: some View {
         TabView {
             Group {
                 NavigationStack {
+                    AllIngredientsView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "")]))
+                        .navigationTitle(Text("Cocktails"))
+                }
+                .tabItem {
+                    VStack {
+                        Text("Ingredients")
+                        Image(systemName: "heart")
+                    }
+                }
+
+                NavigationStack {
                     AllCocktailsView(cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(name: "", tags: "", alcoholic: "", instructions: "", image: "", ingredients: ["" : ""], rating: 0, numberOfRatings: 0, sumOfRating: 0, userRating: 0, likes: 0, comments: ["" : ""])], image: Data()))
-                        .navigationBarTitleDisplayMode(.inline)
                         .navigationTitle(Text("Cocktails"))
                 }
                 .tabItem {
@@ -29,7 +38,6 @@ struct MainTabView: View {
 
                 NavigationView() {
                     AlcoholTestView(alcoTestViewModel: AlcoTestViewModel())
-                    .navigationBarTitleDisplayMode(.inline)
                     .navigationTitle(Text("Alcotest"))
                 }
                 .tabItem {
@@ -41,7 +49,6 @@ struct MainTabView: View {
                 
                 NavigationView() {
                     ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(id: "", name: "", surname: "", age: "")), cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(name: "", tags: "", alcoholic: "", instructions: "", image: "", ingredients: ["" : ""], rating: 0, numberOfRatings: 0, sumOfRating: 0, userRating: 0, likes: 0, comments: ["" : ""])], image: Data()))
-                        .navigationBarTitleDisplayMode(.inline)
                     // надо функцию написать, чтобы она возвращала экземпляр модели и не городить эту херню
                     //                        .navigationTitle(Text("Profile"))
                 }

@@ -73,8 +73,6 @@ class DataBaseService {
         // есть еще .limit(to:) и .limit(to last:) который тупо ограничивает количество данных, то есть
         // .limit(to: 5) загрузит только 5 коктейлей
         
-        
-        
         cocktailsReference.getDocuments { querySnapshot, error in
             guard let querySnapshot else {
                 if let error {
@@ -85,11 +83,31 @@ class DataBaseService {
             let documents = querySnapshot.documents
             var cocktails = [CocktailDB]()
             for document in documents {
-                
                 guard let cocktail = CocktailDB.init(document: document) else { return }
                 cocktails.append(cocktail)
             }
             completion(.success(cocktails))
+        }
+    }
+
+
+    func getIngredients(completion: @escaping (Result<[IngredientDB], Error>) -> Void) {
+        let ingredientsReference = database.collection("Ingredients")
+
+        ingredientsReference.getDocuments { querySnapshot, error in
+            guard let querySnapshot else {
+                if let error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            let documents = querySnapshot.documents
+            var ingredients = [IngredientDB]()
+            for document in documents {
+                guard let ingredient = IngredientDB.init(document: document) else { return }
+                ingredients.append(ingredient)
+            }
+            completion(.success(ingredients))
         }
     }
 }
@@ -97,7 +115,6 @@ class DataBaseService {
 class CocktailData : ObservableObject{
 
     var cocktails: DrinksFromAPI?
-    
 
     func fetchEpisodeSchedule() {
         NetworkManager.shared.fetch(DrinksFromAPI.self, from: Link.scheduleURL.rawValue) { [weak self] result in
@@ -207,11 +224,5 @@ class CocktailData : ObservableObject{
         let db = Firestore.firestore()
         let ref = db.collection("AllIngredients").document("ingredients")
         ref.setData(["ingredients": ingredients])
-//
-//        for value in ingredients {
-//
-//            id += 1
-//            ref.setData(["name": value])
-//        }
     }
 }
