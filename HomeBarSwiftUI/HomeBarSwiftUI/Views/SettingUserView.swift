@@ -54,6 +54,7 @@ struct SettingUserView: View {
         .onSubmit {
             profileViewModel.setProfile()
         }
+        .navigationBarTitleDisplayMode(.large)
         .navigationTitle("Setting")
     }
     

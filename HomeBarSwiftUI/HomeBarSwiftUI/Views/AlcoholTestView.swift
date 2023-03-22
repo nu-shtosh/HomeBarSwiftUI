@@ -25,13 +25,8 @@ struct AlcoholTestView: View {
                         colors: [Color("neonBlue"), Color("neonOrange")],
                         font: Font.title3
                     )
-                    .padding(EdgeInsets(
-                        top: 0,
-                        leading: 0,
-                        bottom: 40,
-                        trailing: 0
-                    ))
-                    
+                    .padding(.bottom)
+
                     // MARK: - Weight
                     HStack {
                         LabelView(text: "Your weight")
@@ -119,7 +114,9 @@ struct AlcoholTestView: View {
                     .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
                                                startPoint: .top,
                                                endPoint: .bottom).opacity(0.15))
-                    
+                    .padding(.bottom)
+
+
                     // MARK: - Calculate Button
                     HStack {
                         if !alcoTestViewModel.alcoTest.showAlert {
@@ -157,6 +154,8 @@ struct AlcoholTestView: View {
             }
             .padding()
         }
+        .navigationBarTitleDisplayMode(.large)
+
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
