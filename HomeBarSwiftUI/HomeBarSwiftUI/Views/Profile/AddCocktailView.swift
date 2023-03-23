@@ -103,8 +103,6 @@ struct AddCocktailView: View {
                                     .foregroundColor(Color("neonBlue"))
                             }
                             .padding(.trailing, 16)
-
-                            
                         }
                     }
                 }
