@@ -150,6 +150,17 @@ struct UserButtonStackView: View {
             }
             .padding(.bottom)
             HStack {
+                NavigationLink {
+                    AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]))
+                } label: {
+                    Text("Add cocktail")
+                        .foregroundColor(Color.white)
+                        .font(.title3)
+                        .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                        .background(Color("neonOrange"))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
+
                 UserButtonView(text: "Add cocktail", action: {})
                 Spacer()
             }

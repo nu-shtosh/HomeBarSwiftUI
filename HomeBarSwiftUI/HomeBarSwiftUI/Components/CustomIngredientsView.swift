@@ -11,6 +11,9 @@ struct CustomIngredientsView: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
     @State private var text = ""
     @State private var isEditing = false
+    @Binding var nameIngredient: String
+    let action: () -> Void
+    
     var body: some View {
         ZStack {
             Rectangle()
@@ -20,13 +23,15 @@ struct CustomIngredientsView: View {
                 .environment(\.colorScheme, .light)
                 .ignoresSafeArea()
             VStack {
+                Spacer(minLength: 40)
                 SearchView(text: $text, isEditing: $isEditing)
+                    
                 HStack {
                     Button(action: {
-                        
+                        action()
                     }, label: {
                         Text("New ingredient")
-                            .foregroundColor(Color("neonOrange"))
+                            .foregroundColor(Color("neonBlue"))
                     })
                     .padding(.leading, 8)
                     Spacer()
@@ -36,7 +41,7 @@ struct CustomIngredientsView: View {
                 List {
                     ForEach(ingredientsViewModel.allIngredients, id: \.name) { ingredient in
                         Button {
-                            
+                            nameIngredient = ingredient.name
                         } label: {
                             Text(ingredient.name)
                                 .foregroundColor(Color("neonOrange"))
@@ -56,6 +61,6 @@ struct CustomIngredientsView: View {
 
 struct CustomIngredientsView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomIngredientsView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]))
+        CustomIngredientsView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), nameIngredient: .constant(""), action: {})
     }
 }

@@ -51,7 +51,8 @@ struct SearchView: View {
                 }
                 .padding(.trailing, 10)
                 .transition(.move(edge: .trailing)
-                .animation(.default))
+                .animation(.linear(duration: 0.1)))
+                
 
             }
         }
