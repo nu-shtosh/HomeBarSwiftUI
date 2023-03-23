@@ -191,7 +191,6 @@ struct AddCocktailView: View {
                 } label: {
                     Text("Save")
                 }
-                
             }
         }
         .sheet(isPresented: $isPresent) {
