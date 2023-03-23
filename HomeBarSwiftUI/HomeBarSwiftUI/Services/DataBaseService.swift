@@ -59,7 +59,7 @@ class DataBaseService {
     }
 
     func getCocktails(completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
-        let cocktailsReference = database.collection("NewCocktails")
+        let cocktailsReference = database.collection("Cocktails")
             .limit(to: 10)
 
         //            .limit(to: 10)
