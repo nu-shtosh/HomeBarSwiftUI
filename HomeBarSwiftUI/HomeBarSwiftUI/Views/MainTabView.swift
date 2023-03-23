@@ -29,7 +29,7 @@ struct MainTabView: View {
                 // MARK: - Ingredients
                 NavigationStack {
                     AllIngredientsView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "")]))
-                        .navigationTitle(Text("Cocktails"))
+                        .navigationTitle(Text("Ingredients"))
                 }
                 .tabItem {
                     VStack {
@@ -40,7 +40,7 @@ struct MainTabView: View {
 
                 // MARK: - Cocktails
                 NavigationStack {
-                    AllCocktailsView(cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(
+                    AllCocktailsView(cocktailViewModel: CocktailsViewModel(allCocktails: [CocktailDB(
                         name: "",
                         tags: "",
                         alcoholic: "",
@@ -55,6 +55,8 @@ struct MainTabView: View {
                         likes: 0,
                         comments: ["" : ""]
                     )], image: Data()))
+                    .navigationTitle(Text("Cocktails"))
+
                 }
                 .tabItem {
                     VStack {
@@ -83,7 +85,7 @@ struct MainTabView: View {
                         surname: "",
                         age: "",
                         email: ""
-                    )), cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(
+                    )), cocktailViewModel: CocktailsViewModel(allCocktails: [CocktailDB(
                         name: "",
                         tags: "",
                         alcoholic: "",

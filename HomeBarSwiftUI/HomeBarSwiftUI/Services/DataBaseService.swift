@@ -21,8 +21,7 @@ class DataBaseService {
         if let image = image {
             StorageService.shared.uploadUserImage(id: user.id, image: image) { result in
                 switch result {
-                case .success(let sizeInfo):
-                    print(sizeInfo)
+                case .success(_):
                     self.usersReference.document(user.id).setData(user.representation) { error in
                         if let error {
                             completion(.failure(error))
@@ -62,21 +61,24 @@ class DataBaseService {
     func getCocktails(completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
         let cocktailsReference = database.collection("NewCocktails")
             .limit(to: 10)
-//            .order(by: "name")
-//            .start(at: ["S"])
-//            .end(at: ["Y"])
-//            .limit(to: 10)
-//            .whereField("name", in: ["Mojito"])
-//            .order(by: "ingredients")
-//            .whereField("ingredients.Lime.Sugar", notIn: [""])
-//            .whereField("ingredients", in: ["Sugar"])
-//            .whereField("ingredients", isEqualTo: "Coconut")
-//            .whereField("Sugar", arrayContainsAny: [""])
+
+        //            .limit(to: 10)
+        //
+        //            .order(by: "name")
+        //            .start(at: ["S"])
+        //            .end(at: ["Y"])
+        //            .whereField("name", in: ["Mojito"])
+        //            .order(by: "ingredients")
+        //            .whereField("ingredients.Lime.Sugar", notIn: [""])
+        //            .whereField("ingredients", in: ["Sugar"])
+        //            .whereField("ingredients", isEqualTo: "Coconut")
+        //            .whereField("Sugar", arrayContainsAny: [""])
 
         // играясь с этими параметрами, можно прикольную сортировку сделать
         // с сервера будут грузиться меньше данных, (в этом примере грузятся только те коктейли, которые начинаются на "W", так же можно сделать порционную загрузку, разбив по 50, 100 и т.д.
         // есть еще .limit(to:) и .limit(to last:) который тупо ограничивает количество данных, то есть
         // .limit(to: 5) загрузит только 5 коктейлей
+        
         cocktailsReference.getDocuments { querySnapshot, error in
             guard let querySnapshot else {
                 if let error {
@@ -88,9 +90,7 @@ class DataBaseService {
             var cocktails = [CocktailDB]()
             for document in documents {
                 guard let cocktail = CocktailDB.init(document: document) else { return }
-                print(cocktail)
                 cocktails.append(cocktail)
-
             }
             completion(.success(cocktails))
         }
@@ -127,7 +127,7 @@ class CocktailData : ObservableObject {
             switch result {
             case .success(let cocktailFromAPI):
                 let db = Firestore.firestore()
-                let ref = db.collection("NewCocktails").document(cocktailFromAPI.drinks[0].idDrink ?? "1")
+                let ref = db.collection("Cocktails").document(cocktailFromAPI.drinks[0].idDrink ?? "1")
 
                 var ingredientsNames = [String]()
                 var ingredientsMeasures = [String]()
@@ -169,17 +169,17 @@ class CocktailData : ObservableObject {
                         ingredientsMeasures.append(cocktailMeasure7)
                     }
                     if let cocktailIngredient8 = cocktail.strIngredient8,
-                        let cocktailMeasure8 = cocktail.strMeasure8 {
+                       let cocktailMeasure8 = cocktail.strMeasure8 {
                         ingredientsNames.append(cocktailIngredient8)
                         ingredientsMeasures.append(cocktailMeasure8)
                     }
                     if let cocktailIngredient9 = cocktail.strIngredient9,
-                         let cocktailMeasure9 = cocktail.strMeasure9 {
+                       let cocktailMeasure9 = cocktail.strMeasure9 {
                         ingredientsNames.append(cocktailIngredient9)
                         ingredientsMeasures.append(cocktailMeasure9)
                     }
                     if let cocktailIngredient10 = cocktail.strIngredient10,
-                         let cocktailMeasure10 = cocktail.strMeasure10 {
+                       let cocktailMeasure10 = cocktail.strMeasure10 {
                         ingredientsNames.append(cocktailIngredient10)
                         ingredientsMeasures.append(cocktailMeasure10)
                     }
@@ -215,8 +215,8 @@ class CocktailData : ObservableObject {
                         "alcoholic": cocktail.strAlcoholic ?? "",
                         "instructions": cocktail.strInstructions ?? "",
                         "image": cocktail.strDrinkThumb ?? "",
-                        "ingredientsNames": ingredientsNames,
-                        "ingredientsMeasures": ingredientsMeasures,
+                        "ingredientsNames": ingredientsNames.count > 0 ? ingredientsNames : [""],
+                        "ingredientsMeasures": ingredientsMeasures.count > 0 ? ingredientsMeasures : [""],
                         "rating": 0,
                         "numberOfRatings": 0,
                         "sumOfRating": 0,

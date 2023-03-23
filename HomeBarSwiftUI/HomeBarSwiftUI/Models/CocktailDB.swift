@@ -52,6 +52,7 @@ struct CocktailDB {
         self.comments = comments
     }
 
+
     init?(document: QueryDocumentSnapshot) {
         let data = document.data()
         guard let name = data["name"] as? String else { return nil }
@@ -64,7 +65,7 @@ struct CocktailDB {
         guard let rating = data["rating"] as? Double else { return nil }
         guard let numberOfRatings = data["numberOfRatings"] as? Int else { return nil }
         guard let sumOfRating = data["sumOfRating"] as? Double else { return nil }
-        guard let userRating = data["user rating"] as? Double else { return nil }
+        guard let userRating = data["userRating"] as? Double else { return nil }
         guard let likes = data["like"] as? Int else { return nil }
         guard let comments = data["comments"] as? [String: Any] else { return nil }
         
