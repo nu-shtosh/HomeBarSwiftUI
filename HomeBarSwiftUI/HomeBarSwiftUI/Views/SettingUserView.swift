@@ -73,14 +73,3 @@ struct SettingUserView: View {
         }
     }
 }
-
-struct SettingUserView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingUserView(profileViewModel: ProfileViewModel(profile: UserDB(
-            id: "",
-            name: "",
-            surname: "",
-            age: ""
-        )))
-    }
-}

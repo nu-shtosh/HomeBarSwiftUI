@@ -244,6 +244,7 @@
 			children = (
 				B8B37B0329422A7E00611844 /* SignInView.swift */,
 				B8588DEE29462ADA0082132D /* MainTabView.swift */,
+				B8255D5629CB749B00F38FB0 /* AllIngredientsView.swift */,
 				B8F5469C29462FAF00ADB0A1 /* ProfileView.swift */,
 				1FE5C4B7294BC82A004E7634 /* SettingUserView.swift */,
 				B83D9982294A194C006AF62D /* AllCocktailsView.swift */,
@@ -253,7 +254,6 @@
 				1FEE9F5829CC385700858B1B /* AddCocktailView.swift */,
 				1FFEC7A029BF9FCF003B04EA /* DrinksView.swift */,
 				B8F546A02946305500ADB0A1 /* IngredientsView.swift */,
-				B8255D5629CB749B00F38FB0 /* AllIngredientsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

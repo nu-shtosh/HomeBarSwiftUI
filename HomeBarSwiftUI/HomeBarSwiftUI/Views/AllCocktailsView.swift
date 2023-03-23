@@ -21,7 +21,7 @@ struct AllCocktailsView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 Section {
                     LazyVGrid(columns: layout, spacing: 5) {
-                        ForEach(cocktailViewModel.cocktail, id: \.name) { item in
+                        ForEach(cocktailViewModel.allCocktails, id: \.name) { item in
                             NavigationLink {
                                 CocktailDetailView(cocktail: item)
                                     .navigationTitle(item.name)
@@ -37,6 +37,7 @@ struct AllCocktailsView: View {
             }
             .navigationBarTitleDisplayMode(.large)
             .toolbar(.visible, for: .tabBar)
+
         }
         .onAppear{
             cocktailViewModel.getCocktail()

@@ -15,7 +15,8 @@ struct CocktailDB {
     let alcoholic: String
     let instructions: String
     let image: String
-    let ingredients: [String: String]
+    let ingredientsNames: [String]
+    let ingredientsMeasures: [String]
     let rating: Double
     let numberOfRatings: Int
     let sumOfRating: Double
@@ -28,7 +29,8 @@ struct CocktailDB {
          alcoholic: String,
          instructions: String,
          image: String,
-         ingredients: [String : String],
+         ingredientsNames: [String],
+         ingredientsMeasures: [String],
          rating: Double,
          numberOfRatings: Int,
          sumOfRating: Double,
@@ -40,7 +42,8 @@ struct CocktailDB {
         self.alcoholic = alcoholic
         self.instructions = instructions
         self.image = image
-        self.ingredients = ingredients
+        self.ingredientsNames = ingredientsNames
+        self.ingredientsMeasures = ingredientsMeasures
         self.rating = rating
         self.numberOfRatings = numberOfRatings
         self.sumOfRating = sumOfRating
@@ -49,6 +52,7 @@ struct CocktailDB {
         self.comments = comments
     }
 
+
     init?(document: QueryDocumentSnapshot) {
         let data = document.data()
         guard let name = data["name"] as? String else { return nil }
@@ -56,11 +60,12 @@ struct CocktailDB {
         guard let alcoholic = data["alcoholic"] as? String else { return nil }
         guard let instructions = data["instructions"] as? String else { return nil }
         guard let image = data["image"] as? String else { return nil }
-        guard let ingredients = data["ingredients"] as? [String: String] else { return nil }
+        guard let ingredientsNames = data["ingredientsNames"] as? [String] else { return nil }
+        guard let ingredientsMeasures = data["ingredientsMeasures"] as? [String] else { return nil }
         guard let rating = data["rating"] as? Double else { return nil }
         guard let numberOfRatings = data["numberOfRatings"] as? Int else { return nil }
         guard let sumOfRating = data["sumOfRating"] as? Double else { return nil }
-        guard let userRating = data["user rating"] as? Double else { return nil }
+        guard let userRating = data["userRating"] as? Double else { return nil }
         guard let likes = data["like"] as? Int else { return nil }
         guard let comments = data["comments"] as? [String: Any] else { return nil }
         
@@ -69,7 +74,8 @@ struct CocktailDB {
         self.alcoholic = alcoholic
         self.instructions = instructions
         self.image = image
-        self.ingredients = ingredients
+        self.ingredientsNames = ingredientsNames
+        self.ingredientsMeasures = ingredientsMeasures
         self.rating = rating
         self.numberOfRatings = numberOfRatings
         self.sumOfRating = sumOfRating
