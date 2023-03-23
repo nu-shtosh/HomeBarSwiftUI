@@ -55,7 +55,6 @@ struct ProfileView: View {
                         .padding()
                 }
                 
-
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
                     colors: [Color("neonBlue"), Color("neonOrange")],
@@ -81,13 +80,9 @@ struct ProfileView: View {
                             ))
                         Spacer()
                     }
-  
                     LastCocktailView(cocktailViewModel: cocktailViewModel)
-                    
                     Spacer()
-                    
                 }
-                LastCocktailView(cocktailViewModel: cocktailViewModel)
             }
             .padding(EdgeInsets(top: 6, leading: 6, bottom: 7, trailing: 6))
         }
