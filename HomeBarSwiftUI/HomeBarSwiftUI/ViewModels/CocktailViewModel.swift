@@ -10,25 +10,25 @@ import UIKit
 
 class CocktailsViewModel: ObservableObject {
 
-    @Published var cocktail: [CocktailDB]
+    @Published var allCocktails: [CocktailDB]
     @Published var image: Data
-    
-    init(cocktail: [CocktailDB], image: Data) {
-        self.cocktail = cocktail
+
+    init(allCocktails: [CocktailDB], image: Data) {
+        self.allCocktails = allCocktails
         self.image = image
     }
-    
+
     func getCocktail() {
         DataBaseService.shared.getCocktails { [unowned self] result in
             switch result {
             case .success(let cocktails):
-            cocktail = cocktails
+            allCocktails = cocktails
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
-    
+
     func getImage(imageURL: String) {
             NetworkManager.shared.fetchImage(from: imageURL) { [unowned self] result in
                 switch result {
@@ -37,9 +37,7 @@ class CocktailsViewModel: ObservableObject {
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
-            
+
         }
     }
-    
-    
 }

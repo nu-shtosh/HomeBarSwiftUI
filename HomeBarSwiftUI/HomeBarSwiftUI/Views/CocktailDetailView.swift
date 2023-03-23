@@ -12,14 +12,14 @@ struct CocktailDetailView: View {
     var cocktail: CocktailDB
     @State private var image = Data()
     
-    var ingredientsCount: Int {
-        cocktail.ingredients.count
-    }
+    //    var ingredientsCount: Int {
+    //        cocktail.ingredients.count
+    //    }
     
     var body: some View {
         // Helpers For Ingredients List
-        let ingredientsNames = cocktail.ingredients.keys.map { $0 }
-        let ingredientsMeasures = cocktail.ingredients.values.map { $0 }
+        //        let ingredientsNames = cocktail.ingredients.keys.map { $0 }
+        //        let ingredientsMeasures = cocktail.ingredients.values.map { $0 }
 
         ZStack {
             WallpaperView()
@@ -53,13 +53,13 @@ struct CocktailDetailView: View {
                             Spacer()
                         }
                         VStack {
-                            ForEach(cocktail.ingredients.keys.enumerated().sorted(by: <), id: \.element) { index, _ in
+                            ForEach(0 ..< cocktail.ingredientsNames.count) { index in
                                 HStack() {
-                                    Text(ingredientsNames[index]).foregroundColor(Color("neonOrange"))
+                                    Text(cocktail.ingredientsNames[index]).foregroundColor(Color("neonOrange"))
                                     Spacer()
-                                    Text(ingredientsMeasures[index]).foregroundColor(Color("neonBlue"))
+                                    Text(cocktail.ingredientsMeasures[index]).foregroundColor(Color("neonBlue"))
                                 }
-                                if index < (cocktail.ingredients.count - 1) {
+                                if index < (cocktail.ingredientsNames.count - 1) {
                                     Rectangle()
                                         .frame(height: 1)
                                         .foregroundColor(Color("neonBlue").opacity(0.3))
@@ -77,7 +77,7 @@ struct CocktailDetailView: View {
                                                    endPoint: .bottom).opacity(0.15))
                         .cornerRadius(16)
                     }
-                    
+
                     // MARK: - Cocktail Recipe/Instruction
                     VStack {
                         HStack {
@@ -113,7 +113,7 @@ struct CocktailDetailView: View {
         .onAppear {
             getImage(imageURL: cocktail.image)
         }
-        
+
     }
 
     // MARK: - Get Image
@@ -125,15 +125,6 @@ struct CocktailDetailView: View {
             case .failure(let error):
                 print(error.localizedDescription)
             }
-        }
-    }
-}
-
-struct CocktailDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ZStack {
-            WallpaperView()
-            CocktailDetailView(cocktail: CocktailDB(name: "White Russian", tags: "Cocktail", alcoholic: "Alcoholic", instructions: "shake in glass", image: "whiteRussian", ingredients: ["vodka":"50", "crema": "50", "kaluha": "50"], rating: 5.0, numberOfRatings: 5, sumOfRating: 5.0, userRating: 3.7, likes: 13, comments: ["user": "ilia", "title": "good drink", "text": "my favorite"]))
         }
     }
 }

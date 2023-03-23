@@ -15,23 +15,35 @@ struct AllIngredientsView: View {
         ZStack() {
             WallpaperView()
             VStack {
-                List {
-                    ForEach(ingredientsViewModel.allIngredients, id: \.name) { ingredient in
+                ForEach(ingredientsViewModel.allIngredients, id: \.name) { ingredient in
+                    HStack {
                         Text(ingredient.name)
+                            .foregroundColor(Color("neonOrange"))
+                        Spacer()
+                    }
+                    if ingredient != ingredientsViewModel.allIngredients.last {
+                        Rectangle()
+                            .frame(height: 1)
+                            .foregroundColor(Color("neonBlue").opacity(0.3))
                     }
                 }
             }
+            .padding()
+            .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                colors: [Color("neonBlue"), Color("neonOrange")],
+                startPoint: .top,
+                endPoint: .bottom
+            ).opacity(0.3), lineWidth: 2))
+            .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                       startPoint: .top,
+                                       endPoint: .bottom).opacity(0.15))
+            .cornerRadius(16)
             .onAppear{
                 ingredientsViewModel.getIngredients()
             }
+            Spacer()
         }
         .navigationTitle("Ingredients")
         .navigationBarTitleDisplayMode(.large)
-    }
-}
-
-struct AllIngredientsView_Previews: PreviewProvider {
-    static var previews: some View {
-        AllIngredientsView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]))
     }
 }

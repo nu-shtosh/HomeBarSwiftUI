@@ -15,18 +15,13 @@ struct IngredientsView: View {
         Button("Fetch") {
             print("hi")
         }.onAppear {
-            print("Get cocktails")
-//            self.viewModel.getCocktails()
+//            for _ in 0...1000 {
+//                CocktailData().fetchEpisodeSchedule()
+//            }
         }
         .foregroundColor(Color.white)
         .frame(width: 200, height: 100)
         .background(Color.black)
         .cornerRadius(30)
-    }
-}
-
-struct IngredientsView_Previews: PreviewProvider {
-    static var previews: some View {
-        IngredientsView()
     }
 }
