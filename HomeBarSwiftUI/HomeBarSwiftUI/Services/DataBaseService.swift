@@ -60,11 +60,12 @@ class DataBaseService {
     }
 
     func getCocktails(completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
-        let cocktailsReference = database.collection("Cocktails")
+        let cocktailsReference = database.collection("NewCocktails")
+            .limit(to: 10)
 //            .order(by: "name")
 //            .start(at: ["S"])
 //            .end(at: ["Y"])
-            .limit(to: 10)
+//            .limit(to: 10)
 //            .whereField("name", in: ["Mojito"])
 //            .order(by: "ingredients")
 //            .whereField("ingredients.Lime.Sugar", notIn: [""])
@@ -76,7 +77,6 @@ class DataBaseService {
         // с сервера будут грузиться меньше данных, (в этом примере грузятся только те коктейли, которые начинаются на "W", так же можно сделать порционную загрузку, разбив по 50, 100 и т.д.
         // есть еще .limit(to:) и .limit(to last:) который тупо ограничивает количество данных, то есть
         // .limit(to: 5) загрузит только 5 коктейлей
-        
         cocktailsReference.getDocuments { querySnapshot, error in
             guard let querySnapshot else {
                 if let error {
@@ -88,7 +88,9 @@ class DataBaseService {
             var cocktails = [CocktailDB]()
             for document in documents {
                 guard let cocktail = CocktailDB.init(document: document) else { return }
+                print(cocktail)
                 cocktails.append(cocktail)
+
             }
             completion(.success(cocktails))
         }

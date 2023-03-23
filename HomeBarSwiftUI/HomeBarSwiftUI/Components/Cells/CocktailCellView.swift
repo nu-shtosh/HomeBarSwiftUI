@@ -9,6 +9,7 @@ import SwiftUI
 import Shimmer
 
 struct CocktailCellView: View {
+
     var cocktail: CocktailDB
     @State var image = Data()
     
@@ -35,16 +36,6 @@ struct CocktailCellView: View {
 
                 VStack(alignment: .leading, spacing: 6) {
 
-
-//                    Text("Short Info")
-//                        .lineLimit(2)
-//                        .font(.system(size: 12))
-//                        .foregroundColor(Color("neonBlue"))
-//
-//                    Rectangle()
-//                        .frame(height: 1)
-//                        .foregroundColor(Color("neonBlue").opacity(0.3))
-
                     // MARK: - Cocktail Type
                     Text("\(cocktail.alcoholic)")
                         .lineLimit(2)
@@ -61,16 +52,6 @@ struct CocktailCellView: View {
                         .lineLimit(1)
                         .foregroundColor(Color("neonOrange"))
                         .frame(width: 80)
-
-//                    Rectangle()
-//                        .frame(height: 1)
-//                        .foregroundColor(Color("neonBlue").opacity(0.3))
-//                    StarsRatingView(rating: allCocktails.rating)
-//                        .font(.system(size: 10))
-                    //                    Text("Rating: \(lround(allCocktails.rating))")
-                    //                        .font(.system(size: 12))
-                    //                        .foregroundColor(Color("neonOrange"))
-                    
                 }
             }
             .frame(width: 170)

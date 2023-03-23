@@ -20,9 +20,10 @@ class CocktailsViewModel: ObservableObject {
     
     func getCocktail() {
         DataBaseService.shared.getCocktails { [unowned self] result in
+            print(result)
             switch result {
             case .success(let cocktails):
-            allCocktails = cocktails
+                allCocktails = cocktails
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -30,13 +31,13 @@ class CocktailsViewModel: ObservableObject {
     }
     
     func getImage(imageURL: String) {
-            NetworkManager.shared.fetchImage(from: imageURL) { [unowned self] result in
-                switch result {
-                case .success(let images):
-                    image = images
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        NetworkManager.shared.fetchImage(from: imageURL) { [unowned self] result in
+            switch result {
+            case .success(let images):
+                image = images
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
             
         }
     }

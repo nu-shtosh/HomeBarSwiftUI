@@ -67,7 +67,7 @@ struct ProfileView: View {
                                            endPoint: .bottom).opacity(0.15))
                 .padding()
                 VStack {
-                    // MARK: Last coctails
+                    // MARK: Last cocktails
                     HStack {
                         Text("Last viewed cocktails:")
                             .font(.callout)
