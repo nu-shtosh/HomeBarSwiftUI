@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestore
 
-struct IngredientDB {
+struct IngredientDB: Equatable {
     var name: String
 
     var representation: [String: Any] {

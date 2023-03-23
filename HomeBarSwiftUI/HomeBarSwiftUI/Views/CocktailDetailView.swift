@@ -52,30 +52,30 @@ struct CocktailDetailView: View {
                                 .bold()
                             Spacer()
                         }
-//                        VStack {
-//                            ForEach(cocktail.ingredients.keys.enumerated().sorted(by: <), id: \.element) { index, _ in
-//                                HStack() {
-//                                    Text(ingredientsNames[index]).foregroundColor(Color("neonOrange"))
-//                                    Spacer()
-//                                    Text(ingredientsMeasures[index]).foregroundColor(Color("neonBlue"))
-//                                }
-//                                if index < (cocktail.ingredients.count - 1) {
-//                                    Rectangle()
-//                                        .frame(height: 1)
-//                                        .foregroundColor(Color("neonBlue").opacity(0.3))
-//                                }
-//                            }
-//                        }
-//                        .padding()
-//                        .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
-//                            colors: [Color("neonBlue"), Color("neonOrange")],
-//                            startPoint: .top,
-//                            endPoint: .bottom
-//                        ).opacity(0.3), lineWidth: 2))
-//                        .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
-//                                                   startPoint: .top,
-//                                                   endPoint: .bottom).opacity(0.15))
-//                        .cornerRadius(16)
+                        VStack {
+                            ForEach(0 ..< cocktail.ingredientsNames.count) { index in
+                                HStack() {
+                                    Text(cocktail.ingredientsNames[index]).foregroundColor(Color("neonOrange"))
+                                    Spacer()
+                                    Text(cocktail.ingredientsMeasures[index]).foregroundColor(Color("neonBlue"))
+                                }
+                                if index < (cocktail.ingredientsNames.count - 1) {
+                                    Rectangle()
+                                        .frame(height: 1)
+                                        .foregroundColor(Color("neonBlue").opacity(0.3))
+                                }
+                            }
+                        }
+                        .padding()
+                        .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                            colors: [Color("neonBlue"), Color("neonOrange")],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        ).opacity(0.3), lineWidth: 2))
+                        .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                                   startPoint: .top,
+                                                   endPoint: .bottom).opacity(0.15))
+                        .cornerRadius(16)
                     }
 
                     // MARK: - Cocktail Recipe/Instruction
