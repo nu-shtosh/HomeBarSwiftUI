@@ -12,18 +12,20 @@ struct UserDB: Identifiable {
     var name: String
     var surname: String
     var age: String
+    var email: String
     
     var fullname: String {
         "\(name) \(surname)"
     }
 
     var representation: [String: Any] {
-        var userRepresentation = [String: Any]()
-        userRepresentation["id"] = self.id
-        userRepresentation["name"] = self.name
-        userRepresentation["surname"] = self.surname
-        userRepresentation["age"] = self.age
-        return userRepresentation
+        var representation = [String: Any]()
+        representation["id"] = self.id
+        representation["name"] = self.name
+        representation["surname"] = self.surname
+        representation["age"] = self.age
+        representation["email"] = self.email
+        return representation
     }
 }
 

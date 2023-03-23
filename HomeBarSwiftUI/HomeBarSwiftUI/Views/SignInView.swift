@@ -59,7 +59,7 @@ struct SignInView: View {
                         }
                     }
                     .padding(.horizontal, 10)
-                    .padding(.bottom, 30)
+                    .padding(.bottom, 20)
                     VStack(spacing: 4) {
                         OrangeButtonView(action: isAuth ? SignInDidTapped : SignUpDidTapped,
                                          title: isAuth ? "Sign In" : "Sign Up")
@@ -157,11 +157,5 @@ struct SignInView: View {
 
     private func showSingUp() {
         isAuth.toggle()
-    }
-}
-
-struct SignInView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignInView()
     }
 }

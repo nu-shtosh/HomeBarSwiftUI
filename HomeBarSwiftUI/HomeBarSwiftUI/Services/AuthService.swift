@@ -30,9 +30,10 @@ class AuthServices {
         auth.createUser(withEmail: email, password: password) { result, error in
             if let result {
                 let userModel = UserDB(id: result.user.uid,
-                                          name: name,
-                                          surname: "",
-                                          age: age)
+                                       name: name,
+                                       surname: "",
+                                       age: age,
+                                       email: email)
                 DataBaseService.shared.setProfile(user: userModel, image: nil) { resultDataBase in
                     switch resultDataBase {
                     case .success(_):

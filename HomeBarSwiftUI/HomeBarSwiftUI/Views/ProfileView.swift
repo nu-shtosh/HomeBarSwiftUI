@@ -21,7 +21,7 @@ struct ProfileView: View {
                     UserImageView(image: $profileViewModel.image)
                         .padding()
                     UserInfoView(age: $profileViewModel.profile.age)
-                      
+                    
                     Spacer()
                 }
                 
@@ -55,7 +55,7 @@ struct ProfileView: View {
                         .padding()
                 }
                 
-
+                
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
                     colors: [Color("neonBlue"), Color("neonOrange")],
@@ -81,13 +81,9 @@ struct ProfileView: View {
                             ))
                         Spacer()
                     }
-  
+                    
                     LastCocktailView(cocktailViewModel: cocktailViewModel)
-                    
-                    Spacer()
-                    
                 }
-                LastCocktailView(cocktailViewModel: cocktailViewModel)
             }
             .padding(EdgeInsets(top: 6, leading: 6, bottom: 7, trailing: 6))
         }
@@ -105,30 +101,6 @@ struct ProfileView: View {
                     .foregroundColor(Color("neonOrange"))
             }
         }
-    }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(
-            id: "1",
-            name: "",
-            surname: "",
-            age: ""
-        )), cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(
-            name: "",
-            tags: "",
-            alcoholic: "",
-            instructions: "",
-            image: "",
-            ingredients: ["" : ""],
-            rating: 0,
-            numberOfRatings: 0,
-            sumOfRating: 0,
-            userRating: 0,
-            likes: 0,
-            comments: ["" : ""]
-        )], image: Data()))
     }
 }
 
@@ -153,7 +125,7 @@ struct UserButtonStackView: View {
             HStack {
                 UserButtonView(text: "My cocktails", action: {})
                 Spacer()
-                  
+                
                 UserButtonView(text: "My favorites", action: {})
             }
             .padding(.bottom)
@@ -171,7 +143,7 @@ struct LastCocktailView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(cocktailViewModel.cocktail, id: \.name) { item in
+                ForEach(cocktailViewModel.allCocktails, id: \.name) { item in
                     NavigationLink {
                         CocktailDetailView(cocktail: item)
                             .navigationTitle(item.name)

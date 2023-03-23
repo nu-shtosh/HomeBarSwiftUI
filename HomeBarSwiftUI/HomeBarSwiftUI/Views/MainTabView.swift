@@ -14,6 +14,19 @@ struct MainTabView: View {
     var body: some View {
         TabView {
             Group {
+
+                // MARK: - Fetch Get
+                NavigationStack {
+                    IngredientsView()
+                }
+                .tabItem {
+                    VStack {
+                        Text("Fetch")
+                        Image(systemName: "flag.checkered.circle.fill")
+                    }
+                }
+
+                // MARK: - Ingredients
                 NavigationStack {
                     AllIngredientsView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "")]))
                         .navigationTitle(Text("Cocktails"))
@@ -25,9 +38,23 @@ struct MainTabView: View {
                     }
                 }
 
+                // MARK: - Cocktails
                 NavigationStack {
-                    AllCocktailsView(cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(name: "", tags: "", alcoholic: "", instructions: "", image: "", ingredients: ["" : ""], rating: 0, numberOfRatings: 0, sumOfRating: 0, userRating: 0, likes: 0, comments: ["" : ""])], image: Data()))
-                        .navigationTitle(Text("Cocktails"))
+                    AllCocktailsView(cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(
+                        name: "",
+                        tags: "",
+                        alcoholic: "",
+                        instructions: "",
+                        image: "",
+                        ingredientsNames: [""],
+                        ingredientsMeasures: [""],
+                        rating: 0,
+                        numberOfRatings: 0,
+                        sumOfRating: 0,
+                        userRating: 0,
+                        likes: 0,
+                        comments: ["" : ""]
+                    )], image: Data()))
                 }
                 .tabItem {
                     VStack {
@@ -36,6 +63,7 @@ struct MainTabView: View {
                     }
                 }
 
+                // MARK: - AlcoTest
                 NavigationView() {
                     AlcoholTestView(alcoTestViewModel: AlcoTestViewModel())
                     .navigationTitle(Text("Alcotest"))
@@ -46,9 +74,30 @@ struct MainTabView: View {
                         Image(systemName: "filemenu.and.selection")
                     }
                 }
-                
+
+                // MARK: - Profile
                 NavigationView() {
-                    ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(id: "", name: "", surname: "", age: "")), cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(name: "", tags: "", alcoholic: "", instructions: "", image: "", ingredients: ["" : ""], rating: 0, numberOfRatings: 0, sumOfRating: 0, userRating: 0, likes: 0, comments: ["" : ""])], image: Data()))
+                    ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(
+                        id: "1",
+                        name: "",
+                        surname: "",
+                        age: "",
+                        email: ""
+                    )), cocktailViewModel: CocktailsViewModel(cocktail: [CocktailDB(
+                        name: "",
+                        tags: "",
+                        alcoholic: "",
+                        instructions: "",
+                        image: "",
+                        ingredientsNames: [""],
+                        ingredientsMeasures: [""],
+                        rating: 0,
+                        numberOfRatings: 0,
+                        sumOfRating: 0,
+                        userRating: 0,
+                        likes: 0,
+                        comments: ["" : ""]
+                    )], image: Data()))
                     // надо функцию написать, чтобы она возвращала экземпляр модели и не городить эту херню
                     //                        .navigationTitle(Text("Profile"))
                 }
@@ -61,7 +110,6 @@ struct MainTabView: View {
             }
             .tint(Color("neonOrange"))
             .accentColor(Color("neonOrange"))
-            .navigationBarTitleDisplayMode(.large)
             .onAppear() {
                 NavTheme.navigationBarColors(background: .black,
                                              titleColor: UIColor(Color("neonOrange")),

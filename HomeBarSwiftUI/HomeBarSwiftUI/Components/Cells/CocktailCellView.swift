@@ -56,22 +56,18 @@ struct CocktailCellView: View {
                         .foregroundColor(Color("neonBlue").opacity(0.3))
 
                     // MARK: - Cocktail Ingredients Count
-                    Text("Ingredients: \(cocktail.ingredients.count)")
+                    Text("Ingredients: \(cocktail.ingredientsNames.count)")
                         .font(.system(size: 12))
                         .lineLimit(1)
                         .foregroundColor(Color("neonOrange"))
                         .frame(width: 80)
 
-
-
-
-
 //                    Rectangle()
 //                        .frame(height: 1)
 //                        .foregroundColor(Color("neonBlue").opacity(0.3))
-//                    StarsRatingView(rating: cocktail.rating)
+//                    StarsRatingView(rating: allCocktails.rating)
 //                        .font(.system(size: 10))
-                    //                    Text("Rating: \(lround(cocktail.rating))")
+                    //                    Text("Rating: \(lround(allCocktails.rating))")
                     //                        .font(.system(size: 12))
                     //                        .foregroundColor(Color("neonOrange"))
                     
@@ -95,9 +91,7 @@ struct CocktailCellView: View {
         .redacted(reason: image.isEmpty ? .placeholder : [])
         .shimmering(active: image.isEmpty)
 
-        .frame(width: screen.width * 0.6, height: screen.height * 0.2, alignment: .center)
-
-        
+        .frame(width: screen.width * 0.5, height: screen.height * 0.18, alignment: .center)        
         .onAppear {
             getImage(imageURL: cocktail.image)
         }
@@ -112,38 +106,6 @@ struct CocktailCellView: View {
             case .failure(let error):
                 print(error.localizedDescription)
             }
-        }
-    }
-}
-
-
-//struct CocktailImage: View {
-//    let imageData: Data
-//    let imageSize: CGSize
-//    let cornerRadius: CGFloat
-//    let shadowIsOn: Bool
-//
-//    var body: some View {
-//        getImage(from: imageData)
-//            .resizable()
-//            .frame(width: imageSize.width, height: imageSize.height)
-//            .cornerRadius(cornerRadius)
-//            .shadow(radius: shadowIsOn ? 10 : 0)
-//    }
-//
-//    private func getImage(from data: Data) -> Image {
-//        guard let image = UIImage(data: data) else {
-//            return Image(systemName: "xmark.shield")
-//        }
-//        return Image(uiImage: image)
-//    }
-//}
-
-struct CocktailCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        ZStack {
-            WallpaperView()
-            CocktailCellView(cocktail: CocktailDB(name: "White Russian", tags: "Cocktail", alcoholic: "Alcoholic", instructions: "shake in glass", image: "whiteRussian", ingredients: ["vodka":"50", "crema": "50", "kaluha": "50"], rating: 5.0, numberOfRatings: 5, sumOfRating: 5.0, userRating: 5.0, likes: 13, comments: ["user": "ilia", "title": "good drink", "text": "my favorite"]))
         }
     }
 }

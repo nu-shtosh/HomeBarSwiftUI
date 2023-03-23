@@ -10,11 +10,11 @@ import UIKit
 
 class CocktailsViewModel: ObservableObject {
 
-    @Published var cocktail: [CocktailDB]
+    @Published var allCocktails: [CocktailDB]
     @Published var image: Data
     
     init(cocktail: [CocktailDB], image: Data) {
-        self.cocktail = cocktail
+        self.allCocktails = cocktail
         self.image = image
     }
     
@@ -22,7 +22,7 @@ class CocktailsViewModel: ObservableObject {
         DataBaseService.shared.getCocktails { [unowned self] result in
             switch result {
             case .success(let cocktails):
-            cocktail = cocktails
+            allCocktails = cocktails
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -40,6 +40,4 @@ class CocktailsViewModel: ObservableObject {
             
         }
     }
-    
-    
 }
