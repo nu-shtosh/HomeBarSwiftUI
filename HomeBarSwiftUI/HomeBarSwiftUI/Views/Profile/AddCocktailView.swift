@@ -197,6 +197,7 @@ struct AddCocktailView: View {
         .sheet(isPresented: $isPresent) {
             CustomIngredientsView(ingredientsViewModel: ingredientsViewModel, nameIngredient: $nameIngredient, action: appendTextfield)
         }
+       
     }
     
     private func appendTextfield() {

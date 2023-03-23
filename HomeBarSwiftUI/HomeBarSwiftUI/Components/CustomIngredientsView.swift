@@ -56,6 +56,9 @@ struct CustomIngredientsView: View {
         }
             .presentationDetents([.medium, .large])
             .background(Color.clear)
+            .onAppear{
+                ingredientsViewModel.getIngredients()
+            }
     }
 }
 
