@@ -55,7 +55,6 @@ struct ProfileView: View {
                         .padding()
                 }
                 
-                
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
                     colors: [Color("neonBlue"), Color("neonOrange")],
