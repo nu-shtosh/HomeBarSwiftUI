@@ -9,137 +9,151 @@ import SwiftUI
 import FirebaseAuth
 import FirebaseCore
 
-
-
 struct SignInView: View {
 
+    // MARK: - State Properties
     @State private var isAuth = true
-
     @State private var email = ""
     @State private var password = ""
     @State private var name = ""
     @State private var checkPassword = ""
     @State private var age = ""
-
     @State private var isTabViewShow = false
     @State private var isShowAlert = false
-
     @State private var alertMessage = ""
 
+    // MARK: - FocusState Properties
     @FocusState private var currentTag: Tags?
 
     var body: some View {
         ZStack() {
+            // MARK: - Wallpaper View
             WallpaperView().blur(radius: isAuth ? 0 : 2)
-            VStack {
-                LogoView().blur(radius: isAuth ? 0 : 4)
-                Spacer()
-                VStack(spacing: 20) {
-                    Text(isAuth ? "Authorization" : "Registration")
-                        .font(.system(size: 22))
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, isAuth ? 16 : 32)
-                        .background(Color(.white).opacity(0.2))
-                        .cornerRadius(isAuth ? 16 : 32)
-                        .foregroundColor(Color(.white))
-                        .padding(.bottom, 30)
-                    VStack(spacing: 10) {
-                        TextFieldWithImageView(title: "Email",
-                                               imageSystemName: "envelope.circle",
-                                               text: $email)
-                        .focused($currentTag, equals: .one)
-                        .submitLabel(.next)
-                        .onSubmit {
-                            nextField()
-                        }
-                        
 
-                        SecureFieldWithImageView(title: "Password",
-                                                 imageSystemName: "key",
-                                                 text: $password)
-                        .focused($currentTag, equals: .two)
-                        .submitLabel(isAuth ? .done : .next)
-                        .onSubmit {
-                            nextField()
-                        }
+            ScrollView {
+                VStack {
+                    // MARK: - Logo View
+                    LogoView().blur(radius: isAuth ? 0 : 4)
 
-                        if !isAuth {
-                            SecureFieldWithImageView(title: "Repeat Password",
-                                                     imageSystemName: "key.fill",
-                                                     text: $checkPassword)
-                            .focused($currentTag, equals: .three)
+                    Spacer()
+
+                    // MARK: - TextFields
+                    VStack(spacing: 15) {
+
+                        // MARK: - Authorization / Registration TextField
+                        Text(isAuth ? "Authorization" : "Registration")
+                            .font(.system(size: 22))
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, isAuth ? 16 : 32)
+                            .background(Color(.white).opacity(0.2))
+                            .cornerRadius(isAuth ? 16 : 32)
+                            .foregroundColor(Color(.white))
+                            .padding(.bottom, 10)
+
+                        VStack(spacing: 10) {
+
+                            // MARK: - Email TextField
+                            TextFieldWithImageView(title: "Email",
+                                                   imageSystemName: "envelope.circle",
+                                                   text: $email)
+                            .focused($currentTag, equals: .one)
                             .submitLabel(.next)
                             .onSubmit {
                                 nextField()
                             }
 
-                            TextFieldWithImageView(title: "Name",
-                                                   imageSystemName: "person.circle",
-                                                   text: $name)
-                            .focused($currentTag, equals: .four)
-                            .submitLabel(.next)
+                            // MARK: - Password SecureField
+                            SecureFieldWithImageView(title: "Password",
+                                                     imageSystemName: "key",
+                                                     text: $password)
+                            .focused($currentTag, equals: .two)
+                            .submitLabel(isAuth ? .done : .next)
                             .onSubmit {
                                 nextField()
                             }
-                            TextFieldWithImageView(title: "Your Age",
-                                                   imageSystemName: "21.circle",
-                                                   text: $age)
-                            .focused($currentTag, equals: .five)
-                            .submitLabel(.done)
-                            .onSubmit {
-                                SignInDidTapped()
-                            }
-                        }
 
-                    }
-                    .padding(.horizontal, 10)
-                    .padding(.bottom, 20)
-                    VStack(spacing: 4) {
-                        OrangeButtonView(action: isAuth ? SignInDidTapped : SignUpDidTapped,
-                                         title: isAuth ? "Sign In" : "Sign Up")
-                        HStack(spacing: 10) {
-                            Text(isAuth ? "Don't Have An Account?" : "Already Have An Account")
-                                .foregroundColor(Color(.white).opacity(0.8))
-                            BlueButtonView(action: showSingUp,
-                                           title: isAuth ? "Sign Up" : "Back")
-                        }
-                    }
+                            if !isAuth {
+                                // MARK: - Repeat Password SecureField
+                                SecureFieldWithImageView(title: "Repeat Password",
+                                                         imageSystemName: "key.fill",
+                                                         text: $checkPassword)
+                                .focused($currentTag, equals: .three)
+                                .submitLabel(.next)
+                                .onSubmit {
+                                    nextField()
+                                }
+
+                                // MARK: - Name TextField
+                                TextFieldWithImageView(title: "Name",
+                                                       imageSystemName: "person.circle",
+                                                       text: $name)
+                                .focused($currentTag, equals: .four)
+                                .submitLabel(.next)
+                                .onSubmit {
+                                    nextField()
+                                }
+
+                                // MARK: - Age TextField
+                                TextFieldWithImageView(title: "Your Age",
+                                                       imageSystemName: "21.circle",
+                                                       text: $age)
+                                .focused($currentTag, equals: .five)
+                                .submitLabel(.done)
+                                .onSubmit {
+                                    SignInDidTapped()
+                                }
+                            } // if !isAuth
+                        } // VStack
+                        .padding(EdgeInsets(top: 10, leading: 10, bottom: 20, trailing: 10))
+
+                        // MARK: - Buttons
+                        VStack(spacing: 4) {
+
+                            // MARK: - Sign In / Sign Up Button
+                            OrangeButtonView(action: isAuth ? SignInDidTapped : SignUpDidTapped,
+                                             title: isAuth ? "Sign In" : "Sign Up")
+
+                            // MARK: - Sign In / Sign Up Change View Button
+                            HStack(spacing: 10) {
+                                Text(isAuth ? "Don't Have An Account?" : "Already Have An Account")
+                                    .foregroundColor(Color(.white).opacity(0.8))
+                                BlueButtonView(action: showSingUp,
+                                               title: isAuth ? "Sign Up" : "Sign In")
+                            } // HStack
+                        } // VStack
+                    } // VStack
+                    .padding(isAuth ? 16 : 8)
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
+                    .cornerRadius(isAuth ? 16 : 32)
+                    .clipShape(RoundedRectangle(cornerRadius: isAuth ? 16 : 32))
+                    .overlay(RoundedRectangle(cornerRadius: isAuth ? 16 : 32).stroke(LinearGradient(
+                        colors: [Color("neonOrange"), Color("neonBlue")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.5), lineWidth: 2))
+                } // VStack
+                .padding(8)
+                .animation(Animation.easeInOut(duration: 0.5),
+                           value: isAuth)
+                .alert(alertMessage, isPresented: $isShowAlert) {
+                    Button { } label: { Text("OK") }
                 }
-                .padding(isAuth ? 16 : 8)
-                .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
-                                           startPoint: .top,
-                                           endPoint: .bottom).opacity(0.15))
-                .cornerRadius(isAuth ? 16 : 32)
-                .clipShape(RoundedRectangle(cornerRadius: isAuth ? 16 : 32))
-                .overlay(RoundedRectangle(cornerRadius: isAuth ? 16 : 32).stroke(LinearGradient(
-                    colors: [Color("neonOrange"), Color("neonBlue")],
-                    startPoint: .top,
-                    endPoint: .bottom
-                ).opacity(0.5), lineWidth: 2))
-                Spacer()
-
+            } // ScrollView
+            .fullScreenCover(isPresented: $isTabViewShow) {
+                if let user = AuthServices.shared.currentUser {
+                    let mainTabBarViewModel = MainTabBarViewModel(user: user) // если мы авторизованы то юзер там уже есть
+                    MainTabView(viewModel: mainTabBarViewModel)
+                }
             }
-            
-            .padding(8)
-            .animation(Animation.easeInOut(duration: 0.4),
-                       value: isAuth)
-            .alert(alertMessage, isPresented: $isShowAlert) {
-                Button { } label: { Text("OK") }
+            .onTapGesture {
+                self.endTextEditing()
             }
-
-        }
-        .fullScreenCover(isPresented: $isTabViewShow) {
-            if let user = AuthServices.shared.currentUser {
-                let mainTabBarViewModel = MainTabBarViewModel(user: user) // если мы авторизованы то юзер там уже есть
-                MainTabView(viewModel: mainTabBarViewModel)
-            }
-        }
-        .onTapGesture {
-            self.endTextEditing()
-        }
-
+        } // ZStack
     }
 
+    // MARK: - Sign In Did Tapped Button
     private func SignInDidTapped() {
         print("User Authorization with Firebase")
         print("\(email) \(password)")
@@ -150,13 +164,14 @@ struct SignInView: View {
                 isTabViewShow.toggle()
             case .failure(let error):
                 isTabViewShow.toggle()
-                alertMessage = "Sign Up Error - \(error.localizedDescription)"
+                alertMessage = "Sign In Error - \(error.localizedDescription)"
                 self.isShowAlert.toggle()
             }
         }
 
     }
 
+    // MARK: - Sign Up Did Tapped Button
     private func SignUpDidTapped() {
         print("User Registration  with Firebase")
         print("\(email) \(password)")
@@ -172,7 +187,6 @@ struct SignInView: View {
             self.isShowAlert.toggle()
             return
         }
-
 
         AuthServices.shared.signUp(email: self.email,
                                    password: self.password,
@@ -195,11 +209,13 @@ struct SignInView: View {
         }
     }
 
+    // MARK: - Toggling Auth
     private func showSingUp() {
         isAuth.toggle()
     }
 }
 
+// MARK: - Extension For Switching TextField (Next Button On Keyboard)
 extension SignInView {
     enum Tags {
         case one, two, three, four, five
