@@ -97,6 +97,7 @@ struct SignInView: View {
                                 TextFieldWithImageView(title: "Your Age",
                                                        imageSystemName: "21.circle",
                                                        text: $age)
+                                .keyboardType(.numbersAndPunctuation)
                                 .focused($currentTag, equals: .five)
                                 .submitLabel(.done)
                                 .onSubmit {
@@ -143,7 +144,7 @@ struct SignInView: View {
             } // ScrollView
             .fullScreenCover(isPresented: $isTabViewShow) {
                 if let user = AuthServices.shared.currentUser {
-                    let mainTabBarViewModel = MainTabBarViewModel(user: user) // если мы авторизованы то юзер там уже есть
+                    let mainTabBarViewModel = MainTabBarViewModel(user: user)
                     MainTabView(viewModel: mainTabBarViewModel)
                 }
             }
@@ -223,18 +224,12 @@ extension SignInView {
 
     private func nextField() {
         switch currentTag {
-        case .one:
-            currentTag = .two
-        case .two:
-            currentTag = .three
-        case .three:
-            currentTag = .four
-        case .four:
-            currentTag = .five
-        case .five:
-            currentTag = .one
-        case .none:
-            currentTag = nil
+        case .one: currentTag = .two
+        case .two: currentTag = .three
+        case .three: currentTag = .four
+        case .four: currentTag = .five
+        case .five: currentTag = .one
+        case .none: currentTag = nil
         }
     }
 }
