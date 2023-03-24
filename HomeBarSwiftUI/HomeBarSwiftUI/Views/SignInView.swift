@@ -145,7 +145,7 @@ struct SignInView: View {
             .fullScreenCover(isPresented: $isTabViewShow) {
                 if let user = AuthServices.shared.currentUser {
                     let mainTabBarViewModel = MainTabBarViewModel(user: user)
-                    MainTabView(viewModel: mainTabBarViewModel)
+                    MainTabView(tabBarViewModel: mainTabBarViewModel)
                 }
             }
             .onTapGesture {

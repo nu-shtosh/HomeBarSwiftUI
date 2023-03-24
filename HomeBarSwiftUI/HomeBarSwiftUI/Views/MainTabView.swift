@@ -9,26 +9,37 @@ import SwiftUI
 
 struct MainTabView: View {
 
-    var viewModel: MainTabBarViewModel
-    
+    // MARK: - Properties
+    var tabBarViewModel: MainTabBarViewModel
+    var ingredientsViewModel =  IngredientsViewModel(allIngredients: [IngredientDB(name: "")])
+    var cocktailsViewModel =  CocktailsViewModel(allCocktails: [CocktailDB(name: "",
+                                                                           tags: "",
+                                                                           alcoholic: "",
+                                                                           instructions: "",
+                                                                           image: "",
+                                                                           ingredientsNames: [""],
+                                                                           ingredientsMeasures: [""],
+                                                                           rating: 0,
+                                                                           numberOfRatings: 0,
+                                                                           sumOfRating: 0,
+                                                                           userRating: 0,
+                                                                           likes: 0,
+                                                                           comments: ["" : ""])],
+                                                 image: Data())
+    var profileViewModel = ProfileViewModel(profile: UserDB(id: "1",
+                                                            name: "",
+                                                            surname: "",
+                                                            age: "",
+                                                            email: ""))
+    var alcoTestViewModel = AlcoTestViewModel()
+
+    // MARK: - Body
     var body: some View {
         TabView {
             Group {
-
-                // MARK: - Fetch Get
-                NavigationStack {
-                    IngredientsView()
-                }
-                .tabItem {
-                    VStack {
-                        Text("Fetch")
-                        Image(systemName: "flag.checkered.circle.fill")
-                    }
-                }
-
                 // MARK: - Ingredients
                 NavigationStack {
-                    AllIngredientsView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "")]))
+                    AllIngredientsView(ingredientsViewModel: ingredientsViewModel)
                         .navigationTitle(Text("Ingredients"))
                 }
                 .tabItem {
@@ -36,26 +47,12 @@ struct MainTabView: View {
                         Text("Ingredients")
                         Image(systemName: "heart")
                     }
-                }
+                } // NavStack
 
                 // MARK: - Cocktails
                 NavigationStack {
-                    AllCocktailsView(cocktailViewModel: CocktailsViewModel(allCocktails: [CocktailDB(
-                        name: "",
-                        tags: "",
-                        alcoholic: "",
-                        instructions: "",
-                        image: "",
-                        ingredientsNames: [""],
-                        ingredientsMeasures: [""],
-                        rating: 0,
-                        numberOfRatings: 0,
-                        sumOfRating: 0,
-                        userRating: 0,
-                        likes: 0,
-                        comments: ["" : ""]
-                    )], image: Data()))
-                    .navigationTitle(Text("Cocktails"))
+                    AllCocktailsView(cocktailViewModel: cocktailsViewModel)
+                        .navigationTitle(Text("Cocktails"))
 
                 }
                 .tabItem {
@@ -63,53 +60,47 @@ struct MainTabView: View {
                         Text("Cocktails")
                         Image(systemName: "heart")
                     }
-                }
+                } // NavStack
 
                 // MARK: - AlcoTest
                 NavigationView() {
-                    AlcoholTestView(alcoTestViewModel: AlcoTestViewModel())
-                    .navigationTitle(Text("Alcotest"))
+                    AlcoholTestView(alcoTestViewModel: alcoTestViewModel)
+                        .navigationTitle(Text("Alcotest"))
                 }
                 .tabItem {
                     VStack {
                         Text("Alcotest")
                         Image(systemName: "filemenu.and.selection")
                     }
-                }
+                } // NavStack
 
                 // MARK: - Profile
                 NavigationView() {
-                    ProfileView(profileViewModel: ProfileViewModel(profile: UserDB(
-                        id: "1",
-                        name: "",
-                        surname: "",
-                        age: "",
-                        email: ""
-                    )), cocktailViewModel: CocktailsViewModel(allCocktails: [CocktailDB(
-                        name: "",
-                        tags: "",
-                        alcoholic: "",
-                        instructions: "",
-                        image: "",
-                        ingredientsNames: [""],
-                        ingredientsMeasures: [""],
-                        rating: 0,
-                        numberOfRatings: 0,
-                        sumOfRating: 0,
-                        userRating: 0,
-                        likes: 0,
-                        comments: ["" : ""]
-                    )], image: Data()))
-                    // надо функцию написать, чтобы она возвращала экземпляр модели и не городить эту херню
-                    //                        .navigationTitle(Text("Profile"))
+                    ProfileView(profileViewModel: profileViewModel,
+                                cocktailViewModel: cocktailsViewModel)
                 }
                 .tabItem {
                     VStack {
                         Text("Profile")
                         Image(systemName: "person")
                     }
-                }
-            }
+                } // NavStack
+
+
+                /*
+                 // MARK: - Fetch Get
+                 NavigationStack {
+                 IngredientsView()
+                 }
+                 .tabItem {
+                 VStack {
+                 Text("Fetch")
+                 Image(systemName: "flag.checkered.circle.fill")
+                 }
+                 }
+                 */
+
+            } // Group
             .tint(Color("neonOrange"))
             .accentColor(Color("neonOrange"))
             .onAppear() {
@@ -120,28 +111,30 @@ struct MainTabView: View {
             .toolbarBackground(.visible, for: .tabBar)
             .toolbarBackground(Color.black, for: .tabBar)
 
-        }
+        } // TabView
         .accentColor(Color("neonOrange"))
-
     }
 }
 
-class NavTheme {
+
+
+// MARK: - Navigation Bar Setup
+final class NavTheme {
     static func navigationBarColors(background : UIColor?,
                                     titleColor : UIColor? = nil,
                                     tintColor : UIColor? = nil ){
-        
+
         let navigationAppearance = UINavigationBarAppearance()
         navigationAppearance.configureWithOpaqueBackground()
         navigationAppearance.backgroundColor = background ?? .clear
-        
+
         navigationAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .black]
         navigationAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .black]
-        
+
         UINavigationBar.appearance().standardAppearance = navigationAppearance
         UINavigationBar.appearance().compactAppearance = navigationAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationAppearance
-        
+
         UINavigationBar.appearance().tintColor = tintColor ?? titleColor ?? .black
     }
 }
