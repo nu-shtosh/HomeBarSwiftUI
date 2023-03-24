@@ -9,6 +9,8 @@ import SwiftUI
 import FirebaseAuth
 import FirebaseCore
 
+
+
 struct SignInView: View {
 
     @State private var isAuth = true
@@ -24,10 +26,12 @@ struct SignInView: View {
 
     @State private var alertMessage = ""
 
+    @FocusState private var currentTag: Tags?
+
     var body: some View {
         ZStack() {
             WallpaperView().blur(radius: isAuth ? 0 : 2)
-            VStack() {
+            VStack {
                 LogoView().blur(radius: isAuth ? 0 : 4)
                 Spacer()
                 VStack(spacing: 20) {
@@ -43,20 +47,50 @@ struct SignInView: View {
                         TextFieldWithImageView(title: "Email",
                                                imageSystemName: "envelope.circle",
                                                text: $email)
+                        .focused($currentTag, equals: .one)
+                        .submitLabel(.next)
+                        .onSubmit {
+                            nextField()
+                        }
+                        
+
                         SecureFieldWithImageView(title: "Password",
                                                  imageSystemName: "key",
                                                  text: $password)
+                        .focused($currentTag, equals: .two)
+                        .submitLabel(isAuth ? .done : .next)
+                        .onSubmit {
+                            nextField()
+                        }
+
                         if !isAuth {
                             SecureFieldWithImageView(title: "Repeat Password",
                                                      imageSystemName: "key.fill",
                                                      text: $checkPassword)
+                            .focused($currentTag, equals: .three)
+                            .submitLabel(.next)
+                            .onSubmit {
+                                nextField()
+                            }
+
                             TextFieldWithImageView(title: "Name",
                                                    imageSystemName: "person.circle",
                                                    text: $name)
+                            .focused($currentTag, equals: .four)
+                            .submitLabel(.next)
+                            .onSubmit {
+                                nextField()
+                            }
                             TextFieldWithImageView(title: "Your Age",
                                                    imageSystemName: "21.circle",
                                                    text: $age)
+                            .focused($currentTag, equals: .five)
+                            .submitLabel(.done)
+                            .onSubmit {
+                                SignInDidTapped()
+                            }
                         }
+
                     }
                     .padding(.horizontal, 10)
                     .padding(.bottom, 20)
@@ -71,7 +105,6 @@ struct SignInView: View {
                         }
                     }
                 }
-                
                 .padding(isAuth ? 16 : 8)
                 .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
                                            startPoint: .top,
@@ -84,13 +117,16 @@ struct SignInView: View {
                     endPoint: .bottom
                 ).opacity(0.5), lineWidth: 2))
                 Spacer()
+
             }
+            
             .padding(8)
             .animation(Animation.easeInOut(duration: 0.4),
                        value: isAuth)
             .alert(alertMessage, isPresented: $isShowAlert) {
                 Button { } label: { Text("OK") }
             }
+
         }
         .fullScreenCover(isPresented: $isTabViewShow) {
             if let user = AuthServices.shared.currentUser {
@@ -98,6 +134,10 @@ struct SignInView: View {
                 MainTabView(viewModel: mainTabBarViewModel)
             }
         }
+        .onTapGesture {
+            self.endTextEditing()
+        }
+
     }
 
     private func SignInDidTapped() {
@@ -157,5 +197,28 @@ struct SignInView: View {
 
     private func showSingUp() {
         isAuth.toggle()
+    }
+}
+
+extension SignInView {
+    enum Tags {
+        case one, two, three, four, five
+    }
+
+    private func nextField() {
+        switch currentTag {
+        case .one:
+            currentTag = .two
+        case .two:
+            currentTag = .three
+        case .three:
+            currentTag = .four
+        case .four:
+            currentTag = .five
+        case .five:
+            currentTag = .one
+        case .none:
+            currentTag = nil
+        }
     }
 }

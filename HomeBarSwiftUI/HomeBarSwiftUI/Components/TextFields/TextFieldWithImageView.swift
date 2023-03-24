@@ -13,8 +13,8 @@ struct TextFieldWithImageView: View {
     @Binding var text: String
 
     var body: some View {
-        TextField(title, text: $text)
-            .textFieldStyle(GradientTextFieldBackgroundWithImage(systemImageString: imageSystemName))
+        TextField("", text: $text, prompt: Text(title).foregroundColor(.secondary))
+            .textFieldStyle(GradientTextFieldBackgroundWithImage(systemImageString: imageSystemName, text: $text))
     }
 }
 

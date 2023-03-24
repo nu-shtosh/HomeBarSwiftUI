@@ -30,6 +30,7 @@
 		1FFEC7A129BF9FCF003B04EA /* DrinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEC7A029BF9FCF003B04EA /* DrinksView.swift */; };
 		1FFEC7A329BFA024003B04EA /* DrinkDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEC7A229BFA024003B04EA /* DrinkDB.swift */; };
 		1FFEC7A529BFA05C003B04EA /* DrinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEC7A429BFA05C003B04EA /* DrinkViewModel.swift */; };
+		B813396B29CD961F0014F796 /* Extentsion + View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B813396A29CD961F0014F796 /* Extentsion + View.swift */; };
 		B8255D4D29CB131C00F38FB0 /* IngredientDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8255D4C29CB131C00F38FB0 /* IngredientDB.swift */; };
 		B8255D5529CB746E00F38FB0 /* IngredientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8255D5429CB746E00F38FB0 /* IngredientsViewModel.swift */; };
 		B8255D5729CB749B00F38FB0 /* AllIngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8255D5629CB749B00F38FB0 /* AllIngredientsView.swift */; };
@@ -107,6 +108,7 @@
 		1FFEC7A029BF9FCF003B04EA /* DrinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksView.swift; sourceTree = "<group>"; };
 		1FFEC7A229BFA024003B04EA /* DrinkDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDB.swift; sourceTree = "<group>"; };
 		1FFEC7A429BFA05C003B04EA /* DrinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkViewModel.swift; sourceTree = "<group>"; };
+		B813396A29CD961F0014F796 /* Extentsion + View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extentsion + View.swift"; sourceTree = "<group>"; };
 		B8255D4C29CB131C00F38FB0 /* IngredientDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDB.swift; sourceTree = "<group>"; };
 		B8255D5429CB746E00F38FB0 /* IngredientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewModel.swift; sourceTree = "<group>"; };
 		B8255D5629CB749B00F38FB0 /* AllIngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllIngredientsView.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				B8628E7E29C71E8900A8C21C /* StarsRatingView.swift */,
 				1FEE9F5A29CC388200858B1B /* CustomIngredientsView.swift */,
 				1F87D80329CC57A40051D283 /* SearchView.swift */,
+				B813396A29CD961F0014F796 /* Extentsion + View.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				1FE8674929C072F1004500DC /* ResultAlcoTestView.swift in Sources */,
 				1F1B1389294E0CD000C1C3BB /* ImagePicker.swift in Sources */,
 				B83D9980294A0E6F006AF62D /* CocktailCellView.swift in Sources */,
+				B813396B29CD961F0014F796 /* Extentsion + View.swift in Sources */,
 				B83D994129472734006AF62D /* MainTabBarViewModel.swift in Sources */,
 				B8255D5729CB749B00F38FB0 /* AllIngredientsView.swift in Sources */,
 			);

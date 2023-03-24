@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GradientTextFieldBackgroundWithImage: TextFieldStyle {
     let systemImageString: String
+    @Binding var text: String
 
     func _body(configuration: TextField<Self._Label>) -> some View {
         ZStack {
@@ -33,7 +34,9 @@ struct GradientTextFieldBackgroundWithImage: TextFieldStyle {
                 // Reference the TextField here
                 configuration
             }
-            .padding(.leading)
+            .modifier(ClearButton(text: $text))
+            .padding(.trailing, 10)
+            .padding(.leading, 10)
             .foregroundColor(.black)
         }
     }
@@ -65,3 +68,21 @@ struct GradientTextFieldBackground: TextFieldStyle {
     }
 }
 
+public struct ClearButton: ViewModifier {
+    @Binding var text: String
+
+    public init(text: Binding<String>) {
+        self._text = text
+    }
+
+    public func body(content: Content) -> some View {
+        HStack {
+            content
+            Spacer()
+            Image(systemName: "multiply.circle.fill")
+                .foregroundColor(.secondary)
+                .opacity(text == "" ? 0 : 1)
+                .onTapGesture { self.text = "" } // onTapGesture or plainStyle button
+        }
+    }
+}
