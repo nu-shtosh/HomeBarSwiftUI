@@ -47,7 +47,7 @@ struct MainTabView: View {
                         Text("Ingredients")
                         Image(systemName: "heart")
                     }
-                } // NavStack
+                } // End NavStack
 
                 // MARK: - Cocktails
                 NavigationStack {
@@ -60,7 +60,7 @@ struct MainTabView: View {
                         Text("Cocktails")
                         Image(systemName: "heart")
                     }
-                } // NavStack
+                } // End NavStack
 
                 // MARK: - AlcoTest
                 NavigationView() {
@@ -72,7 +72,7 @@ struct MainTabView: View {
                         Text("Alcotest")
                         Image(systemName: "filemenu.and.selection")
                     }
-                } // NavStack
+                } // End NavStack
 
                 // MARK: - Profile
                 NavigationView() {
@@ -84,7 +84,7 @@ struct MainTabView: View {
                         Text("Profile")
                         Image(systemName: "person")
                     }
-                } // NavStack
+                } // End NavStack
 
 
                 /*
@@ -100,7 +100,7 @@ struct MainTabView: View {
                  }
                  */
 
-            } // Group
+            } // End Group
             .tint(Color("neonOrange"))
             .accentColor(Color("neonOrange"))
             .foregroundColor(Color("neonOrange"))
@@ -112,12 +112,10 @@ struct MainTabView: View {
             .toolbarBackground(.visible, for: .tabBar)
             .toolbarBackground(Color.black, for: .tabBar)
 
-        } // TabView
+        } // End TabView
         .accentColor(Color("neonOrange"))
-    }
+    } // End Body
 }
-
-
 
 // MARK: - Navigation Bar Setup
 final class NavTheme {

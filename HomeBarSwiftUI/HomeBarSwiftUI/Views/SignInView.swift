@@ -103,8 +103,8 @@ struct SignInView: View {
                                 .onSubmit {
                                     SignInDidTapped()
                                 }
-                            } // if !isAuth
-                        } // VStack
+                            } // End If
+                        } // End VStack
                         .padding(EdgeInsets(top: 10, leading: 10, bottom: 20, trailing: 10))
 
                         // MARK: - Buttons
@@ -120,9 +120,9 @@ struct SignInView: View {
                                     .foregroundColor(Color(.white).opacity(0.8))
                                 BlueButtonView(action: showSingUp,
                                                title: isAuth ? "Sign Up" : "Sign In")
-                            } // HStack
-                        } // VStack
-                    } // VStack
+                            } // End HStack
+                        } // End VStack
+                    } // End VStack
                     .padding(isAuth ? 16 : 8)
                     .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
                                                startPoint: .top,
@@ -134,14 +134,14 @@ struct SignInView: View {
                         startPoint: .top,
                         endPoint: .bottom
                     ).opacity(0.5), lineWidth: 2))
-                } // VStack
+                } // End VStack
                 .padding(8)
                 .animation(Animation.easeInOut(duration: 0.5),
                            value: isAuth)
                 .alert(alertMessage, isPresented: $isShowAlert) {
                     Button { } label: { Text("OK") }
                 }
-            } // ScrollView
+            } // End ScrollView
             .fullScreenCover(isPresented: $isTabViewShow) {
                 if let user = AuthServices.shared.currentUser {
                     let mainTabBarViewModel = MainTabBarViewModel(user: user)
@@ -151,8 +151,8 @@ struct SignInView: View {
             .onTapGesture {
                 self.endTextEditing()
             }
-        } // ZStack
-    }
+        } // End ZStack
+    } // End Body
 
     // MARK: - Sign In Did Tapped Button
     private func SignInDidTapped() {

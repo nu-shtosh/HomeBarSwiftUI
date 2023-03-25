@@ -21,6 +21,7 @@ struct AllCocktailsView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
+            // MARK: - Wallpaper View
             WallpaperView()
             ScrollView(.vertical, showsIndicators: false) {
 
@@ -37,15 +38,15 @@ struct AllCocktailsView: View {
                                 }
                             }
                         }
-                    } // LazyVGrid
-                } // Section
+                    } // End LazyVGrid
+                } // End Section
                 .foregroundColor(Color("neonBlue"))
-            } // ScrollView
+            } // End ScrollView
             .navigationBarTitleDisplayMode(.large)
             .toolbar(.visible, for: .tabBar)
-        } // ZStack
+        } // End ZStack
         .onAppear{
             cocktailViewModel.getCocktail()
         }
-    }
+    } // End Body
 }

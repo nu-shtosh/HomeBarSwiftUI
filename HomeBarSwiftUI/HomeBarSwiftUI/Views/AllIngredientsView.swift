@@ -103,7 +103,6 @@ struct AllIngredientsView: View {
         .navigationBarTitleDisplayMode(.large)
     } // End Body
 
-
     // MARK: - Check Item
     private func checkItemInList(_ list: [String], _ item: String) -> Bool {
         list.contains(item) ? true : false
