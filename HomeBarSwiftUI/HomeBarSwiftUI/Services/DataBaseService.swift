@@ -99,7 +99,7 @@ class DataBaseService {
 
     func getIngredients(completion: @escaping (Result<[IngredientDB], Error>) -> Void) {
         let ingredientsReference = database.collection("Ingredients")
-            .limit(to: 10)
+            .limit(to: 50)
         ingredientsReference.getDocuments { querySnapshot, error in
             guard let querySnapshot else {
                 if let error {

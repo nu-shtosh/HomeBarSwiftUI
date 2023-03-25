@@ -103,6 +103,7 @@ struct MainTabView: View {
             } // Group
             .tint(Color("neonOrange"))
             .accentColor(Color("neonOrange"))
+            .foregroundColor(Color("neonOrange"))
             .onAppear() {
                 NavTheme.navigationBarColors(background: .black,
                                              titleColor: UIColor(Color("neonOrange")),

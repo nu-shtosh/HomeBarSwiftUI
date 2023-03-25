@@ -13,7 +13,7 @@ struct GradientTextFieldBackgroundWithImage: TextFieldStyle {
 
     func _body(configuration: TextField<Self._Label>) -> some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 5.0)
+            RoundedRectangle(cornerRadius: 10.0)
                 .stroke(
                     LinearGradient(
                         colors: [
@@ -26,7 +26,7 @@ struct GradientTextFieldBackgroundWithImage: TextFieldStyle {
                     lineWidth: 3
                 )
                 .background(Color.white.opacity(0.8))
-                .cornerRadius(5)
+                .cornerRadius(10)
                 .frame(height: 40)
 
             HStack {
