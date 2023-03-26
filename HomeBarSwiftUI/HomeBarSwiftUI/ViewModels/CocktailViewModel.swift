@@ -13,7 +13,7 @@ class CocktailsViewModel: ObservableObject {
     @Published var allCocktails: [CocktailDB]
     @Published var image: Data
 
-    var ingredients: [String]?
+    var ingredients: [String] = []
 
     init(allCocktails: [CocktailDB], image: Data) {
         self.allCocktails = allCocktails
@@ -32,7 +32,6 @@ class CocktailsViewModel: ObservableObject {
     }
 
     func getCocktailWithIngredients() {
-        guard let ingredients = ingredients else { return }
         print("vm", ingredients)
         DataBaseService.shared.getCocktailsWithSelectedIngredients(ingredients) { [unowned self] result in
             switch result {

@@ -100,6 +100,7 @@ class DataBaseService {
                                              completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
         let cocktailsReference = database.collection("Cocktails")
             .limit(to: 3)
+            .whereField("ingredientsNames", arrayContainsAny: ["Lime"])
 
         cocktailsReference.getDocuments { querySnapshot, error in
             guard let querySnapshot else {

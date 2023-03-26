@@ -111,13 +111,14 @@ struct AllIngredientsView: View {
                     Text("Unselect All")
                         .foregroundColor(selectedIngredients.count == 0 ? .secondary : Color("neonOrange"))
                         .disabled(selectedIngredients.count == 0)
-
                 }
             }
 
+            // MARK: - Show Cocktails With Selected Ingredients Button
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink {
-                    AllCocktailsView(cocktailViewModel: cocktailViewModel, ingredients: selectedIngredients)
+                    CocktailsWithSelectedIngredientsView(cocktailViewModel: cocktailViewModel,
+                                                         ingredients: selectedIngredients)
                 } label: {
                     Text("Show Cocktails")
                         .foregroundColor(selectedIngredients.count == 0 ? .secondary : Color("neonOrange"))
@@ -130,11 +131,6 @@ struct AllIngredientsView: View {
             }
         }
     } // End Body
-
-    // MARK: - Show Cocktails With Selected Ingredients Did Tupped
-    private func showCocktailsWithSelectedIngredientDidTupped(_ list: [String]) {
-
-    }
 
     // MARK: - Check Item In List
     private func checkItemInList(_ list: [String], _ item: String) -> Bool {
