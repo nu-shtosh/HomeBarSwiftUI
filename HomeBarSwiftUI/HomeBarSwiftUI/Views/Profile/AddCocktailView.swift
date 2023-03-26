@@ -23,7 +23,6 @@ struct AddCocktailView: View {
             ScrollView(.vertical, showsIndicators: false){
                 Image("pinaColada")
                     .resizable()
-                    .foregroundColor(Color("neonOrange"))
                     .frame(width: 200, height: 200)
                 HStack {
                     Text("Name cocktail")
@@ -149,7 +148,7 @@ struct AddCocktailView: View {
                               }
                               .padding(.trailing, 8)
                               Button {
-                                  ingredientsTextfield.remove(at: index)
+                                  ingredientsText.remove(at: index)
                               } label: {
                                   Image(systemName: "minus")
                                       .resizable()
@@ -192,7 +191,7 @@ struct AddCocktailView: View {
             }
         }
         .sheet(isPresented: $isPresent) {
-            CustomIngredientsView(ingredientsViewModel: ingredientsViewModel, nameIngredient: $nameIngredient, action: appendTextfield)
+            CustomIngredientsView(ingredientsViewModel: ingredientsViewModel, nameIngredient: $nameIngredient, action: appendTextfield, actionTwo: appendText)
         }
        
     }
@@ -200,6 +199,12 @@ struct AddCocktailView: View {
     private func appendTextfield() {
         ingredientsTextfield.append("1")
     }
+    
+    private func appendText() {
+        ingredientsText.append("1")
+    }
+    
+
 }
 
 struct AddCocktailView_Previews: PreviewProvider {

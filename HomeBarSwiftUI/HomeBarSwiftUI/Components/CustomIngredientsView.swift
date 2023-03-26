@@ -13,6 +13,7 @@ struct CustomIngredientsView: View {
     @State private var isEditing = false
     @Binding var nameIngredient: String
     let action: () -> Void
+    let actionTwo: () -> Void
     
     var body: some View {
         ZStack {
@@ -41,6 +42,7 @@ struct CustomIngredientsView: View {
                 List {
                     ForEach(ingredientsViewModel.allIngredients, id: \.name) { ingredient in
                         Button {
+                            actionTwo()
                             nameIngredient = ingredient.name
                         } label: {
                             Text(ingredient.name)
@@ -64,6 +66,6 @@ struct CustomIngredientsView: View {
 
 struct CustomIngredientsView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomIngredientsView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), nameIngredient: .constant(""), action: {})
+        CustomIngredientsView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), nameIngredient: .constant(""), action: {}, actionTwo: {})
     }
 }
