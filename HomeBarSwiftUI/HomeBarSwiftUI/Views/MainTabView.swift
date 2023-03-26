@@ -10,9 +10,9 @@ import SwiftUI
 struct MainTabView: View {
 
     // MARK: - Properties
-    var tabBarViewModel: MainTabBarViewModel
-    var ingredientsViewModel =  IngredientsViewModel(allIngredients: [IngredientDB(name: "")])
-    var cocktailsViewModel =  CocktailsViewModel(allCocktails: [CocktailDB(name: "",
+    let tabBarViewModel: MainTabBarViewModel
+    let ingredientsViewModel =  IngredientsViewModel(allIngredients: [IngredientDB(name: "")])
+    let cocktailsViewModel =  CocktailsViewModel(allCocktails: [CocktailDB(name: "",
                                                                            tags: "",
                                                                            alcoholic: "",
                                                                            instructions: "",
@@ -26,12 +26,12 @@ struct MainTabView: View {
                                                                            likes: 0,
                                                                            comments: ["" : ""])],
                                                  image: Data())
-    var profileViewModel = ProfileViewModel(profile: UserDB(id: "1",
+    let profileViewModel = ProfileViewModel(profile: UserDB(id: "1",
                                                             name: "",
                                                             surname: "",
                                                             age: "",
                                                             email: ""))
-    var alcoTestViewModel = AlcoTestViewModel()
+    let alcoTestViewModel = AlcoTestViewModel()
 
     // MARK: - Body
     var body: some View {
@@ -39,7 +39,8 @@ struct MainTabView: View {
             Group {
                 // MARK: - Ingredients
                 NavigationStack {
-                    AllIngredientsView(ingredientsViewModel: ingredientsViewModel)
+                    AllIngredientsView(ingredientsViewModel: ingredientsViewModel,
+                                       cocktailViewModel: cocktailsViewModel)
                         .navigationTitle(Text("Ingredients"))
                 }
                 .tabItem {
@@ -86,11 +87,10 @@ struct MainTabView: View {
                     }
                 } // End NavStack
 
-
                 /*
                  // MARK: - Fetch Get
                  NavigationStack {
-                 IngredientsView()
+                 HelperView()
                  }
                  .tabItem {
                  VStack {

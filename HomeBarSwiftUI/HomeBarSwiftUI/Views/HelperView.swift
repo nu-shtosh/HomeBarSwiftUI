@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IngredientsView: View {
+struct HelperView: View {
 
 //    @StateObject var viewModel = CocktailsViewModel()
 

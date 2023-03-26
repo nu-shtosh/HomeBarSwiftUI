@@ -27,6 +27,8 @@ struct AllIngredientsView: View {
     // MARK: - Properties
     @State private var searchedIngredient = ""
 
+    @StateObject var cocktailViewModel: CocktailsViewModel
+
     // MARK: - Body
     var body: some View {
         ZStack() {
@@ -62,7 +64,6 @@ struct AllIngredientsView: View {
                             .animation(.default, value: filteredIngredients.count > 0)
                             .onTapGesture {
                                 addItemInList(&selectedIngredients, ingredient)
-                                print(selectedIngredients)
                             }
                             if ingredient != filteredIngredients.last {
                                 Rectangle()
@@ -90,7 +91,6 @@ struct AllIngredientsView: View {
                     ingredientsViewModel.getIngredients()
                 }
             } // End ScrollView
-
             .padding()
         } // End ZStack
         .searchable(text: $searchedIngredient,
@@ -99,16 +99,49 @@ struct AllIngredientsView: View {
         .onSubmit(of: .search) { // 1
             print("Submit")
         }
+        // MARK: - Nav Bar Title
         .navigationTitle("Ingredients")
         .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            // MARK: - Unselect All Button
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    clearList(&selectedIngredients)
+                } label: {
+                    Text("Unselect All")
+                        .foregroundColor(selectedIngredients.count == 0 ? .secondary : Color("neonOrange"))
+                        .disabled(selectedIngredients.count == 0)
+
+                }
+            }
+
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink {
+                    AllCocktailsView(cocktailViewModel: cocktailViewModel, ingredients: selectedIngredients)
+                } label: {
+                    Text("Show Cocktails")
+                        .foregroundColor(selectedIngredients.count == 0 ? .secondary : Color("neonOrange"))
+                        .disabled(selectedIngredients.count == 0)
+
+                }
+                .onAppear {
+                    print(selectedIngredients)
+                }
+            }
+        }
     } // End Body
 
-    // MARK: - Check Item
+    // MARK: - Show Cocktails With Selected Ingredients Did Tupped
+    private func showCocktailsWithSelectedIngredientDidTupped(_ list: [String]) {
+
+    }
+
+    // MARK: - Check Item In List
     private func checkItemInList(_ list: [String], _ item: String) -> Bool {
         list.contains(item) ? true : false
     }
 
-    // MARK: - Add Item
+    // MARK: - Add Item In List
     func addItemInList(_ list: inout [String], _ item: String) {
         if checkItemInList(list, item) {
             deleteItemFromList(&list, item)
@@ -117,7 +150,7 @@ struct AllIngredientsView: View {
         }
     }
 
-    // MARK: - Delete Item
+    // MARK: - Delete Item From List
     func deleteItemFromList(_ list: inout [String], _ item: String) {
         if checkItemInList(list, item) {
             if let index = list.firstIndex(of: item) {
@@ -128,5 +161,8 @@ struct AllIngredientsView: View {
         }
     }
 
-    
+    // MARK: - Clear List
+    func clearList(_ list: inout [String]) {
+        list.removeAll()
+    }
 }

@@ -60,7 +60,7 @@ class DataBaseService {
 
     func getCocktails(completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
         let cocktailsReference = database.collection("Cocktails")
-            .limit(to: 10)
+            .limit(to: 5)
 
         //            .limit(to: 10)
         //
@@ -79,6 +79,28 @@ class DataBaseService {
         // есть еще .limit(to:) и .limit(to last:) который тупо ограничивает количество данных, то есть
         // .limit(to: 5) загрузит только 5 коктейлей
         
+        cocktailsReference.getDocuments { querySnapshot, error in
+            guard let querySnapshot else {
+                if let error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            let documents = querySnapshot.documents
+            var cocktails = [CocktailDB]()
+            for document in documents {
+                guard let cocktail = CocktailDB.init(document: document) else { return }
+                cocktails.append(cocktail)
+            }
+            completion(.success(cocktails))
+        }
+    }
+
+    func getCocktailsWithSelectedIngredients(_ list: [String],
+                                             completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
+        let cocktailsReference = database.collection("Cocktails")
+            .limit(to: 3)
+
         cocktailsReference.getDocuments { querySnapshot, error in
             guard let querySnapshot else {
                 if let error {
