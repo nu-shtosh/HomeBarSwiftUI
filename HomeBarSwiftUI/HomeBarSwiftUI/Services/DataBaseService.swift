@@ -99,8 +99,8 @@ class DataBaseService {
     func getCocktailsWithSelectedIngredients(_ list: [String],
                                              completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
         let cocktailsReference = database.collection("Cocktails")
-            .limit(to: 3)
-            .whereField("ingredientsNames", arrayContainsAny: ["Lime"])
+//            .limit(to: 3)
+            .whereField("ingredientsNames", arrayContainsAny: list)
 
         cocktailsReference.getDocuments { querySnapshot, error in
             guard let querySnapshot else {

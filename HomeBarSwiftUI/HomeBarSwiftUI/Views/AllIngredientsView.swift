@@ -20,7 +20,7 @@ struct AllIngredientsView: View {
         }
     }
 
-    @State private var selectedIngredients: [String] = []
+    @State public var selectedIngredients: [String] = []
 
     @Environment(\.dismissSearch) private var dismissSearch
 

@@ -14,7 +14,7 @@ struct CocktailsWithSelectedIngredientsView: View {
     // MARK: - State Properties
     @State var isHidden = false
 
-    var ingredients: [String]?
+    var ingredients: [String] = []
 
     // MARK: - Private Properties
     private let layout = [GridItem(.adaptive(minimum: screen.width / 2.2))]
@@ -47,7 +47,7 @@ struct CocktailsWithSelectedIngredientsView: View {
             .toolbar(.visible, for: .tabBar)
         } // End ZStack
         .onAppear{
-            cocktailViewModel.getCocktailWithIngredients()
+            cocktailViewModel.getCocktailWithIngredients(ingredients)
         }
     } // End Body
 }

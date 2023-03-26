@@ -31,9 +31,8 @@ class CocktailsViewModel: ObservableObject {
         }
     }
 
-    func getCocktailWithIngredients() {
-        print("vm", ingredients)
-        DataBaseService.shared.getCocktailsWithSelectedIngredients(ingredients) { [unowned self] result in
+    func getCocktailWithIngredients(_ list: [String]) {
+        DataBaseService.shared.getCocktailsWithSelectedIngredients(list) { [unowned self] result in
             switch result {
             case .success(let cocktails):
                 allCocktails = cocktails
