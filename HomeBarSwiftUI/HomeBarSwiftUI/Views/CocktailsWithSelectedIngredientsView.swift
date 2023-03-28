@@ -26,22 +26,27 @@ struct CocktailsWithSelectedIngredientsView: View {
             WallpaperView()
             ScrollView(.vertical, showsIndicators: false) {
 
-                // MARK: - All Cocktails
-                Section {
-                    LazyVGrid(columns: layout, spacing: 5) {
-                        ForEach(cocktailViewModel.allCocktails, id: \.name) { item in
-                            NavigationLink {
-                                CocktailDetailView(cocktail: item)
-                                    .navigationTitle(item.name)
-                            } label: {
-                                withAnimation {
-                                    CocktailCellView(cocktail: item)
+                if cocktailViewModel.allCocktails.count > 0 {
+                    // MARK: - All Cocktails
+                    Section {
+                        LazyVGrid(columns: layout, spacing: 5) {
+                            ForEach(cocktailViewModel.allCocktails, id: \.name) { item in
+                                NavigationLink {
+                                    CocktailDetailView(cocktail: item)
+                                        .navigationTitle(item.name)
+                                } label: {
+                                    withAnimation {
+                                        CocktailCellView(cocktail: item)
+                                    }
                                 }
                             }
-                        }
-                    } // End LazyVGrid
-                } // End Section
-                .foregroundColor(Color("neonBlue"))
+                        } // End LazyVGrid
+                    } // End Section
+                    .foregroundColor(Color("neonBlue"))
+                } else {
+                    Text("We can't find cocktails with selected ingredients")
+                        .foregroundColor(Color("neonOrange"))
+                }
             } // End ScrollView
             .navigationBarTitleDisplayMode(.large)
             .toolbar(.visible, for: .tabBar)
