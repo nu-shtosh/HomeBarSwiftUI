@@ -9,13 +9,16 @@ import SwiftUI
 
 struct AddCocktailView: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
-    @State var text = ""
+    @State var receptText = ""
     @State var isPresent = false
     @State var ingredientsTextfield = [""]
     @State var ingredientsText = [""]
-    @State var nameIngredient = ""
-    @State var nameButton = "Mesure"
-    private let measures = ["ml", "oz"]
+    @State var measureTextfield = [""]
+    @State var measureText = [""]
+    @State var nameCocktail = ""
+    @State var nameButtonTextfield = [""]
+    @State var nameButtonText = [""]
+    private let measures = ["ml", "oz", "tsp", "tblsp", "dashes", "cube", "pieces", "splash"]
     
     var body: some View {
         ZStack {
@@ -32,7 +35,7 @@ struct AddCocktailView: View {
                         .padding(.leading, 16)
                     Spacer()
                 }
-                TextFieldWithImageView(title: "Name cocktail", imageSystemName: "", text: $text)
+                TextFieldWithImageView(title: "Name cocktail", imageSystemName: "", text: $nameCocktail)
                     .padding()
                 HStack {
                     Text("Ingredients")
@@ -46,59 +49,47 @@ struct AddCocktailView: View {
                     } label: {
                         Image(systemName: "plus")
                             .resizable()
-                            .frame(width: 30, height: 30)
+                            .frame(width: 25, height: 25)
                             .foregroundColor(Color("neonBlue"))
                     }
                     .padding(.trailing, 16)
                 }
-              
+                
                 ForEach(ingredientsTextfield.indices, id: \.self) { index in
                     if index > 0 {
                         HStack {
-                            TextField("name", text: $ingredientsTextfield[index])
-                                .textFieldStyle(GradientTextFieldBackground())
-                                .padding(.leading, 16)
-                                .padding(.trailing, 16)
-                            NumberTextFieldView(
-                                text: $text,
-                                label: nameButton,
-                                sizeWidth: 71,
-                                sizeHeight: 40,
-                                maxValue: 1000
+                            DefaultTextFieldView(
+                                title: "name",
+                                text: $ingredientsTextfield[index],
+                                sizeWidth: nil,
+                                sizeHeight: 40
                             )
-                            Menu(nameButton) {
-                                Button("ml", action: {
-                                    nameButton = "ml"
-                                })
-                                Button("oz", action: {
-                                    nameButton = "oz"
-                                })
-                                Button("tsp", action: {
-                                    nameButton = "tsp"
-                                })
-                                Button("tblsp", action: {
-                                    nameButton = "tblsp"
-                                })
-                                Button("dashes", action: {
-                                    nameButton = "dashes"
-                                })
-                                Button("cube", action: {
-                                    nameButton = "cube"
-                                })
-                                Button("pieces", action: {
-                                    nameButton = "pieces"
-                                })
-                                Button("splash", action: {
-                                    nameButton = "splash"
-                                })
+                            .padding(.leading, 16)
+                            Spacer()
+                            DefaultTextFieldView(
+                                title: "measure",
+                                text: $measureTextfield[index],
+                                sizeWidth: 60,
+                                sizeHeight: 40
+                            )
+                            
+                            Menu(nameButtonTextfield[index]) {
+                                ForEach(measures, id: \.self) { measure in
+                                    Button(measure) {
+                                        nameButtonTextfield[index] = measure
+                                    }
+                                }
                             }
+                            .frame(width: 65)
                             .padding(.trailing, 8)
                             Button {
+                                
                                 ingredientsTextfield.remove(at: index)
+                                nameButtonTextfield.remove(at: index)
                             } label: {
                                 Image(systemName: "minus")
                                     .resizable()
-                                    .frame(width: 30, height: 4)
+                                    .frame(width: 25, height: 3.5)
                                     .foregroundColor(Color("neonBlue"))
                             }
                             .padding(.trailing, 16)
@@ -106,70 +97,51 @@ struct AddCocktailView: View {
                     }
                 }
                 .padding(.bottom, 8)
-                
-                  ForEach(ingredientsText.indices, id: \.self) { index in
-                      if index > 0 {
-                          HStack {
-                              Text(nameIngredient)
-                                  .padding(.leading, 16)
-                                  .padding(.trailing, 16)
-                              NumberTextFieldView(
-                                  text: $text,
-                                  label: nameButton,
-                                  sizeWidth: 71,
-                                  sizeHeight: 40,
-                                  maxValue: 1000
-                              )
-                              Menu(nameButton) {
-                                  Button("ml", action: {
-                                      nameButton = "ml"
-                                  })
-                                  Button("oz", action: {
-                                      nameButton = "oz"
-                                  })
-                                  Button("tsp", action: {
-                                      nameButton = "tsp"
-                                  })
-                                  Button("tblsp", action: {
-                                      nameButton = "tblsp"
-                                  })
-                                  Button("dashes", action: {
-                                      nameButton = "dashes"
-                                  })
-                                  Button("cube", action: {
-                                      nameButton = "cube"
-                                  })
-                                  Button("pieces", action: {
-                                      nameButton = "pieces"
-                                  })
-                                  Button("splash", action: {
-                                      nameButton = "splash"
-                                  })
-                              }
-                              .padding(.trailing, 8)
-                              Button {
-                                  ingredientsText.remove(at: index)
-                              } label: {
-                                  Image(systemName: "minus")
-                                      .resizable()
-                                      .frame(width: 30, height: 4)
-                                      .foregroundColor(Color("neonBlue"))
-                              }
-                              .padding(.trailing, 16)
-
-                              
-                          }
-                      }
-                  }
+                ForEach(ingredientsText.indices, id: \.self) { index in
+                    if index > 0 {
+                        HStack {
+                            Text(ingredientsText[index])
+                                .padding(.leading, 16)
+                            Spacer()
+                            DefaultTextFieldView(
+                                title: "measure",
+                                text: $measureText[index],
+                                sizeWidth: 60,
+                                sizeHeight: 40
+                            )
+                            
+                            Menu(nameButtonText[index]) {
+                                ForEach(measures, id: \.self) { measure in
+                                    Button(measure) {
+                                        nameButtonText[index] = measure
+                                    }
+                                }
+                            }
+                            .frame(width: 65)
+                            .padding(.trailing, 8)
+                            Button {
+                                ingredientsText.remove(at: index)
+                                nameButtonText.remove(at: index)
+                            } label: {
+                                Image(systemName: "minus")
+                                    .resizable()
+                                    .frame(width: 25, height: 3.5)
+                                    .foregroundColor(Color("neonBlue"))
+                            }
+                            .padding(.trailing, 16)
+                        }
+                    }
+                }
                 HStack {
-                    Text("Recipt")
+                    Text("Recept")
                         .font(.callout)
                         .bold()
                         .foregroundColor(.gray)
                         .padding(.leading, 16)
                     Spacer()
                 }
-                TextEditor(text: $text)
+                TextEditor(text: $receptText)
+                    .foregroundColor(.black)
                     .scrollContentBackground(.hidden)
                     .background(Color.white.opacity(0.8))
                     .border(LinearGradient(
@@ -191,20 +163,29 @@ struct AddCocktailView: View {
             }
         }
         .sheet(isPresented: $isPresent) {
-            CustomIngredientsView(ingredientsViewModel: ingredientsViewModel, nameIngredient: $nameIngredient, action: appendTextfield, actionTwo: appendText)
+            CustomIngredientsView(
+                ingredientsViewModel: ingredientsViewModel,
+                namesIngredients: $ingredientsText,
+                action: appendTextfield,
+                actionTwo: appendText
+            )
         }
-       
+        
     }
     
     private func appendTextfield() {
-        ingredientsTextfield.append("1")
+        ingredientsTextfield.append("")
+        measureTextfield.append("")
+        nameButtonTextfield.append("Mesure")
+        
     }
     
     private func appendText() {
-        ingredientsText.append("1")
+        measureText.append("")
+        nameButtonText.append("Mesure")
     }
     
-
+    
 }
 
 struct AddCocktailView_Previews: PreviewProvider {

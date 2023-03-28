@@ -17,7 +17,6 @@ struct DefaultTextFieldView: View {
         TextField(title, text: $text)
             .textFieldStyle(GradientTextFieldBackground())
             .frame(width: sizeWidth, height: sizeHeight)
-            .keyboardType(.decimalPad)
             .foregroundColor(.black)
     }
 }

@@ -11,7 +11,7 @@ struct CustomIngredientsView: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
     @State private var text = ""
     @State private var isEditing = false
-    @Binding var nameIngredient: String
+    @Binding var namesIngredients: [String]
     let action: () -> Void
     let actionTwo: () -> Void
     
@@ -43,7 +43,7 @@ struct CustomIngredientsView: View {
                     ForEach(ingredientsViewModel.allIngredients, id: \.name) { ingredient in
                         Button {
                             actionTwo()
-                            nameIngredient = ingredient.name
+                            namesIngredients.append(ingredient.name)
                         } label: {
                             Text(ingredient.name)
                                 .foregroundColor(Color("neonOrange"))
@@ -66,6 +66,6 @@ struct CustomIngredientsView: View {
 
 struct CustomIngredientsView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomIngredientsView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), nameIngredient: .constant(""), action: {}, actionTwo: {})
+        CustomIngredientsView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), namesIngredients: .constant([""]), action: {}, actionTwo: {})
     }
 }
