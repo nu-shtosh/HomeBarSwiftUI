@@ -8,17 +8,24 @@
 import SwiftUI
 
 struct AllCocktailsView: View {
-    
-    @StateObject var cocktailViewModel: CocktailsViewModel
-    
-    let layout = [GridItem(.adaptive(minimum: screen.width / 2.2))]
 
+    // MARK: - State Object Properties
+    @StateObject var cocktailViewModel: CocktailsViewModel
+
+    // MARK: - State Properties
     @State var isHidden = false
-    
+
+    // MARK: - Private Properties
+    private let layout = [GridItem(.adaptive(minimum: screen.width / 2.2))]
+
+    // MARK: - Body
     var body: some View {
         ZStack {
+            // MARK: - Wallpaper View
             WallpaperView()
             ScrollView(.vertical, showsIndicators: false) {
+
+                // MARK: - All Cocktails
                 Section {
                     LazyVGrid(columns: layout, spacing: 5) {
                         ForEach(cocktailViewModel.allCocktails, id: \.name) { item in
@@ -31,16 +38,15 @@ struct AllCocktailsView: View {
                                 }
                             }
                         }
-                    }
-                }
+                    } // End LazyVGrid
+                } // End Section
                 .foregroundColor(Color("neonBlue"))
-            }
+            } // End ScrollView
             .navigationBarTitleDisplayMode(.large)
             .toolbar(.visible, for: .tabBar)
-
-        }
+        } // End ZStack
         .onAppear{
             cocktailViewModel.getCocktail()
         }
-    }
+    } // End Body
 }

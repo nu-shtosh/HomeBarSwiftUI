@@ -13,6 +13,8 @@ class CocktailsViewModel: ObservableObject {
     @Published var allCocktails: [CocktailDB]
     @Published var image: Data
 
+    var ingredients: [String] = []
+
     init(allCocktails: [CocktailDB], image: Data) {
         self.allCocktails = allCocktails
         self.image = image
@@ -22,21 +24,31 @@ class CocktailsViewModel: ObservableObject {
         DataBaseService.shared.getCocktails { [unowned self] result in
             switch result {
             case .success(let cocktails):
-            allCocktails = cocktails
+                allCocktails = cocktails
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
 
+    func getCocktailWithIngredients(_ list: [String]) {
+        DataBaseService.shared.getCocktailsWithSelectedIngredients(list) { [unowned self] result in
+            switch result {
+            case .success(let cocktails):
+                allCocktails = cocktails
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
     func getImage(imageURL: String) {
-            NetworkManager.shared.fetchImage(from: imageURL) { [unowned self] result in
-                switch result {
-                case .success(let images):
-                    image = images
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        NetworkManager.shared.fetchImage(from: imageURL) { [unowned self] result in
+            switch result {
+            case .success(let images):
+                image = images
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
 
         }
     }
