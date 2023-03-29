@@ -33,7 +33,8 @@ class AuthServices {
                                        name: name,
                                        surname: "",
                                        age: age,
-                                       email: email)
+                                       email: email,
+                                       favoritesCocktails: [])
                 DataBaseService.shared.setProfile(user: userModel, image: nil) { resultDataBase in
                     switch resultDataBase {
                     case .success(_):

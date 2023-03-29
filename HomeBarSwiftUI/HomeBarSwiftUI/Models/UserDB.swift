@@ -13,6 +13,7 @@ struct UserDB: Identifiable {
     var surname: String
     var age: String
     var email: String
+    var favoritesCocktails: [String]
     
     var fullname: String {
         "\(name) \(surname)"
@@ -25,6 +26,7 @@ struct UserDB: Identifiable {
         representation["surname"] = self.surname
         representation["age"] = self.age
         representation["email"] = self.email
+        representation["favoritesCocktails"] = self.favoritesCocktails
         return representation
     }
 }
