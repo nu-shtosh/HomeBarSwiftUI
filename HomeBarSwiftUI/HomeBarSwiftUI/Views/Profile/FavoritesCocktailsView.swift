@@ -15,13 +15,19 @@ struct FavoritesCocktailsView: View {
     // MARK: - Private Properties
     private let layout = [GridItem(.adaptive(minimum: screen.width / 2.2))]
 
+    var cocktailsCount: Int {
+        profileViewModel.profile.favoritesCocktails.count
+    }
+
     // MARK: - Body
     var body: some View {
         ZStack {
+
+
             // MARK: - Wallpaper View
             WallpaperView()
             ScrollView(.vertical, showsIndicators: false) {
-                if profileViewModel.profile.favoritesCocktails.count > 0 {
+                if cocktailsCount > 0 {
                     // MARK: - Cocktails
                     Section {
                         LazyVGrid(columns: layout, spacing: 5) {
@@ -39,6 +45,7 @@ struct FavoritesCocktailsView: View {
                 } else {
                     Text("You haven't added any cocktails in favorites yet.")
                         .foregroundColor(Color("neonOrange"))
+                        .padding()
                 }
             } // End ScrollView
             .navigationTitle("Favorites Cocktails")
@@ -46,7 +53,9 @@ struct FavoritesCocktailsView: View {
             .toolbar(.visible, for: .tabBar)
         } // End ZStack
         .onAppear{
-            cocktailViewModel.getFavoritesCocktails(profileViewModel.profile.favoritesCocktails)
+            if cocktailsCount > 0 {
+                cocktailViewModel.getFavoritesCocktails(profileViewModel.profile.favoritesCocktails)
+            }
         }
     } // End Body
 }
