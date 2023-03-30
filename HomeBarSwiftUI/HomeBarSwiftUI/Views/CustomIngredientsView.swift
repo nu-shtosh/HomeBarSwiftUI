@@ -12,6 +12,8 @@ struct CustomIngredientsView: View {
     @State private var text = ""
     @State private var isEditing = false
     @Binding var namesIngredients: [String]
+    @Environment(\.dismiss) private var dismiss
+    
     let action: () -> Void
     let actionTwo: () -> Void
     
@@ -30,6 +32,7 @@ struct CustomIngredientsView: View {
                 HStack {
                     Button(action: {
                         action()
+                        dismiss.callAsFunction()
                     }, label: {
                         Text("New ingredient")
                             .foregroundColor(Color("neonBlue"))
@@ -40,10 +43,11 @@ struct CustomIngredientsView: View {
                 .padding()
                 .padding(.bottom, -30)
                 List {
-                    ForEach(ingredientsViewModel.allIngredients, id: \.name) { ingredient in
+                    ForEach(ingredientsViewModel.allIngredients.filter({text.isEmpty ? true : $0.name.contains(text)}), id: \.name) { ingredient in
                         Button {
                             actionTwo()
                             namesIngredients.append(ingredient.name)
+                            dismiss.callAsFunction()
                         } label: {
                             Text(ingredient.name)
                                 .foregroundColor(Color("neonOrange"))

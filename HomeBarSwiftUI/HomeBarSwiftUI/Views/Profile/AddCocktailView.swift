@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddCocktailView: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
+    @StateObject var cocktailsViewModel: CocktailsViewModel
     @State var receptText = ""
     @State var isPresent = false
     @State var ingredientsTextfield = [""]
@@ -19,14 +20,51 @@ struct AddCocktailView: View {
     @State var nameButtonTextfield = [""]
     @State var nameButtonText = [""]
     private let measures = ["ml", "oz", "tsp", "tblsp", "dashes", "cube", "pieces", "splash"]
+    @State private var showImagePicker = false
+    @State var image = UIImage(named: "pinaColada")!
     
     var body: some View {
         ZStack {
             WallpaperView()
-            ScrollView(.vertical, showsIndicators: false){
-                Image("pinaColada")
-                    .resizable()
-                    .frame(width: 200, height: 200)
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack {
+                    // MARK: image cocktail
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(
+                            width:
+                                withAnimation{
+                                    image != UIImage(named: "pinaColada") ? screen.width - 32 : 200
+                                },
+                            height:
+                                withAnimation{
+                                    image != UIImage(named: "pinaColada") ? screen.width - 32 : 200
+                                    
+                                }
+                        )
+                    
+                        .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                            colors: [Color("neonBlue"), Color("neonOrange")],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        ).opacity(0.3), lineWidth: 2))
+                        .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                                   startPoint: .top,
+                                                   endPoint: .bottom).opacity(0.15))
+                        .cornerRadius(16)
+                        .onTapGesture {
+                            showImagePicker.toggle()
+                        }
+                        .sheet(isPresented: $showImagePicker) {
+                            ImagePicker(
+                                sourceType: .photoLibrary,
+                                selected: $image
+                            )
+                        }
+                    // MARK: End image cocktail
+                }
+                .padding()
                 HStack {
                     Text("Name cocktail")
                         .font(.callout)
@@ -69,7 +107,7 @@ struct AddCocktailView: View {
                             DefaultTextFieldView(
                                 title: "measure",
                                 text: $measureTextfield[index],
-                                sizeWidth: 60,
+                                sizeWidth: 70,
                                 sizeHeight: 40
                             )
                             
@@ -80,12 +118,13 @@ struct AddCocktailView: View {
                                     }
                                 }
                             }
+                            .foregroundColor(Color("neonBlue"))
                             .frame(width: 65)
                             .padding(.trailing, 8)
                             Button {
-                                
                                 ingredientsTextfield.remove(at: index)
                                 nameButtonTextfield.remove(at: index)
+                                measureTextfield.remove(at: index)
                             } label: {
                                 Image(systemName: "minus")
                                     .resizable()
@@ -102,11 +141,12 @@ struct AddCocktailView: View {
                         HStack {
                             Text(ingredientsText[index])
                                 .padding(.leading, 16)
+                                .foregroundColor(Color("neonOrange"))
                             Spacer()
                             DefaultTextFieldView(
                                 title: "measure",
                                 text: $measureText[index],
-                                sizeWidth: 60,
+                                sizeWidth: 70,
                                 sizeHeight: 40
                             )
                             
@@ -117,11 +157,13 @@ struct AddCocktailView: View {
                                     }
                                 }
                             }
+                            .foregroundColor(Color("neonBlue"))
                             .frame(width: 65)
-                            .padding(.trailing, 8)
+                            .padding(.trailing, 6)
                             Button {
                                 ingredientsText.remove(at: index)
                                 nameButtonText.remove(at: index)
+                                measureText.remove(at: index)
                             } label: {
                                 Image(systemName: "minus")
                                     .resizable()
@@ -170,26 +212,20 @@ struct AddCocktailView: View {
                 actionTwo: appendText
             )
         }
-        
     }
-    
     private func appendTextfield() {
         ingredientsTextfield.append("")
         measureTextfield.append("")
         nameButtonTextfield.append("Mesure")
-        
     }
-    
     private func appendText() {
         measureText.append("")
         nameButtonText.append("Mesure")
     }
-    
-    
 }
 
-struct AddCocktailView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]))
-    }
-}
+//struct AddCocktailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]))
+//    }
+//}
