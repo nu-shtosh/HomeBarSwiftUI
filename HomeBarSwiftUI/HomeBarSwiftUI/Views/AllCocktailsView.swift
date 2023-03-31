@@ -29,9 +29,9 @@ struct AllCocktailsView: View {
                 // MARK: - All Cocktails
                 Section {
                     LazyVGrid(columns: layout, spacing: 5) {
-                        ForEach(cocktailViewModel.allCocktails, id: \.name) { item in
+                        ForEach(Array(cocktailViewModel.allCocktails), id: \.name) { item in
                             NavigationLink {
-                                CocktailDetailView(cocktail: item, profileViewModel: profileViewModel)
+                                CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
                                     .navigationTitle(item.name)
                             } label: {
                                 withAnimation {

@@ -56,6 +56,7 @@ struct SignInView: View {
                             TextFieldWithImageView(title: "Email",
                                                    imageSystemName: "envelope.circle",
                                                    text: $email)
+                            .keyboardType(.emailAddress)
                             .focused($currentTag, equals: .one)
                             .submitLabel(.next)
                             .onSubmit {

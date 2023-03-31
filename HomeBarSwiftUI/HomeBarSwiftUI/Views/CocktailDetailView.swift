@@ -10,15 +10,17 @@ import SwiftUI
 struct CocktailDetailView: View {
     
     var cocktail: CocktailDB
-    @State private var image = Data()
+    var profile: UserDB
 
+    @State private var image = Data()
     @StateObject var profileViewModel: ProfileViewModel
 
     var isFavorite: Bool {
-        profileViewModel.profile.favoritesCocktails.contains(cocktail.name)
+        profile.favoritesCocktails.contains(cocktail.name)
     }
     
     var body: some View {
+
         ZStack {
             WallpaperView()
             ScrollView(showsIndicators: false) {
@@ -118,12 +120,10 @@ struct CocktailDetailView: View {
                     }
                 }
             }
+            .onAppear {
+                getImage(imageURL: cocktail.image)
+            }
         }
-        .onAppear {
-            profileViewModel.getProfile()
-            getImage(imageURL: cocktail.image)
-        }
-
     }
 
     func addInFavorites() {
@@ -131,7 +131,7 @@ struct CocktailDetailView: View {
             profileViewModel.profile.favoritesCocktails.append(cocktail.name)
             uploadData()
         } else {
-            if let index = profileViewModel.profile.favoritesCocktails.firstIndex(of: cocktail.name) {
+            if let index =  profileViewModel.profile.favoritesCocktails.firstIndex(of: cocktail.name) {
                 profileViewModel.profile.favoritesCocktails.remove(at: index)
                 uploadData()
             }

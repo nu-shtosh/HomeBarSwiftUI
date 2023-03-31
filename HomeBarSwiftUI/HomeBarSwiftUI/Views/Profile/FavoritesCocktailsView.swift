@@ -23,17 +23,17 @@ struct FavoritesCocktailsView: View {
     var body: some View {
         ZStack {
 
-
             // MARK: - Wallpaper View
             WallpaperView()
             ScrollView(.vertical, showsIndicators: false) {
                 if cocktailsCount > 0 {
                     // MARK: - Cocktails
+
                     Section {
                         LazyVGrid(columns: layout, spacing: 5) {
-                            ForEach(cocktailViewModel.allCocktails, id: \.name) { item in
+                            ForEach(Array(cocktailViewModel.allCocktails), id: \.name) { item in
                                 NavigationLink {
-                                    CocktailDetailView(cocktail: item, profileViewModel: profileViewModel)
+                                    CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
                                         .navigationTitle(item.name)
                                 } label: {
                                     CocktailCellView(cocktail: item, image: cocktailViewModel.image)
@@ -58,4 +58,15 @@ struct FavoritesCocktailsView: View {
             }
         }
     } // End Body
+}
+
+
+
+struct TestScreen: View {
+
+    var body: some View {
+            Text("TEST")
+                .font(.largeTitle)
+                .bold()
+    }
 }

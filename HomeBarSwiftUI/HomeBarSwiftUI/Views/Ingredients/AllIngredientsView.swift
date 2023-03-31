@@ -41,7 +41,7 @@ struct AllIngredientsView: View {
                 VStack {
                     // MARK: - Ingredient Cell
                     if filteredIngredients.count > 0 {
-
+        
                         // MARK: - Ingredients List
                         ForEach(filteredIngredients, id: \.self) { ingredient in
                             HStack {
@@ -111,8 +111,8 @@ struct AllIngredientsView: View {
                 } label: {
                     Text("Unselect All")
                         .foregroundColor(selectedIngredients.count == 0 ? .secondary : Color("neonOrange"))
-                        .disabled(selectedIngredients.count == 0)
                 }
+                .disabled(selectedIngredients.count == 0)
             }
 
             // MARK: - Show Cocktails With Selected Ingredients Button
@@ -124,8 +124,8 @@ struct AllIngredientsView: View {
                 } label: {
                     Text("Show Cocktails")
                         .foregroundColor(selectedIngredients.count == 0 ? .secondary : Color("neonOrange"))
-                        .disabled(selectedIngredients.count == 0)
                 }
+                .disabled(selectedIngredients.count == 0)
             }
         }
     } // End Body

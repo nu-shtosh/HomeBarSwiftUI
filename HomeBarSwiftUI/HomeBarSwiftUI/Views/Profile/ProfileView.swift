@@ -162,9 +162,9 @@ struct LastCocktailView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(cocktailViewModel.allCocktails, id: \.name) { item in
+                ForEach(Array(cocktailViewModel.allCocktails), id: \.name) { item in
                     NavigationLink {
-                        CocktailDetailView(cocktail: item, profileViewModel: profileViewModel)
+                        CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
                             .navigationTitle(item.name)
                     } label: {
                         CocktailCellView(cocktail: item, image: cocktailViewModel.image)
@@ -198,3 +198,5 @@ struct UserInfoView: View {
         }
     }
 }
+
+
