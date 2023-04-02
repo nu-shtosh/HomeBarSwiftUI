@@ -46,8 +46,19 @@ struct FavoritesCocktailsView: View {
                     Text("You haven't added any cocktails in favorites yet.")
                         .foregroundColor(Color("neonOrange"))
                         .padding()
+                        .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                            colors: [Color("neonBlue"), Color("neonOrange")],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        ).opacity(0.3), lineWidth: 2))
+                        .background(LinearGradient(colors: [Color("neonBlue"),
+                                                            Color("neonOrange")],
+                                                   startPoint: .top,
+                                                   endPoint: .bottom).opacity(0.15))
+                        .cornerRadius(16)
                 }
             } // End ScrollView
+            .padding(.vertical)
             .navigationTitle("Favorites Cocktails")
             .navigationBarTitleDisplayMode(.large)
             .toolbar(.visible, for: .tabBar)
