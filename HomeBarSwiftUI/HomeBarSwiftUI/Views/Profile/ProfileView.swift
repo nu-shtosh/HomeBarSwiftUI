@@ -98,11 +98,14 @@ struct ProfileView: View {
         .navigationBarTitleDisplayMode(.large)
         .navigationTitle(Text(profileViewModel.profile.fullname))
         .toolbar {
-            NavigationLink {
-                SettingUserView(profileViewModel: profileViewModel)
-            } label: {
-                Image(systemName: "gearshape.fill")
-                    .foregroundColor(Color("neonOrange"))
+
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink {
+                    SettingUserView(profileViewModel: profileViewModel)
+                } label: {
+                    Image(systemName: "gearshape.fill")
+                        .foregroundColor(Color("neonOrange"))
+                }
             }
         }
     }

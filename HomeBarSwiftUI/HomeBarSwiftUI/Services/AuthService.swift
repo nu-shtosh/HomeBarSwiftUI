@@ -60,4 +60,12 @@ class AuthServices {
             }
         }
     }
+
+    func signOut() {
+        do {
+            try auth.signOut()
+        } catch let error {
+            print("Error: ", error.localizedDescription)
+        }
+    }
 }
