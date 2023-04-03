@@ -41,6 +41,18 @@ class CocktailsViewModel: ObservableObject {
             }
         }
     }
+
+    func getFavoritesCocktails(_ list: [String]) {
+        DataBaseService.shared.getFavoritesCocktails(list) { [unowned self] result in
+            switch result {
+            case .success(let cocktails):
+                allCocktails = cocktails
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
     func getImage(imageURL: String) {
         NetworkManager.shared.fetchImage(from: imageURL) { [unowned self] result in
             switch result {

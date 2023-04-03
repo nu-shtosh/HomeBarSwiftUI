@@ -10,6 +10,8 @@ import SwiftUI
 struct CocktailsWithSelectedIngredientsView: View {
     // MARK: - State Object Properties
     @StateObject var cocktailViewModel: CocktailsViewModel
+    @StateObject var profileViewModel: ProfileViewModel
+
 
     // MARK: - State Properties
     @State var isHidden = false
@@ -30,9 +32,9 @@ struct CocktailsWithSelectedIngredientsView: View {
                     // MARK: - All Cocktails
                     Section {
                         LazyVGrid(columns: layout, spacing: 5) {
-                            ForEach(cocktailViewModel.allCocktails, id: \.name) { item in
+                            ForEach(Array(cocktailViewModel.allCocktails), id: \.name) { item in
                                 NavigationLink {
-                                    CocktailDetailView(cocktail: item)
+                                    CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
                                         .navigationTitle(item.name)
                                 } label: {
                                     withAnimation {
@@ -52,7 +54,9 @@ struct CocktailsWithSelectedIngredientsView: View {
             .toolbar(.visible, for: .tabBar)
         } // End ZStack
         .onAppear{
-            cocktailViewModel.getCocktailWithIngredients(ingredients)
+            if cocktailViewModel.allCocktails.count > 0 {
+                cocktailViewModel.getCocktailWithIngredients(ingredients)
+            }
         }
     } // End Body
 }

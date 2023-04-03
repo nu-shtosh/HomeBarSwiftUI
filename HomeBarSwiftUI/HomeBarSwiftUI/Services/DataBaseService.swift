@@ -53,7 +53,8 @@ class DataBaseService {
             guard let id = data["id"] as? String  else { return }
             guard let surname = data["surname"] as? String else { return }
             guard let email = data["email"] as? String else { return }
-            let user = UserDB(id: id, name: name, surname: surname, age: age, email: email)
+            guard let favoritesCocktails = data["favoritesCocktails"] as? [String] else { return }
+            let user = UserDB(id: id, name: name, surname: surname, age: age, email: email, favoritesCocktails: favoritesCocktails)
             completion(.success(user))
         }
     }
@@ -99,8 +100,29 @@ class DataBaseService {
     func getCocktailsWithSelectedIngredients(_ list: [String],
                                              completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
         let cocktailsReference = database.collection("Cocktails")
-//            .limit(to: 3)
             .whereField("ingredientsNames", arrayContainsAny: list)
+
+        cocktailsReference.getDocuments { querySnapshot, error in
+            guard let querySnapshot else {
+                if let error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            let documents = querySnapshot.documents
+            var cocktails = [CocktailDB]()
+            for document in documents {
+                guard let cocktail = CocktailDB.init(document: document) else { return }
+                cocktails.append(cocktail)
+            }
+            completion(.success(cocktails))
+        }
+    }
+
+    func getFavoritesCocktails(_ list: [String],
+                                completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
+        let cocktailsReference = database.collection("Cocktails")
+            .whereField("name", in: list)
 
         cocktailsReference.getDocuments { querySnapshot, error in
             guard let querySnapshot else {
@@ -122,7 +144,7 @@ class DataBaseService {
 
     func getIngredients(completion: @escaping (Result<[IngredientDB], Error>) -> Void) {
         let ingredientsReference = database.collection("Ingredients")
-            .limit(to: 50)
+            .limit(to: 10)
         ingredientsReference.getDocuments { querySnapshot, error in
             guard let querySnapshot else {
                 if let error {

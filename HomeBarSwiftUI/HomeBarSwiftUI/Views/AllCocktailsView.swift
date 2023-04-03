@@ -11,6 +11,7 @@ struct AllCocktailsView: View {
 
     // MARK: - State Object Properties
     @StateObject var cocktailViewModel: CocktailsViewModel
+    @StateObject var profileViewModel: ProfileViewModel
 
     // MARK: - State Properties
     @State var isHidden = false
@@ -28,9 +29,9 @@ struct AllCocktailsView: View {
                 // MARK: - All Cocktails
                 Section {
                     LazyVGrid(columns: layout, spacing: 5) {
-                        ForEach(cocktailViewModel.allCocktails, id: \.name) { item in
+                        ForEach(Array(cocktailViewModel.allCocktails), id: \.name) { item in
                             NavigationLink {
-                                CocktailDetailView(cocktail: item)
+                                CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
                                     .navigationTitle(item.name)
                             } label: {
                                 withAnimation {

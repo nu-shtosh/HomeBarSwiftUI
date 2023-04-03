@@ -10,16 +10,16 @@ import SwiftUI
 struct CocktailDetailView: View {
     
     var cocktail: CocktailDB
+    var profile: UserDB
+
     @State private var image = Data()
-    
-    //    var ingredientsCount: Int {
-    //        cocktail.ingredients.count
-    //    }
+    @StateObject var profileViewModel: ProfileViewModel
+
+    var isFavorite: Bool {
+        profile.favoritesCocktails.contains(cocktail.name)
+    }
     
     var body: some View {
-        // Helpers For Ingredients List
-        //        let ingredientsNames = cocktail.ingredients.keys.map { $0 }
-        //        let ingredientsMeasures = cocktail.ingredients.values.map { $0 }
 
         ZStack {
             WallpaperView()
@@ -109,11 +109,48 @@ struct CocktailDetailView: View {
             }
             .padding(.horizontal)
             .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: addInFavorites) {
+                        Image(systemName: isFavorite ? "heart.fill" : "heart")
+                    }
+                    .animation(.default, value: isFavorite)
+                    .onSubmit {
+                        profileViewModel.setProfile()
+                    }
+                }
+            }
+            .onAppear {
+                getImage(imageURL: cocktail.image)
+            }
         }
-        .onAppear {
-            getImage(imageURL: cocktail.image)
-        }
+    }
 
+    func addInFavorites() {
+        if !isFavorite {
+            profileViewModel.profile.favoritesCocktails.append(cocktail.name)
+            uploadData()
+        } else {
+            if let index =  profileViewModel.profile.favoritesCocktails.firstIndex(of: cocktail.name) {
+                profileViewModel.profile.favoritesCocktails.remove(at: index)
+                uploadData()
+            }
+        }
+    }
+
+    private func uploadData() {
+        let user = profileViewModel.profile
+        guard let imageData = profileViewModel.image.jpegData(compressionQuality: 0.1) else {
+            return
+        }
+        DataBaseService.shared.setProfile(user: user, image: imageData) { result  in
+            switch result {
+            case .success(_):
+                print("Success")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 
     // MARK: - Get Image
@@ -127,4 +164,6 @@ struct CocktailDetailView: View {
             }
         }
     }
+
+
 }

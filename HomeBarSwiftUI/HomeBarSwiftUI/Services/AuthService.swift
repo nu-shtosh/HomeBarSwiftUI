@@ -33,7 +33,8 @@ class AuthServices {
                                        name: name,
                                        surname: "",
                                        age: age,
-                                       email: email)
+                                       email: email,
+                                       favoritesCocktails: [])
                 DataBaseService.shared.setProfile(user: userModel, image: nil) { resultDataBase in
                     switch resultDataBase {
                     case .success(_):
@@ -57,6 +58,14 @@ class AuthServices {
             } else if let error {
                 completion(.failure(error))
             }
+        }
+    }
+
+    func signOut() {
+        do {
+            try auth.signOut()
+        } catch let error {
+            print("Error: ", error.localizedDescription)
         }
     }
 }

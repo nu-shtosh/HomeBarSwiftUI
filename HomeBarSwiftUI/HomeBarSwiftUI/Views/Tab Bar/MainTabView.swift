@@ -30,7 +30,8 @@ struct MainTabView: View {
                                                             name: "",
                                                             surname: "",
                                                             age: "",
-                                                            email: ""))
+                                                            email: "",
+                                                            favoritesCocktails: []))
     let alcoTestViewModel = AlcoTestViewModel()
 
     // MARK: - Body
@@ -40,6 +41,7 @@ struct MainTabView: View {
                 // MARK: - Ingredients
                 NavigationStack {
                     AllIngredientsView(ingredientsViewModel: ingredientsViewModel,
+                                       profileViewModel: profileViewModel,
                                        cocktailViewModel: cocktailsViewModel)
                         .navigationTitle(Text("Ingredients"))
                 }
@@ -52,7 +54,8 @@ struct MainTabView: View {
 
                 // MARK: - Cocktails
                 NavigationStack {
-                    AllCocktailsView(cocktailViewModel: cocktailsViewModel)
+                    AllCocktailsView(cocktailViewModel: cocktailsViewModel,
+                                     profileViewModel: profileViewModel)
                         .navigationTitle(Text("Cocktails"))
 
                 }

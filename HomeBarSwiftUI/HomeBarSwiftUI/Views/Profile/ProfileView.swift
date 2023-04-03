@@ -20,7 +20,8 @@ struct ProfileView: View {
                 HStack {
                     UserImageView(image: $profileViewModel.image)
                         .padding()
-                    UserInfoView(age: $profileViewModel.profile.age)
+                    UserInfoView(profileViewModel: profileViewModel,
+                                 age: $profileViewModel.profile.age)
                     
                     Spacer()
                 }
@@ -31,7 +32,8 @@ struct ProfileView: View {
                     startPoint: .top,
                     endPoint: .bottom
                 ).opacity(0.3), lineWidth: 2))
-                .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                .background(LinearGradient(colors: [Color("neonBlue"),
+                                                    Color("neonOrange")],
                                            startPoint: .top,
                                            endPoint: .bottom).opacity(0.15))
                 .padding()
@@ -51,20 +53,22 @@ struct ProfileView: View {
                 }
                 
                 HStack {
-                    UserButtonStackView()
-                        .padding()
+                    UserButtonStackView(cocktailViewModel: cocktailViewModel,
+                                        profileViewModel: profileViewModel)
+                    .padding()
                 }
-                
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
                     colors: [Color("neonBlue"), Color("neonOrange")],
                     startPoint: .top,
                     endPoint: .bottom
                 ).opacity(0.3), lineWidth: 2))
-                .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                .background(LinearGradient(colors: [Color("neonBlue"),
+                                                    Color("neonOrange")],
                                            startPoint: .top,
                                            endPoint: .bottom).opacity(0.15))
                 .padding()
+                
                 VStack {
                     // MARK: Last cocktails
                     HStack {
@@ -81,7 +85,8 @@ struct ProfileView: View {
                         Spacer()
                     }
                     
-                    LastCocktailView(cocktailViewModel: cocktailViewModel)
+                    LastCocktailView(cocktailViewModel: cocktailViewModel,
+                                     profileViewModel: profileViewModel)
                 }
             }
             .padding(EdgeInsets(top: 6, leading: 6, bottom: 7, trailing: 6))
@@ -93,11 +98,14 @@ struct ProfileView: View {
         .navigationBarTitleDisplayMode(.large)
         .navigationTitle(Text(profileViewModel.profile.fullname))
         .toolbar {
-            NavigationLink {
-                SettingUserView(profileViewModel: profileViewModel)
-            } label: {
-                Image(systemName: "gearshape.fill")
-                    .foregroundColor(Color("neonOrange"))
+
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink {
+                    SettingUserView(profileViewModel: profileViewModel)
+                } label: {
+                    Image(systemName: "gearshape.fill")
+                        .foregroundColor(Color("neonOrange"))
+                }
             }
         }
     }
@@ -119,13 +127,26 @@ struct UserButtonView: View {
 }
 
 struct UserButtonStackView: View {
+
+    @StateObject var cocktailViewModel: CocktailsViewModel
+    @StateObject var profileViewModel: ProfileViewModel
+
     var body: some View {
         VStack {
             HStack {
+                NavigationLink {
+                    FavoritesCocktailsView(cocktailViewModel: cocktailViewModel,
+                                           profileViewModel: profileViewModel)
+                } label: {
+                    Text("My favorites")
+                        .foregroundColor(Color.white)
+                        .font(.title3)
+                        .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                        .background(Color("neonOrange"))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
                 UserButtonView(text: "My cocktails", action: {})
                 Spacer()
-                
-                UserButtonView(text: "My favorites", action: {})
             }
             .padding(.bottom)
             HStack {
@@ -139,12 +160,14 @@ struct UserButtonStackView: View {
 
 struct LastCocktailView: View {
     @StateObject var cocktailViewModel: CocktailsViewModel
+    @StateObject var profileViewModel: ProfileViewModel
+
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(cocktailViewModel.allCocktails, id: \.name) { item in
+                ForEach(Array(cocktailViewModel.allCocktails), id: \.name) { item in
                     NavigationLink {
-                        CocktailDetailView(cocktail: item)
+                        CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
                             .navigationTitle(item.name)
                     } label: {
                         CocktailCellView(cocktail: item, image: cocktailViewModel.image)
@@ -157,6 +180,8 @@ struct LastCocktailView: View {
 }
 
 struct UserInfoView: View {
+    @StateObject var profileViewModel: ProfileViewModel
+
     @Binding var age: String
     
     var body: some View {
@@ -164,7 +189,7 @@ struct UserInfoView: View {
             Text("Age: \(age)")
                 .font(.title3)
                 .foregroundColor(Color("neonOrange"))
-            Text("Favorites: 16")
+            Text("Favorites: \(profileViewModel.profile.favoritesCocktails.count)")
                 .font(.system(size: 18))
                 .foregroundColor(Color("neonOrange"))
             Text("Your like: 19")
@@ -176,3 +201,5 @@ struct UserInfoView: View {
         }
     }
 }
+
+
