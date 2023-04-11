@@ -18,6 +18,7 @@
 		1F5F878629461FE700335B57 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878529461FE700335B57 /* AuthService.swift */; };
 		1F87D80429CC57A40051D283 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F87D80329CC57A40051D283 /* SearchView.swift */; };
 		1F8A615829C59FAE00235CAF /* AlcoTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8A615729C59FAE00235CAF /* AlcoTestManager.swift */; };
+		1FB0DE8229E5C390000B8A78 /* CustomIngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB0DE8129E5C390000B8A78 /* CustomIngredientsView.swift */; };
 		1FD50C5529BDE71F00C4395A /* CustomSegmentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD50C5429BDE71F00C4395A /* CustomSegmentPickerView.swift */; };
 		1FD50C5929BE1B1600C4395A /* NumberTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD50C5829BE1B1600C4395A /* NumberTextFieldView.swift */; };
 		1FD50C5B29BE1D8D00C4395A /* SliderAlcoholTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD50C5A29BE1D8D00C4395A /* SliderAlcoholTestView.swift */; };
@@ -25,7 +26,6 @@
 		1FE5C4B8294BC82A004E7634 /* SettingUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5C4B7294BC82A004E7634 /* SettingUserView.swift */; };
 		1FE8674929C072F1004500DC /* ResultAlcoTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8674829C072F1004500DC /* ResultAlcoTestView.swift */; };
 		1FEE9F5929CC385700858B1B /* AddCocktailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEE9F5829CC385700858B1B /* AddCocktailView.swift */; };
-		1FEE9F5B29CC388200858B1B /* CustomIngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEE9F5A29CC388200858B1B /* CustomIngredientsView.swift */; };
 		1FFEC79F29BF8585003B04EA /* AlcoTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEC79E29BF8585003B04EA /* AlcoTestViewModel.swift */; };
 		1FFEC7A129BF9FCF003B04EA /* DrinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEC7A029BF9FCF003B04EA /* DrinksView.swift */; };
 		1FFEC7A329BFA024003B04EA /* DrinkDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFEC7A229BFA024003B04EA /* DrinkDB.swift */; };
@@ -98,6 +98,7 @@
 		1F5F878529461FE700335B57 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		1F87D80329CC57A40051D283 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		1F8A615729C59FAE00235CAF /* AlcoTestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoTestManager.swift; sourceTree = "<group>"; };
+		1FB0DE8129E5C390000B8A78 /* CustomIngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIngredientsView.swift; sourceTree = "<group>"; };
 		1FD50C5429BDE71F00C4395A /* CustomSegmentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPickerView.swift; sourceTree = "<group>"; };
 		1FD50C5829BE1B1600C4395A /* NumberTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextFieldView.swift; sourceTree = "<group>"; };
 		1FD50C5A29BE1D8D00C4395A /* SliderAlcoholTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderAlcoholTestView.swift; sourceTree = "<group>"; };
@@ -105,7 +106,6 @@
 		1FE5C4B7294BC82A004E7634 /* SettingUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUserView.swift; sourceTree = "<group>"; };
 		1FE8674829C072F1004500DC /* ResultAlcoTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultAlcoTestView.swift; sourceTree = "<group>"; };
 		1FEE9F5829CC385700858B1B /* AddCocktailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCocktailView.swift; sourceTree = "<group>"; };
-		1FEE9F5A29CC388200858B1B /* CustomIngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIngredientsView.swift; sourceTree = "<group>"; };
 		1FFEC79E29BF8585003B04EA /* AlcoTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoTestViewModel.swift; sourceTree = "<group>"; };
 		1FFEC7A029BF9FCF003B04EA /* DrinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksView.swift; sourceTree = "<group>"; };
 		1FFEC7A229BFA024003B04EA /* DrinkDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDB.swift; sourceTree = "<group>"; };
@@ -284,8 +284,8 @@
 				1F1B1388294E0CD000C1C3BB /* ImagePicker.swift */,
 				1FD50C5A29BE1D8D00C4395A /* SliderAlcoholTestView.swift */,
 				1FD50C5429BDE71F00C4395A /* CustomSegmentPickerView.swift */,
+				1FB0DE8129E5C390000B8A78 /* CustomIngredientsView.swift */,
 				B8628E7E29C71E8900A8C21C /* StarsRatingView.swift */,
-				1FEE9F5A29CC388200858B1B /* CustomIngredientsView.swift */,
 				1F87D80329CC57A40051D283 /* SearchView.swift */,
 				B813396A29CD961F0014F796 /* Extentsion + View.swift */,
 			);
@@ -547,6 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FB0DE8229E5C390000B8A78 /* CustomIngredientsView.swift in Sources */,
 				B8B37B022942287100611844 /* WallpaperView.swift in Sources */,
 				B83D997E294A05E7006AF62D /* CocktailViewModel.swift in Sources */,
 				1F1B1387294DFA3500C1C3BB /* ProfileViewModel.swift in Sources */,
@@ -555,7 +556,6 @@
 				B83D994629473CB6006AF62D /* DataBaseService.swift in Sources */,
 				1FE5C4B8294BC82A004E7634 /* SettingUserView.swift in Sources */,
 				B8B37B162942955D00611844 /* Extansion + TextField.swift in Sources */,
-				1FEE9F5B29CC388200858B1B /* CustomIngredientsView.swift in Sources */,
 				1F8A615829C59FAE00235CAF /* AlcoTestManager.swift in Sources */,
 				1FFEC7A529BFA05C003B04EA /* DrinkViewModel.swift in Sources */,
 				B83D997A2948F716006AF62D /* NetworkManager.swift in Sources */,
@@ -756,7 +756,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HomeBarSwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = Q5C6FH53V7;
+				DEVELOPMENT_TEAM = 22NTM9AJGF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
@@ -793,7 +793,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HomeBarSwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = Q5C6FH53V7;
+				DEVELOPMENT_TEAM = 22NTM9AJGF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";

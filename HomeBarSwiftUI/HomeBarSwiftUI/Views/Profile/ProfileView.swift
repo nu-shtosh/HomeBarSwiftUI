@@ -151,7 +151,7 @@ struct UserButtonStackView: View {
             .padding(.bottom)
             HStack {
                 NavigationLink {
-                    AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]))
+                    AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), cocktailsViewModel: cocktailViewModel)
                 } label: {
                     Text("Add cocktail")
                         .foregroundColor(Color.white)
