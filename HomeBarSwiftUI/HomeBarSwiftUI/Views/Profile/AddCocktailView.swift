@@ -245,12 +245,16 @@ struct AddCocktailView: View {
         ingredientsTextfield.remove(at: 0)
         ingredientsText.remove(at: 0)
         cocktailsViewModel.cocktail.ingredientsNames = ingredientsTextfield + ingredientsText
-        var measureIngredientTextfield = measureTextfield.map { $0 + " " + nameButtonTextfield.flatMap { $0 } }
+        var measureIngredientTextfield = measureTextfield.enumerated().map { (index, value) in
+            value + " " + nameButtonTextfield[index]
+        }
         measureIngredientTextfield.remove(at: 0)
-        var measureIngredientText = measureText.map { $0 + " " + nameButtonText.flatMap { $0 } }
+        var measureIngredientText = measureText.enumerated().map { (index, value) in
+            value + " " + nameButtonText[index]
+        }
         measureIngredientText.remove(at: 0)
         cocktailsViewModel.cocktail.ingredientsMeasures = measureIngredientTextfield + measureIngredientText
-        cocktailsViewModel.image = image.pngData() ?? Data()
+        
         cocktailsViewModel.cocktail.image = "aaaa"
         cocktailsViewModel.cocktail.alcoholic = "Alcoholic"
         cocktailsViewModel.cocktail.tags = "dddd"
@@ -261,8 +265,9 @@ struct AddCocktailView: View {
     private func uploadData() {
         
         let cocktail = configureCocktail()
-        print(cocktail)
-        let imageData = cocktailsViewModel.image
+        guard let imageData = image.jpegData(compressionQuality: 0.1) else {
+            return
+        }
         
         DataBaseService.shared.setCocktail(cocktail: cocktail, image: imageData) { result in
             switch result {
