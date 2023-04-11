@@ -233,6 +233,7 @@ struct AddCocktailView: View {
         measureTextfield.append("")
         nameButtonTextfield.append("Mesure")
     }
+    
     private func appendText() {
         measureText.append("")
         nameButtonText.append("Mesure")
