@@ -14,6 +14,21 @@ class StorageService {
     
     private let storage = Storage.storage().reference()
     private var userRef: StorageReference { storage.child("usersPhoto")}
+    private var cocktailRef: StorageReference { storage.child("cocktailPhoto")}
+    
+    func uploadCocktailImage(id: String, image: Data, completion: @escaping (Result<String, Error>) -> Void) {
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        cocktailRef.child(id).putData(image, metadata: metadata) { metadata, error in
+            guard let metadata = metadata else {
+                if let error = error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            completion(.success("Размер полученного изображения: \(metadata.size)"))
+        }
+    }
     
     func uploadUserImage(id: String, image: Data, completion: @escaping (Result<String, Error>) -> Void) {
         let metadata = StorageMetadata()

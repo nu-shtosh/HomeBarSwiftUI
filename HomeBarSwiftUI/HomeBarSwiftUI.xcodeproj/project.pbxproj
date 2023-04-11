@@ -19,6 +19,7 @@
 		1F87D80429CC57A40051D283 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F87D80329CC57A40051D283 /* SearchView.swift */; };
 		1F8A615829C59FAE00235CAF /* AlcoTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8A615729C59FAE00235CAF /* AlcoTestManager.swift */; };
 		1FB0DE8229E5C390000B8A78 /* CustomIngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB0DE8129E5C390000B8A78 /* CustomIngredientsView.swift */; };
+		1FB0DE8429E5DA5F000B8A78 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB0DE8329E5DA5F000B8A78 /* ActivityIndicatorView.swift */; };
 		1FD50C5529BDE71F00C4395A /* CustomSegmentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD50C5429BDE71F00C4395A /* CustomSegmentPickerView.swift */; };
 		1FD50C5929BE1B1600C4395A /* NumberTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD50C5829BE1B1600C4395A /* NumberTextFieldView.swift */; };
 		1FD50C5B29BE1D8D00C4395A /* SliderAlcoholTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD50C5A29BE1D8D00C4395A /* SliderAlcoholTestView.swift */; };
@@ -99,6 +100,7 @@
 		1F87D80329CC57A40051D283 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		1F8A615729C59FAE00235CAF /* AlcoTestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoTestManager.swift; sourceTree = "<group>"; };
 		1FB0DE8129E5C390000B8A78 /* CustomIngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIngredientsView.swift; sourceTree = "<group>"; };
+		1FB0DE8329E5DA5F000B8A78 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		1FD50C5429BDE71F00C4395A /* CustomSegmentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPickerView.swift; sourceTree = "<group>"; };
 		1FD50C5829BE1B1600C4395A /* NumberTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextFieldView.swift; sourceTree = "<group>"; };
 		1FD50C5A29BE1D8D00C4395A /* SliderAlcoholTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderAlcoholTestView.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				B8628E7E29C71E8900A8C21C /* StarsRatingView.swift */,
 				1F87D80329CC57A40051D283 /* SearchView.swift */,
 				B813396A29CD961F0014F796 /* Extentsion + View.swift */,
+				1FB0DE8329E5DA5F000B8A78 /* ActivityIndicatorView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				1F8A615829C59FAE00235CAF /* AlcoTestManager.swift in Sources */,
 				1FFEC7A529BFA05C003B04EA /* DrinkViewModel.swift in Sources */,
 				B83D997A2948F716006AF62D /* NetworkManager.swift in Sources */,
+				1FB0DE8429E5DA5F000B8A78 /* ActivityIndicatorView.swift in Sources */,
 				1FEE9F5929CC385700858B1B /* AddCocktailView.swift in Sources */,
 				B8255D5529CB746E00F38FB0 /* IngredientsViewModel.swift in Sources */,
 				1FFEC79F29BF8585003B04EA /* AlcoTestViewModel.swift in Sources */,

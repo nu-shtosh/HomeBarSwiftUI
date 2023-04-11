@@ -11,6 +11,7 @@ struct ProfileView: View {
     
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var cocktailViewModel: CocktailsViewModel
+    @StateObject var ingredientsViewModel: IngredientsViewModel
     
     var body: some View {
         ZStack {
@@ -54,7 +55,9 @@ struct ProfileView: View {
                 
                 HStack {
                     UserButtonStackView(cocktailViewModel: cocktailViewModel,
-                                        profileViewModel: profileViewModel)
+                                        profileViewModel: profileViewModel,
+                                        ingredientsViewModel: ingredientsViewModel
+                    )
                     .padding()
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 16))
@@ -130,6 +133,7 @@ struct UserButtonStackView: View {
 
     @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
+    @StateObject var ingredientsViewModel: IngredientsViewModel
 
     var body: some View {
         VStack {
@@ -151,7 +155,10 @@ struct UserButtonStackView: View {
             .padding(.bottom)
             HStack {
                 NavigationLink {
-                    AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), cocktailsViewModel: cocktailViewModel)
+                    AddCocktailView(
+                        ingredientsViewModel: ingredientsViewModel,
+                        cocktailsViewModel: cocktailViewModel
+                    )
                 } label: {
                     Text("Add cocktail")
                         .foregroundColor(Color.white)
@@ -160,8 +167,6 @@ struct UserButtonStackView: View {
                         .background(Color("neonOrange"))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
-
-                UserButtonView(text: "Add cocktail", action: {})
                 Spacer()
             }
             

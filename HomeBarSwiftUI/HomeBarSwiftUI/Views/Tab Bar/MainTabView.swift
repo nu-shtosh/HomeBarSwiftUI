@@ -24,7 +24,19 @@ struct MainTabView: View {
                                                                            sumOfRating: 0,
                                                                            userRating: 0,
                                                                            likes: 0,
-                                                                           comments: ["" : ""])],
+                                                                           comments: ["" : ""])], cocktail: CocktailDB(name: "",
+                                                                                                                       tags: "",
+                                                                                                                       alcoholic: "",
+                                                                                                                       instructions: "",
+                                                                                                                       image: "",
+                                                                                                                       ingredientsNames: [""],
+                                                                                                                       ingredientsMeasures: [""],
+                                                                                                                       rating: 0,
+                                                                                                                       numberOfRatings: 0,
+                                                                                                                       sumOfRating: 0,
+                                                                                                                       userRating: 0,
+                                                                                                                       likes: 0,
+                                                                                                                       comments: ["" : ""]),
                                                  image: Data())
     let profileViewModel = ProfileViewModel(profile: UserDB(id: "1",
                                                             name: "",
@@ -81,7 +93,9 @@ struct MainTabView: View {
                 // MARK: - Profile
                 NavigationView() {
                     ProfileView(profileViewModel: profileViewModel,
-                                cocktailViewModel: cocktailsViewModel)
+                                cocktailViewModel: cocktailsViewModel,
+                                ingredientsViewModel: ingredientsViewModel
+                    )
                 }
                 .tabItem {
                     VStack {
