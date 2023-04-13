@@ -19,15 +19,17 @@ struct AddCocktailView: View {
     @State var nameCocktail = ""
     @State var nameButtonTextfield = [""]
     @State var nameButtonText = [""]
-    private let measures = ["ml", "oz", "tsp", "tblsp", "dashes", "cube", "pieces", "splash"]
+    private let measures = MeasureDataStore.shared.measures
     @State private var showImagePicker = false
     @State private var showProgressView = false
+    @State private var showAlert = false
     @State var image = UIImage(named: "pinaColada")!
     @Environment (\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
             ZStack {
+                // MARK: - Wallpaper View
                 WallpaperView()
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
@@ -38,15 +40,17 @@ struct AddCocktailView: View {
                             .frame(
                                 width:
                                     withAnimation{
-                                        image != UIImage(named: "pinaColada") ? screen.width - 32 : 200
+                                        image != UIImage(named: "pinaColada")
+                                        ? screen.width - 32
+                                        : 200
                                     },
                                 height:
                                     withAnimation{
-                                        image != UIImage(named: "pinaColada") ? screen.width - 32 : 200
-                                        
+                                        image != UIImage(named: "pinaColada")
+                                        ? screen.width - 32
+                                        : 200
                                     }
                             )
-                        
                             .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
                                 colors: [Color("neonBlue"), Color("neonOrange")],
                                 startPoint: .top,
@@ -69,6 +73,7 @@ struct AddCocktailView: View {
                     }
                     .padding()
                     HStack {
+                        // MARK: - cocktail Name
                         Text("Name cocktail")
                             .font(.callout)
                             .bold()
@@ -76,15 +81,18 @@ struct AddCocktailView: View {
                             .padding(.leading, 16)
                         Spacer()
                     }
+                    // MARK: - cocktail Name textfield
                     TextFieldWithImageView(title: "Name cocktail", imageSystemName: "", text: $nameCocktail)
                         .padding()
                     HStack {
+                        // MARK: - Ingredient Name
                         Text("Ingredients")
                             .font(.callout)
                             .bold()
                             .foregroundColor(.gray)
                             .padding(.leading, 16)
                         Spacer()
+                        // MARK: - Button add Ingredient
                         Button {
                             isPresent.toggle()
                         } label: {
@@ -95,10 +103,11 @@ struct AddCocktailView: View {
                         }
                         .padding(.trailing, 16)
                     }
-                    
+                    // MARK: - Ingredients Textfield List
                     ForEach(ingredientsTextfield.indices, id: \.self) { index in
                         if index > 0 {
                             HStack {
+                                // MARK: - name Ingredients Textfield
                                 DefaultTextFieldView(
                                     title: "name",
                                     text: $ingredientsTextfield[index],
@@ -107,13 +116,14 @@ struct AddCocktailView: View {
                                 )
                                 .padding(.leading, 16)
                                 Spacer()
+                                // MARK: - name measure Textfield
                                 DefaultTextFieldView(
                                     title: "measure",
                                     text: $measureTextfield[index],
                                     sizeWidth: 70,
                                     sizeHeight: 40
                                 )
-                                
+                                // MARK: -  measure button
                                 Menu(nameButtonTextfield[index]) {
                                     ForEach(measures, id: \.self) { measure in
                                         Button(measure) {
@@ -122,8 +132,9 @@ struct AddCocktailView: View {
                                     }
                                 }
                                 .foregroundColor(Color("neonBlue"))
-                                .frame(width: 65)
-                                .padding(.trailing, 8)
+                                .frame(width: 75)
+                                .padding(.trailing, 5)
+                                // MARK: - Button deleted Ingredient
                                 Button {
                                     ingredientsTextfield.remove(at: index)
                                     nameButtonTextfield.remove(at: index)
@@ -139,20 +150,23 @@ struct AddCocktailView: View {
                         }
                     }
                     .padding(.bottom, 8)
+                    // MARK: - Ingredients Text & Textfield List
                     ForEach(ingredientsText.indices, id: \.self) { index in
                         if index > 0 {
                             HStack {
+                                // MARK: - name Ingredients Text
                                 Text(ingredientsText[index])
                                     .padding(.leading, 16)
                                     .foregroundColor(Color("neonOrange"))
                                 Spacer()
+                                // MARK: - name measure Textfield
                                 DefaultTextFieldView(
                                     title: "measure",
                                     text: $measureText[index],
                                     sizeWidth: 70,
                                     sizeHeight: 40
                                 )
-                                
+                                // MARK: -  measure button
                                 Menu(nameButtonText[index]) {
                                     ForEach(measures, id: \.self) { measure in
                                         Button(measure) {
@@ -161,8 +175,9 @@ struct AddCocktailView: View {
                                     }
                                 }
                                 .foregroundColor(Color("neonBlue"))
-                                .frame(width: 65)
-                                .padding(.trailing, 6)
+                                .frame(width: 75)
+                                .padding(.trailing, 5)
+                                // MARK: - Button deleted Ingredient
                                 Button {
                                     ingredientsText.remove(at: index)
                                     nameButtonText.remove(at: index)
@@ -177,6 +192,7 @@ struct AddCocktailView: View {
                             }
                         }
                     }
+                    // MARK: - name Recept
                     HStack {
                         Text("Recept")
                             .font(.callout)
@@ -185,6 +201,7 @@ struct AddCocktailView: View {
                             .padding(.leading, 16)
                         Spacer()
                     }
+                    // MARK: - Recept TextEditor
                     TextEditor(text: $receptText)
                         .foregroundColor(.black)
                         .scrollContentBackground(.hidden)
@@ -200,12 +217,14 @@ struct AddCocktailView: View {
                         .cornerRadius(8)
                         .padding()
                         .frame(minHeight: 73, maxHeight: 1000, alignment: .center)
+                    // MARK: - Button save cocktail
                     Button {
                         showProgressView = true
                         uploadData()
                     } label: {
                         Text("Save")
                     }
+//                    .disabled(nameCocktail.isEmpty || receptText.isEmpty || ingredientsTextfield.contains("") || measureText.contains("") || measureTextfield.contains("") || nameButtonText.contains("measure") || nameButtonTextfield.contains("measure"))
                 }
 
             }
@@ -219,65 +238,71 @@ struct AddCocktailView: View {
                     actionTwo: appendText
                 )
             }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Not all fields are filled!"),
+                    message: Text("Please complete all fields and try again.🍹"),
+                    dismissButton: .default(Text("Ok"))
+                )
+            }
             if showProgressView {
                 ActivityIndicator()
                     .frame(width: 100, height: 100)
                     .foregroundColor(Color("neonBlue"))
             }
         }
-        
-        
     }
+    
     private func appendTextfield() {
-        ingredientsTextfield.append("")
-        measureTextfield.append("")
-        nameButtonTextfield.append("Mesure")
+        ingredientsTextfield.append(" ")
+        measureTextfield.append(" ")
+        nameButtonTextfield.append("measure")
     }
     
     private func appendText() {
-        measureText.append("")
-        nameButtonText.append("Mesure")
-    }
-    
-    private func configureCocktail() -> CocktailDB {
-        cocktailsViewModel.cocktail.name = nameCocktail
-        cocktailsViewModel.cocktail.instructions = receptText
-        ingredientsTextfield.remove(at: 0)
-        ingredientsText.remove(at: 0)
-        cocktailsViewModel.cocktail.ingredientsNames = ingredientsTextfield + ingredientsText
-        var measureIngredientTextfield = measureTextfield.enumerated().map { (index, value) in
-            value + " " + nameButtonTextfield[index]
-        }
-        measureIngredientTextfield.remove(at: 0)
-        var measureIngredientText = measureText.enumerated().map { (index, value) in
-            value + " " + nameButtonText[index]
-        }
-        measureIngredientText.remove(at: 0)
-        cocktailsViewModel.cocktail.ingredientsMeasures = measureIngredientTextfield + measureIngredientText
-        
-        cocktailsViewModel.cocktail.image = "aaaa"
-        cocktailsViewModel.cocktail.alcoholic = "Alcoholic"
-        cocktailsViewModel.cocktail.tags = "dddd"
-        cocktailsViewModel.cocktail.comments = ["a": "s"]
-        return cocktailsViewModel.cocktail
+        measureText.append(" ")
+        nameButtonText.append("measure")
     }
     
     private func uploadData() {
-        
-        let cocktail = configureCocktail()
-        guard let imageData = image.jpegData(compressionQuality: 0.1) else {
-            return
-        }
-        
-        DataBaseService.shared.setCocktail(cocktail: cocktail, image: imageData) { result in
-            switch result {
-            case .success(_):
-                showProgressView = false
-                dismiss()
-            case .failure(let error):
-                print(error.localizedDescription)
+        if nameCocktail.isEmpty || receptText.isEmpty || ingredientsTextfield.contains("") || measureTextfield.contains("") || measureText.contains("") || nameButtonTextfield.contains("measure") || nameButtonText.contains("measure") {
+            showProgressView = false
+            showAlert.toggle()
+            print(nameCocktail + " " + receptText + " " + ingredientsTextfield + " " + measureTextfield + " " + measureText)
+
+        } else {
+            let cocktail = cocktailsViewModel.configureCocktail(nameCocktail, receptText, &ingredientsTextfield, &ingredientsText, measureTextfield, measureText, nameButtonTextfield, nameButtonText)
+            guard let imageData = image.jpegData(compressionQuality: 0.1) else {
+                return
+            }
+        print(cocktail)
+//
+//        if cocktail.name.isEmpty || cocktail.instructions.isEmpty || cocktail.ingredientsMeasures.contains("  measure") {
+//            showProgressView = false
+//            showAlert.toggle()
+//        } else {
+            DataBaseService.shared.setCocktail(cocktail: cocktail, image: imageData) { result in
+                switch result {
+                case .success(_):
+                    showProgressView = false
+                    dismiss()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
         }
+        
+//            DataBaseService.shared.setCocktail(cocktail: cocktail, image: imageData) { result in
+//                switch result {
+//                case .success(_):
+//                    showProgressView = false
+//                    dismiss()
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }
+        
+        
     }
 }
 

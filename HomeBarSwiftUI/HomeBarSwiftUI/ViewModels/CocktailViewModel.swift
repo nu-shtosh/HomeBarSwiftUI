@@ -14,12 +14,37 @@ class CocktailsViewModel: ObservableObject {
     @Published var cocktail: CocktailDB
     @Published var image: Data
 
-    var ingredients: [String] = []
-
     init(allCocktails: [CocktailDB],cocktail: CocktailDB, image: Data) {
         self.allCocktails = allCocktails
         self.cocktail = cocktail
         self.image = image
+    }
+    
+    func configureCocktail(_ name: String, _ receptText: String, _ ingredientsTextfield: inout [String], _ ingredientsText: inout [String], _ measureTextfield: [String], _ measureText: [String], _ nameButtonTextfield: [String], _ nameButtonText: [String]) -> CocktailDB {
+        
+        var measureIngredientTextfield = measureTextfield.enumerated().map { (index, value) in
+            value + " " + nameButtonTextfield[index]
+        }
+        var measureIngredientText = measureText.enumerated().map { (index, value) in
+            value + " " + nameButtonText[index]
+        }
+        measureIngredientTextfield.remove(at: 0)
+        measureIngredientText.remove(at: 0)
+        if ingredientsTextfield.count > 0 {
+            ingredientsTextfield.remove(at: 0)
+        }
+        if ingredientsText.count > 0 {
+            ingredientsText.remove(at: 0)
+        }
+        cocktail.ingredientsMeasures = measureIngredientTextfield + measureIngredientText
+        cocktail.ingredientsNames = ingredientsTextfield + ingredientsText
+        cocktail.name = name
+        cocktail.instructions = receptText
+        cocktail.image = " "
+        cocktail.alcoholic = " "
+        cocktail.tags = " "
+        cocktail.comments = [" ": " "]
+        return cocktail
     }
 
     func getCocktail() {
