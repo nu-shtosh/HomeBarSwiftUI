@@ -98,12 +98,9 @@ class DataBaseService {
             }
             let documents = querySnapshot.documents
             var cocktails = [CocktailDB]()
-            print(documents)
             for document in documents {
                 guard let cocktail = CocktailDB.init(document: document) else { return }
-                print(cocktail)
                 cocktails.append(cocktail)
-                print(cocktails)
             }
             completion(.success(cocktails))
         }
