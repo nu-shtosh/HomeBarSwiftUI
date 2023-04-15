@@ -83,14 +83,25 @@ struct AddCocktailView: View {
                         Spacer()
                     }
                     // MARK: - cocktail Name textfield
-                    DefaultTextFieldView(
-                        title: "Name cocktail",
-                        text: $nameCocktail,
-                        sizeWidth: nil,
-                        sizeHeight: 40
-                    )
-                    .focused($isInputActive)
-                        .padding()
+                    HStack {
+                        DefaultTextFieldView(
+                            title: "Name cocktail",
+                            text: $nameCocktail,
+                            sizeWidth: nil,
+                            sizeHeight: 40
+                        )
+                        .focused($isInputActive)
+                    }
+                    .padding()
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                        colors: [Color("neonBlue"), Color("neonOrange")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.3), lineWidth: 2))
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
+                    .cornerRadius(16)
                     HStack {
                         // MARK: - Ingredient Name
                         Text("Ingredients")
@@ -111,100 +122,118 @@ struct AddCocktailView: View {
                         .padding(.trailing, 16)
                     }
                     // MARK: - Ingredients Textfield List
-                    ForEach(ingredientsTextfield.indices, id: \.self) { index in
-                        if index > 0 {
-                            HStack {
-                                // MARK: - name Ingredients Textfield
-                                DefaultTextFieldView(
-                                    title: "name",
-                                    text: $ingredientsTextfield[index],
-                                    sizeWidth: nil,
-                                    sizeHeight: 40
-                                )
-                                .focused($isInputActive)
-                                .padding(.leading, 16)
-                                Spacer()
-                                // MARK: - name measure Textfield
-                                DefaultTextFieldView(
-                                    title: "measure",
-                                    text: $measureTextfield[index],
-                                    sizeWidth: 70,
-                                    sizeHeight: 40
-                                )
-                                .focused($isInputActive)
-                                // MARK: -  measure button
-                                Menu(nameButtonTextfield[index]) {
-                                    ForEach(measures, id: \.self) { measure in
-                                        Button(measure) {
-                                            nameButtonTextfield[index] = measure
-                                        }
-                                    }
-                                }
-                                .foregroundColor(Color("neonBlue"))
-                                .frame(width: 75)
-                                .padding(.trailing, 5)
-                                // MARK: - Button deleted Ingredient
-                                Button {
-                                    ingredientsTextfield.remove(at: index)
-                                    nameButtonTextfield.remove(at: index)
-                                    measureTextfield.remove(at: index)
-                                } label: {
-                                    Image(systemName: "minus")
-                                        .resizable()
-                                        .frame(width: 25, height: 3.5)
-                                        .foregroundColor(Color("neonBlue"))
-                                }
-                                .padding(.trailing, 16)
-                            }
-                        }
-                    }
-                    .padding(.bottom, 8)
-                    // MARK: - Ingredients Text & Textfield List
-                    ForEach(ingredientsText.indices, id: \.self) { index in
-                        if index > 0 {
-                            HStack {
-                                // MARK: - name Ingredients Text
-                                Text(ingredientsText[index])
-                                    .padding(.leading, 16)
+                    VStack {
+                        if ingredientsTextfield.count == 1 && ingredientsText.count == 1 {
+                            withAnimation {
+                                Text("Add ingredient")
                                     .foregroundColor(Color("neonOrange"))
-                                Spacer()
-                                // MARK: - name measure Textfield
-                                DefaultTextFieldView(
-                                    title: "measure",
-                                    text: $measureText[index],
-                                    sizeWidth: 70,
-                                    sizeHeight: 40
-                                )
-                                .focused($isInputActive)
-                                // MARK: -  measure button
-                                Menu(nameButtonText[index]) {
-                                    ForEach(measures, id: \.self) { measure in
-                                        Button(measure) {
-                                            nameButtonText[index] = measure
+                                    .frame(width: screen.width - 64)
+                            }
+                        }
+                        ForEach(ingredientsTextfield.indices, id: \.self) { index in
+                            if index > 0 {
+                                HStack {
+                                    // MARK: - name Ingredients Textfield
+                                    DefaultTextFieldView(
+                                        title: "",
+                                        text: $ingredientsTextfield[index],
+                                        sizeWidth: nil,
+                                        sizeHeight: 40
+                                    )
+                                    .focused($isInputActive)
+                                   
+                                    Spacer()
+                                    // MARK: - name measure Textfield
+                                    DefaultTextFieldView(
+                                        title: "",
+                                        text: $measureTextfield[index],
+                                        sizeWidth: 70,
+                                        sizeHeight: 40
+                                    )
+                                    .focused($isInputActive)
+                                    // MARK: -  measure button
+                                    Menu(nameButtonTextfield[index]) {
+                                        ForEach(measures, id: \.self) { measure in
+                                            Button(measure) {
+                                                nameButtonTextfield[index] = measure
+                                            }
                                         }
                                     }
+                                    .foregroundColor(Color("neonBlue"))
+                                    .frame(width: 75)
+                                    .padding(.trailing, 5)
+                                    // MARK: - Button deleted Ingredient
+                                    Button {
+                                        ingredientsTextfield.remove(at: index)
+                                        nameButtonTextfield.remove(at: index)
+                                        measureTextfield.remove(at: index)
+                                    } label: {
+                                        Image(systemName: "minus")
+                                            .resizable()
+                                            .frame(width: 25, height: 3.5)
+                                            .foregroundColor(Color("neonBlue"))
+                                    }
+                                   
                                 }
-                                .foregroundColor(Color("neonBlue"))
-                                .frame(width: 75)
-                                .padding(.trailing, 5)
-                                // MARK: - Button deleted Ingredient
-                                Button {
-                                    ingredientsText.remove(at: index)
-                                    nameButtonText.remove(at: index)
-                                    measureText.remove(at: index)
-                                } label: {
-                                    Image(systemName: "minus")
-                                        .resizable()
-                                        .frame(width: 25, height: 3.5)
-                                        .foregroundColor(Color("neonBlue"))
+                            }
+                        }
+                        // MARK: - Ingredients Text & Textfield List
+                        ForEach(ingredientsText.indices, id: \.self) { index in
+                            if index > 0 {
+                                HStack {
+                                    // MARK: - name Ingredients Text
+                                    Text(ingredientsText[index])
+                                        
+                                        .foregroundColor(Color("neonOrange"))
+                                    Spacer()
+                                    // MARK: - name measure Textfield
+                                    DefaultTextFieldView(
+                                        title: "",
+                                        text: $measureText[index],
+                                        sizeWidth: 70,
+                                        sizeHeight: 40
+                                    )
+                                    .focused($isInputActive)
+                                    // MARK: -  measure button
+                                    Menu(nameButtonText[index]) {
+                                        ForEach(measures, id: \.self) { measure in
+                                            Button(measure) {
+                                                nameButtonText[index] = measure
+                                            }
+                                        }
+                                    }
+                                    .foregroundColor(Color("neonBlue"))
+                                    .frame(width: 75)
+                                    .padding(.trailing, 5)
+                                    // MARK: - Button deleted Ingredient
+                                    Button {
+                                        ingredientsText.remove(at: index)
+                                        nameButtonText.remove(at: index)
+                                        measureText.remove(at: index)
+                                    } label: {
+                                        Image(systemName: "minus")
+                                            .resizable()
+                                            .frame(width: 25, height: 3.5)
+                                            .foregroundColor(Color("neonBlue"))
+                                    }
+                    
                                 }
-                                .padding(.trailing, 16)
                             }
                         }
                     }
-                    // MARK: - name Recept
+                    .padding()
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                        colors: [Color("neonBlue"), Color("neonOrange")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.3), lineWidth: 2))
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
+                    .cornerRadius(16)
+                    // MARK: - name Recipe
                     HStack {
-                        Text("Recept")
+                        Text("Recipe")
                             .font(.callout)
                             .bold()
                             .foregroundColor(.gray)
@@ -212,18 +241,34 @@ struct AddCocktailView: View {
                         Spacer()
                     }
                     // MARK: - Recept TextEditor
-                    TextField("Recept", text: $receptText, axis: .vertical)
-                        .textFieldStyle(GradientTextFieldBackground())
-                        .foregroundColor(.black)
-                        .lineLimit(2...200)
-                        .padding()
-                        .focused($isInputActive)
+                    HStack {
+                        TextField("Recipe", text: $receptText, axis: .vertical)
+                            .textFieldStyle(GradientTextFieldBackground())
+                            .foregroundColor(.black)
+                            .lineLimit(1...200)
+                            .focused($isInputActive)
+                    }
+                    .padding()
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                        colors: [Color("neonBlue"), Color("neonOrange")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.3), lineWidth: 2))
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
+                    .cornerRadius(16)
                     // MARK: - Button save cocktail
-                    OrangeButtonView(action: {
+                    OrangeButtonView(
+                        action: {
                         showProgressView = true
                         saveNewCocktail()
-                    }, title: "Save")
+                    },
+                        title: "Save"
+                    )
+                    .padding()
                 }
+                .padding()
             }
             .disabled(showProgressView)
             .blur(radius: showProgressView ? 3 : 0)
@@ -318,8 +363,39 @@ struct AddCocktailView: View {
     }
 }
 
-//struct AddCocktailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]))
-//    }
-//}
+struct AddCocktailView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), cocktailsViewModel: CocktailsViewModel(
+            allCocktails: [CocktailDB(
+                name: "",
+                tags: "",
+                alcoholic: "",
+                instructions: "",
+                image: "",
+                ingredientsNames: [""],
+                ingredientsMeasures: [""],
+                rating: 0,
+                numberOfRatings: 0,
+                sumOfRating: 0,
+                userRating: 0,
+                likes: 0,
+                comments: ["" : ""]
+            )], cocktail: CocktailDB(
+                name: "",
+                tags: "",
+                alcoholic: "",
+                instructions: "",
+                image: "",
+                ingredientsNames: [""],
+                ingredientsMeasures: [""],
+                rating: 0,
+                numberOfRatings: 0,
+                sumOfRating: 0,
+                userRating: 0,
+                likes: 0,
+                comments: ["" : ""]
+            ),
+            image: Data()
+        ))
+    }
+}
