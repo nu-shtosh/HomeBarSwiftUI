@@ -24,6 +24,7 @@ struct AddCocktailView: View {
     @State private var showProgressView = false
     @State private var showAlert = false
     @State var image = UIImage(named: "pinaColada")!
+    @FocusState private var isInputActive: Bool
     @Environment (\.dismiss) var dismiss
     
     var body: some View {
@@ -82,7 +83,13 @@ struct AddCocktailView: View {
                         Spacer()
                     }
                     // MARK: - cocktail Name textfield
-                    TextFieldWithImageView(title: "Name cocktail", imageSystemName: "", text: $nameCocktail)
+                    DefaultTextFieldView(
+                        title: "Name cocktail",
+                        text: $nameCocktail,
+                        sizeWidth: nil,
+                        sizeHeight: 40
+                    )
+                    .focused($isInputActive)
                         .padding()
                     HStack {
                         // MARK: - Ingredient Name
@@ -114,6 +121,7 @@ struct AddCocktailView: View {
                                     sizeWidth: nil,
                                     sizeHeight: 40
                                 )
+                                .focused($isInputActive)
                                 .padding(.leading, 16)
                                 Spacer()
                                 // MARK: - name measure Textfield
@@ -123,6 +131,7 @@ struct AddCocktailView: View {
                                     sizeWidth: 70,
                                     sizeHeight: 40
                                 )
+                                .focused($isInputActive)
                                 // MARK: -  measure button
                                 Menu(nameButtonTextfield[index]) {
                                     ForEach(measures, id: \.self) { measure in
@@ -166,6 +175,7 @@ struct AddCocktailView: View {
                                     sizeWidth: 70,
                                     sizeHeight: 40
                                 )
+                                .focused($isInputActive)
                                 // MARK: -  measure button
                                 Menu(nameButtonText[index]) {
                                     ForEach(measures, id: \.self) { measure in
@@ -202,28 +212,16 @@ struct AddCocktailView: View {
                         Spacer()
                     }
                     // MARK: - Recept TextEditor
-                    TextEditor(text: $receptText)
+                    TextField("Recept", text: $receptText, axis: .vertical)
+                        .textFieldStyle(GradientTextFieldBackground())
                         .foregroundColor(.black)
-                        .scrollContentBackground(.hidden)
-                        .background(Color.white.opacity(0.8))
-                        .border(LinearGradient(
-                            colors: [
-                                Color("neonOrange"),
-                                Color("neonBlue")
-                            ],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        ))
-                        .cornerRadius(8)
                         .padding()
-                        .frame(minHeight: 73, maxHeight: 1000, alignment: .center)
+                        .focused($isInputActive)
                     // MARK: - Button save cocktail
-                    Button {
+                    OrangeButtonView(action: {
                         showProgressView = true
                         saveNewCocktail()
-                    } label: {
-                        Text("Save")
-                    }
+                    }, title: "Save")
                 }
             }
             .disabled(showProgressView)
@@ -242,6 +240,9 @@ struct AddCocktailView: View {
                     message: Text("Please complete all fields and try again.🍹"),
                     dismissButton: .default(Text("Ok"))
                 )
+            }
+            .onTapGesture {
+                isInputActive = false
             }
             if showProgressView {
                 ActivityIndicator()
