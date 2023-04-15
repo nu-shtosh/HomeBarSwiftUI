@@ -215,6 +215,7 @@ struct AddCocktailView: View {
                     TextField("Recept", text: $receptText, axis: .vertical)
                         .textFieldStyle(GradientTextFieldBackground())
                         .foregroundColor(.black)
+                        .lineLimit(2...200)
                         .padding()
                         .focused($isInputActive)
                     // MARK: - Button save cocktail

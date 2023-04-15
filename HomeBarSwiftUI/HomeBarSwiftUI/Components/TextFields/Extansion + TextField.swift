@@ -60,7 +60,7 @@ struct GradientTextFieldBackground: TextFieldStyle {
                 )
                 .background(Color.white.opacity(0.8))
                 .cornerRadius(5)
-                .frame(minHeight: 40, maxHeight: 1000)
+                .frame(minHeight: 40)
                 configuration
                 .padding(.leading)
         }
