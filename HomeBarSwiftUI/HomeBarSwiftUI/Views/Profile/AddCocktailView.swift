@@ -220,13 +220,11 @@ struct AddCocktailView: View {
                     // MARK: - Button save cocktail
                     Button {
                         showProgressView = true
-                        uploadData()
+                        saveNewCocktail()
                     } label: {
                         Text("Save")
                     }
-//                    .disabled(nameCocktail.isEmpty || receptText.isEmpty || ingredientsTextfield.contains("") || measureText.contains("") || measureTextfield.contains("") || nameButtonText.contains("measure") || nameButtonTextfield.contains("measure"))
                 }
-
             }
             .disabled(showProgressView)
             .blur(radius: showProgressView ? 3 : 0)
@@ -254,55 +252,67 @@ struct AddCocktailView: View {
     }
     
     private func appendTextfield() {
-        ingredientsTextfield.append(" ")
-        measureTextfield.append(" ")
+        ingredientsTextfield.append("")
+        measureTextfield.append("")
         nameButtonTextfield.append("measure")
     }
     
     private func appendText() {
-        measureText.append(" ")
+        measureText.append("")
         nameButtonText.append("measure")
     }
     
     private func uploadData() {
-        if nameCocktail.isEmpty || receptText.isEmpty || ingredientsTextfield.contains("") || measureTextfield.contains("") || measureText.contains("") || nameButtonTextfield.contains("measure") || nameButtonText.contains("measure") {
-            showProgressView = false
-            showAlert.toggle()
-            print(nameCocktail + " " + receptText + " " + ingredientsTextfield + " " + measureTextfield + " " + measureText)
-
-        } else {
-            let cocktail = cocktailsViewModel.configureCocktail(nameCocktail, receptText, &ingredientsTextfield, &ingredientsText, measureTextfield, measureText, nameButtonTextfield, nameButtonText)
-            guard let imageData = image.jpegData(compressionQuality: 0.1) else {
-                return
-            }
-        print(cocktail)
-//
-//        if cocktail.name.isEmpty || cocktail.instructions.isEmpty || cocktail.ingredientsMeasures.contains("  measure") {
-//            showProgressView = false
-//            showAlert.toggle()
-//        } else {
-            DataBaseService.shared.setCocktail(cocktail: cocktail, image: imageData) { result in
-                switch result {
-                case .success(_):
-                    showProgressView = false
-                    dismiss()
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        let cocktail = cocktailsViewModel.configureCocktail(
+            nameCocktail,
+            receptText,
+            &ingredientsTextfield,
+            &ingredientsText,
+            measureTextfield,
+            measureText,
+            nameButtonTextfield,
+            nameButtonText
+        )
+        guard let imageData = image.jpegData(compressionQuality: 0.1) else {
+            return
+        }
+        DataBaseService.shared.setCocktail(cocktail: cocktail, image: imageData) { result in
+            switch result {
+            case .success(_):
+                showProgressView = false
+                dismiss()
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
-        
-//            DataBaseService.shared.setCocktail(cocktail: cocktail, image: imageData) { result in
-//                switch result {
-//                case .success(_):
-//                    showProgressView = false
-//                    dismiss()
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//            }
-        
-        
+    }
+
+    private func saveNewCocktail() {
+        if ingredientsTextfield.count > 1 && ingredientsText.count > 1 {
+            if nameCocktail.isEmpty || receptText.isEmpty || ingredientsTextfield[1].isEmpty || measureTextfield[1].isEmpty || measureText[1].isEmpty || nameButtonTextfield.contains("measure") || nameButtonText.contains("measure") {
+                showProgressView = false
+                showAlert.toggle()
+            } else {
+                uploadData()
+            }
+        } else if ingredientsTextfield.count == 1 && ingredientsText.count > 1 {
+            if nameCocktail.isEmpty || receptText.isEmpty ||  measureText[1].isEmpty ||  nameButtonText.contains("measure") {
+                showProgressView = false
+                showAlert.toggle()
+            } else {
+                uploadData()
+            }
+        } else if ingredientsTextfield.count > 1 && ingredientsText.count == 1 {
+            if nameCocktail.isEmpty || receptText.isEmpty || ingredientsTextfield[1].isEmpty || measureTextfield[1].isEmpty || nameButtonTextfield.contains("measure") {
+                showProgressView = false
+                showAlert.toggle()
+            } else {
+                uploadData()
+            }
+        } else {
+            showProgressView = false
+            showAlert.toggle()
+        }
     }
 }
 
