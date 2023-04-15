@@ -11,7 +11,7 @@ struct FavoritesCocktailsView: View {
     // MARK: - State Object Properties
     @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
-
+    
     // MARK: - Private Properties
     private let layout = [GridItem(.adaptive(minimum: screen.width / 2.2))]
 
@@ -36,7 +36,9 @@ struct FavoritesCocktailsView: View {
                                     CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
                                         .navigationTitle(item.name)
                                 } label: {
-                                    CocktailCellView(cocktail: item, image: cocktailViewModel.image)
+                                    VStack {
+                                        CocktailCellView(cocktail: item, image: cocktailViewModel.image)
+                                    }
                                 }
                             }
                         } // End LazyVGrid

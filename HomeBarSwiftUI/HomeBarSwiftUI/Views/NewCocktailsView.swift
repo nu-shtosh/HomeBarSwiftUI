@@ -9,8 +9,9 @@ import SwiftUI
 struct NewCocktailsView: View {
 
     // MARK: - State Object Properties
-    @StateObject var newCocktailViewModel: NewCocktailsViewModel
+    @StateObject var сocktailViewModel: CocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
+    @State private var image = Data()
 
     // MARK: - State Properties
     @State var isHidden = false
@@ -28,29 +29,27 @@ struct NewCocktailsView: View {
                 // MARK: - All Cocktails
                 Section {
                     LazyVGrid(columns: layout, spacing: 5) {
-                        ForEach(Array(newCocktailViewModel.allCocktails), id: \.name) { item in
+                        ForEach(Array(сocktailViewModel.allCocktails), id: \.name) { item in
                             NavigationLink {
                                 CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
                                     .navigationTitle(item.name)
                             } label: {
-                                withAnimation {
-                                    
-                                    NewCocktailCell(cocktail: item, image: $newCocktailViewModel.image)
-                                }
-                            }
-                            .onAppear {
-                                newCocktailViewModel.getImageNewCocktail(item.name)
+                                    withAnimation {
+                                        CocktailCellView(cocktail: item)
+                                    }
+                                   
                             }
                         }
                     } // End LazyVGrid
                 } // End Section
                 .foregroundColor(Color("neonBlue"))
-            } // End ScrollView
+            } // End ScrollView1
+            .navigationTitle("My cocktails")
             .navigationBarTitleDisplayMode(.large)
             .toolbar(.visible, for: .tabBar)
         } // End ZStack
         .onAppear{
-            newCocktailViewModel.getNewCocktail()
+            сocktailViewModel.getNewCocktail()
         }
     } // End Body
 }

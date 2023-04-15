@@ -12,7 +12,6 @@ struct ProfileView: View {
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var ingredientsViewModel: IngredientsViewModel
-    @StateObject var newCocktailViewModel: NewCocktailsViewModel
     
     var body: some View {
         ZStack {
@@ -57,8 +56,7 @@ struct ProfileView: View {
                 HStack {
                     UserButtonStackView(cocktailViewModel: cocktailViewModel,
                                         profileViewModel: profileViewModel,
-                                        ingredientsViewModel: ingredientsViewModel,
-                                        newCocktailViewModel: newCocktailViewModel
+                                        ingredientsViewModel: ingredientsViewModel
                     )
                     .padding()
                 }
@@ -136,7 +134,6 @@ struct UserButtonStackView: View {
     @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var ingredientsViewModel: IngredientsViewModel
-    @StateObject var newCocktailViewModel: NewCocktailsViewModel
 
     var body: some View {
         VStack {
@@ -157,7 +154,7 @@ struct UserButtonStackView: View {
                 Spacer()
                 NavigationLink {
                     NewCocktailsView(
-                        newCocktailViewModel: newCocktailViewModel,
+                        сocktailViewModel: cocktailViewModel,
                         profileViewModel: profileViewModel
                         )
                 } label: {
@@ -174,7 +171,7 @@ struct UserButtonStackView: View {
                 NavigationLink {
                     AddCocktailView(
                         ingredientsViewModel: ingredientsViewModel,
-                        newCocktailsViewModel: newCocktailViewModel
+                        сocktailsViewModel: cocktailViewModel
                     )
                 } label: {
                     Text("Add cocktail")

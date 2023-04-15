@@ -75,6 +75,7 @@ struct CocktailCellView: View {
         .frame(width: screen.width * 0.5, height: screen.height * 0.18, alignment: .center)        
         .onAppear {
             getImage(imageURL: cocktail.image)
+            getImageNewCocktail(cocktail.name)
         }
 
     }
@@ -84,6 +85,17 @@ struct CocktailCellView: View {
             switch result {
             case .success(let images):
                 image = images
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getImageNewCocktail(_ id: String) {
+        StorageService.shared.downloadCocktailImage(id: id) { result in
+            switch result {
+            case .success(let data):
+               image = data
             case .failure(let error):
                 print(error.localizedDescription)
             }

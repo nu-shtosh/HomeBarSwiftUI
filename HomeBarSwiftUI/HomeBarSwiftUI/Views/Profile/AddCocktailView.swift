@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddCocktailView: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
-    @StateObject var newCocktailsViewModel: NewCocktailsViewModel
+    @StateObject var сocktailsViewModel: CocktailsViewModel
     @State var receptText = ""
     @State var isPresent = false
     @State var ingredientsTextfield = [""]
@@ -19,10 +19,13 @@ struct AddCocktailView: View {
     @State var nameCocktail = ""
     @State var nameButtonTextfield = [""]
     @State var nameButtonText = [""]
+    @State var alcoholic = "Alcoholic"
     private let measures = MeasureDataStore.shared.measures
     @State private var showImagePicker = false
     @State private var showProgressView = false
     @State private var showAlert = false
+    @State private var type = false
+    
     @State var image = UIImage(named: "pinaColada")!
     @FocusState private var isInputActive: Bool
     @Environment (\.dismiss) var dismiss
@@ -91,6 +94,42 @@ struct AddCocktailView: View {
                             sizeHeight: 40
                         )
                         .focused($isInputActive)
+                    }
+                    .padding()
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
+                        colors: [Color("neonBlue"), Color("neonOrange")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ).opacity(0.3), lineWidth: 2))
+                    .background(LinearGradient(colors: [Color("neonBlue"), Color("neonOrange")],
+                                               startPoint: .top,
+                                               endPoint: .bottom).opacity(0.15))
+                    .cornerRadius(16)
+                    HStack {
+                        Text("Type")
+                            .font(.callout)
+                            .bold()
+                            .foregroundColor(.gray)
+                            .padding(.leading, 16)
+                        Spacer()
+                    }
+                    HStack {
+                        LabelView(text: "Type alcoholic")
+                        Spacer()
+                        Button(action: {
+                            type.toggle()
+                            alcoholic = type ? "Not alcoholic" : "Alcoholic"
+                        }) {
+                            Text(alcoholic)
+                                .foregroundColor(Color.white)
+                                .font(.title3)
+                                .frame(width: 122, height: 40)
+                                .background(type
+                                            ? Color("neonBlue").opacity(0.8)
+                                            : Color("neonOrange").opacity(0.8)
+                                )
+                                .cornerRadius(8)
+                        }
                     }
                     .padding()
                     .overlay(RoundedRectangle(cornerRadius: 16).stroke(LinearGradient(
@@ -310,7 +349,7 @@ struct AddCocktailView: View {
     }
     
     private func uploadData() {
-        let cocktail = newCocktailsViewModel.configureCocktail(
+        let cocktail = сocktailsViewModel.configureCocktail(
             nameCocktail,
             receptText,
             &ingredientsTextfield,
@@ -318,7 +357,8 @@ struct AddCocktailView: View {
             measureTextfield,
             measureText,
             nameButtonTextfield,
-            nameButtonText
+            nameButtonText,
+            alcoholic
         )
         guard let imageData = image.jpegData(compressionQuality: 0.1) else {
             return
@@ -365,7 +405,7 @@ struct AddCocktailView: View {
 
 struct AddCocktailView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), newCocktailsViewModel: NewCocktailsViewModel(
+        AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), сocktailsViewModel: CocktailsViewModel(
             allCocktails: [CocktailDB(
                 name: "",
                 tags: "",

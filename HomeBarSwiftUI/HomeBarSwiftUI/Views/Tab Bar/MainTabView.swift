@@ -45,38 +45,6 @@ struct MainTabView: View {
         image: Data()
     )
     
-    let newCocktailViewModel = NewCocktailsViewModel(
-        allCocktails: [CocktailDB(
-            name: "",
-            tags: "",
-            alcoholic: "",
-            instructions: "",
-            image: "",
-            ingredientsNames: [""],
-            ingredientsMeasures: [""],
-            rating: 0,
-            numberOfRatings: 0,
-            sumOfRating: 0,
-            userRating: 0,
-            likes: 0,
-            comments: ["" : ""]
-        )], cocktail: CocktailDB(
-            name: "",
-            tags: "",
-            alcoholic: "",
-            instructions: "",
-            image: "",
-            ingredientsNames: [""],
-            ingredientsMeasures: [""],
-            rating: 0,
-            numberOfRatings: 0,
-            sumOfRating: 0,
-            userRating: 0,
-            likes: 0,
-            comments: ["" : ""]
-        ),
-        image: Data()
-    )
     let profileViewModel = ProfileViewModel(profile: UserDB(id: "1",
                                                             name: "",
                                                             surname: "",
@@ -118,7 +86,7 @@ struct MainTabView: View {
                 } // End NavStack
 
                 // MARK: - AlcoTest
-                NavigationView() {
+                NavigationStack() {
                     AlcoholTestView(alcoTestViewModel: alcoTestViewModel)
                         .navigationTitle(Text("Alcotest"))
                 }
@@ -130,11 +98,10 @@ struct MainTabView: View {
                 } // End NavStack
 
                 // MARK: - Profile
-                NavigationView() {
+                NavigationStack() {
                     ProfileView(profileViewModel: profileViewModel,
                                 cocktailViewModel: cocktailsViewModel,
-                                ingredientsViewModel: ingredientsViewModel,
-                                newCocktailViewModel: newCocktailViewModel
+                                ingredientsViewModel: ingredientsViewModel
                     )
                 }
                 .tabItem {

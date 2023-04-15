@@ -48,6 +48,7 @@ struct AllCocktailsView: View {
         } // End ZStack
         .onAppear{
             cocktailViewModel.getCocktail()
+            cocktailViewModel.getNewCocktail()
         }
     } // End Body
 }
