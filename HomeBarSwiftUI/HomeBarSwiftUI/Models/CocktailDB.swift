@@ -37,7 +37,7 @@ struct CocktailDB {
         representation["numberOfRatings"] = self.numberOfRatings
         representation["sumOfRating"] = self.sumOfRating
         representation["userRating"] = self.userRating
-        representation["likes"] = self.likes
+        representation["like"] = self.likes
         representation["comments"] = self.comments
         return representation
     }

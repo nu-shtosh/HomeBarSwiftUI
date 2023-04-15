@@ -30,6 +30,18 @@ class StorageService {
         }
     }
     
+    func downloadCocktailImage(id: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        cocktailRef.child(id).getData(maxSize: 2 * 1024 * 1024) { data, error in
+            guard let data = data else {
+                if let error = error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            completion(.success(data))
+        }
+    }
+    
     func uploadUserImage(id: String, image: Data, completion: @escaping (Result<String, Error>) -> Void) {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
@@ -56,6 +68,8 @@ class StorageService {
             completion(.success(data))
         }
     }
+    
+   
     
     private init() {}
 }

@@ -12,6 +12,7 @@ struct ProfileView: View {
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var ingredientsViewModel: IngredientsViewModel
+    @StateObject var newCocktailViewModel: NewCocktailsViewModel
     
     var body: some View {
         ZStack {
@@ -56,7 +57,8 @@ struct ProfileView: View {
                 HStack {
                     UserButtonStackView(cocktailViewModel: cocktailViewModel,
                                         profileViewModel: profileViewModel,
-                                        ingredientsViewModel: ingredientsViewModel
+                                        ingredientsViewModel: ingredientsViewModel,
+                                        newCocktailViewModel: newCocktailViewModel
                     )
                     .padding()
                 }
@@ -134,13 +136,16 @@ struct UserButtonStackView: View {
     @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var ingredientsViewModel: IngredientsViewModel
+    @StateObject var newCocktailViewModel: NewCocktailsViewModel
 
     var body: some View {
         VStack {
             HStack {
                 NavigationLink {
-                    FavoritesCocktailsView(cocktailViewModel: cocktailViewModel,
-                                           profileViewModel: profileViewModel)
+                    FavoritesCocktailsView(
+                        cocktailViewModel: cocktailViewModel,
+                        profileViewModel: profileViewModel
+                    )
                 } label: {
                     Text("My favorites")
                         .foregroundColor(Color.white)
@@ -149,15 +154,27 @@ struct UserButtonStackView: View {
                         .background(Color("neonOrange"))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
-                UserButtonView(text: "My cocktails", action: {})
                 Spacer()
+                NavigationLink {
+                    NewCocktailsView(
+                        newCocktailViewModel: newCocktailViewModel,
+                        profileViewModel: profileViewModel
+                        )
+                } label: {
+                    Text("My cocktails")
+                        .foregroundColor(Color.white)
+                        .font(.title3)
+                        .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                        .background(Color("neonOrange"))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
             }
             .padding(.bottom)
             HStack {
                 NavigationLink {
                     AddCocktailView(
                         ingredientsViewModel: ingredientsViewModel,
-                        cocktailsViewModel: cocktailViewModel
+                        cocktailsViewModel: newCocktailViewModel
                     )
                 } label: {
                     Text("Add cocktail")

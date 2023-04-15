@@ -87,6 +87,27 @@ class DataBaseService {
             completion(.success(user))
         }
     }
+    func getNewCocktails(completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
+        let cocktailsReference = database.collection("NewCocktails")
+        cocktailsReference.getDocuments { querySnapshot, error in
+            guard let querySnapshot else {
+                if let error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            let documents = querySnapshot.documents
+            var cocktails = [CocktailDB]()
+            print(documents)
+            for document in documents {
+                guard let cocktail = CocktailDB.init(document: document) else { return }
+                print(cocktail)
+                cocktails.append(cocktail)
+                print(cocktails)
+            }
+            completion(.success(cocktails))
+        }
+    }
 
     func getCocktails(completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
         let cocktailsReference = database.collection("Cocktails")

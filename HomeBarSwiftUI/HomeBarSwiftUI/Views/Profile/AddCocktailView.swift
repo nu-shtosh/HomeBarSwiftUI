@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddCocktailView: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
-    @StateObject var cocktailsViewModel: CocktailsViewModel
+    @StateObject var cocktailsViewModel: NewCocktailsViewModel
     @State var receptText = ""
     @State var isPresent = false
     @State var ingredientsTextfield = [""]
@@ -365,7 +365,7 @@ struct AddCocktailView: View {
 
 struct AddCocktailView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), cocktailsViewModel: CocktailsViewModel(
+        AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), cocktailsViewModel: NewCocktailsViewModel(
             allCocktails: [CocktailDB(
                 name: "",
                 tags: "",
