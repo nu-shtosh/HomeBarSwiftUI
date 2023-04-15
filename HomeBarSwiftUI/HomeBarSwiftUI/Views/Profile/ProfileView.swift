@@ -174,7 +174,7 @@ struct UserButtonStackView: View {
                 NavigationLink {
                     AddCocktailView(
                         ingredientsViewModel: ingredientsViewModel,
-                        cocktailsViewModel: newCocktailViewModel
+                        newCocktailsViewModel: newCocktailViewModel
                     )
                 } label: {
                     Text("Add cocktail")
