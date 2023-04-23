@@ -26,6 +26,7 @@ struct DrinksView: View {
                             alcoTestViewModel.alcoTest.alcoholValue = drink.alcohol
                             alcoTestViewModel.alcoTest.nameAlcohol = drink.name
                             dismiss.callAsFunction()
+                            print("work")
                         } label: {
                             Text(drink.name)
                                 .foregroundColor(Color("neonOrange"))
@@ -42,8 +43,8 @@ struct DrinksView: View {
     }
 }
 
-//struct DrinksView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DrinksView(alcoTestViewModel: AlcoTestViewModel())
-//    }
-//}
+struct DrinksView_Previews: PreviewProvider {
+    static var previews: some View {
+        DrinksView(alcoTestViewModel: AlcoTestViewModel())
+    }
+}

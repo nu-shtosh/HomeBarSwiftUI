@@ -12,20 +12,70 @@ struct MainTabView: View {
     // MARK: - Properties
     let tabBarViewModel: MainTabBarViewModel
     let ingredientsViewModel =  IngredientsViewModel(allIngredients: [IngredientDB(name: "")])
-    let cocktailsViewModel =  CocktailsViewModel(allCocktails: [CocktailDB(name: "",
-                                                                           tags: "",
-                                                                           alcoholic: "",
-                                                                           instructions: "",
-                                                                           image: "",
-                                                                           ingredientsNames: [""],
-                                                                           ingredientsMeasures: [""],
-                                                                           rating: 0,
-                                                                           numberOfRatings: 0,
-                                                                           sumOfRating: 0,
-                                                                           userRating: 0,
-                                                                           likes: 0,
-                                                                           comments: ["" : ""])],
-                                                 image: Data())
+    let cocktailsViewModel =  CocktailsViewModel(
+        allCocktails: [CocktailDB(
+            name: "",
+            tags: "",
+            alcoholic: "",
+            instructions: "",
+            image: "",
+            ingredientsNames: [""],
+            ingredientsMeasures: [""],
+            rating: 0,
+            numberOfRatings: 0,
+            sumOfRating: 0,
+            userRating: 0,
+            likes: 0,
+            comments: ["" : ""], idUser: ""
+        )], cocktail: CocktailDB(
+            name: "",
+            tags: "",
+            alcoholic: "",
+            instructions: "",
+            image: "",
+            ingredientsNames: [""],
+            ingredientsMeasures: [""],
+            rating: 0,
+            numberOfRatings: 0,
+            sumOfRating: 0,
+            userRating: 0,
+            likes: 0,
+            comments: ["" : ""], idUser: ""
+        ),
+        image: Data()
+    )
+    let newCocktailViewModel = NewCocktailsViewModel(allCocktails: [CocktailDB(
+        name: "",
+        tags: "",
+        alcoholic: "",
+        instructions: "",
+        image: "",
+        ingredientsNames: [""],
+        ingredientsMeasures: [""],
+        rating: 0,
+        numberOfRatings: 0,
+        sumOfRating: 0,
+        userRating: 0,
+        likes: 0,
+        comments: ["" : ""], idUser: ""
+    )], cocktail: CocktailDB(
+        name: "",
+        tags: "",
+        alcoholic: "",
+        instructions: "",
+        image: "",
+        ingredientsNames: [""],
+        ingredientsMeasures: [""],
+        rating: 0,
+        numberOfRatings: 0,
+        sumOfRating: 0,
+        userRating: 0,
+        likes: 0,
+        comments: ["" : ""], idUser: ""
+    ),
+    image: Data()
+    )
+    
     let profileViewModel = ProfileViewModel(profile: UserDB(id: "1",
                                                             name: "",
                                                             surname: "",
@@ -41,7 +91,7 @@ struct MainTabView: View {
                 // MARK: - Ingredients
                 NavigationStack {
                     AllIngredientsView(ingredientsViewModel: ingredientsViewModel,
-                                       profileViewModel: profileViewModel,
+                                       profileViewModel: profileViewModel, newCocktailViewModel: newCocktailViewModel,
                                        cocktailViewModel: cocktailsViewModel)
                         .navigationTitle(Text("Ingredients"))
                 }
@@ -55,7 +105,7 @@ struct MainTabView: View {
                 // MARK: - Cocktails
                 NavigationStack {
                     AllCocktailsView(cocktailViewModel: cocktailsViewModel,
-                                     profileViewModel: profileViewModel)
+                                     profileViewModel: profileViewModel, newCocktailViewModel: newCocktailViewModel)
                         .navigationTitle(Text("Cocktails"))
 
                 }
@@ -67,7 +117,7 @@ struct MainTabView: View {
                 } // End NavStack
 
                 // MARK: - AlcoTest
-                NavigationView() {
+                NavigationStack() {
                     AlcoholTestView(alcoTestViewModel: alcoTestViewModel)
                         .navigationTitle(Text("Alcotest"))
                 }
@@ -79,9 +129,12 @@ struct MainTabView: View {
                 } // End NavStack
 
                 // MARK: - Profile
-                NavigationView() {
+                NavigationStack() {
                     ProfileView(profileViewModel: profileViewModel,
-                                cocktailViewModel: cocktailsViewModel)
+                                cocktailViewModel: cocktailsViewModel,
+                                newCocktailViewModel: newCocktailViewModel,
+                                ingredientsViewModel: ingredientsViewModel
+                    )
                 }
                 .tabItem {
                     VStack {

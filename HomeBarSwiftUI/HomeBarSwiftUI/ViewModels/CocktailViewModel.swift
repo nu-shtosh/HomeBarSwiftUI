@@ -13,9 +13,7 @@ class CocktailsViewModel: ObservableObject {
     @Published var allCocktails: [CocktailDB]
     @Published var image: Data
 
-    var ingredients: [String] = []
-
-    init(allCocktails: [CocktailDB], image: Data) {
+    init(allCocktails: [CocktailDB],cocktail: CocktailDB, image: Data) {
         self.allCocktails = allCocktails
         self.image = image
     }

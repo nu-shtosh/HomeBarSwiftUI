@@ -13,6 +13,7 @@ struct UserImageView: View {
     var body: some View {
         Image(uiImage: image)
             .resizable()
+            .aspectRatio(contentMode: .fill)
             .frame(width: screen.width / 2.1, height: screen.width / 2.1)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .overlay(RoundedRectangle(cornerRadius: 20).stroke(LinearGradient(

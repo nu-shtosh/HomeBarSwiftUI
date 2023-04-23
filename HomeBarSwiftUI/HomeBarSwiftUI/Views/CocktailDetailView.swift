@@ -13,7 +13,10 @@ struct CocktailDetailView: View {
     var profile: UserDB
 
     @State private var image = Data()
+    @Binding var flag: Bool
     @StateObject var profileViewModel: ProfileViewModel
+    @StateObject var newCocktailViewModel: NewCocktailsViewModel
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var isFavorite: Bool {
         profile.favoritesCocktails.contains(cocktail.name)
@@ -111,21 +114,35 @@ struct CocktailDetailView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: addInFavorites) {
-                        Image(systemName: isFavorite ? "heart.fill" : "heart")
+                    Button(action: flag ? addInFavorites : deleteCocktail) {
+                        if flag {
+                            Image(systemName: isFavorite ? "heart.fill" : "heart")
+                        } else {
+                            Image(systemName: "trash")
+                        }
                     }
                     .animation(.default, value: isFavorite)
                     .onSubmit {
                         profileViewModel.setProfile()
+                        
                     }
                 }
             }
             .onAppear {
-                getImage(imageURL: cocktail.image)
+                if flag {
+                    getImage(imageURL: cocktail.image)
+                } else {
+                    getImageNewCocktail(cocktail.name)
+                }
             }
         }
     }
-
+    func deleteCocktail() {
+        DataBaseService.shared.deleteNewCocktail(cocktail: cocktail.name)
+        newCocktailViewModel.getNewCocktail()
+        presentationMode.wrappedValue.dismiss()
+    }
+    
     func addInFavorites() {
         if !isFavorite {
             profileViewModel.profile.favoritesCocktails.append(cocktail.name)
@@ -159,6 +176,17 @@ struct CocktailDetailView: View {
             switch result {
             case .success(let images):
                 image = images
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getImageNewCocktail(_ id: String) {
+        StorageService.shared.downloadCocktailImage(id: id) { result in
+            switch result {
+            case .success(let data):
+               image = data
             case .failure(let error):
                 print(error.localizedDescription)
             }

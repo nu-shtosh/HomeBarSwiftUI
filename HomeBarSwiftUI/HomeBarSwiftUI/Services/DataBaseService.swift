@@ -14,8 +14,47 @@ class DataBaseService {
     private let database = Firestore.firestore() // ссылка на нашу бд на сервере
 
     private var usersReference: CollectionReference { database.collection("Users") }
+    private var cocktailReference: CollectionReference { database.collection("NewCocktails")}
 
     private init () { }
+    
+    func deleteNewCocktail(cocktail: String) {
+        cocktailReference.document(cocktail).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
+        }
+    }
+    
+    func setCocktail(cocktail: CocktailDB, image: Data?, completion: @escaping (Result<CocktailDB, Error>) -> ()) {
+        if let image = image {
+            StorageService.shared.uploadCocktailImage(id: cocktail.name, image: image) { result in
+                switch result {
+                case .success(_):
+                    self.cocktailReference.document(cocktail.name).setData(cocktail.representation) { error in
+                        if let error {
+                            completion(.failure(error))
+                            print(error.localizedDescription)
+                        } else {
+                            completion(.success(cocktail))
+                        }
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        } else {
+            self.cocktailReference.document(cocktail.name).setData(cocktail.representation) { error in
+                if let error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(cocktail))
+                }
+            }
+        }
+    }
     
     func setProfile(user: UserDB, image: Data?, completion: @escaping (Result<UserDB, Error>) -> ()) {
         if let image = image {
@@ -56,6 +95,24 @@ class DataBaseService {
             guard let favoritesCocktails = data["favoritesCocktails"] as? [String] else { return }
             let user = UserDB(id: id, name: name, surname: surname, age: age, email: email, favoritesCocktails: favoritesCocktails)
             completion(.success(user))
+        }
+    }
+    func getNewCocktails(completion: @escaping (Result<[CocktailDB], Error>) -> Void) {
+        let cocktailsReference = database.collection("NewCocktails")
+        cocktailsReference.getDocuments { querySnapshot, error in
+            guard let querySnapshot else {
+                if let error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            let documents = querySnapshot.documents
+            var cocktails = [CocktailDB]()
+            for document in documents {
+                guard let cocktail = CocktailDB.init(document: document) else { return }
+                cocktails.append(cocktail)
+            }
+            completion(.success(cocktails))
         }
     }
 
@@ -267,6 +324,7 @@ class CocktailData : ObservableObject {
                         "sumOfRating": 0,
                         "userRating": 0,
                         "like": 0,
+                        "idUser": "",
                         "comments": [
                             "user": "",
                             "title": "",

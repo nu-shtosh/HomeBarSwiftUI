@@ -1,23 +1,21 @@
 //
-//  CocktailsWithSelectedIngredientsView.swift
+//  NewCocktailsView.swift
 //  HomeBarSwiftUI
 //
-//  Created by Илья Дубенский on 25.03.2023.
+//  Created by Aleksandr Mayyura on 15.04.2023.
 //
-
 import SwiftUI
 
-struct CocktailsWithSelectedIngredientsView: View {
-    // MARK: - State Object Properties
-    @StateObject var cocktailViewModel: CocktailsViewModel
-    @StateObject var profileViewModel: ProfileViewModel
-    @StateObject var newCocktailViewModel: NewCocktailsViewModel
+struct NewCocktailsView: View {
 
+    // MARK: - State Object Properties
+    @StateObject var newCocktailViewModel: NewCocktailsViewModel
+    @StateObject var profileViewModel: ProfileViewModel
+    @State private var image = Data()
+    @State private var flag = false
+    
     // MARK: - State Properties
     @State var isHidden = false
-    @State private var flag = true
-    
-    var ingredients: [String] = []
 
     // MARK: - Private Properties
     private let layout = [GridItem(.adaptive(minimum: screen.width / 2.2))]
@@ -28,12 +26,11 @@ struct CocktailsWithSelectedIngredientsView: View {
             // MARK: - Wallpaper View
             WallpaperView()
             ScrollView(.vertical, showsIndicators: false) {
-
-                if cocktailViewModel.allCocktails.count > 0 {
-                    // MARK: - All Cocktails
-                    Section {
-                        LazyVGrid(columns: layout, spacing: 5) {
-                            ForEach(Array(cocktailViewModel.allCocktails), id: \.name) { item in
+                // MARK: - All Cocktails
+                Section {
+                    LazyVGrid(columns: layout, spacing: 5) {
+                        ForEach(Array(newCocktailViewModel.allCocktails), id: \.name) { item in
+                            if profileViewModel.profile.id == item.idUser {
                                 NavigationLink {
                                     CocktailDetailView(
                                         cocktail: item,
@@ -42,28 +39,26 @@ struct CocktailsWithSelectedIngredientsView: View {
                                         profileViewModel: profileViewModel,
                                         newCocktailViewModel: newCocktailViewModel
                                     )
-                                        .navigationTitle(item.name)
+                                    .navigationTitle(item.name)
+                                    
                                 } label: {
                                     withAnimation {
                                         CocktailCellView(cocktail: item, flag: $flag)
                                     }
                                 }
                             }
-                        } // End LazyVGrid
-                    } // End Section
-                    .foregroundColor(Color("neonBlue"))
-                } else {
-                    Text("We can't find cocktails with selected ingredients")
-                        .foregroundColor(Color("neonOrange"))
-                }
-            } // End ScrollView
+                        }
+                    } // End LazyVGrid
+                } // End Section
+                .foregroundColor(Color("neonBlue"))
+            } // End ScrollView1
+            .navigationTitle("My cocktails")
             .navigationBarTitleDisplayMode(.large)
             .toolbar(.visible, for: .tabBar)
-        } // End ZStack
-        .onAppear{
-            if cocktailViewModel.allCocktails.count > 0 {
-                cocktailViewModel.getCocktailWithIngredients(ingredients)
+            .onAppear {
+                //                newCocktailViewModel.getNewCocktail()
             }
-        }
+        } // End ZStack
     } // End Body
 }
+

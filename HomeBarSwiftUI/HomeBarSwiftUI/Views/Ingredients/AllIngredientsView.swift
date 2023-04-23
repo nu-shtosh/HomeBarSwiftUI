@@ -12,7 +12,8 @@ struct AllIngredientsView: View {
     // MARK: - State Object Properties
     @StateObject var ingredientsViewModel: IngredientsViewModel
     @StateObject var profileViewModel: ProfileViewModel
-
+    @StateObject var newCocktailViewModel: NewCocktailsViewModel
+    
     private var filteredIngredients: [String] { // 1
         if searchedIngredient.isEmpty {
             return ingredientsViewModel.allIngredients.map { $0.name }
@@ -119,7 +120,7 @@ struct AllIngredientsView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink {
                     CocktailsWithSelectedIngredientsView(cocktailViewModel: cocktailViewModel,
-                                                         profileViewModel: profileViewModel,
+                                                         profileViewModel: profileViewModel, newCocktailViewModel: newCocktailViewModel,
                                                          ingredients: selectedIngredients)
                 } label: {
                     Text("Show Cocktails")

@@ -10,20 +10,40 @@ import Foundation
 import FirebaseFirestore
 
 struct CocktailDB {
-    let name: String
-    let tags: String
-    let alcoholic: String
-    let instructions: String
-    let image: String
-    let ingredientsNames: [String]
-    let ingredientsMeasures: [String]
-    let rating: Double
-    let numberOfRatings: Int
-    let sumOfRating: Double
-    let userRating: Double
-    let likes: Int
-    let comments: [String: Any]
+    var name: String
+    var tags: String
+    var alcoholic: String
+    var instructions: String
+    var image: String
+    var ingredientsNames: [String]
+    var ingredientsMeasures: [String]
+    var rating: Double
+    var numberOfRatings: Int
+    var sumOfRating: Double
+    var userRating: Double
+    var likes: Int
+    var comments: [String: Any]
+    var idUser: String
 
+    var representation: [String: Any] {
+        var representation = [String: Any]()
+        representation["name"] = self.name
+        representation["tags"] = self.tags
+        representation["alcoholic"] = self.alcoholic
+        representation["instructions"] = self.instructions
+        representation["image"] = self.image
+        representation["ingredientsNames"] = self.ingredientsNames
+        representation["ingredientsMeasures"] = self.ingredientsMeasures
+        representation["rating"] = self.rating
+        representation["numberOfRatings"] = self.numberOfRatings
+        representation["sumOfRating"] = self.sumOfRating
+        representation["userRating"] = self.userRating
+        representation["like"] = self.likes
+        representation["comments"] = self.comments
+        representation["idUser"] = self.idUser
+        return representation
+    }
+    
     init(name: String,
          tags: String,
          alcoholic: String,
@@ -36,7 +56,9 @@ struct CocktailDB {
          sumOfRating: Double,
          userRating: Double,
          likes: Int,
-         comments: [String : Any]) {
+         comments: [String : Any],
+         idUser: String
+    ) {
         self.name = name
         self.tags = tags
         self.alcoholic = alcoholic
@@ -50,6 +72,7 @@ struct CocktailDB {
         self.userRating = userRating
         self.likes = likes
         self.comments = comments
+        self.idUser = idUser
     }
 
 
@@ -68,6 +91,7 @@ struct CocktailDB {
         guard let userRating = data["userRating"] as? Double else { return nil }
         guard let likes = data["like"] as? Int else { return nil }
         guard let comments = data["comments"] as? [String: Any] else { return nil }
+        guard let idUser = data["idUser"] as? String else { return nil }
         
         self.name = name
         self.tags = tags
@@ -82,5 +106,6 @@ struct CocktailDB {
         self.userRating = userRating
         self.likes = likes
         self.comments = comments
+        self.idUser = idUser 
     }
 }
