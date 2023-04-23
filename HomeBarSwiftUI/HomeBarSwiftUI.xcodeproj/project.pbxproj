@@ -17,6 +17,7 @@
 		1F5F877F29461E2F00335B57 /* SecureFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */; };
 		1F5F878129461EB500335B57 /* TextFieldWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */; };
 		1F5F878629461FE700335B57 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F878529461FE700335B57 /* AuthService.swift */; };
+		1F7D631529F540D60070B213 /* NewCocktailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D631429F540D60070B213 /* NewCocktailViewModel.swift */; };
 		1F87D80429CC57A40051D283 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F87D80329CC57A40051D283 /* SearchView.swift */; };
 		1F8A615829C59FAE00235CAF /* AlcoTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8A615729C59FAE00235CAF /* AlcoTestManager.swift */; };
 		1F9D1F9929E877BF0040A08B /* MeasureDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9D1F9829E877BF0040A08B /* MeasureDB.swift */; };
@@ -100,6 +101,7 @@
 		1F5F877E29461E2F00335B57 /* SecureFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFieldWithImageView.swift; sourceTree = "<group>"; };
 		1F5F878029461EB500335B57 /* TextFieldWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImageView.swift; sourceTree = "<group>"; };
 		1F5F878529461FE700335B57 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		1F7D631429F540D60070B213 /* NewCocktailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCocktailViewModel.swift; sourceTree = "<group>"; };
 		1F87D80329CC57A40051D283 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		1F8A615729C59FAE00235CAF /* AlcoTestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoTestManager.swift; sourceTree = "<group>"; };
 		1F9D1F9829E877BF0040A08B /* MeasureDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureDB.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				1FFEC7A429BFA05C003B04EA /* DrinkViewModel.swift */,
 				B83D994029472734006AF62D /* MainTabBarViewModel.swift */,
 				B83D997D294A05E7006AF62D /* CocktailViewModel.swift */,
+				1F7D631429F540D60070B213 /* NewCocktailViewModel.swift */,
 				1F1B1386294DFA3500C1C3BB /* ProfileViewModel.swift */,
 				1FFEC79E29BF8585003B04EA /* AlcoTestViewModel.swift */,
 				B8255D5429CB746E00F38FB0 /* IngredientsViewModel.swift */,
@@ -569,6 +572,7 @@
 				1F8A615829C59FAE00235CAF /* AlcoTestManager.swift in Sources */,
 				1FFEC7A529BFA05C003B04EA /* DrinkViewModel.swift in Sources */,
 				B83D997A2948F716006AF62D /* NetworkManager.swift in Sources */,
+				1F7D631529F540D60070B213 /* NewCocktailViewModel.swift in Sources */,
 				1FB0DE8429E5DA5F000B8A78 /* ActivityIndicatorView.swift in Sources */,
 				1FEE9F5929CC385700858B1B /* AddCocktailView.swift in Sources */,
 				B8255D5529CB746E00F38FB0 /* IngredientsViewModel.swift in Sources */,

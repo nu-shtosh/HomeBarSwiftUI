@@ -9,10 +9,11 @@ import SwiftUI
 struct NewCocktailsView: View {
 
     // MARK: - State Object Properties
-    @StateObject var cocktailViewModel: CocktailsViewModel
+    @StateObject var newCocktailViewModel: NewCocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
     @State private var image = Data()
     @State private var flag = false
+    @State var coincidence = 0
 
     // MARK: - State Properties
     @State var isHidden = false
@@ -28,22 +29,30 @@ struct NewCocktailsView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 
                 // MARK: - All Cocktails
-                Section {
-                    LazyVGrid(columns: layout, spacing: 5) {
-                        ForEach(Array(cocktailViewModel.allCocktails), id: \.name) { item in
-                            NavigationLink {
-                                CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
-                                    .navigationTitle(item.name)
-                            } label: {
-                                withAnimation {
-                                    CocktailCellView(cocktail: item, flag: $flag)
+//                if newCocktailViewModel.cocktail.idUser == profileViewModel.profile.id {
+                    Section {
+                        LazyVGrid(columns: layout, spacing: 5) {
+                            ForEach(Array(newCocktailViewModel.allCocktails), id: \.name) { item in
+                                if profileViewModel.profile.id == item.idUser {
+                                    NavigationLink {
+                                        CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
+                                            .navigationTitle(item.name)
+                                           
+                                    } label: {
+                                        withAnimation {
+                                            CocktailCellView(cocktail: item, flag: $flag)
+                                        }
+                                    }
+                                } else if coincidence == 0 {
+                                    LabelView(text: "No cocktail")
                                 }
-                                
                             }
-                        }
-                    } // End LazyVGrid
-                } // End Section
-                .foregroundColor(Color("neonBlue"))
+                        } // End LazyVGrid
+                    } // End Section
+                    .foregroundColor(Color("neonBlue"))
+//                } else {
+//                    LabelView(text: "no added cocktails")
+//                }
             } // End ScrollView1
             .navigationTitle("My cocktails")
             .navigationBarTitleDisplayMode(.large)
@@ -51,7 +60,8 @@ struct NewCocktailsView: View {
         } // End ZStack
         .onAppear{
            
-                cocktailViewModel.getNewCocktail()
+            print(profileViewModel.profile.id)
+            print(newCocktailViewModel.cocktail.idUser)
             
         }
     } // End Body

@@ -44,6 +44,37 @@ struct MainTabView: View {
         ),
         image: Data()
     )
+    let newCocktailViewModel = NewCocktailsViewModel(allCocktails: [CocktailDB(
+        name: "",
+        tags: "",
+        alcoholic: "",
+        instructions: "",
+        image: "",
+        ingredientsNames: [""],
+        ingredientsMeasures: [""],
+        rating: 0,
+        numberOfRatings: 0,
+        sumOfRating: 0,
+        userRating: 0,
+        likes: 0,
+        comments: ["" : ""], idUser: ""
+    )], cocktail: CocktailDB(
+        name: "",
+        tags: "",
+        alcoholic: "",
+        instructions: "",
+        image: "",
+        ingredientsNames: [""],
+        ingredientsMeasures: [""],
+        rating: 0,
+        numberOfRatings: 0,
+        sumOfRating: 0,
+        userRating: 0,
+        likes: 0,
+        comments: ["" : ""], idUser: ""
+    ),
+    image: Data()
+    )
     
     let profileViewModel = ProfileViewModel(profile: UserDB(id: "1",
                                                             name: "",
@@ -101,6 +132,7 @@ struct MainTabView: View {
                 NavigationStack() {
                     ProfileView(profileViewModel: profileViewModel,
                                 cocktailViewModel: cocktailsViewModel,
+                                newCocktailViewModel: newCocktailViewModel,
                                 ingredientsViewModel: ingredientsViewModel
                     )
                 }

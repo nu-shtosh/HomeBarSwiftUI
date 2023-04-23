@@ -11,6 +11,8 @@ struct AddCocktailView: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
     @StateObject var cocktailsViewModel: CocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
+    @StateObject var newCocktailViewModel: NewCocktailsViewModel
+    
     @State var receptText = ""
     @State var isPresent = false
     @State var ingredientsTextfield = [""]
@@ -350,7 +352,7 @@ struct AddCocktailView: View {
     }
     
     private func uploadData() {
-        let cocktail = cocktailsViewModel.configureCocktail(
+        let cocktail = newCocktailViewModel.configureCocktail(
             nameCocktail,
             receptText,
             &ingredientsTextfield,

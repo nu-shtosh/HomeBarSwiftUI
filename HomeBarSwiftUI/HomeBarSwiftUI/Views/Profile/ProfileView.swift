@@ -11,6 +11,7 @@ struct ProfileView: View {
     
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var cocktailViewModel: CocktailsViewModel
+    @StateObject var newCocktailViewModel: NewCocktailsViewModel
     @StateObject var ingredientsViewModel: IngredientsViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -22,7 +23,9 @@ struct ProfileView: View {
                 HStack {
                     UserImageView(image: $profileViewModel.image)
                         .padding()
-                    UserInfoView(profileViewModel: profileViewModel, cocktailViewModel: cocktailViewModel,
+                    UserInfoView(profileViewModel: profileViewModel,
+                                 cocktailViewModel: cocktailViewModel,
+                                 newCocktailViewModel: newCocktailViewModel,
                                  age: $profileViewModel.profile.age)
                     
                     Spacer()
@@ -56,6 +59,7 @@ struct ProfileView: View {
                 
                 HStack {
                     UserButtonStackView(cocktailViewModel: cocktailViewModel,
+                                        newCocktailViewModel: newCocktailViewModel,
                                         profileViewModel: profileViewModel,
                                         ingredientsViewModel: ingredientsViewModel
                     )
@@ -98,6 +102,7 @@ struct ProfileView: View {
         .onAppear {
             profileViewModel.getProfile()
             cocktailViewModel.getCocktail()
+            newCocktailViewModel.getNewCocktail()
         }
         .navigationBarTitleDisplayMode(.large)
         .navigationTitle(Text(profileViewModel.profile.fullname))
@@ -141,6 +146,7 @@ struct UserButtonView: View {
 struct UserButtonStackView: View {
 
     @StateObject var cocktailViewModel: CocktailsViewModel
+    @StateObject var newCocktailViewModel: NewCocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var ingredientsViewModel: IngredientsViewModel
   
@@ -164,7 +170,7 @@ struct UserButtonStackView: View {
                 Spacer()
                 NavigationLink {
                     NewCocktailsView(
-                        cocktailViewModel: cocktailViewModel,
+                        newCocktailViewModel: newCocktailViewModel,
                         profileViewModel: profileViewModel
                         )
                 } label: {
@@ -182,7 +188,8 @@ struct UserButtonStackView: View {
                     AddCocktailView(
                         ingredientsViewModel: ingredientsViewModel,
                         cocktailsViewModel: cocktailViewModel,
-                        profileViewModel: profileViewModel
+                        profileViewModel: profileViewModel,
+                        newCocktailViewModel: newCocktailViewModel
                     )
                 } label: {
                     Text("Add cocktail")
@@ -224,6 +231,7 @@ struct LastCocktailView: View {
 struct UserInfoView: View {
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var cocktailViewModel: CocktailsViewModel
+    @StateObject var newCocktailViewModel: NewCocktailsViewModel
     
     @Binding var age: String
     
@@ -235,7 +243,7 @@ struct UserInfoView: View {
             Text("Favorites: \(profileViewModel.profile.favoritesCocktails.count)")
                 .font(.system(size: 16))
                 .foregroundColor(Color("neonOrange"))
-            Text("Your cocktails: \(cocktailViewModel.allCocktails.count)")
+            Text("Your cocktails: \(newCocktailViewModel.allCocktails.count)")
                 .font(.system(size: 16))
                 .foregroundColor(Color("neonOrange"))
             Text("More info...")
