@@ -18,6 +18,16 @@ class DataBaseService {
 
     private init () { }
     
+    func deleteNewCocktail(cocktail: String) {
+        cocktailReference.document(cocktail).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
+        }
+    }
+    
     func setCocktail(cocktail: CocktailDB, image: Data?, completion: @escaping (Result<CocktailDB, Error>) -> ()) {
         if let image = image {
             StorageService.shared.uploadCocktailImage(id: cocktail.name, image: image) { result in

@@ -26,30 +26,38 @@ struct NewCocktailsView: View {
             // MARK: - Wallpaper View
             WallpaperView()
             ScrollView(.vertical, showsIndicators: false) {
-                
                 // MARK: - All Cocktails
-                    Section {
-                        LazyVGrid(columns: layout, spacing: 5) {
-                            ForEach(Array(newCocktailViewModel.allCocktails), id: \.name) { item in
-                                if profileViewModel.profile.id == item.idUser {
-                                    NavigationLink {
-                                        CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
-                                            .navigationTitle(item.name)
-                                           
-                                    } label: {
-                                        withAnimation {
-                                            CocktailCellView(cocktail: item, flag: $flag)
-                                        }
+                Section {
+                    LazyVGrid(columns: layout, spacing: 5) {
+                        ForEach(Array(newCocktailViewModel.allCocktails), id: \.name) { item in
+                            if profileViewModel.profile.id == item.idUser {
+                                NavigationLink {
+                                    CocktailDetailView(
+                                        cocktail: item,
+                                        profile: profileViewModel.profile,
+                                        flag: $flag,
+                                        profileViewModel: profileViewModel,
+                                        newCocktailViewModel: newCocktailViewModel
+                                    )
+                                    .navigationTitle(item.name)
+                                    
+                                } label: {
+                                    withAnimation {
+                                        CocktailCellView(cocktail: item, flag: $flag)
                                     }
                                 }
                             }
-                        } // End LazyVGrid
-                    } // End Section
-                    .foregroundColor(Color("neonBlue"))
+                        }
+                    } // End LazyVGrid
+                } // End Section
+                .foregroundColor(Color("neonBlue"))
             } // End ScrollView1
             .navigationTitle("My cocktails")
             .navigationBarTitleDisplayMode(.large)
             .toolbar(.visible, for: .tabBar)
+            .onAppear {
+                //                newCocktailViewModel.getNewCocktail()
+            }
         } // End ZStack
     } // End Body
 }

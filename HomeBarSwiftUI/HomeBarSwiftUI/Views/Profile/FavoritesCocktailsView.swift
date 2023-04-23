@@ -11,6 +11,8 @@ struct FavoritesCocktailsView: View {
     // MARK: - State Object Properties
     @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
+    @StateObject var newCocktailViewModel: NewCocktailsViewModel
+    
     @State private var flag = true
     // MARK: - Private Properties
     private let layout = [GridItem(.adaptive(minimum: screen.width / 2.2))]
@@ -33,11 +35,21 @@ struct FavoritesCocktailsView: View {
                         LazyVGrid(columns: layout, spacing: 5) {
                             ForEach(Array(cocktailViewModel.allCocktails), id: \.name) { item in
                                 NavigationLink {
-                                    CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
+                                    CocktailDetailView(
+                                        cocktail: item,
+                                        profile: profileViewModel.profile,
+                                        flag: $flag,
+                                        profileViewModel: profileViewModel,
+                                        newCocktailViewModel: newCocktailViewModel
+                                    )
                                         .navigationTitle(item.name)
                                 } label: {
                                     VStack {
-                                        CocktailCellView(cocktail: item, image: cocktailViewModel.image, flag: $flag)
+                                        CocktailCellView(
+                                            cocktail: item,
+                                            image: cocktailViewModel.image,
+                                            flag: $flag
+                                        )
                                     }
                                 }
                             }

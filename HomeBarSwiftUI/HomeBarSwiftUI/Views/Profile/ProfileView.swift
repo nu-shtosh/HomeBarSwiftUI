@@ -94,7 +94,8 @@ struct ProfileView: View {
                     }
                     
                     LastCocktailView(cocktailViewModel: cocktailViewModel,
-                                     profileViewModel: profileViewModel)
+                                     profileViewModel: profileViewModel,
+                                     newCocktailViewModel: newCocktailViewModel)
                 }
             }
             .padding(EdgeInsets(top: 6, leading: 6, bottom: 7, trailing: 6))
@@ -157,7 +158,8 @@ struct UserButtonStackView: View {
                 NavigationLink {
                     FavoritesCocktailsView(
                         cocktailViewModel: cocktailViewModel,
-                        profileViewModel: profileViewModel
+                        profileViewModel: profileViewModel,
+                        newCocktailViewModel: newCocktailViewModel
                     )
                 } label: {
                     Text("My favorites")
@@ -209,6 +211,7 @@ struct UserButtonStackView: View {
 struct LastCocktailView: View {
     @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
+    @StateObject var newCocktailViewModel: NewCocktailsViewModel
     @State private var flag = true
     
     var body: some View {
@@ -216,10 +219,20 @@ struct LastCocktailView: View {
             HStack {
                 ForEach(Array(cocktailViewModel.allCocktails), id: \.name) { item in
                     NavigationLink {
-                        CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
+                        CocktailDetailView(
+                            cocktail: item,
+                            profile: profileViewModel.profile,
+                            flag: $flag,
+                            profileViewModel: profileViewModel,
+                            newCocktailViewModel: newCocktailViewModel
+                        )
                             .navigationTitle(item.name)
                     } label: {
-                        CocktailCellView(cocktail: item, image: cocktailViewModel.image, flag: $flag)
+                        CocktailCellView(
+                            cocktail: item,
+                            image: cocktailViewModel.image,
+                            flag: $flag
+                        )
                     }
                 }.foregroundColor(Color("neonBlue"))
                     .padding(.leading, -5)

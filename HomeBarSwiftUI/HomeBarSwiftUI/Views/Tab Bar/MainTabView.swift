@@ -91,7 +91,7 @@ struct MainTabView: View {
                 // MARK: - Ingredients
                 NavigationStack {
                     AllIngredientsView(ingredientsViewModel: ingredientsViewModel,
-                                       profileViewModel: profileViewModel,
+                                       profileViewModel: profileViewModel, newCocktailViewModel: newCocktailViewModel,
                                        cocktailViewModel: cocktailsViewModel)
                         .navigationTitle(Text("Ingredients"))
                 }
@@ -105,7 +105,7 @@ struct MainTabView: View {
                 // MARK: - Cocktails
                 NavigationStack {
                     AllCocktailsView(cocktailViewModel: cocktailsViewModel,
-                                     profileViewModel: profileViewModel)
+                                     profileViewModel: profileViewModel, newCocktailViewModel: newCocktailViewModel)
                         .navigationTitle(Text("Cocktails"))
 
                 }

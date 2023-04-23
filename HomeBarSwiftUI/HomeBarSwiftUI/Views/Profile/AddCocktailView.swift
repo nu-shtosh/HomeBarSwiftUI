@@ -126,7 +126,7 @@ struct AddCocktailView: View {
                             Text(alcoholic)
                                 .foregroundColor(Color.white)
                                 .font(.title3)
-                                .frame(width: 122, height: 40)
+                                .frame(width: 150, height: 40)
                                 .background(type
                                             ? Color("neonBlue").opacity(0.8)
                                             : Color("neonOrange").opacity(0.8)
