@@ -20,7 +20,7 @@ class CocktailsViewModel: ObservableObject {
         self.image = image
     }
     
-    func configureCocktail(_ name: String, _ receptText: String, _ ingredientsTextfield: inout [String], _ ingredientsText: inout [String], _ measureTextfield: [String], _ measureText: [String], _ nameButtonTextfield: [String], _ nameButtonText: [String], _ type: String) -> CocktailDB {
+    func configureCocktail(_ name: String, _ receptText: String, _ ingredientsTextfield: inout [String], _ ingredientsText: inout [String], _ measureTextfield: [String], _ measureText: [String], _ nameButtonTextfield: [String], _ nameButtonText: [String], _ type: String, _ idUser: String) -> CocktailDB {
         
         var measureIngredientTextfield = measureTextfield.enumerated().map { (index, value) in
             value + " " + nameButtonTextfield[index]
@@ -36,6 +36,7 @@ class CocktailsViewModel: ObservableObject {
         if ingredientsText.count > 0 {
             ingredientsText.remove(at: 0)
         }
+        cocktail.idUser = idUser
         cocktail.ingredientsMeasures = measureIngredientTextfield + measureIngredientText
         cocktail.ingredientsNames = ingredientsTextfield + ingredientsText
         cocktail.name = name

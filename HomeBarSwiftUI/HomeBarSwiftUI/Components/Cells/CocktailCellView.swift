@@ -12,6 +12,7 @@ struct CocktailCellView: View {
 
     var cocktail: CocktailDB
     @State var image = Data()
+    @Binding var flag: Bool
     
     var body: some View {
         VStack(spacing: 10) {
@@ -74,8 +75,11 @@ struct CocktailCellView: View {
 
         .frame(width: screen.width * 0.5, height: screen.height * 0.18, alignment: .center)        
         .onAppear {
-            getImage(imageURL: cocktail.image)
-            getImageNewCocktail(cocktail.name)
+            if flag {
+                getImage(imageURL: cocktail.image)
+            } else {
+                getImageNewCocktail(cocktail.name)
+            }
         }
 
     }

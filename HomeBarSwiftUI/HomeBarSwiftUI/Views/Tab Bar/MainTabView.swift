@@ -26,7 +26,7 @@ struct MainTabView: View {
             sumOfRating: 0,
             userRating: 0,
             likes: 0,
-            comments: ["" : ""]
+            comments: ["" : ""], idUser: ""
         )], cocktail: CocktailDB(
             name: "",
             tags: "",
@@ -40,7 +40,7 @@ struct MainTabView: View {
             sumOfRating: 0,
             userRating: 0,
             likes: 0,
-            comments: ["" : ""]
+            comments: ["" : ""], idUser: ""
         ),
         image: Data()
     )

@@ -314,6 +314,7 @@ class CocktailData : ObservableObject {
                         "sumOfRating": 0,
                         "userRating": 0,
                         "like": 0,
+                        "idUser": "",
                         "comments": [
                             "user": "",
                             "title": "",

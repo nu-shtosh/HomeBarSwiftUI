@@ -15,7 +15,7 @@ struct AllCocktailsView: View {
 
     // MARK: - State Properties
     @State var isHidden = false
-
+    @State private var flag = true
     // MARK: - Private Properties
     private let layout = [GridItem(.adaptive(minimum: screen.width / 2.2))]
 
@@ -35,7 +35,7 @@ struct AllCocktailsView: View {
                                     .navigationTitle(item.name)
                             } label: {
                                 withAnimation {
-                                    CocktailCellView(cocktail: item)
+                                    CocktailCellView(cocktail: item, flag: $flag)
                                 }
                             }
                         }
@@ -48,7 +48,6 @@ struct AllCocktailsView: View {
         } // End ZStack
         .onAppear{
             cocktailViewModel.getCocktail()
-            cocktailViewModel.getNewCocktail()
         }
     } // End Body
 }

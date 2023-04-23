@@ -23,6 +23,7 @@ struct CocktailDB {
     var userRating: Double
     var likes: Int
     var comments: [String: Any]
+    var idUser: String
 
     var representation: [String: Any] {
         var representation = [String: Any]()
@@ -39,6 +40,7 @@ struct CocktailDB {
         representation["userRating"] = self.userRating
         representation["like"] = self.likes
         representation["comments"] = self.comments
+        representation["idUser"] = self.idUser
         return representation
     }
     
@@ -54,7 +56,9 @@ struct CocktailDB {
          sumOfRating: Double,
          userRating: Double,
          likes: Int,
-         comments: [String : Any]) {
+         comments: [String : Any],
+         idUser: String
+    ) {
         self.name = name
         self.tags = tags
         self.alcoholic = alcoholic
@@ -68,6 +72,7 @@ struct CocktailDB {
         self.userRating = userRating
         self.likes = likes
         self.comments = comments
+        self.idUser = idUser
     }
 
 
@@ -86,6 +91,7 @@ struct CocktailDB {
         guard let userRating = data["userRating"] as? Double else { return nil }
         guard let likes = data["like"] as? Int else { return nil }
         guard let comments = data["comments"] as? [String: Any] else { return nil }
+        guard let idUser = data["idUser"] as? String else { return nil }
         
         self.name = name
         self.tags = tags
@@ -100,5 +106,6 @@ struct CocktailDB {
         self.userRating = userRating
         self.likes = likes
         self.comments = comments
+        self.idUser = idUser 
     }
 }

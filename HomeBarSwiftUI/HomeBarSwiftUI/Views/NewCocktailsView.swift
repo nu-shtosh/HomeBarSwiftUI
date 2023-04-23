@@ -9,9 +9,10 @@ import SwiftUI
 struct NewCocktailsView: View {
 
     // MARK: - State Object Properties
-    @StateObject var сocktailViewModel: CocktailsViewModel
+    @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
     @State private var image = Data()
+    @State private var flag = false
 
     // MARK: - State Properties
     @State var isHidden = false
@@ -25,19 +26,19 @@ struct NewCocktailsView: View {
             // MARK: - Wallpaper View
             WallpaperView()
             ScrollView(.vertical, showsIndicators: false) {
-
+                
                 // MARK: - All Cocktails
                 Section {
                     LazyVGrid(columns: layout, spacing: 5) {
-                        ForEach(Array(сocktailViewModel.allCocktails), id: \.name) { item in
+                        ForEach(Array(cocktailViewModel.allCocktails), id: \.name) { item in
                             NavigationLink {
                                 CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
                                     .navigationTitle(item.name)
                             } label: {
-                                    withAnimation {
-                                        CocktailCellView(cocktail: item)
-                                    }
-                                   
+                                withAnimation {
+                                    CocktailCellView(cocktail: item, flag: $flag)
+                                }
+                                
                             }
                         }
                     } // End LazyVGrid
@@ -49,7 +50,9 @@ struct NewCocktailsView: View {
             .toolbar(.visible, for: .tabBar)
         } // End ZStack
         .onAppear{
-            сocktailViewModel.getNewCocktail()
+           
+                cocktailViewModel.getNewCocktail()
+            
         }
     } // End Body
 }

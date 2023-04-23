@@ -12,6 +12,7 @@ struct ProfileView: View {
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var ingredientsViewModel: IngredientsViewModel
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         ZStack {
@@ -21,7 +22,7 @@ struct ProfileView: View {
                 HStack {
                     UserImageView(image: $profileViewModel.image)
                         .padding()
-                    UserInfoView(profileViewModel: profileViewModel,
+                    UserInfoView(profileViewModel: profileViewModel, cocktailViewModel: cocktailViewModel,
                                  age: $profileViewModel.profile.age)
                     
                     Spacer()
@@ -110,6 +111,14 @@ struct ProfileView: View {
                         .foregroundColor(Color("neonOrange"))
                 }
             }
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    AuthServices.shared.signOut()
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    LabelView(text: "Sing out")
+                }
+            }
         }
     }
 }
@@ -134,6 +143,7 @@ struct UserButtonStackView: View {
     @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var ingredientsViewModel: IngredientsViewModel
+  
 
     var body: some View {
         VStack {
@@ -154,7 +164,7 @@ struct UserButtonStackView: View {
                 Spacer()
                 NavigationLink {
                     NewCocktailsView(
-                        сocktailViewModel: cocktailViewModel,
+                        cocktailViewModel: cocktailViewModel,
                         profileViewModel: profileViewModel
                         )
                 } label: {
@@ -171,7 +181,8 @@ struct UserButtonStackView: View {
                 NavigationLink {
                     AddCocktailView(
                         ingredientsViewModel: ingredientsViewModel,
-                        сocktailsViewModel: cocktailViewModel
+                        cocktailsViewModel: cocktailViewModel,
+                        profileViewModel: profileViewModel
                     )
                 } label: {
                     Text("Add cocktail")
@@ -191,7 +202,8 @@ struct UserButtonStackView: View {
 struct LastCocktailView: View {
     @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
-
+    @State private var flag = true
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
@@ -200,7 +212,7 @@ struct LastCocktailView: View {
                         CocktailDetailView(cocktail: item, profile: profileViewModel.profile, profileViewModel: profileViewModel)
                             .navigationTitle(item.name)
                     } label: {
-                        CocktailCellView(cocktail: item, image: cocktailViewModel.image)
+                        CocktailCellView(cocktail: item, image: cocktailViewModel.image, flag: $flag)
                     }
                 }.foregroundColor(Color("neonBlue"))
                     .padding(.leading, -5)
@@ -211,22 +223,23 @@ struct LastCocktailView: View {
 
 struct UserInfoView: View {
     @StateObject var profileViewModel: ProfileViewModel
-
+    @StateObject var cocktailViewModel: CocktailsViewModel
+    
     @Binding var age: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Age: \(age)")
-                .font(.title3)
+                .font(.system(size: 16))
                 .foregroundColor(Color("neonOrange"))
             Text("Favorites: \(profileViewModel.profile.favoritesCocktails.count)")
-                .font(.system(size: 18))
+                .font(.system(size: 16))
                 .foregroundColor(Color("neonOrange"))
-            Text("Your like: 19")
-                .font(.system(size: 18))
+            Text("Your cocktails: \(cocktailViewModel.allCocktails.count)")
+                .font(.system(size: 16))
                 .foregroundColor(Color("neonOrange"))
             Text("More info...")
-                .font(.system(size: 18))
+                .font(.system(size: 16))
                 .foregroundColor(Color("neonOrange"))
         }
     }

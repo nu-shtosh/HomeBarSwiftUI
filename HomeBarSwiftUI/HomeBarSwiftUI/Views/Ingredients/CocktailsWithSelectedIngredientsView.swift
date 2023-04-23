@@ -15,7 +15,8 @@ struct CocktailsWithSelectedIngredientsView: View {
 
     // MARK: - State Properties
     @State var isHidden = false
-
+    @State private var flag = true
+    
     var ingredients: [String] = []
 
     // MARK: - Private Properties
@@ -38,7 +39,7 @@ struct CocktailsWithSelectedIngredientsView: View {
                                         .navigationTitle(item.name)
                                 } label: {
                                     withAnimation {
-                                        CocktailCellView(cocktail: item)
+                                        CocktailCellView(cocktail: item, flag: $flag)
                                     }
                                 }
                             }

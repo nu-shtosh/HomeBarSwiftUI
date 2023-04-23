@@ -9,7 +9,8 @@ import SwiftUI
 
 struct AddCocktailView: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
-    @StateObject var сocktailsViewModel: CocktailsViewModel
+    @StateObject var cocktailsViewModel: CocktailsViewModel
+    @StateObject var profileViewModel: ProfileViewModel
     @State var receptText = ""
     @State var isPresent = false
     @State var ingredientsTextfield = [""]
@@ -349,7 +350,7 @@ struct AddCocktailView: View {
     }
     
     private func uploadData() {
-        let cocktail = сocktailsViewModel.configureCocktail(
+        let cocktail = cocktailsViewModel.configureCocktail(
             nameCocktail,
             receptText,
             &ingredientsTextfield,
@@ -358,7 +359,8 @@ struct AddCocktailView: View {
             measureText,
             nameButtonTextfield,
             nameButtonText,
-            alcoholic
+            alcoholic,
+            profileViewModel.profile.id
         )
         guard let imageData = image.jpegData(compressionQuality: 0.1) else {
             return
@@ -403,39 +405,39 @@ struct AddCocktailView: View {
     }
 }
 
-struct AddCocktailView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), сocktailsViewModel: CocktailsViewModel(
-            allCocktails: [CocktailDB(
-                name: "",
-                tags: "",
-                alcoholic: "",
-                instructions: "",
-                image: "",
-                ingredientsNames: [""],
-                ingredientsMeasures: [""],
-                rating: 0,
-                numberOfRatings: 0,
-                sumOfRating: 0,
-                userRating: 0,
-                likes: 0,
-                comments: ["" : ""]
-            )], cocktail: CocktailDB(
-                name: "",
-                tags: "",
-                alcoholic: "",
-                instructions: "",
-                image: "",
-                ingredientsNames: [""],
-                ingredientsMeasures: [""],
-                rating: 0,
-                numberOfRatings: 0,
-                sumOfRating: 0,
-                userRating: 0,
-                likes: 0,
-                comments: ["" : ""]
-            ),
-            image: Data()
-        ))
-    }
-}
+//struct AddCocktailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddCocktailView(ingredientsViewModel: IngredientsViewModel(allIngredients: [IngredientDB(name: "xxx")]), сocktailsViewModel: CocktailsViewModel(
+//            allCocktails: [CocktailDB(
+//                name: "",
+//                tags: "",
+//                alcoholic: "",
+//                instructions: "",
+//                image: "",
+//                ingredientsNames: [""],
+//                ingredientsMeasures: [""],
+//                rating: 0,
+//                numberOfRatings: 0,
+//                sumOfRating: 0,
+//                userRating: 0,
+//                likes: 0,
+//                comments: ["" : ""]
+//            )], cocktail: CocktailDB(
+//                name: "",
+//                tags: "",
+//                alcoholic: "",
+//                instructions: "",
+//                image: "",
+//                ingredientsNames: [""],
+//                ingredientsMeasures: [""],
+//                rating: 0,
+//                numberOfRatings: 0,
+//                sumOfRating: 0,
+//                userRating: 0,
+//                likes: 0,
+//                comments: ["" : ""]
+//            ),
+//            image: Data()
+//        ))
+//    }
+//}

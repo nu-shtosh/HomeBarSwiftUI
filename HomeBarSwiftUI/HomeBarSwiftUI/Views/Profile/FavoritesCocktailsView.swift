@@ -11,7 +11,7 @@ struct FavoritesCocktailsView: View {
     // MARK: - State Object Properties
     @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var profileViewModel: ProfileViewModel
-    
+    @State private var flag = true
     // MARK: - Private Properties
     private let layout = [GridItem(.adaptive(minimum: screen.width / 2.2))]
 
@@ -37,7 +37,7 @@ struct FavoritesCocktailsView: View {
                                         .navigationTitle(item.name)
                                 } label: {
                                     VStack {
-                                        CocktailCellView(cocktail: item, image: cocktailViewModel.image)
+                                        CocktailCellView(cocktail: item, image: cocktailViewModel.image, flag: $flag)
                                     }
                                 }
                             }
