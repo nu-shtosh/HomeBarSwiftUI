@@ -16,6 +16,7 @@ class AlcoTestManager {
             chooseGenderFrom: false,
             sliderValue: 0,
             showAlert: false,
+            isPresented: false,
             result: 0,
             weightValue: "",
             showResult: false,
