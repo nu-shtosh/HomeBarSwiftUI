@@ -16,6 +16,16 @@ class StorageService {
     private var userRef: StorageReference { storage.child("usersPhoto")}
     private var cocktailRef: StorageReference { storage.child("cocktailPhoto")}
     
+    func deleteCocktailImage(id: String) {
+        cocktailRef.child(id).delete { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("delete image")
+            }
+        }
+    }
+    
     func uploadCocktailImage(id: String, image: Data, completion: @escaping (Result<String, Error>) -> Void) {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"

@@ -335,7 +335,7 @@ struct AddCocktailView: View {
             if showProgressView {
                 ActivityIndicator()
                     .frame(width: 100, height: 100)
-                    .foregroundColor(Color("neonBlue"))
+                    .foregroundColor(Color("neonBlue"))               
             }
         }
     }
