@@ -13,6 +13,7 @@ struct CocktailDetailView: View {
     var profile: UserDB
 
     @State private var image = Data()
+    @State private var showAlert = false
     @Binding var flag: Bool
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var newCocktailViewModel: NewCocktailsViewModel
@@ -114,7 +115,7 @@ struct CocktailDetailView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: flag ? addInFavorites : deleteCocktail) {
+                    Button(action: flag ? addInFavorites : showingAlert) {
                         if flag {
                             Image(systemName: isFavorite ? "heart.fill" : "heart")
                         } else {
@@ -128,6 +129,16 @@ struct CocktailDetailView: View {
                     }
                 }
             }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Do you really want to remove the cocktail?"),
+                    message: Text("Doing so will permanently delete the data"),
+                    primaryButton: .default(Text("Delete")) {
+                        deleteCocktail()
+                    },
+                    secondaryButton: .default(Text("Cancel"))
+                )
+            }
             .onAppear {
                 if flag {
                     getImage(imageURL: cocktail.image)
@@ -137,13 +148,17 @@ struct CocktailDetailView: View {
             }
         }
     }
-    func deleteCocktail() {
+    private func showingAlert() {
+        showAlert.toggle()
+    }
+    
+  private func deleteCocktail() {
         DataBaseService.shared.deleteNewCocktail(cocktail: cocktail.name)
         newCocktailViewModel.getNewCocktail()
         presentationMode.wrappedValue.dismiss()
     }
     
-    func addInFavorites() {
+   private func addInFavorites() {
         if !isFavorite {
             profileViewModel.profile.favoritesCocktails.append(cocktail.name)
             uploadData()
@@ -171,7 +186,7 @@ struct CocktailDetailView: View {
     }
 
     // MARK: - Get Image
-    func getImage(imageURL: String) {
+   private func getImage(imageURL: String) {
         NetworkManager.shared.fetchImage(from: imageURL) { result in
             switch result {
             case .success(let images):
@@ -182,7 +197,7 @@ struct CocktailDetailView: View {
         }
     }
     
-    func getImageNewCocktail(_ id: String) {
+   private func getImageNewCocktail(_ id: String) {
         StorageService.shared.downloadCocktailImage(id: id) { result in
             switch result {
             case .success(let data):

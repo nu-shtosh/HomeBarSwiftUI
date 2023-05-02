@@ -14,6 +14,7 @@ struct ProfileView: View {
     @StateObject var newCocktailViewModel: NewCocktailsViewModel
     @StateObject var ingredientsViewModel: IngredientsViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var showAlert = false
     
     var body: some View {
         ZStack {
@@ -119,12 +120,23 @@ struct ProfileView: View {
             }
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    AuthServices.shared.signOut()
-                    presentationMode.wrappedValue.dismiss()
+                    showAlert.toggle()
                 } label: {
                     LabelView(text: "Sing out")
                 }
             }
+            
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Are you sure you want to log out of your account?"),
+                message: Text("You will not be able to continue using the application!"),
+                primaryButton: .default(Text("Sign out")){
+                    AuthServices.shared.signOut()
+                    presentationMode.wrappedValue.dismiss()
+                },
+                secondaryButton: .default(Text("Cancel"))
+            )
         }
     }
 }
