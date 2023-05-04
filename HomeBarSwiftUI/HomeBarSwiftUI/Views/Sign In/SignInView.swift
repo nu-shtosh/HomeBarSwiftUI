@@ -21,7 +21,6 @@ struct SignInView: View {
     @State private var isTabViewShow = false
     @State private var isShowAlert = false
     @State private var alertMessage = ""
-
     // MARK: - FocusState Properties
     @FocusState private var currentTag: Tags?
 

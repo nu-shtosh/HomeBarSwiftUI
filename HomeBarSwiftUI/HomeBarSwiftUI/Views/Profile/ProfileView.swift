@@ -15,6 +15,7 @@ struct ProfileView: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var showAlert = false
+    @Binding var rootIsActive : Bool
     
     var body: some View {
         ZStack {
@@ -109,10 +110,9 @@ struct ProfileView: View {
         .navigationBarTitleDisplayMode(.large)
         .navigationTitle(Text(profileViewModel.profile.fullname))
         .toolbar {
-
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink {
-                    SettingUserView(profileViewModel: profileViewModel)
+                    SettingUserView(profileViewModel: profileViewModel, shouldPopToRootView: $rootIsActive)
                 } label: {
                     Image(systemName: "gearshape.fill")
                         .foregroundColor(Color("neonOrange"))
@@ -137,6 +137,11 @@ struct ProfileView: View {
                 },
                 secondaryButton: .default(Text("Cancel"))
             )
+        }
+        .onAppear {
+            if rootIsActive {
+                presentationMode.wrappedValue.dismiss()
+            }
         }
     }
 }

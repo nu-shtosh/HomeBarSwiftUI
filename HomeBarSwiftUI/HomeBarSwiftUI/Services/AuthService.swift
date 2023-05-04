@@ -68,4 +68,14 @@ class AuthServices {
             print("Error: ", error.localizedDescription)
         }
     }
+    
+    func deleteUser() {
+        currentUser?.delete { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    print("delete user")
+                }
+        }
+    }
 }
