@@ -45,6 +45,7 @@ class AlcoTestViewModel: ObservableObject {
         let multipleAlcohol = alcoTest.sliderValue * alcoTest.alcoholValue
         if distributionUser > 0 && multipleAlcohol > 0 {
             alcoTest.result = multipleAlcohol / distributionUser
+            alcoTest.isPresented.toggle()
         } else {
             alcoTest.showAlert.toggle()
             return

@@ -120,27 +120,22 @@ struct AlcoholTestView: View {
                                                startPoint: .top,
                                                endPoint: .bottom).opacity(0.15))
                     .padding(.bottom)
-
-
+                    
                     // MARK: - Calculate Button
                     HStack {
-                        if !alcoTestViewModel.alcoTest.showAlert {
-                            NavigationLink(
-                                destination: ResultAlcoTestView(
-                                    alcoTestViewModel: alcoTestViewModel
-                                ),
-                                label: {
-                                    CalculateLabel(text: "Calculate")
-                                })
-                        } else {
+                        Button {
+                            isInputActive = false
+                            alcoTestViewModel.calculateTestResults()
+                        } label: {
                             CalculateLabel(text: "Calculate")
+                        }
+                        .navigationDestination(isPresented: $alcoTestViewModel.alcoTest.isPresented) {
+                            ResultAlcoTestView(
+                                alcoTestViewModel: alcoTestViewModel
+                            )
                         }
                     }
                     .padding(.top, 20)
-                    .simultaneousGesture(TapGesture().onEnded {
-                        isInputActive = false
-                        alcoTestViewModel.calculateTestResults()
-                    })
                     .alert(isPresented: $alcoTestViewModel.alcoTest.showAlert) {
                         Alert(
                             title: Text("Not all fields are filled!"),

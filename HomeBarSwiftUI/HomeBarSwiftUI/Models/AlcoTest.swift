@@ -13,6 +13,7 @@ struct AlcoTest {
     var chooseGenderFrom: Bool
     var sliderValue: Double
     var showAlert: Bool
+    var isPresented: Bool
     var result: Double
     var weightValue: String
     var showResult: Bool
