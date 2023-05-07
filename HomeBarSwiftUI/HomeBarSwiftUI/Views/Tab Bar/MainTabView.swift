@@ -10,7 +10,7 @@ import SwiftUI
 struct MainTabView: View {
     
     // MARK: - Properties
-    @State var isActive = false
+    @Binding var isActive: Bool
     let tabBarViewModel: MainTabBarViewModel
     let ingredientsViewModel = IngredientsViewModel(
         allIngredients: [IngredientDB(name: "")]

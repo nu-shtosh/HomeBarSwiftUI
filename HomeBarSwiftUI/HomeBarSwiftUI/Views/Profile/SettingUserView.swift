@@ -10,12 +10,14 @@ import SwiftUI
 struct SettingUserView: View {
     
     @StateObject var profileViewModel: ProfileViewModel
+    
     @State private var showImagePicker = false
     @State private var showAlert = false
     @State private var showProgressView = false
+    
     @Binding var shouldPopToRootView : Bool
+    
     @Environment (\.dismiss) var dismiss
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         ZStack {
@@ -80,8 +82,7 @@ struct SettingUserView: View {
                 message: Text("Without an account you cannot use the application!"),
                 primaryButton: .default(Text("Delete")) {
                     AuthServices.shared.deleteUser()
-                    shouldPopToRootView = true
-                    dismiss.callAsFunction()
+                    shouldPopToRootView = false
                 },
                 secondaryButton: .default(Text("Cancel"))
             )

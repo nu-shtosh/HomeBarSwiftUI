@@ -13,8 +13,9 @@ struct ProfileView: View {
     @StateObject var cocktailViewModel: CocktailsViewModel
     @StateObject var newCocktailViewModel: NewCocktailsViewModel
     @StateObject var ingredientsViewModel: IngredientsViewModel
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+        
     @State private var showAlert = false
+    
     @Binding var rootIsActive : Bool
     
     var body: some View {
@@ -133,15 +134,10 @@ struct ProfileView: View {
                 message: Text("You will not be able to continue using the application!"),
                 primaryButton: .default(Text("Sign out")){
                     AuthServices.shared.signOut()
-                    presentationMode.wrappedValue.dismiss()
+                   rootIsActive = false
                 },
                 secondaryButton: .default(Text("Cancel"))
             )
-        }
-        .onAppear {
-            if rootIsActive {
-                presentationMode.wrappedValue.dismiss()
-            }
         }
     }
 }
