@@ -151,7 +151,7 @@ struct AlcoholTestView: View {
                     .foregroundColor(.gray)
                     .font(.system(size: 14))
                     .multilineTextAlignment(.center)
-                    .padding()
+//                    .padding()
             }
             .padding()
         }
