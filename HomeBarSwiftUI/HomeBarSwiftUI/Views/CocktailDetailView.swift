@@ -11,19 +11,20 @@ struct CocktailDetailView: View {
     
     var cocktail: CocktailDB
     var profile: UserDB
-
+    
     @State private var image = Data()
+    @State private var showAlert = false
     @Binding var flag: Bool
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var newCocktailViewModel: NewCocktailsViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     var isFavorite: Bool {
         profile.favoritesCocktails.contains(cocktail.name)
     }
     
     var body: some View {
-
+        
         ZStack {
             WallpaperView()
             ScrollView(showsIndicators: false) {
@@ -80,7 +81,7 @@ struct CocktailDetailView: View {
                                                    endPoint: .bottom).opacity(0.15))
                         .cornerRadius(16)
                     }
-
+                    
                     // MARK: - Cocktail Recipe/Instruction
                     VStack {
                         HStack {
@@ -114,7 +115,7 @@ struct CocktailDetailView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: flag ? addInFavorites : deleteCocktail) {
+                    Button(action: flag ? addInFavorites : showingAlert) {
                         if flag {
                             Image(systemName: isFavorite ? "heart.fill" : "heart")
                         } else {
@@ -128,6 +129,16 @@ struct CocktailDetailView: View {
                     }
                 }
             }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Do you really want to remove the cocktail?"),
+                    message: Text("Doing so will permanently delete the data"),
+                    primaryButton: .default(Text("Delete")) {
+                        deleteCocktail()
+                    },
+                    secondaryButton: .default(Text("Cancel"))
+                )
+            }
             .onAppear {
                 if flag {
                     getImage(imageURL: cocktail.image)
@@ -137,13 +148,18 @@ struct CocktailDetailView: View {
             }
         }
     }
-    func deleteCocktail() {
+    private func showingAlert() {
+        showAlert.toggle()
+    }
+    
+    private func deleteCocktail() {
         DataBaseService.shared.deleteNewCocktail(cocktail: cocktail.name)
+        StorageService.shared.deleteCocktailImage(id: cocktail.name)
         newCocktailViewModel.getNewCocktail()
         presentationMode.wrappedValue.dismiss()
     }
     
-    func addInFavorites() {
+    private func addInFavorites() {
         if !isFavorite {
             profileViewModel.profile.favoritesCocktails.append(cocktail.name)
             uploadData()
@@ -154,7 +170,7 @@ struct CocktailDetailView: View {
             }
         }
     }
-
+    
     private func uploadData() {
         let user = profileViewModel.profile
         guard let imageData = profileViewModel.image.jpegData(compressionQuality: 0.1) else {
@@ -169,9 +185,9 @@ struct CocktailDetailView: View {
             }
         }
     }
-
+    
     // MARK: - Get Image
-    func getImage(imageURL: String) {
+    private func getImage(imageURL: String) {
         NetworkManager.shared.fetchImage(from: imageURL) { result in
             switch result {
             case .success(let images):
@@ -182,16 +198,16 @@ struct CocktailDetailView: View {
         }
     }
     
-    func getImageNewCocktail(_ id: String) {
+    private func getImageNewCocktail(_ id: String) {
         StorageService.shared.downloadCocktailImage(id: id) { result in
             switch result {
             case .success(let data):
-               image = data
+                image = data
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
-
-
+    
+    
 }

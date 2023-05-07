@@ -10,7 +10,13 @@ import SwiftUI
 struct SettingUserView: View {
     
     @StateObject var profileViewModel: ProfileViewModel
+    
     @State private var showImagePicker = false
+    @State private var showAlert = false
+    @State private var showProgressView = false
+    
+    @Binding var shouldPopToRootView : Bool
+    
     @Environment (\.dismiss) var dismiss
     
     var body: some View {
@@ -45,20 +51,52 @@ struct SettingUserView: View {
                     imageSystemName: "person.crop.circle.badge.clock",
                     text: $profileViewModel.profile.age
                 )
-                Spacer()
+                .padding(.bottom, 20)
                 OrangeButtonView(action: uploadData, title: "Save")
+                    .padding(.bottom, 40)
+                Button {
+                    showAlert.toggle()
+                } label: {
+                    Text("Delete account")
+                        .font(.system(size: 22))
+                }
+                .frame(width: 300, height: 50)
+                .background(Color.red)
+                .foregroundColor(.white)
+                .cornerRadius(8)
                 Spacer()
+
             }
             .padding()
+            .disabled(showProgressView)
+            .blur(radius: showProgressView ? 3 : 0)
+            if showProgressView {
+                ActivityIndicator()
+                    .frame(width: 100, height: 100)
+                    .foregroundColor(Color("neonBlue"))
+            }
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Are you sure you want to delete your account?"),
+                message: Text("Without an account you cannot use the application!"),
+                primaryButton: .default(Text("Delete")) {
+                    AuthServices.shared.deleteUser()
+                    shouldPopToRootView = false
+                },
+                secondaryButton: .default(Text("Cancel"))
+            )
         }
         .onSubmit {
             profileViewModel.setProfile()
         }
         .navigationBarTitleDisplayMode(.large)
         .navigationTitle("Setting")
+        
     }
     
     private func uploadData() {
+        showProgressView = true
         let user = profileViewModel.profile
         guard let imageData = profileViewModel.image.jpegData(compressionQuality: 0.1) else {
             return

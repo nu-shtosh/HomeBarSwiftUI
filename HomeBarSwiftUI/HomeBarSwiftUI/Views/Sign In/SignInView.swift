@@ -21,7 +21,6 @@ struct SignInView: View {
     @State private var isTabViewShow = false
     @State private var isShowAlert = false
     @State private var alertMessage = ""
-
     // MARK: - FocusState Properties
     @FocusState private var currentTag: Tags?
 
@@ -146,7 +145,7 @@ struct SignInView: View {
             .fullScreenCover(isPresented: $isTabViewShow) {
                 if let user = AuthServices.shared.currentUser {
                     let mainTabBarViewModel = MainTabBarViewModel(user: user)
-                    MainTabView(tabBarViewModel: mainTabBarViewModel)
+                    MainTabView(isActive: $isTabViewShow, tabBarViewModel: mainTabBarViewModel)
                 }
             }
             .onTapGesture {

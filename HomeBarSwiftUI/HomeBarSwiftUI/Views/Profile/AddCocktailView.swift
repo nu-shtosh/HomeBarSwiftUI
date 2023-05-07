@@ -13,23 +13,24 @@ struct AddCocktailView: View {
     @StateObject var profileViewModel: ProfileViewModel
     @StateObject var newCocktailViewModel: NewCocktailsViewModel
     
-    @State var receptText = ""
-    @State var isPresent = false
-    @State var ingredientsTextfield = [""]
-    @State var ingredientsText = [""]
-    @State var measureTextfield = [""]
-    @State var measureText = [""]
-    @State var nameCocktail = ""
-    @State var nameButtonTextfield = [""]
-    @State var nameButtonText = [""]
-    @State var alcoholic = "Alcoholic"
-    private let measures = MeasureDataStore.shared.measures
+    @State private var isPresent = false
+    @State private var recipeText = ""
+    @State private var ingredientsTextfield = [""]
+    @State private var ingredientsText = [""]
+    @State private var measureTextfield = [""]
+    @State private var measureText = [""]
+    @State private var nameCocktail = ""
+    @State private var nameButtonTextfield = [""]
+    @State private var nameButtonText = [""]
+    @State private var alcoholic = "Alcoholic"
+   
     @State private var showImagePicker = false
     @State private var showProgressView = false
     @State private var showAlert = false
     @State private var type = false
     
-    @State var image = UIImage(named: "pinaColada")!
+    @State private var image = UIImage(named: "pinaColada")!
+    private let measures = MeasureDataStore.shared.measures
     @FocusState private var isInputActive: Bool
     @Environment (\.dismiss) var dismiss
     
@@ -284,7 +285,7 @@ struct AddCocktailView: View {
                     }
                     // MARK: - Recept TextEditor
                     HStack {
-                        TextField("Recipe", text: $receptText, axis: .vertical)
+                        TextField("Recipe", text: $recipeText, axis: .vertical)
                             .textFieldStyle(GradientTextFieldBackground())
                             .foregroundColor(.black)
                             .lineLimit(1...200)
@@ -335,7 +336,7 @@ struct AddCocktailView: View {
             if showProgressView {
                 ActivityIndicator()
                     .frame(width: 100, height: 100)
-                    .foregroundColor(Color("neonBlue"))
+                    .foregroundColor(Color("neonBlue"))             
             }
         }
     }
@@ -354,7 +355,7 @@ struct AddCocktailView: View {
     private func uploadData() {
         let cocktail = newCocktailViewModel.configureCocktail(
             nameCocktail,
-            receptText,
+            recipeText,
             &ingredientsTextfield,
             &ingredientsText,
             measureTextfield,
@@ -380,21 +381,21 @@ struct AddCocktailView: View {
 
     private func saveNewCocktail() {
         if ingredientsTextfield.count > 1 && ingredientsText.count > 1 {
-            if nameCocktail.isEmpty || receptText.isEmpty || ingredientsTextfield[1].isEmpty || measureTextfield[1].isEmpty || measureText[1].isEmpty || nameButtonTextfield.contains("measure") || nameButtonText.contains("measure") {
+            if nameCocktail.isEmpty || recipeText.isEmpty || ingredientsTextfield[1].isEmpty || measureTextfield[1].isEmpty || measureText[1].isEmpty || nameButtonTextfield.contains("measure") || nameButtonText.contains("measure") {
                 showProgressView = false
                 showAlert.toggle()
             } else {
                 uploadData()
             }
         } else if ingredientsTextfield.count == 1 && ingredientsText.count > 1 {
-            if nameCocktail.isEmpty || receptText.isEmpty ||  measureText[1].isEmpty ||  nameButtonText.contains("measure") {
+            if nameCocktail.isEmpty || recipeText.isEmpty ||  measureText[1].isEmpty ||  nameButtonText.contains("measure") {
                 showProgressView = false
                 showAlert.toggle()
             } else {
                 uploadData()
             }
         } else if ingredientsTextfield.count > 1 && ingredientsText.count == 1 {
-            if nameCocktail.isEmpty || receptText.isEmpty || ingredientsTextfield[1].isEmpty || measureTextfield[1].isEmpty || nameButtonTextfield.contains("measure") {
+            if nameCocktail.isEmpty || recipeText.isEmpty || ingredientsTextfield[1].isEmpty || measureTextfield[1].isEmpty || nameButtonTextfield.contains("measure") {
                 showProgressView = false
                 showAlert.toggle()
             } else {
